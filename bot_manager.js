@@ -295,8 +295,7 @@ async function sendOrderAlert(order) {
     );
   }
 
-  // 2. Post to "Report Đơn" group
-  sendTelegramMessage(GROUPS.REPORT_DON, text);
+  // 2. Post to "Report Đơn" group (Disabled as requested)
 
   // 3. DM alert to Shipper on duty
   sendTelegramMessage(ADMIN_CHAT_ID, `🛵 <b>BẠN CÓ ĐƠN HÀNG MỚI CẦN ĐI LẤY:</b>\n\n${text}`);
