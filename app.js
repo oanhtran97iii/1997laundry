@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Specialist deep cleaning for mattress toppers (24h turnaround) and curtains.": "Làm sạch sâu chuyên biệt cho tấm bảo vệ nệm topper (giao nhận 24h) và rèm cửa.",
     "Topper: 60.000 VND / kg": "Topper: 60.000 VND / kg",
     "Curtain: 50.000 VND / kg": "Rèm cửa: 50.000 VND / kg",
-    "Premium wash, d    "Premium Linens, Bedding & Mattress Topper Cleaning Saigon | Nice Fold Saigon": "Dịch vụ giặt sấy cao cấp Drap, Chăn ga & Topper Sài Gòn | Nice Fold Saigon",
+    "Premium Linens, Bedding & Mattress Topper Cleaning Saigon | Nice Fold Saigon": "Dịch vụ giặt sấy cao cấp Drap, Chăn ga & Topper Sài Gòn | Nice Fold Saigon",
     "Premium Bedding Care": "Chăm sóc Chăn ga Cao cấp",
     "Hygienic Cleaning for Linens & Bedding": "Giặt sấy Vệ sinh Chăn ga & Gối đệm",
     "Keep your bedroom fresh and allergen-free. We provide professional deep cleaning for bedsheets, heavy duvets, mattress toppers, and curtains. 100% separate washes and complete machine drying guaranteed.": "Giữ phòng ngủ luôn sạch mát và không còn tác nhân gây dị ứng. Chúng tôi cung cấp dịch vụ làm sạch sâu chuyên nghiệp cho drap trải giường, chăn bông dày, tấm bảo vệ nệm topper và rèm cửa. Cam kết giặt riêng 100% và sấy khô hoàn toàn bằng máy.",
