@@ -847,7 +847,23 @@ document.addEventListener('DOMContentLoaded', () => {
 💵 Payment Method: ${paymentMethod === 'cash' ? 'Cash' : 'Bank Transfer'}
 💵 Estimated Total: ${formattedVnd} (${formattedUsd})`;
 
-        window.triggerCheckoutModal(totalVnd, bookingCode, rateConfig.label, pickupTime, hotelDetailsStr, messageText);
+        const activeBtnId = e.submitter ? e.submitter.id : 'submit-whatsapp';
+
+        if (activeBtnId === 'submit-whatsapp') {
+          const waLink = "https://wa.me/84373991602?text=" + encodeURIComponent(messageText);
+          window.open(waLink, '_blank');
+        } else {
+          // Zalo flow: copy to clipboard and open Zalo URL
+          navigator.clipboard.writeText(messageText).then(() => {
+            alert(isVi ? 
+              '📝 Thông tin đặt lịch đã được sao chép vào bộ nhớ tạm!\n\nĐang mở Zalo. Vui lòng dán (paste) nội dung đã sao chép vào khung chat Zalo với chúng tôi để gửi thông tin đặt lịch.' :
+              '📝 Booking details copied to clipboard!\n\nOpening Zalo. Please paste the copied details into our Zalo chat to complete your booking.'
+            );
+            window.open('https://zalo.me/0373991602', '_blank');
+          }).catch(() => {
+            window.open('https://zalo.me/0373991602', '_blank');
+          });
+        }
       };
 
       // Send data to PHP API Webhook, then execute checkout popup
