@@ -1000,10 +1000,7 @@ app.post('/api/chat', async (req, res) => {
 });
 
 // Serve Admin Static Files behind Auth
-app.get('/admin', basicAuth, (req, res) => {
-    res.redirect('/admin/');
-});
-app.use('/admin/', basicAuth, express.static(path.join(__dirname, 'admin')));
+app.use('/admin', basicAuth, express.static(path.join(__dirname, 'admin')));
 
 // Serve Static Site Files
 app.use(express.static(path.join(__dirname)));
