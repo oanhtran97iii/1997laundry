@@ -4,6 +4,7 @@ const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
+const botManager = require('./bot_manager');
 
 // Load environment variables
 dotenv.config();
@@ -726,6 +727,24 @@ app.all('/api.php', async (req, res) => {
                 // Trigger booking confirmation mail in background
                 setTimeout(() => sendBookingConfirmation(name, email, service, amount, bookingCode, hotel, room), 0);
 
+                // Send Telegram and Shipper notification
+                try {
+                    botManager.sendOrderAlert({
+                        bookingCode: bookingCode,
+                        name: name,
+                        phone: phone,
+                        service: service,
+                        hotelAddress: hotel,
+                        roomNumber: room,
+                        pickupTime: body.pickupTime || new Date().toLocaleString(),
+                        paymentMethod: body.paymentMethod || 'banktransfer',
+                        totalVnd: amount,
+                        lang: body.lang || 'en'
+                    });
+                } catch(err) {
+                    console.error('Failed to trigger order alert:', err);
+                }
+
                 return res.json({ success: true, bookingCode: bookingCode });
             }
 
@@ -993,4 +1012,12 @@ app.use(express.static(path.join(__dirname)));
 app.listen(PORT, () => {
     console.log(`Node.js Express Server is running on port ${PORT}`);
     console.log(`Admin panel: http://localhost:${PORT}/admin`);
+    
+    // Initialize bot automation
+    try {
+        botManager.init(app, db);
+        console.log('Bot Manager automation initialized.');
+    } catch(err) {
+        console.error('Failed to initialize Bot Manager:', err);
+    }
 });
