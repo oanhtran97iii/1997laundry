@@ -940,6 +940,46 @@ app.all('/api.php', async (req, res) => {
     }
 });
 
+// --- Chatbot proxy endpoint for goClaw AI Agent (Bé Hai) ---
+app.post('/api/chat', async (req, res) => {
+    const { message, sessionId } = req.body;
+    if (!message) {
+        return res.status(400).json({ error: 'Message is required' });
+    }
+
+    const sessId = sessionId || 'default-session';
+
+    try {
+        const payload = {
+            messages: [{ role: 'user', content: message }]
+        };
+
+        const response = await fetch('http://localhost:3002/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 0efe653ca15f03f4ccec8f007cec08a3',
+                'X-GoClaw-User-Id': sessId,
+                'X-GoClaw-Agent-Id': 'be-hai-giat-say'
+            },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            console.error('goClaw completions API error:', errText);
+            return res.status(response.status).json({ error: 'Failed to communicate with agent' });
+        }
+
+        const data = await response.json();
+        const reply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+        return res.json({ reply: reply || '' });
+    } catch (err) {
+        console.error('Chat proxy error:', err);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Serve Admin Static Files behind Auth
 app.get('/admin', basicAuth, (req, res) => {
     res.redirect('/admin/');

@@ -1809,12 +1809,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let closingIndex = 0;
 
   const appendBotMessage = message => {
-    if (!chatbotBody) return;
+    if (!chatbotBody) return null;
     const messageEl = document.createElement('div');
+    const msgId = 'bot_msg_' + Math.random().toString(36).substring(2, 11);
+    messageEl.id = msgId;
     messageEl.className = 'chatbot-message bot';
     messageEl.innerHTML = message;
     chatbotBody.appendChild(messageEl);
     chatbotBody.scrollTop = chatbotBody.scrollHeight;
+    return msgId;
   };
 
   const appendUserMessage = message => {
@@ -2220,8 +2223,40 @@ document.addEventListener('DOMContentLoaded', () => {
         ]);
       }
     } else {
-      appendBotMessage(localScript.fallbackMsg);
-      showInitialMainMenu();
+      // Show thinking indicator
+      const loadingMsgId = appendBotMessage(bookingSession.lang === 'vi' ? 'Bé Hai đang trả lời... ⏳' : 'Bé Hai is typing... ⏳');
+      
+      let chatSessionId = localStorage.getItem('chatbot_session_id');
+      if (!chatSessionId) {
+        chatSessionId = 'sess_' + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem('chatbot_session_id', chatSessionId);
+      }
+
+      fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, sessionId: chatSessionId })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const loadingEl = document.getElementById(loadingMsgId);
+        if (loadingEl) loadingEl.remove();
+
+        if (data.reply) {
+          appendBotMessage(data.reply);
+        } else {
+          appendBotMessage(localScript.fallbackMsg);
+          showInitialMainMenu();
+        }
+      })
+      .catch(err => {
+        console.error('Chatbot API failed:', err);
+        const loadingEl = document.getElementById(loadingMsgId);
+        if (loadingEl) loadingEl.remove();
+
+        appendBotMessage(localScript.fallbackMsg);
+        showInitialMainMenu();
+      });
     }
   };
 
