@@ -6,6 +6,8 @@
     --color-bg-dark-card: #150c3d;  /* Lighter deep navy for cards */
     --color-accent: #f26a19;       /* Vibrant brand orange */
     --color-accent-hover: #ff7e32; /* Lighter orange for hover */
+    --color-accent-light: #ffdac2; /* Soft orange cream color */
+    --color-accent-dark: #a64603;  /* Deep rust orange */
     --color-accent-glow: rgba(242, 106, 25, 0.4);
     --color-text-dark: #09002d;
     --color-text-light: #ffffff;
@@ -107,9 +109,9 @@ img {
 }
 
 .btn-primary:hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-accent-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(242, 106, 25, 0.6);
+    box-shadow: 0 6px 20px rgba(166, 70, 3, 0.5);
 }
 
 .btn-secondary {
@@ -150,8 +152,8 @@ img {
     letter-spacing: 1px;
     border-radius: 20px;
     text-transform: uppercase;
-    background-color: rgba(242, 106, 25, 0.1);
-    color: var(--color-accent);
+    background-color: var(--color-accent-light);
+    color: var(--color-accent-dark);
     margin-bottom: 20px;
 }
 
@@ -167,8 +169,8 @@ img {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--color-accent);
-    background-color: rgba(242, 106, 25, 0.08);
+    color: var(--color-accent-dark);
+    background-color: var(--color-accent-light);
     border-radius: 4px;
     margin-bottom: 16px;
 }
@@ -1098,12 +1100,13 @@ img {
 
 /* Featured Price Card */
 .pricing-card.featured {
-    border: 2px solid var(--color-accent);
-    box-shadow: 0 15px 40px rgba(242, 106, 25, 0.08);
+    border: 2px solid var(--color-accent-dark);
+    box-shadow: 0 15px 40px rgba(166, 70, 3, 0.08);
+    background: linear-gradient(to bottom, var(--color-bg-light), rgba(255, 218, 194, 0.1));
 }
 
 .pricing-card.featured:hover {
-    box-shadow: 0 20px 50px rgba(242, 106, 25, 0.15);
+    box-shadow: 0 20px 50px rgba(166, 70, 3, 0.15);
 }
 
 .pricing-card .card-badge {
@@ -1120,7 +1123,7 @@ img {
 }
 
 .pricing-card.featured .card-badge {
-    background-color: var(--color-accent);
+    background-color: var(--color-accent-dark);
     color: var(--color-text-light);
 }
 
