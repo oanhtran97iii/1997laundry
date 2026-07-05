@@ -553,7 +553,11 @@
         <div class="form-group">
           <label for="ord-status">Trạng thái đơn hàng *</label>
           <select id="ord-status" class="form-control" required>
-            <option value="Chờ XN">Chờ XN</option>
+            <option value="Chưa lấy">Chưa lấy</option>
+            <option value="Đã lấy">Đã lấy</option>
+            <option value="Chờ giặt">Chờ giặt</option>
+            <option value="Chờ giao (đã thanh toán)">Chờ giao (đã thanh toán)</option>
+            <option value="Chờ giao chưa thanh toán">Chờ giao chưa thanh toán</option>
             <option value="Hoàn thành">Hoàn thành</option>
           </select>
         </div>
@@ -743,9 +747,9 @@
         const rawAmount = o['Tổng tiền bill tạm tính'] !== undefined ? o['Tổng tiền bill tạm tính'] : o.amount;
         const amount = parseFloat(rawAmount) || 0;
         
-        let status = o['Trạng thái đơn'] || o.status || 'Chờ XN';
-        if (status === 'pending') status = 'Chờ XN';
-        if (status === 'paid' || status === 'Đã TT' || status === 'Đã thanh toán' || status === 'completed') {
+        let status = o['Trạng thái đơn'] || o.status || 'Chưa lấy';
+        if (status === 'pending' || status === 'Chờ XN' || status === 'Chờ lấy') status = 'Chưa lấy';
+        if (status === 'paid' || status === 'Đã TT' || status === 'Đã thanh toán' || status === 'completed' || status === 'Đã giao') {
           status = 'Hoàn thành';
         }
 
@@ -767,7 +771,11 @@
             </td>
             <td>
               <select id="status-${id}" class="form-control" style="width: 120px; padding: 6px; font-weight: 700;" ${status === 'Hoàn thành' ? 'disabled style="background: #edf2f7; color: #4a5568; cursor: not-allowed;"' : ''} onchange="saveOrderInline('${id}', '${phone}', '${name}')">
-                <option value="Chờ XN" ${status === 'Chờ XN' ? 'selected' : ''}>Chờ XN</option>
+                <option value="Chưa lấy" ${status === 'Chưa lấy' ? 'selected' : ''}>Chưa lấy</option>
+                <option value="Đã lấy" ${status === 'Đã lấy' ? 'selected' : ''}>Đã lấy</option>
+                <option value="Chờ giặt" ${status === 'Chờ giặt' ? 'selected' : ''}>Chờ giặt</option>
+                <option value="Chờ giao (đã thanh toán)" ${status === 'Chờ giao (đã thanh toán)' ? 'selected' : ''}>Chờ giao (đã thanh toán)</option>
+                <option value="Chờ giao chưa thanh toán" ${status === 'Chờ giao chưa thanh toán' ? 'selected' : ''}>Chờ giao chưa thanh toán</option>
                 <option value="Hoàn thành" ${status === 'Hoàn thành' ? 'selected' : ''}>Hoàn thành</option>
               </select>
             </td>

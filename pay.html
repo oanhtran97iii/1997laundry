@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Checkout | Nice Fold Saigon</title>
+  <title>Secure Checkout | 1997 Premium Laundry</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -497,7 +497,7 @@
   <header class="main-header">
     <div class="header-container">
       <a href="./" class="logo-link">
-        <img src="logo.png" alt="Nice Fold Saigon Logo" class="header-logo-img">
+        <img src="logo.png" alt="1997 Premium Laundry Logo" class="header-logo-img">
       </a>
       <nav class="nav-links">
         <a href="./" class="nav-item">Home</a>
@@ -514,7 +514,7 @@
     <!-- Billing Card (Pending Payment) -->
     <div class="payment-card" id="billingCard">
       <div class="logo-container">
-        <img src="logo.png" alt="Nice Fold Saigon" class="logo-img">
+        <img src="logo.png" alt="1997 Premium Laundry" class="logo-img">
       </div>
       
       <h2 class="payment-title">Checkout Payment</h2>
@@ -554,7 +554,7 @@
         <div class="detail-row">
           <span class="detail-label">Description / Nội dung:</span>
           <span class="detail-value">
-            <span id="payContent" class="highlight-content">NF12345</span>
+            <span id="payContent" class="highlight-content">LTT12345</span>
             <button class="copy-btn" id="copyContentBtn">Copy</button>
           </span>
         </div>
@@ -582,7 +582,7 @@
       
       <h2 class="success-title">Payment Confirmed!</h2>
       <p class="success-text">
-        Thank you! We have successfully received payment for booking code <strong id="successContentCode" style="color: var(--color-pink);">NF12345</strong>.<br>
+        Thank you! We have successfully received payment for booking code <strong id="successContentCode" style="color: var(--color-pink);">LTT12345</strong>.<br>
         Your laundry is now being prioritized and processed.
       </p>
       
@@ -608,7 +608,7 @@
   <footer class="main-footer">
     <div class="footer-bottom" style="border-top: none; padding: 24px 0; text-align: center;">
       <p style="font-size: 0.9rem; color: var(--color-navy); opacity: 0.85; font-weight: 500;">
-        &copy; 2026 Nice Fold Saigon. All rights reserved.
+        &copy; 2026 1997 Premium Laundry. All rights reserved.
       </p>
     </div>
   </footer>
@@ -653,7 +653,7 @@
       const params = new URLSearchParams(window.location.search);
       return {
         amount: parseInt(params.get('amount')) || 150000, 
-        desc: params.get('desc') || params.get('code') || 'NF1029' 
+        desc: params.get('desc') || params.get('code') || 'LTT1029' 
       };
     }
 
@@ -662,7 +662,7 @@
       let { amount, desc } = getUrlParams();
 
       if (!amount) amount = 150000;
-      if (!desc) desc = 'NF1029';
+      if (!desc) desc = 'LTT1029';
 
       // Populate interface
       document.getElementById('payAmount').textContent = amount.toLocaleString('vi-VN') + ' VND';

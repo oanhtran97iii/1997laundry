@@ -1,35 +1,16 @@
-import os
-import json
 import sqlite3
+import os
 
-db_path = "/Users/oanhtran97/Desktop/Website/nice-fold-saigon-premium/brain.db"
-waitlist_path = "/Users/oanhtran97/Desktop/Website/nice-fold-saigon-premium/waitlist.json"
+db_path = "./brain.db"
 
-# 1. Create waitlist.json with the requested structure
-waitlist_data = {
-    "waitlist": [
-        {
-            "name": "Oanh",
-            "phone": "0978900616",
-            "service": "Standard Service (24h)",
-            "registered_at": "2026-06-29T15:02:00Z"
-        }
-    ]
-}
-
-with open(waitlist_path, "w", encoding="utf-8") as f:
-    json.dump(waitlist_data, f, indent=2, ensure_ascii=False)
-print("1. Created waitlist.json successfully.")
-
-# 2. Connect to SQLite database
+# Connect to SQLite database
 conn = sqlite3.connect(db_path)
 cursor = conn.cursor()
 
 # Enable foreign keys
 cursor.execute("PRAGMA foreign_keys = ON;")
 
-# 3. Create products table
-# CHECK constraint ensures stock_quantity is not null only when product type is 'physical'
+# 1. Create products table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -37,12 +18,12 @@ CREATE TABLE IF NOT EXISTS products (
     type TEXT NOT NULL CHECK(type IN ('physical', 'digital', 'service')),
     price REAL NOT NULL,
     description TEXT,
-    stock_quantity INTEGER CHECK(type != 'physical' OR stock_quantity IS NOT NULL),
+    stock_quantity INTEGER,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 """)
 
-# 4. Create customers table
+# 2. Create customers table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS customers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -52,11 +33,12 @@ CREATE TABLE IF NOT EXISTS customers (
     email TEXT,
     hotel TEXT,
     room TEXT,
-    registration_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    registration_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    map_link TEXT
 );
 """)
 
-# 5. Create orders table
+# 3. Create orders table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS orders (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -66,54 +48,118 @@ CREATE TABLE IF NOT EXISTS orders (
     amount REAL NOT NULL,
     status TEXT NOT NULL DEFAULT 'pending',
     order_date TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    collect_scheduled_time TEXT,
+    collected_time TEXT,
+    weighed_time TEXT,
+    wash_start_time TEXT,
+    dry_start_time TEXT,
+    fold_complete_time TEXT,
+    out_for_delivery_time TEXT,
+    delivered_time TEXT,
+    fold_report_photo_url TEXT,
+    delivery_proof_photo_url TEXT,
+    receipt_number TEXT,
+    lang TEXT,
+    agent_notified INTEGER DEFAULT 0,
+    order_status TEXT DEFAULT 'Chờ lấy',
+    weight REAL DEFAULT 0,
+    notes TEXT,
+    pickup_photo_url TEXT,
+    bill_photo_url TEXT,
+    delivery_photo_url TEXT,
     FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 """)
 
+# 4. Create sepay_transactions table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS sepay_transactions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sepay_id INTEGER UNIQUE,
+    gateway TEXT,
+    transaction_date TEXT,
+    account_number TEXT,
+    content TEXT,
+    transfer_type TEXT,
+    transfer_amount REAL,
+    accumulated REAL,
+    reference_code TEXT,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    agent_notified INTEGER DEFAULT 0
+);
+""")
+
+# 5. Create order_telegram_mappings table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS order_telegram_mappings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_code TEXT NOT NULL,
+    telegram_message_id INTEGER NOT NULL,
+    telegram_chat_id INTEGER NOT NULL,
+    message_type TEXT NOT NULL
+);
+""")
+
+# 6. Create missing_items table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS missing_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    booking_code TEXT,
+    photo_path TEXT NOT NULL,
+    date_added TEXT DEFAULT CURRENT_TIMESTAMP,
+    is_resolved INTEGER DEFAULT 0,
+    agent_notified INTEGER DEFAULT 0
+);
+""")
+
+# 7. Create knowledge table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS knowledge (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+""")
+
+# 8. Create business table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS business (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+""")
+
+# 9. Create brand_voice table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS brand_voice (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+""")
+
 conn.commit()
-print("2. Created tables products, customers, and orders successfully.")
+print("1. All tables created successfully.")
 
-# 6. Import data from waitlist.json into customers table (avoiding duplicates)
-with open(waitlist_path, "r", encoding="utf-8") as f:
-    data = json.load(f)
-    waitlist = data.get("waitlist", [])
+# 10. Seed products (Wash & Fold only, with customized pricing for 1997 Laundry)
+products_data = [
+    ("Standard Wash & Fold (24h)", "service", 45000.0, "Standard wash & fold laundry service. Min weight 3kg."),
+    ("Same-day Wash & Fold (8h-12h)", "service", 55000.0, "Same-day express wash & fold service. Min weight 4kg."),
+    ("Express Wash & Fold (4h)", "service", 75000.0, "Super express wash & fold laundry service. Min weight 4kg.")
+]
 
-imported_count = 0
-for entry in waitlist:
-    name = entry.get("name")
-    phone = entry.get("phone")
-    registered_at = entry.get("registered_at")
-    
-    # Check if customer already exists based on phone to prevent duplicate import
-    cursor.execute("SELECT id FROM customers WHERE phone = ?", (phone,))
-    exists = cursor.fetchone()
-    
-    if not exists:
-        cursor.execute("""
-            INSERT INTO customers (name, phone, registration_date)
-            VALUES (?, ?, ?)
-        """, (name, phone, registered_at))
-        imported_count += 1
+for name, ptype, price, desc in products_data:
+    cursor.execute("SELECT id FROM products WHERE name = ?", (name,))
+    if not cursor.fetchone():
+        cursor.execute("INSERT INTO products (name, type, price, description) VALUES (?, ?, ?, ?)", (name, ptype, price, desc))
 
 conn.commit()
-print(f"3. Imported {imported_count} customer(s) from waitlist.json into customers table.")
-
-# 7. Verification Summary
-print("\n--- DATABASE STATE ---")
-cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-tables = [row[0] for row in cursor.fetchall()]
-print(f"Current tables: {', '.join(tables)}")
-
-cursor.execute("PRAGMA table_info(products);")
-print("\nProducts Schema:")
-for col in cursor.fetchall():
-    print(f" - {col[1]} ({col[2]})")
-
-cursor.execute("SELECT * FROM customers;")
-customers = cursor.fetchall()
-print(f"\nCustomers list (total {len(customers)}):")
-for c in customers:
-    print(f" - ID: {c[0]}, Name: {c[1]}, Phone: {c[2]}, Zalo: {c[3]}, RegDate: {c[4]}")
+print("2. Seeded 1997 Laundry Wash & Fold products.")
 
 conn.close()
+print("Database setup complete.")

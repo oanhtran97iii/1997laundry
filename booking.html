@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- SEO Meta Tags -->
-  <title>Book Your Laundry Appointment | Nice Fold Saigon</title>
+  <title>Book Your Laundry Appointment | 1997 Premium Laundry</title>
   <meta name="description" content="Book your premium hotel laundry service in District 1 HCMC. Calculate your laundry price dynamically and send pre-filled booking details directly to our staff via WhatsApp or Zalo in under 2 minutes.">
   
   <!-- CSS Link -->
@@ -377,7 +377,7 @@
   <header class="main-header" id="mainHeader">
     <div class="header-container">
       <a href="./" class="logo-link" id="headerLogoLink">
-        <img src="logo.png" alt="Nice Fold Saigon Logo" class="header-logo-img">
+        <img src="logo.png" alt="1997 Premium Laundry Logo" class="header-logo-img">
       </a>
       
       <nav class="nav-links" id="mainNav">
@@ -521,14 +521,18 @@
               </div>
             </div>
 
-            <!-- Row 9: Payment Option (Full Width) -->
-            <div class="form-group" style="margin-bottom: 1.5rem;">
-              <label for="booking-payment-method">Payment Option *</label>
-              <select id="booking-payment-method" required style="width: 100%; padding: 12px 16px; border-radius: 8px; border: 1px solid rgba(4, 29, 64, 0.15); font-family: inherit; font-size: 0.95rem; color: var(--color-navy); background-color: var(--color-white); outline: none; transition: border-color 0.2s ease;">
-                <option value="banktransfer">Bank transfer (Vietnamese bank only)</option>
-                <option value="cash">Cash (VND)</option>
-              </select>
+            <!-- Row 9: Google Maps Link (Single Column) -->
+            <div class="form-row">
+              <div class="form-group" style="width: 100%;">
+                <label for="booking-map-link">Google Maps Link (Highly recommended for faster delivery!)</label>
+                <input type="url" id="booking-map-link" placeholder="e.g. https://maps.app.goo.gl/... (Paste maps link here)">
+              </div>
             </div>
+
+            <!-- Hidden Payment Option to preserve JS compatibility -->
+            <select id="booking-payment-method" style="display: none;">
+              <option value="cash" selected></option>
+            </select>
 
              <div class="form-buttons" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; width: 100%;">
                <button type="submit" id="submit-whatsapp" class="pill-button btn-whatsapp" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 800; font-size: 1.02rem; padding: 14px 28px; border: none; background-color: #25d366; color: white; width: 100%; cursor: pointer; border-radius: 25px;">
@@ -588,7 +592,7 @@
         
         <!-- Brand Info -->
         <div class="footer-brand">
-          <img src="logo.png" alt="Nice Fold Saigon Logo" class="footer-logo-img">
+          <img src="logo.png" alt="1997 Premium Laundry Logo" class="footer-logo-img">
           <p>Saigon's premium express hotel laundry and dry cleaning service. Designed for tourists, expats, and business travelers who value quality, speed, and hygiene.</p>
         </div>
 
@@ -617,7 +621,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 Nice Fold Saigon. All rights reserved. "Crispest Fold Guaranteed!"</p>
+        <p>&copy; 2026 1997 Premium Laundry. All rights reserved. "Crispest Fold Guaranteed!"</p>
       </div>
     </div>
   </footer>
@@ -648,7 +652,7 @@
     <div id="chatbotWindow" class="chatbot-window hidden" aria-live="polite">
       <div class="chatbot-header">
         <div>
-          <div class="chatbot-title">Nice Fold Assistant</div>
+          <div class="chatbot-title">1997 Laundry Assistant</div>
           <div class="chatbot-subtitle">Hotel laundry help</div>
         </div>
         <button id="chatbotClose" class="chatbot-close" aria-label="Close chat">✕</button>
@@ -687,7 +691,7 @@
       <!-- Billing Pending view -->
       <div id="checkoutBillingView">
         <div class="modal-logo-container">
-          <img src="logo.png" alt="Nice Fold Saigon" class="modal-logo-img">
+          <img src="logo.png" alt="1997 Premium Laundry" class="modal-logo-img">
         </div>
         <h3 class="modal-title">Confirm Booking</h3>
         <p class="modal-subtitle">Your order has been registered. Please select a chat platform below to send your details and finalize your booking.</p>
@@ -697,7 +701,7 @@
           <div class="summary-title">Order Details</div>
           <div class="summary-row">
             <span>Booking Code:</span>
-            <strong id="modalCode" style="color: var(--color-pink);">NF1029</strong>
+            <strong id="modalCode" style="color: var(--color-pink);">LTT1029</strong>
           </div>
           <div class="summary-row">
             <span>Service:</span>

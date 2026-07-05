@@ -1,13 +1,18 @@
+const dns = require('dns');
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder('ipv4first');
+}
 const express = require('express');
+const compression = require('compression');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
-const botManager = require('./bot_manager');
-
 // Load environment variables
 dotenv.config();
+
+const botManager = require('./bot_manager');
 
 const PORT = process.env.PORT || 3000;
 const DB_PATH = path.join(__dirname, 'brain.db');
@@ -40,7 +45,7 @@ async function sendEmailViaResend(toEmail, subject, htmlContent) {
 
     try {
         const payload = {
-            from: "Nice Fold Saigon <hi@nicefoldsaigon.vn>",
+            from: "1997 Premium Laundry <hi@1997laundry.com>",
             to: [toEmail],
             subject: subject,
             html: htmlContent
@@ -84,15 +89,15 @@ async function sendEmailViaResend(toEmail, subject, htmlContent) {
 }
 
 // --- Email Templates ---
-const EMAIL_1_SUBJECT = "Welcome to Nice Fold Saigon! 🧼";
+const EMAIL_1_SUBJECT = "Welcome to 1997 Premium Laundry! 🧼";
 const EMAIL_1_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Thank you for sharing your laundry preferences with us!</p>
-  <p>Welcome to Nice Fold Saigon, a premium laundry service designed specifically for travelers and hotel guests in Ho Chi Minh City. Our mission is simple: to make your stay completely hassle-free by taking care of your laundry with the highest standards of hygiene and reliability.</p>
+  <p>Welcome to 1997 Premium Laundry, a premium laundry service designed specifically for travelers and hotel guests in Ho Chi Minh City. Our mission is simple: to make your stay completely hassle-free by taking care of your laundry with the highest standards of hygiene and reliability.</p>
   
   <p>We have saved your preferences. When you are ready to get your laundry done, here is what you can look forward to:</p>
   <ul>
@@ -101,8 +106,8 @@ const EMAIL_1_HTML = `
   </ul>
   
   <p>Keep an eye on your inbox—over the next few days, we'll share a few travel hacks to help you avoid common laundry traps in Saigon.</p>
-  <p>Welcome to Nice Fold!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Welcome to 1997 Laundry!</p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -110,7 +115,7 @@ const EMAIL_2_SUBJECT = "Travel Hack: How to save space and laundry fees in Saig
 const EMAIL_2_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Here is a quick tip to make your stay in Saigon easier: try packing light. Carrying heavy bags through Ho Chi Minh City's busy streets is no fun. Packing light is easy if you wash your clothes on-the-go.</p>
@@ -119,9 +124,9 @@ const EMAIL_2_HTML = `
     <li><strong>Hotel Laundry</strong>: It is convenient, but hotels usually charge <em>per piece</em>, which quickly adds up and can double your budget.</li>
     <li><strong>Street Laundry</strong>: While very cheap, they often mix garments from multiple customers to save costs. This compromises hygiene.</li>
   </ol>
-  <p>At Nice Fold Saigon, we wash each customer's clothes 100% separately to ensure absolute cleanliness, and we coordinate directly with your hotel front desk for drop-off and pickup. You get your clothes back same-day without any hassle.</p>
+  <p>At 1997 Premium Laundry, we wash each customer's clothes 100% separately to ensure absolute cleanliness, and we coordinate directly with your hotel front desk for drop-off and pickup. You get your clothes back same-day without any hassle.</p>
   <p>Have a wonderful trip in Vietnam!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -129,7 +134,7 @@ const EMAIL_3_SUBJECT = "Get your laundry done in Saigon (Same-day & Express del
 const EMAIL_3_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>If you need your laundry done quickly in Ho Chi Minh City, check us out.</p>
@@ -140,26 +145,26 @@ const EMAIL_3_HTML = `
     <li><strong>Standard Wash & Fold (24h)</strong> - 40,000 VND / kg.</li>
   </ul>
   <p>We also offer Premium Shoe Cleaning at 150,000 VND / pair to refresh your walking shoes.</p>
-  <p><strong>Why choose Nice Fold Saigon?</strong></p>
+  <p><strong>Why choose 1997 Premium Laundry?</strong></p>
   <ul>
     <li><strong>Checkout Guarantee</strong>: We promise to return your laundry before your hotel checkout time so you can catch your flight.</li>
     <li><strong>100% Separate Wash</strong>: We wash every order individually—never mixed with others.</li>
   </ul>
   <p>Book your slot now and pay securely online:</p>
   <p style="text-align: center; margin: 30px 0;">
-    <a href="https://nicefoldsaigon.vn/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
+    <a href="https://1997laundry.com/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
   </p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
 const ORDER_CONFIRMATION_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
-  <p>Thank you for choosing Nice Fold Saigon! Your order <strong>#{booking_code}</strong> has been successfully created and is being processed.</p>
+  <p>Thank you for choosing 1997 Premium Laundry! Your order <strong>#{booking_code}</strong> has been successfully created and is being processed.</p>
   <div style="background-color: #f7fafc; border: 1px solid #edf2f7; border-radius: 6px; padding: 15px; margin: 20px 0;">
     <h3 style="margin-top: 0; color: #041d40;">Order Summary</h3>
     <table style="width: 100%; border-collapse: collapse;">
@@ -188,15 +193,15 @@ const ORDER_CONFIRMATION_HTML = `
     <li><strong>Checkout Guarantee</strong>: We will deliver your clean clothes back to your hotel reception before your checkout time so you can travel worry-free.</li>
   </ul>
   <p>If you have any questions, feel free to contact us via WhatsApp or Zalo.</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
-const ORDER_COMPLETED_SUBJECT = "Payment Confirmed & Thank you! - Nice Fold Saigon 🌸";
+const ORDER_COMPLETED_SUBJECT = "Payment Confirmed & Thank you! - 1997 Premium Laundry 🌸";
 const ORDER_COMPLETED_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Your payment for order <strong>#{booking_code}</strong> has been successfully received and confirmed. Thank you very much!</p>
@@ -220,10 +225,10 @@ const ORDER_COMPLETED_HTML = `
   <p>Your clean clothes have been returned fresh and smelling wonderful! We hope we made your stay in Saigon easier and more comfortable.</p>
   <p>If you liked our service, we would be extremely grateful if you could take 10 seconds to share your experience on our Google Maps profile:</p>
   <p style="text-align: center; margin: 25px 0;">
-    <a href="https://maps.app.goo.gl/NiceFoldSaigon" style="background-color: #041d40; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Leave a Google Review ★★★★★</a>
+    <a href="https://maps.app.goo.gl/1997 LaundrySaigon" style="background-color: #041d40; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Leave a Google Review ★★★★★</a>
   </p>
   <p>Thank you again, and have a safe and wonderful trip!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -239,7 +244,7 @@ function sendBookingConfirmation(name, email, productName, amount, bookingCode, 
         .replace('{room}', room)
         .replace('{booking_code}', bookingCode);
 
-    sendEmailViaResend(email, `Booking Confirmation #${bookingCode} - Nice Fold Saigon 🛎️`, emailBody);
+    sendEmailViaResend(email, `Booking Confirmation #${bookingCode} - 1997 Premium Laundry 🛎️`, emailBody);
 }
 
 // Helper for payment confirmation mail
@@ -373,6 +378,22 @@ async function initializeAndMigrateDb() {
             );
         `);
 
+        await dbRun(`
+            CREATE TABLE IF NOT EXISTS sepay_transactions (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sepay_id INTEGER UNIQUE,
+                gateway TEXT,
+                transaction_date TEXT,
+                account_number TEXT,
+                content TEXT,
+                transfer_type TEXT,
+                transfer_amount REAL,
+                accumulated REAL,
+                reference_code TEXT,
+                created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+
         // Check for new columns and migrate
         const columnsInfo = await dbQuery("PRAGMA table_info(orders);");
         const existingColumns = columnsInfo.map(c => c.name);
@@ -387,7 +408,10 @@ async function initializeAndMigrateDb() {
             "out_for_delivery_time": "TEXT",
             "delivered_time": "TEXT",
             "fold_report_photo_url": "TEXT",
-            "delivery_proof_photo_url": "TEXT"
+            "delivery_proof_photo_url": "TEXT",
+            "receipt_number": "TEXT",
+            "lang": "TEXT",
+            "agent_notified": "INTEGER DEFAULT 0"
         };
 
         for (const [colName, colType] of Object.entries(newCols)) {
@@ -395,6 +419,30 @@ async function initializeAndMigrateDb() {
                 console.log(`Adding column ${colName} to orders table...`);
                 await dbRun(`ALTER TABLE orders ADD COLUMN ${colName} ${colType};`);
             }
+        }
+
+        // Migrate customers table to add map_link
+        const custColumnsInfo = await dbQuery("PRAGMA table_info(customers);");
+        const existingCustColumns = custColumnsInfo.map(c => c.name);
+        if (!existingCustColumns.includes("map_link")) {
+            console.log("Adding column map_link to customers table...");
+            await dbRun("ALTER TABLE customers ADD COLUMN map_link TEXT;");
+        }
+
+        // Migrate sepay_transactions table to add agent_notified
+        const sepayColumnsInfo = await dbQuery("PRAGMA table_info(sepay_transactions);");
+        const existingSepayColumns = sepayColumnsInfo.map(c => c.name);
+        if (!existingSepayColumns.includes("agent_notified")) {
+            console.log("Adding column agent_notified to sepay_transactions table...");
+            await dbRun("ALTER TABLE sepay_transactions ADD COLUMN agent_notified INTEGER DEFAULT 0;");
+        }
+
+        // Migrate missing_items table to add agent_notified
+        const missingColumnsInfo = await dbQuery("PRAGMA table_info(missing_items);");
+        const existingMissingColumns = missingColumnsInfo.map(c => c.name);
+        if (!existingMissingColumns.includes("agent_notified")) {
+            console.log("Adding column agent_notified to missing_items table...");
+            await dbRun("ALTER TABLE missing_items ADD COLUMN agent_notified INTEGER DEFAULT 0;");
         }
 
         // 2. Insert Default Products if empty
@@ -428,6 +476,7 @@ async function initializeAndMigrateDb() {
 // --- Initialize Express Server ---
 const app = express();
 
+app.use(compression());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -436,7 +485,7 @@ app.use(express.urlencoded({ extended: true }));
 const basicAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-        res.setHeader('WWW-Authenticate', 'Basic realm="Nice Fold Saigon Admin"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="1997 Premium Laundry Admin"');
         return res.status(401).send('Authentication required');
     }
 
@@ -447,11 +496,13 @@ const basicAuth = (req, res, next) => {
     const ADMIN_USER = process.env.ADMIN_USER || 'nf-admin';
     const ADMIN_PASS = process.env.ADMIN_PASS || 'nicefoldsg@190';
 
+    console.log(`[Basic Auth Debug] Expected: "${ADMIN_USER}" / "${ADMIN_PASS}". Received: "${user}" / "${pass}"`);
+
     if (user === ADMIN_USER && pass === ADMIN_PASS) {
         return next();
     }
 
-    res.setHeader('WWW-Authenticate', 'Basic realm="Nice Fold Saigon Admin"');
+    res.setHeader('WWW-Authenticate', 'Basic realm="1997 Premium Laundry Admin"');
     return res.status(401).send('Invalid credentials');
 };
 
@@ -465,7 +516,7 @@ app.all('/api.php', async (req, res) => {
     if (adminActions.includes(action)) {
         const authHeader = req.headers.authorization;
         if (!authHeader) {
-            res.setHeader('WWW-Authenticate', 'Basic realm="Nice Fold Saigon Admin API"');
+            res.setHeader('WWW-Authenticate', 'Basic realm="1997 Premium Laundry Admin API"');
             return res.status(401).send('Authentication required');
         }
         const auth = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');
@@ -474,7 +525,7 @@ app.all('/api.php', async (req, res) => {
         const ADMIN_USER = process.env.ADMIN_USER || 'nf-admin';
         const ADMIN_PASS = process.env.ADMIN_PASS || 'nicefoldsg@190';
         if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
-            res.setHeader('WWW-Authenticate', 'Basic realm="Nice Fold Saigon Admin API"');
+            res.setHeader('WWW-Authenticate', 'Basic realm="1997 Premium Laundry Admin API"');
             return res.status(401).send('Invalid credentials');
         }
     }
@@ -576,7 +627,7 @@ app.all('/api.php', async (req, res) => {
                             orderObj["Thời gian nhận"] = d.order_date || "";
                             orderObj["Gói giặt"] = d.product_name || "";
                             orderObj["Tổng tiền bill tạm tính"] = d.amount || 0;
-                            orderObj["Trạng thái đơn"] = d.status || "Chờ XN";
+                            orderObj["Trạng thái đơn"] = d.order_status || d.status || "Chờ lấy";
                             orderObj.email = d.email || "";
                         }
                         return orderObj;
@@ -624,7 +675,7 @@ app.all('/api.php', async (req, res) => {
                             orderObj["Thời gian nhận"] = d.order_date || "";
                             orderObj["Gói giặt"] = d.product_name || "";
                             orderObj["Tổng tiền bill tạm tính"] = d.amount || 0;
-                            orderObj["Trạng thái đơn"] = d.status || "Chờ XN";
+                            orderObj["Trạng thái đơn"] = d.order_status || d.status || "Chờ lấy";
                             orderObj.email = d.email || "";
                         }
                         return orderObj;
@@ -677,9 +728,23 @@ app.all('/api.php', async (req, res) => {
                 const service = body.service || "";
                 const amount = body.totalVnd || 0;
                 const bookingCode = body.bookingCode || '';
+                const mapLink = body.mapLink || '';
 
                 if (!bookingCode) {
                     return res.status(400).json({ error: "Missing booking code" });
+                }
+
+                // Deduplicate: check if an identical order was created in the last 120 seconds
+                const recentOrder = await dbGet(
+                    `SELECT o.booking_code FROM orders o
+                     JOIN customers c ON o.customer_id = c.id
+                     WHERE c.phone = ? AND o.amount = ? AND o.order_date >= datetime('now', '-2 minutes')
+                     LIMIT 1`,
+                    [phone, amount]
+                );
+                if (recentOrder) {
+                    console.log(`Deduplicated duplicate booking request for phone ${phone}, returning existing code: ${recentOrder.booking_code}`);
+                    return res.json({ success: true, bookingCode: recentOrder.booking_code, deduplicated: true });
                 }
 
                 // Check if customer exists based on phone
@@ -688,13 +753,13 @@ app.all('/api.php', async (req, res) => {
                 if (custRow) {
                     customerId = custRow.id;
                     await dbRun(
-                        "UPDATE customers SET name = ?, email = ?, hotel = ?, room = ? WHERE id = ?",
-                        [name, email, hotel, room, customerId]
+                        "UPDATE customers SET name = ?, email = ?, hotel = ?, room = ?, map_link = ? WHERE id = ?",
+                        [name, email, hotel, room, mapLink, customerId]
                     );
                 } else {
                     const result = await dbRun(
-                        "INSERT INTO customers (name, phone, email, hotel, room) VALUES (?, ?, ?, ?, ?)",
-                        [name, phone, email, hotel, room]
+                        "INSERT INTO customers (name, phone, email, hotel, room, map_link) VALUES (?, ?, ?, ?, ?, ?)",
+                        [name, phone, email, hotel, room, mapLink]
                     );
                     customerId = result.lastID;
                 }
@@ -720,8 +785,8 @@ app.all('/api.php', async (req, res) => {
                 }
 
                 await dbRun(
-                    "INSERT INTO orders (booking_code, customer_id, product_id, amount, status) VALUES (?, ?, ?, ?, 'Chờ XN')",
-                    [bookingCode, customerId, productId, amount]
+                    "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, lang) VALUES (?, ?, ?, ?, 'Chờ XN', ?)",
+                    [bookingCode, customerId, productId, amount, body.lang || 'en']
                 );
 
                 // Trigger booking confirmation mail in background
@@ -736,6 +801,7 @@ app.all('/api.php', async (req, res) => {
                         service: service,
                         hotelAddress: hotel,
                         roomNumber: room,
+                        mapLink: mapLink,
                         pickupTime: body.pickupTime || new Date().toLocaleString(),
                         paymentMethod: body.paymentMethod || 'banktransfer',
                         totalVnd: amount,
@@ -795,19 +861,83 @@ app.all('/api.php', async (req, res) => {
                 const itemId = body.id || body.bookingCode || body.booking_code;
 
                 if (itemId) {
-                    // Update
+                    // Fetch the current order status from DB
+                    const oldOrder = await dbGet(`
+                        SELECT o.status, o.order_status, o.booking_code, o.amount, c.name as cust_name 
+                        FROM orders o
+                        LEFT JOIN customers c ON o.customer_id = c.id
+                        WHERE o.id = ? OR o.booking_code = ?
+                    `, [itemId, itemId]);
+                    
+                    const currentStatus = oldOrder ? oldOrder.order_status : '';
+                    const bookingCode = oldOrder ? oldOrder.booking_code : itemId;
+                    const custName = oldOrder ? oldOrder.cust_name : 'Khách hàng';
+
+                    let orderStatus = body.status;
+                    let paymentStatus = body.status;
+                    let paidNotificationNeeded = false;
+
+                    if (body.status === 'Hoàn thành' || body.status === 'Đã giao') {
+                        if (currentStatus === 'Chờ giao chưa thanh toán') {
+                            orderStatus = 'Chờ giao (đã thanh toán)';
+                            paymentStatus = 'Đã thanh toán';
+                            paidNotificationNeeded = true;
+                        } else {
+                            orderStatus = 'Hoàn thành';
+                            paymentStatus = 'Hoàn thành';
+                        }
+                    } else if (body.status === 'Chờ XN' || body.status === 'Chờ lấy' || body.status === 'Chưa lấy') {
+                        orderStatus = 'Chưa lấy';
+                        paymentStatus = 'Chưa lấy';
+                    }
+
+                    // Update database
                     const isDigit = /^\d+$/.test(String(itemId));
                     if (isDigit) {
                         await dbRun(
-                            "UPDATE orders SET amount = ?, status = ? WHERE id = ?",
-                            [body.amount, body.status, Number(itemId)]
+                            "UPDATE orders SET amount = ?, status = ?, order_status = ? WHERE id = ?",
+                            [body.amount, paymentStatus, orderStatus, Number(itemId)]
                         );
                     } else {
                         await dbRun(
-                            "UPDATE orders SET amount = ?, status = ? WHERE booking_code = ?",
-                            [body.amount, body.status, itemId]
+                            "UPDATE orders SET amount = ?, status = ?, order_status = ? WHERE booking_code = ?",
+                            [body.amount, paymentStatus, orderStatus, String(itemId)]
                         );
                     }
+
+                    // If admin checked payment for an unpaid delivery, notify shipper in DON_GIAO group and edit card
+                    if (paidNotificationNeeded) {
+                        setTimeout(() => {
+                            try {
+                                botManager.sendTelegramMessage(
+                                    botManager.GROUPS.DON_GIAO, 
+                                    `🔔 <b>XÁC NHẬN THANH TOÁN:</b> Đơn hàng <b>#${bookingCode}</b> của khách <b>${custName}</b> đã được thanh toán thành công! Shipper chỉ cần giao đồ, không cần thu tiền COD.`
+                                );
+                                botManager.updateDeliveryCardToPaid(bookingCode);
+                            } catch (tErr) {
+                                console.error('Failed to send Telegram payment confirmation:', tErr);
+                            }
+                        }, 100);
+                    }
+
+                    // Also sync to n8n
+                    try {
+                        const n8nUrl = process.env.N8N_UPDATE_ORDER_URL || "https://hoangoanh.app.n8n.cloud/webhook/update-order";
+                        await fetch(n8nUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0' },
+                            body: JSON.stringify({
+                                bookingCode: String(bookingCode),
+                                amount: body.amount,
+                                status: orderStatus,
+                                skip_telegram: true
+                            }),
+                            signal: AbortSignal.timeout(3000)
+                        });
+                    } catch (e) {
+                        console.error("n8n update order from save-order failed:", e.message);
+                    }
+
                     return res.json({ success: true });
                 } else {
                     // Create
@@ -825,14 +955,19 @@ app.all('/api.php', async (req, res) => {
                         await dbRun("UPDATE products SET stock_quantity = stock_quantity - 1 WHERE id = ?", [productId]);
                     }
 
-                    const bookingCode = body.booking_code || body.bookingCode || ('NF' + String(Math.floor(Date.now() / 1000)).slice(-4));
+                    const bookingCode = body.booking_code || body.bookingCode || ('LTT' + String(Math.floor(Date.now() / 1000)).slice(-4));
+                    const statusVal = body.status || 'pending';
+                    const orderStatusVal = body.order_status || (statusVal.includes('Chờ giao') || statusVal === 'Chờ giặt' || statusVal === 'Đã lấy' ? statusVal : 'Chưa lấy');
+
+                    const cust = await dbGet("SELECT name, email, phone, hotel, room, map_link FROM customers WHERE id = ?", [body.customer_id]);
+                    const langVal = body.lang || (cust && (cust.phone || '').replace(/\D/g, '').startsWith('84') ? 'vi' : 'en');
+
                     const result = await dbRun(
-                        "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_date) VALUES (?, ?, ?, ?, ?, ?)",
-                        [bookingCode, body.customer_id, productId, body.amount, body.status || 'pending', body.order_date || new Date().toISOString()]
+                        "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                        [bookingCode, body.customer_id, productId, body.amount, statusVal, orderStatusVal, body.order_date || new Date().toISOString(), langVal]
                     );
 
                     // Send confirmation email & Telegram notification
-                    const cust = await dbGet("SELECT name, email, phone, hotel, room FROM customers WHERE id = ?", [body.customer_id]);
                     const prodRow = await dbGet("SELECT name FROM products WHERE id = ?", [productId]);
                     const prodName = prodRow ? prodRow.name : "Laundry Service";
                     
@@ -841,7 +976,9 @@ app.all('/api.php', async (req, res) => {
                     }
 
                     // Trigger Telegram group notification for manually created orders
-                    if (cust) {
+                    if (orderStatusVal.includes('Chờ giao') || statusVal.includes('Chờ giao')) {
+                        setTimeout(() => botManager.sendDeliveryAlert(bookingCode), 100);
+                    } else if (cust) {
                         try {
                             botManager.sendOrderAlert({
                                 bookingCode: bookingCode,
@@ -850,6 +987,7 @@ app.all('/api.php', async (req, res) => {
                                 service: prodName,
                                 hotelAddress: cust.hotel || '',
                                 roomNumber: cust.room || '',
+                                mapLink: cust.map_link || '',
                                 pickupTime: body.order_date || new Date().toLocaleString(),
                                 paymentMethod: 'cash',
                                 totalVnd: body.amount,
@@ -872,6 +1010,37 @@ app.all('/api.php', async (req, res) => {
                     return res.status(400).json({ error: "Missing item ID" });
                 }
 
+                // Query old order details first
+                const oldOrder = await dbGet(`
+                    SELECT o.status, o.order_status, o.booking_code, o.amount, p.name as product_name, c.name as cust_name, c.email as cust_email
+                    FROM orders o
+                    LEFT JOIN products p ON o.product_id = p.id
+                    LEFT JOIN customers c ON o.customer_id = c.id
+                    WHERE o.id = ? OR o.booking_code = ?
+                `, [itemId, itemId]);
+
+                let orderStatus = body.status;
+                let paymentStatus = body.status;
+                let paidNotificationNeeded = false;
+
+                const currentStatus = oldOrder ? oldOrder.order_status : '';
+                const bookingCode = oldOrder ? oldOrder.booking_code : itemId;
+                const custName = oldOrder ? oldOrder.cust_name : 'Khách hàng';
+
+                if (body.status === 'Hoàn thành' || body.status === 'Đã giao') {
+                    if (currentStatus === 'Chờ giao chưa thanh toán') {
+                        orderStatus = 'Chờ giao (đã thanh toán)';
+                        paymentStatus = 'Đã thanh toán';
+                        paidNotificationNeeded = true;
+                    } else {
+                        orderStatus = 'Hoàn thành';
+                        paymentStatus = 'Hoàn thành';
+                    }
+                } else if (body.status === 'Chờ XN' || body.status === 'Chờ lấy' || body.status === 'Chưa lấy') {
+                    orderStatus = 'Chưa lấy';
+                    paymentStatus = 'Chưa lấy';
+                }
+
                 let n8nSuccess = false;
                 let n8nError = "";
 
@@ -882,9 +1051,10 @@ app.all('/api.php', async (req, res) => {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0' },
                         body: JSON.stringify({
-                            bookingCode: String(itemId),
+                            bookingCode: String(bookingCode),
                             amount: body.amount,
-                            status: body.status
+                            status: orderStatus,
+                            skip_telegram: body.status === 'Đã lấy' || body.status === 'Đã nhận'
                         }),
                         signal: AbortSignal.timeout(3000)
                     });
@@ -894,20 +1064,32 @@ app.all('/api.php', async (req, res) => {
                     console.error("n8n update order failed:", e.message);
                 }
 
-                // Query old order details first
-                const oldOrder = await dbGet(`
-                    SELECT o.status, o.booking_code, o.amount, p.name as product_name, c.name as cust_name, c.email as cust_email
-                    FROM orders o
-                    LEFT JOIN products p ON o.product_id = p.id
-                    LEFT JOIN customers c ON o.customer_id = c.id
-                    WHERE o.id = ? OR o.booking_code = ?
-                `, [itemId, itemId]);
-
                 const isDigit = /^\d+$/.test(String(itemId));
                 if (isDigit) {
-                    await dbRun("UPDATE orders SET amount = ?, status = ? WHERE id = ?", [body.amount, body.status, Number(itemId)]);
+                    await dbRun("UPDATE orders SET amount = ?, status = ?, order_status = ? WHERE id = ?", [body.amount, paymentStatus, orderStatus, Number(itemId)]);
                 } else {
-                    await dbRun("UPDATE orders SET amount = ?, status = ? WHERE booking_code = ?", [body.amount, body.status, itemId]);
+                    await dbRun("UPDATE orders SET amount = ?, status = ?, order_status = ? WHERE booking_code = ?", [body.amount, paymentStatus, orderStatus, String(itemId)]);
+                }
+
+                // If admin checked payment for an unpaid delivery, notify shipper in DON_GIAO group and edit card
+                if (paidNotificationNeeded) {
+                    setTimeout(() => {
+                        try {
+                            botManager.sendTelegramMessage(
+                                botManager.GROUPS.DON_GIAO, 
+                                `🔔 <b>XÁC NHẬN THANH TOÁN:</b> Đơn hàng <b>#${bookingCode}</b> của khách <b>${custName}</b> đã được thanh toán thành công! Shipper chỉ cần giao đồ, không cần thu tiền COD.`
+                            );
+                            botManager.updateDeliveryCardToPaid(bookingCode);
+                        } catch (tErr) {
+                            console.error('Failed to send Telegram payment confirmation:', tErr);
+                        }
+                    }, 100);
+                }
+
+                // Trigger Telegram delivery alert if order transitioned to 'Chờ giao'
+                if ((orderStatus.includes('Chờ giao') || body.status.includes('Chờ giao')) && !paidNotificationNeeded) {
+                    const finalCode = oldOrder ? oldOrder.booking_code : itemId;
+                    setTimeout(() => botManager.sendDeliveryAlert(finalCode), 100);
                 }
 
                 // Send payment confirmation email if transitioned to 'Hoàn thành'
@@ -926,13 +1108,34 @@ app.all('/api.php', async (req, res) => {
                 let content = body.content || body.description || '';
                 const amount = body.transferAmount ? parseFloat(body.transferAmount) : 0;
 
-                if (!content) {
-                    return res.json({ success: false, message: "No transfer content found" });
+                // Log transaction to database
+                try {
+                    await dbRun(`
+                        INSERT OR IGNORE INTO sepay_transactions 
+                        (sepay_id, gateway, transaction_date, account_number, content, transfer_type, transfer_amount, accumulated, reference_code)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    `, [
+                        body.id,
+                        body.gateway,
+                        body.transactionDate,
+                        body.accountNumber,
+                        content,
+                        body.transferType || 'in',
+                        amount,
+                        body.accumulated,
+                        body.referenceCode
+                    ]);
+                } catch (dbErr) {
+                    console.error('Failed to log SePay transaction to database:', dbErr);
                 }
 
-                const match = content.match(/(NF\d{4})/i);
+                if (!content) {
+                    return res.json({ success: true, message: "Transaction logged, but content is empty" });
+                }
+
+                const match = content.match(/(LTT\d{4})/i);
                 if (!match) {
-                    return res.json({ success: false, message: "Could not match booking code in content" });
+                    return res.json({ success: true, message: "Transaction logged, no booking code found" });
                 }
 
                 const bookingCode = match[1].toUpperCase();
@@ -955,7 +1158,7 @@ app.all('/api.php', async (req, res) => {
                     }
                 }
 
-                return res.json({ success: true, message: `Order ${bookingCode} completed` });
+                return res.json({ success: true, message: `Order ${bookingCode} completed and transaction logged` });
             }
 
             case 'delete': {
@@ -980,7 +1183,7 @@ app.all('/api.php', async (req, res) => {
     }
 });
 
-// --- Chatbot proxy endpoint for goClaw AI Agent (Bé Hai) ---
+// --- Chatbot proxy endpoint for goClaw AI Agent (Bé Ba) ---
 app.post('/api/chat', async (req, res) => {
     const { message, sessionId } = req.body;
     if (!message) {
@@ -1000,7 +1203,7 @@ app.post('/api/chat', async (req, res) => {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer 0efe653ca15f03f4ccec8f007cec08a3',
                 'X-GoClaw-User-Id': sessId,
-                'X-GoClaw-Agent-Id': 'be-hai-giat-say'
+                'X-GoClaw-Agent-Id': process.env.AGENT_ID || 'be-hai-giat-say'
             },
             body: JSON.stringify(payload)
         });
@@ -1021,10 +1224,28 @@ app.post('/api/chat', async (req, res) => {
 });
 
 // Serve Admin Static Files behind Auth
-app.use('/admin', basicAuth, express.static(path.join(__dirname, 'admin')));
+app.use('/admin', basicAuth, express.static(path.join(__dirname, 'admin'), {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        } else {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+    }
+}));
 
 // Serve Static Site Files
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname), {
+    maxAge: '1d',
+    setHeaders: (res, filePath) => {
+        if (filePath.endsWith('.html')) {
+            res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        } else {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+    }
+}));
 
 // Start Server
 app.listen(PORT, () => {

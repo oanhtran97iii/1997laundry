@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Coverage: District 1, 3, and Thao Dien (District 2)": "Khu vực: Quận 1, Quận 3, và Thảo Điền (Quận 2)",
     "laundry district 1 saigon, laundry service ho chi minh city, laundry pickup delivery, dry cleaning hotel hcmc, express laundry saigon, laundry foreigners vietnam": "giặt ủi quận 1 sài gòn, dịch vụ giặt sấy hồ chí minh, giao nhận giặt ủi, giặt hấp khách sạn hcmc, giặt hỏa tốc sài gòn, giặt ủi khách du lịch việt nam",
     "Pricing packages": "Các gói dịch vụ",
-    "Nice Fold Saigon | Premium Hotel Laundry & Dry Cleaning HCMC": "Nice Fold Saigon | Giặt Sấy & Giặt Hấp Khách Sạn Cao Cấp HCMC",
+    "1997 Laundry | Premium Hotel Laundry & Dry Cleaning HCMC": "1997 Laundry | Giặt Sấy & Giặt Hấp Khách Sạn Cao Cấp HCMC",
     "Saigon's best same-day express hotel laundry service for tourists & expats. Free hotel reception pickup & delivery in District 1, 3, and Thao Dien. 100% hygienic separate washing machines. Book online in 2 mins via WhatsApp or Zalo.": "Dịch vụ giặt sấy lấy liền trong ngày cao cấp nhất tại Sài Gòn cho khách du lịch và người nước ngoài. Giao nhận miễn phí tại lễ tân khách sạn Quận 1, 3, Thảo Điền. Giặt riêng 100% bằng máy độc lập. Đặt lịch online 2 phút qua WhatsApp hoặc Zalo.",
 
     // Footer
@@ -184,14 +184,14 @@ document.addEventListener('DOMContentLoaded', () => {
     "Contact Info": "Thông tin liên hệ",
     "Phone: 037 399 1602": "Điện thoại: 037 399 1602",
     "Address: District 1, Ho Chi Minh City": "Địa chỉ: Quận 1, TP. Hồ Chí Minh",
-    "© 2026 Nice Fold Saigon. All rights reserved.": "© 2026 Nice Fold Saigon. Bảo lưu mọi quyền.",
+    "© 2026 1997 Laundry. All rights reserved.": "© 2026 1997 Laundry. Bảo lưu mọi quyền.",
 
     // New static page translation items
     "Connect with Us": "Kết nối với chúng tôi",
     "About us": "Về chúng tôi",
     "How it works": "Quy trình",
     "Our Team": "Đội ngũ",
-    "Nice Fold Assistant": "Trợ lý Nice Fold",
+    "1997 Laundry Assistant": "Trợ lý 1997 Laundry",
     "Hotel laundry help": "Hỗ trợ giặt ủi khách sạn",
     "Go to waiting list form": "Mở biểu mẫu đặt lịch",
     "Ask about price, pickup, or service...": "Hỏi về giá cả, giao nhận hoặc dịch vụ...",
@@ -242,10 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
     "Coverage Area in Ho Chi Minh City": "Phạm vi phục vụ tại TP. Hồ Chí Minh",
     "We offer free pickup and delivery for all hotels, Airbnb apartments, and serviced suites in District 1, District 3, and Thao Dien (District 2).": "Chúng tôi giao nhận miễn phí cho tất cả khách sạn, căn hộ Airbnb, căn hộ dịch vụ tại Quận 1, Quận 3 và Thảo Điền (Quận 2).",
     "Explore": "Khám phá",
-    "© 2026 Nice Fold Saigon. All rights reserved. \"Crispest Fold Guaranteed!\"": "© 2026 Nice Fold Saigon. Bảo lưu mọi quyền. \"Cam kết nếp gấp gọn gàng nhất!\"",
+    "© 2026 1997 Laundry. All rights reserved. \"Crispest Fold Guaranteed!\"": "© 2026 1997 Laundry. Bảo lưu mọi quyền. \"Cam kết nếp gấp gọn gàng nhất!\"",
     "Outstanding service for families! Travelled with 3 kids and had loads of dirty laundry. They sorted it, washed everything separately, and returned it within 4 hours. Absolute lifesaver!": "Dịch vụ xuất sắc cho gia đình! Tôi đi du lịch với 3 con nhỏ và có rất nhiều quần áo bẩn. Họ đã phân loại, giặt riêng tất cả và trả đồ chỉ trong vòng 4 tiếng. Đúng là vị cứu tinh!",
     "The price calculator is 100% accurate. No tourist scams or hidden fees. Paying was so easy. Extremely professional laundry service in Saigon.": "Công cụ tính giá chính xác 100%. Không có lừa đảo du lịch hay phụ phí ẩn. Thanh toán rất dễ dàng. Dịch vụ giặt ủi cực kỳ chuyên nghiệp tại Sài Gòn.",
-    "As an expat living in Thao Dien, I've tried many laundry services. Nice Fold is by far the cleanest. They return clothes smelling fresh, not like chemical perfumes. Very reliable!": "Là một người nước ngoài sống ở Thảo Điền, tôi đã thử nhiều dịch vụ giặt ủi. Nice Fold cho đến nay là tiệm sạch sẽ nhất. Quần áo nhận lại có mùi thơm dịu nhẹ, không phải mùi hóa chất. Rất đáng tin cậy!",
+    "As an expat living in Thao Dien, I've tried many laundry services. 1997 Laundry is by far the cleanest. They return clothes smelling fresh, not like chemical perfumes. Very reliable!": "Là một người nước ngoài sống ở Thảo Điền, tôi đã thử nhiều dịch vụ giặt ủi. 1997 Laundry cho đến nay là tiệm sạch sẽ nhất. Quần áo nhận lại có mùi thơm dịu nhẹ, không phải mùi hóa chất. Rất đáng tin cậy!",
     "Amazing communication on Zalo. I dropped off my bag at reception at 8 AM, and it was back before my dinner tour. Super easy, highly recommend for short-stay tourists!": "Trao đổi qua Zalo rất tuyệt vời. Tôi gửi đồ tại lễ tân lúc 8h sáng và đã nhận lại đồ trước chuyến đi tour ăn tối của mình. Cực kỳ dễ dàng, khuyên dùng cho du khách lưu trú ngắn ngày!",
     "The 4-hour express service is a lifesaver. My flight was at 6 PM, and I needed my muddy clothes washed after a Mekong tour. They delivered them clean and dry right on time!": "Gói hỏa tốc 4 tiếng đúng là phao cứu sinh của tôi. Chuyến bay của tôi lúc 6h tối và tôi cần giặt sạch đống quần áo đầy bùn đất sau tour Mekong. Họ đã giao đồ sạch khô đúng giờ!",
     "Super fast and reliable! Messaged on WhatsApp, they picked up my laundry from my D1 hotel and delivered it clean and folded by dinner. English support was flawless!": "Dịch vụ cực nhanh và đáng tin cậy! Tôi nhắn tin qua WhatsApp, họ nhận đồ từ khách sạn Quận 1 của tôi và giao lại sạch sẽ, xếp ngăn nắp trước bữa tối. Hỗ trợ tiếng Anh cực kỳ tốt!",
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Specialist deep cleaning for mattress toppers (24h turnaround) and curtains.": "Làm sạch sâu chuyên biệt cho tấm bảo vệ nệm topper (giao nhận 24h) và rèm cửa.",
     "Topper: 60.000 VND / kg": "Topper: 60.000 VND / kg",
     "Curtain: 50.000 VND / kg": "Rèm cửa: 50.000 VND / kg",
-    "Premium Linens, Bedding & Mattress Topper Cleaning Saigon | Nice Fold Saigon": "Dịch vụ giặt sấy cao cấp Drap, Chăn ga & Topper Sài Gòn | Nice Fold Saigon",
+    "Premium Linens, Bedding & Mattress Topper Cleaning Saigon | 1997 Laundry": "Dịch vụ giặt sấy cao cấp Drap, Chăn ga & Topper Sài Gòn | 1997 Laundry",
     "Premium Bedding Care": "Chăm sóc Chăn ga Cao cấp",
     "Hygienic Cleaning for Linens & Bedding": "Giặt sấy Vệ sinh Chăn ga & Gối đệm",
     "Keep your bedroom fresh and allergen-free. We provide professional deep cleaning for bedsheets, heavy duvets, mattress toppers, and curtains. 100% separate washes and complete machine drying guaranteed.": "Giữ phòng ngủ luôn sạch mát và không còn tác nhân gây dị ứng. Chúng tôi cung cấp dịch vụ làm sạch sâu chuyên nghiệp cho drap trải giường, chăn bông dày, tấm bảo vệ nệm topper và rèm cửa. Cam kết giặt riêng 100% và sấy khô hoàn toàn bằng máy.",
@@ -461,6 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const pickupTimeInput = document.getElementById('booking-pickup-time');
   const hotelInput = document.getElementById('booking-hotel');
   const roomInput = document.getElementById('booking-room');
+  const mapLinkInput = document.getElementById('booking-map-link');
 
   const restrictPhoneInput = (inputEl, countrySelectEl) => {
     if (!inputEl || !countrySelectEl) return;
@@ -737,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const pickupTime = pickupTimeRaw ? pickupTimeRaw.replace('T', ' ') : '';
       const hotelAddress = hotelInput.value.trim();
       const roomNumber = roomInput ? roomInput.value.trim() : '';
+      const mapLink = mapLinkInput ? mapLinkInput.value.trim() : '';
 
       // Get pickup method (Lễ tân or Gặp trực tiếp)
       const pickupTypeSelect = document.getElementById('booking-pickup-type');
@@ -819,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const isVi = (localStorage.getItem('site_lang') || 'en') === 'vi';
         
         const messageText = isVi ? 
-`Yêu cầu đặt lịch giặt ủi Nice Fold Saigon
+`Yêu cầu đặt lịch giặt ủi 1997 Laundry
 ---------------------------------------
 📌 Mã đơn: ${bookingCode}
 👤 Khách hàng: ${name}
@@ -828,12 +830,12 @@ document.addEventListener('DOMContentLoaded', () => {
 ⚖️ Khối lượng dự kiến: ${weight} kg
 🛵 Giao nhận: ${pickupTypeLabel}
 🏢 Khách sạn: ${hotelAddress}
-🚪 Số phòng: ${roomNumber}
+${mapLink ? `📍 Bản đồ: ${mapLink}\n` : ''}🚪 Số phòng: ${roomNumber}
 ⏰ Thời gian nhận đồ: ${pickupTime}
 💵 Phương thức thanh toán: ${paymentMethod === 'cash' ? 'Tiền mặt (Cash)' : 'Chuyển khoản (Bank Transfer)'}
 💵 Tổng tiền tạm tính: ${formattedVnd} (${formattedUsd})`
 :
-`Nice Fold Saigon - Laundry Booking Request
+`1997 Laundry - Laundry Booking Request
 ---------------------------------------
 📌 Booking Code: ${bookingCode}
 👤 Customer Name: ${name}
@@ -842,7 +844,7 @@ document.addEventListener('DOMContentLoaded', () => {
 ⚖️ Est. Weight: ${weight} kg
 🛵 Pickup Option: ${pickupTypeLabel}
 🏢 Hotel Address: ${hotelAddress}
-🚪 Room Number: ${roomNumber}
+${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
 ⏰ Preferred Pickup Time: ${pickupTime}
 💵 Payment Method: ${paymentMethod === 'cash' ? 'Cash' : 'Bank Transfer'}
 💵 Estimated Total: ${formattedVnd} (${formattedUsd})`;
@@ -884,6 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
           totalVnd: totalVnd,
           hotelAddress: hotelAddress,
           roomNumber: roomNumber ? roomNumber : 'Reception',
+          mapLink: mapLink,
           pickupTime: pickupTime,
           pickupMethod: pickupTypeLabel,
           separateWhites: service === 'shoes' ? (shoesExpressCheckbox && shoesExpressCheckbox.checked ? 'Express 24h' : 'No') : (whitesCheckbox && whitesCheckbox.checked ? 'Yes' : 'No'),
@@ -1057,7 +1060,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
         <div class="team-photo-card">
           <div class="team-img-wrapper">
-            <img src="${member.image}" alt="Nice Fold Team Photo" class="team-img">
+            <img src="${member.image}" alt="1997 Laundry Team Photo" class="team-img">
           </div>
         </div>
       `;
@@ -1251,7 +1254,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Sales Script data object (bilingual)
   const salesScript = {
     en: {
-      greeting: "✨ <strong>Thank you for choosing Nice Fold Saigon!</strong> ✨<br><br>Please note that pickups are available today from 9:00 AM to 5:00 PM only.<br><br>Please select your preferred service below to see details or start booking:",
+      greeting: "✨ <strong>Thank you for choosing 1997 Laundry!</strong> ✨<br><br>Please note that pickups are available today from 9:00 AM to 5:00 PM only.<br><br>Please select your preferred service below to see details or start booking:",
       packages: {
         sameday: {
           title: "Same-day Wash & Fold",
@@ -1275,7 +1278,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "identity",
           short: "ℹ️ Who are you?",
           keywords: ["who are you", "what are you", "your name", "introduce yourself", "bạn là ai", "ban la ai", "ai day", "ai đấy", "tên gì", "ten gi", "what can you do", "your function", "capabilities"],
-          response: "I am Nice Fold Assistant, your premium hotel laundry pickup and delivery service in Saigon."
+          response: "I am 1997 Laundry Assistant, your premium hotel laundry pickup and delivery service in Saigon."
         },
         {
           id: "greeting",
@@ -1287,7 +1290,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "unsupported_query",
           short: "⚠️ Special Materials & Items",
           keywords: ["dry clean", "dryclean", "drycleaning", "steam clean", "steam cleaning", "iron", "ironing", "giặt ủi", "giặt khô", "giat ui", "giat kho", "ủi", "ủi đồ", "leather jacket", "leather clothes", "leather clothing", "leather coat", "silk", "wool", "cashmere", "blazer", "blazers", "suit", "suits", "designer", "embellished", "dry clean only", "ao dai", "traditional dress", "spa", "restore", "restoration", "luxury", "wedding dress", "wedding gown", "wedding dresses", "puffer jacket", "puffer jackets", "down jacket", "down jackets"],
-          response: "⚠️ Sorry, Nice Fold **does not currently offer dry cleaning, steam cleaning, or individual ironing services**.<br>• **Details**: We specialize strictly in automated Wash & Fold (laundry by weight) and hand-wash shoe cleaning. Delicate or dry-clean-only garments such as <strong>suits, blazers, silk (including traditional Ao Dai), leather, wool, cashmere, wedding dresses, down/puffer jackets, or heavily embellished items...</strong> require specialized dry cleaning or hand-wash care to prevent fabric damage or loss of shape.<br>• To protect your special garments, we are unable to accept them for cleaning. We appreciate your kind understanding!"
+          response: "⚠️ Sorry, 1997 Laundry **does not currently offer dry cleaning, steam cleaning, or individual ironing services**.<br>• **Details**: We specialize strictly in automated Wash & Fold (laundry by weight) and hand-wash shoe cleaning. Delicate or dry-clean-only garments such as <strong>suits, blazers, silk (including traditional Ao Dai), leather, wool, cashmere, wedding dresses, down/puffer jackets, or heavily embellished items...</strong> require specialized dry cleaning or hand-wash care to prevent fabric damage or loss of shape.<br>• To protect your special garments, we are unable to accept them for cleaning. We appreciate your kind understanding!"
         },
         {
           id: "whites",
@@ -1299,7 +1302,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "hygiene_query",
           short: "🧼 100% Separate Wash",
           keywords: ["separate wash", "mixed", "mix", "hygiene", "cleanliness", "giặt chung", "giat chung", "giặt riêng", "giat rieng"],
-          response: "🧼 <strong>100% Separate Wash Guarantee</strong>: Nice Fold Saigon guarantees that each customer's clothes are washed separately in dedicated machines. We <strong>NEVER mix or combine laundry</strong> from different customers to ensure maximum hygiene!"
+          response: "🧼 <strong>100% Separate Wash Guarantee</strong>: 1997 Laundry guarantees that each customer's clothes are washed separately in dedicated machines. We <strong>NEVER mix or combine laundry</strong> from different customers to ensure maximum hygiene!"
         },
         {
           id: "drying_query",
@@ -1317,7 +1320,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "compensation_query",
           short: "🛡️ Loss & Damage Policy",
           keywords: ["compensation", "lost", "lose", "damage", "damaged", "ruined", "mất đồ", "mat do", "hỏng đồ", "hong do", "đền"],
-          response: "💝 <strong>Nice Fold Cares for Your Clothes:</strong><br>• To ensure the highest level of care, we specialize in standard Wash & Fold and hand-wash shoes. Please review our <strong>⚠️ Special Materials</strong> list in the menu (we do not accept silk, leather, wool, blazers, or dry-clean-only items).<br>• In the rare event of damage or loss to standard wash-and-fold clothes caused by our service, we will compensate based on the actual value of the item or up to a maximum of 500,000 VND per item. We sincerely appreciate your understanding and cooperation in helping us protect your garments!"
+          response: "💝 <strong>1997 Laundry Cares for Your Clothes:</strong><br>• To ensure the highest level of care, we specialize in standard Wash & Fold and hand-wash shoes. Please review our <strong>⚠️ Special Materials</strong> list in the menu (we do not accept silk, leather, wool, blazers, or dry-clean-only items).<br>• In the rare event of damage or loss to standard wash-and-fold clothes caused by our service, we will compensate based on the actual value of the item or up to a maximum of 500,000 VND per item. We sincerely appreciate your understanding and cooperation in helping us protect your garments!"
         },
         {
           id: "color_bleed_query",
@@ -1341,7 +1344,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "office_clothes_query",
           short: "👔 Office Wear & Shape Keeping",
           keywords: ["công sở", "cong so", "đồ công sở", "do cong so", "quần tây", "quan tay", "áo sơ mi công sở", "so mi cong so", "vải công sở", "sơ mi đi làm", "so mi di lam", "office clothes", "office wear", "work clothes", "workwear"],
-          response: "👔 For office wear that requires shape keeping and pressing, we are **unable to accept these items** for cleaning.<br>• **Reason**: Office clothing typically requires ironing or professional dry cleaning to maintain its shape, whereas Nice Fold Saigon specializes strictly in Wash & Fold services and does not offer ironing. If sent for standard wash & fold, these items will wrinkle and lose their pressed shape. We sincerely appreciate your understanding!"
+          response: "👔 For office wear that requires shape keeping and pressing, we are **unable to accept these items** for cleaning.<br>• **Reason**: Office clothing typically requires ironing or professional dry cleaning to maintain its shape, whereas 1997 Laundry specializes strictly in Wash & Fold services and does not offer ironing. If sent for standard wash & fold, these items will wrinkle and lose their pressed shape. We sincerely appreciate your understanding!"
         },
         {
           id: "shirt_query",
@@ -1354,13 +1357,13 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "bleach_query",
           short: "🧼 Stain Removal / Bleaching",
           keywords: ["bleach", "bleaching", "stain", "stains", "stain removal", "stubborn stain", "tẩy", "tay", "tẩy đồ", "tay do", "tẩy ố", "tay o", "tẩy vết bẩn", "tay vet ban"],
-          response: "🧼 Sorry, we do not currently offer specialized bleaching, stain removal, or deep stain treatment services.<br>• **Details**: Nice Fold specializes strictly in standard automated Wash & Fold services. Normal dirt and sweat will be thoroughly cleaned, but stubborn stains (such as old yellow stains, ink, oil, or dye) cannot be removed without specialized chemical treatments which we do not perform.<br>• We appreciate your kind understanding!"
+          response: "🧼 Sorry, we do not currently offer specialized bleaching, stain removal, or deep stain treatment services.<br>• **Details**: 1997 Laundry specializes strictly in standard automated Wash & Fold services. Normal dirt and sweat will be thoroughly cleaned, but stubborn stains (such as old yellow stains, ink, oil, or dye) cannot be removed without specialized chemical treatments which we do not perform.<br>• We appreciate your kind understanding!"
         },
         {
           id: "dryclean_query",
           short: "🧺 Dry Clean & Ironing",
           keywords: ["dry clean", "dryclean", "drycleaning", "steam clean", "steam cleaning", "iron", "ironing", "giặt ủi", "giặt khô", "giat ui", "giat kho", "ủi", "ủi đồ", "leather jacket", "leather clothes", "leather clothing", "leather coat", "silk", "wool", "cashmere", "blazer", "blazers", "suit", "suits", "designer", "embellished", "dry clean only", "ao dai", "traditional dress", "spa", "restore", "restoration", "luxury", "wedding dress", "wedding gown", "wedding dresses", "puffer jacket", "puffer jackets", "down jacket", "down jackets"],
-          response: "⚠️ Sorry, Nice Fold **does not currently offer dry cleaning, steam cleaning, or individual ironing services**.<br>• **Details**: We specialize strictly in automated Wash & Fold (laundry by weight) and hand-wash shoe cleaning. Delicate or dry-clean-only garments such as <strong>suits, blazers, silk (including traditional Ao Dai), leather, wool, cashmere, wedding dresses, down/puffer jackets, or heavily embellished items...</strong> require specialized dry cleaning or hand-wash care to prevent fabric damage or loss of shape.<br>• To protect your special garments, we are unable to accept them for cleaning. We appreciate your kind understanding!"
+          response: "⚠️ Sorry, 1997 Laundry **does not currently offer dry cleaning, steam cleaning, or individual ironing services**.<br>• **Details**: We specialize strictly in automated Wash & Fold (laundry by weight) and hand-wash shoe cleaning. Delicate or dry-clean-only garments such as <strong>suits, blazers, silk (including traditional Ao Dai), leather, wool, cashmere, wedding dresses, down/puffer jackets, or heavily embellished items...</strong> require specialized dry cleaning or hand-wash care to prevent fabric damage or loss of shape.<br>• To protect your special garments, we are unable to accept them for cleaning. We appreciate your kind understanding!"
         },
         {
           id: "leather_shoes_query",
@@ -1402,7 +1405,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "coverage_query",
           short: "🛵 Coverage Area",
           keywords: ["coverage", "district 1", "district 3", "district 7", "district 2", "thao dien", "binh thanh", "deliver to", "khu vực", "khu vuc", "quận", "quan"],
-          response: "🛵 <strong>Service Coverage</strong>: Nice Fold offers free pickup and delivery within 6 km (covering most hotels in <strong>District 1, District 3, Binh Thanh, and Thao Dien (District 2)</strong>).<br>For areas further away (such as District 7, District 4, Phu Nhuan,...), we can still support pickup/delivery with a small surcharge of 20,000 VND - 50,000 VND depending on the actual distance from our workspace in District 1!"
+          response: "🛵 <strong>Service Coverage</strong>: 1997 Laundry offers free pickup and delivery within 6 km (covering most hotels in <strong>District 1, District 3, Binh Thanh, and Thao Dien (District 2)</strong>).<br>For areas further away (such as District 7, District 4, Phu Nhuan,...), we can still support pickup/delivery with a small surcharge of 20,000 VND - 50,000 VND depending on the actual distance from our workspace in District 1!"
         },
         {
           id: "pickup",
@@ -1489,14 +1492,15 @@ document.addEventListener('DOMContentLoaded', () => {
 2️⃣ <strong>Your name</strong>:<br>
 3️⃣ <strong>Address / Hotel Name</strong>:<br>
 4️⃣ <strong>Room number</strong>:<br>
-5️⃣ <strong>Preferred pickup option (Optional)</strong>: <em>(e.g., please leave your laundry at the reception for collection)</em><br>
-6️⃣ <strong>Do you have white clothes that should be washed separately?</strong> <em>(+30,000 VND)</em> 🧺<br>
-7️⃣ <strong>Your Phone/Zalo/WhatsApp Number</strong>:`,
+5️⃣ <strong>Google Maps Link (Optional)</strong>:<br>
+6️⃣ <strong>Preferred pickup option (Optional)</strong>: <em>(e.g., please leave your laundry at the reception for collection)</em><br>
+7️⃣ <strong>Do you have white clothes that should be washed separately?</strong> <em>(+30,000 VND)</em> 🧺<br>
+8️⃣ <strong>Your Phone/Zalo/WhatsApp Number</strong>:`,
       missingLabels: {
         time: '1️⃣ Your preferred pickup time',
         hotel: '3️⃣ Address / Hotel Name and/or 4️⃣ Room number',
-        whites: '6️⃣ Do you have white clothes that should be washed separately? (Yes/No)',
-        phone: '7️⃣ Your Phone/Zalo/WhatsApp Number'
+        whites: '7️⃣ Do you have white clothes that should be washed separately? (Yes/No)',
+        phone: '8️⃣ Your Phone/Zalo/WhatsApp Number'
       },
       missingIntro: "Thank you! I've received some details, but we are still missing a few pieces of information to complete your booking:<br><br>",
       missingOutro: "<br><br>Please reply with the missing details above!",
@@ -1536,7 +1540,7 @@ document.addEventListener('DOMContentLoaded', () => {
       guestName: "Guest"
     },
     vi: {
-      greeting: "✨ <strong>Cảm ơn bạn đã lựa chọn Nice Fold Saigon!</strong> ✨<br><br>Lưu ý: Thời gian nhận đồ hôm nay từ 9:00 sáng đến 5:00 chiều.<br><br>Vui lòng chọn dịch vụ bạn quan tâm ở dưới để xem chi tiết hoặc đặt lịch:",
+      greeting: "✨ <strong>Cảm ơn bạn đã lựa chọn 1997 Laundry!</strong> ✨<br><br>Lưu ý: Thời gian nhận đồ hôm nay từ 9:00 sáng đến 5:00 chiều.<br><br>Vui lòng chọn dịch vụ bạn quan tâm ở dưới để xem chi tiết hoặc đặt lịch:",
       packages: {
         sameday: {
           title: "Giặt sấy lấy trong ngày (Same-day)",
@@ -1560,19 +1564,19 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "identity",
           short: "ℹ️ Bạn là ai?",
           keywords: ["bạn là ai", "ban la ai", "ai day", "ai đấy", "tên gì", "ten gi", "introduce", "who are you", "what are you", "chức năng", "chuc nang", "làm gì", "lam gi", "làm được gì", "lam duoc gi"],
-          response: "Dạ, tôi là trợ lý ảo của Nice Fold - dịch vụ giặt sấy cao cấp chuyên giao nhận tận nơi tại các khách sạn ở TP.HCM để hỗ trợ bạn tiện lợi nhất ạ!"
+          response: "Dạ, tôi là trợ lý ảo của 1997 Laundry - dịch vụ giặt sấy cao cấp chuyên giao nhận tận nơi tại các khách sạn ở TP.HCM để hỗ trợ bạn tiện lợi nhất ạ!"
         },
         {
           id: "greeting",
           short: "👋 Chào hỏi",
           keywords: ["xin chào", "xin chao", "chào", "chao", "chào bạn", "hello", "hi", "hey"],
-          response: "Dạ Nice Fold xin chào bạn! Tiệm có thể giúp gì cho bạn hôm nay ạ? Bạn có thể chọn nhanh dịch vụ bên dưới hoặc đặt câu hỏi trực tiếp cho tiệm nhé!"
+          response: "Dạ 1997 Laundry xin chào bạn! Tiệm có thể giúp gì cho bạn hôm nay ạ? Bạn có thể chọn nhanh dịch vụ bên dưới hoặc đặt câu hỏi trực tiếp cho tiệm nhé!"
         },
         {
           id: "unsupported_query",
           short: "⚠️ Đồ không nhận giặt",
           keywords: ["giặt ủi", "giặt khô", "giat ui", "giat kho", "ủi đồ", "ui do", "ủi", "ui", "giặt hấp", "giat hap", "lụa", "lua", "áo dài", "ao dai", "đồ da", "do da", "áo da", "ao da", "quần da", "quan da", "leather jacket", "silk", "vest", "blazer", "đồ dạ", "ao dạ", "áo dạ", "đồ len", "ao len", "áo len", "hàng hiệu", "hang hieu", "designer", "đính đá", "dinh da", "cườm", "cuorm", "spa hàng hiệu", "spa hang hieu", "phục hồi", "phuc hoi", "spa", "áo cưới", "ao cuoi", "váy cưới", "vay cuoi", "áo phao", "ao phao", "áo khoác phao", "ao khoac phao"],
-          response: "⚠️ Dạ tiệm xin lỗi vì hiện tại **Nice Fold chưa hỗ trợ dịch vụ giặt khô, giặt hấp hoặc ủi phẳng đồ riêng lẻ** bạn nhé ạ.<br>• **Lý do**: Vì Nice Fold chuyên cung cấp dịch vụ giặt sấy gập tự động bằng máy (Wash & Fold) và vệ sinh giày bằng tay. Các chất liệu nhạy cảm hoặc chỉ được giặt khô như: <strong>đồ vest/blazer, đồ lụa (bao gồm áo dài lụa), đồ da, len, dạ, áo cưới/váy cưới, áo phao lông vũ, hoặc quần áo đính kết đá/cườm phức tạp...</strong> đòi hỏi quy trình giặt hấp hoặc chăm sóc thủ công riêng biệt để tránh làm hỏng, co rút hay xẹp form dáng vải ạ.<br>• Để đảm bảo an toàn tuyệt đối, tránh hư hỏng cho những trang phục đặc biệt của bạn, tiệm xin phép chưa nhận các món đồ đặc biệt này nhé ạ. Rất mong bạn thông cảm giúp tiệm nha!"
+          response: "⚠️ Dạ tiệm xin lỗi vì hiện tại **1997 Laundry chưa hỗ trợ dịch vụ giặt khô, giặt hấp hoặc ủi phẳng đồ riêng lẻ** bạn nhé ạ.<br>• **Lý do**: Vì 1997 Laundry chuyên cung cấp dịch vụ giặt sấy gập tự động bằng máy (Wash & Fold) và vệ sinh giày bằng tay. Các chất liệu nhạy cảm hoặc chỉ được giặt khô như: <strong>đồ vest/blazer, đồ lụa (bao gồm áo dài lụa), đồ da, len, dạ, áo cưới/váy cưới, áo phao lông vũ, hoặc quần áo đính kết đá/cườm phức tạp...</strong> đòi hỏi quy trình giặt hấp hoặc chăm sóc thủ công riêng biệt để tránh làm hỏng, co rút hay xẹp form dáng vải ạ.<br>• Để đảm bảo an toàn tuyệt đối, tránh hư hỏng cho những trang phục đặc biệt của bạn, tiệm xin phép chưa nhận các món đồ đặc biệt này nhé ạ. Rất mong bạn thông cảm giúp tiệm nha!"
         },
         {
           id: "whites",
@@ -1584,7 +1588,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "hygiene_query",
           short: "🧼 Giặt riêng 100%",
           keywords: ["giặt chung", "giat chung", "giặt riêng", "giat rieng", "chung đồ", "chung do", "riêng máy", "rieng may", "vệ sinh", "ve sinh", "sạch sẽ", "sach se"],
-          response: "🧼 Dạ tiệm cam kết giặt riêng 100% cho mỗi khách hàng bạn nhé ạ!<br>• **Quy trình**: Quần áo của bạn luôn được giặt và sấy riêng biệt trong các máy độc lập, tuyệt đối **KHÔNG bao giờ giặt chung hoặc trộn lẫn đồ** của các khách hàng khác nhau.<br>• Tiệm luôn đặt yếu tố vệ sinh và an toàn lên hàng đầu để bạn hoàn toàn yên tâm sử dụng dịch vụ của Nice Fold ạ!"
+          response: "🧼 Dạ tiệm cam kết giặt riêng 100% cho mỗi khách hàng bạn nhé ạ!<br>• **Quy trình**: Quần áo của bạn luôn được giặt và sấy riêng biệt trong các máy độc lập, tuyệt đối **KHÔNG bao giờ giặt chung hoặc trộn lẫn đồ** của các khách hàng khác nhau.<br>• Tiệm luôn đặt yếu tố vệ sinh và an toàn lên hàng đầu để bạn hoàn toàn yên tâm sử dụng dịch vụ của 1997 Laundry ạ!"
         },
         {
           id: "drying_query",
@@ -1602,7 +1606,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "compensation_query",
           short: "🛡️ Chính sách bồi thường",
           keywords: ["mất đồ", "mat do", "hỏng đồ", "hong do", "đền", "den", "đền bù", "den bu", "bồi thường", "boi thuong", "compensation", "lost"],
-          response: "💝 <strong>Nice Fold luôn nâng niu trang phục của bạn:</strong><br>• Để đảm bảo an toàn tốt nhất cho quần áo, tiệm chuyên nhận giặt sấy thông thường (Wash & Fold) và giặt giày tay ạ. Bạn vui lòng xem kỹ danh sách <strong>⚠️ Đồ không hỗ trợ</strong> ở menu chính (tiệm không nhận lụa, đồ da, len, blazer, đồ luxury cần giặt khô).<br>• Trong trường hợp hy hữu xảy ra mất mát hoặc hư hỏng đồ giặt sấy do lỗi của tiệm, tiệm xin phép bồi thường theo **đúng giá trị thực tế của món đồ đó hoặc tối đa là 500.000đ** cho mỗi món đồ để cùng bạn chia sẻ rủi ro nhé ạ. Rất mong bạn thông cảm và đồng hành cùng tiệm để bảo vệ quần áo tốt nhất nhé!"
+          response: "💝 <strong>1997 Laundry luôn nâng niu trang phục của bạn:</strong><br>• Để đảm bảo an toàn tốt nhất cho quần áo, tiệm chuyên nhận giặt sấy thông thường (Wash & Fold) và giặt giày tay ạ. Bạn vui lòng xem kỹ danh sách <strong>⚠️ Đồ không hỗ trợ</strong> ở menu chính (tiệm không nhận lụa, đồ da, len, blazer, đồ luxury cần giặt khô).<br>• Trong trường hợp hy hữu xảy ra mất mát hoặc hư hỏng đồ giặt sấy do lỗi của tiệm, tiệm xin phép bồi thường theo **đúng giá trị thực tế của món đồ đó hoặc tối đa là 500.000đ** cho mỗi món đồ để cùng bạn chia sẻ rủi ro nhé ạ. Rất mong bạn thông cảm và đồng hành cùng tiệm để bảo vệ quần áo tốt nhất nhé!"
         },
         {
           id: "color_bleed_query",
@@ -1614,7 +1618,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "thankyou",
           short: "🙏 Cảm ơn",
           keywords: ["cảm ơn", "cam on", "cảm ơn bạn", "thank", "thanks", "thank you", "tks"],
-          response: "Dạ Nice Fold rất cảm ơn bạn đã liên hệ ạ! Bạn có cần tiệm hỗ trợ gì thêm thông tin nữa không nhé?"
+          response: "Dạ 1997 Laundry rất cảm ơn bạn đã liên hệ ạ! Bạn có cần tiệm hỗ trợ gì thêm thông tin nữa không nhé?"
         },
         {
           id: "support_query",
@@ -1626,7 +1630,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "office_clothes_query",
           short: "👔 Giặt đồ công sở giữ form",
           keywords: ["công sở", "cong so", "đồ công sở", "do cong so", "quần tây", "quan tay", "áo sơ mi công sở", "so mi cong so", "vải công sở", "sơ mi đi làm", "so mi di lam", "office clothes", "office wear", "work clothes", "workwear"],
-          response: "👔 Dạ đối với quần áo công sở cần giữ form dáng phẳng phiu, tiệm xin phép **chưa thể nhận giặt** được bạn nhé ạ.<br>• **Lý do**: Vì đồ công sở thường cần được ủi (là) hoặc giặt khô chuyên dụng để giữ đứng form, trong khi Nice Fold Saigon chỉ chuyên về dịch vụ giặt sấy gập (Wash & Fold) và hiện tại chưa có dịch vụ ủi đồ.<br>• Nếu bạn gửi giặt sấy gập thông thường thì quần áo công sở sẽ dễ bị nhăn và mất form dáng đẹp. Tiệm rất mong bạn thông cảm cho sự bất tiện này nhé ạ!"
+          response: "👔 Dạ đối với quần áo công sở cần giữ form dáng phẳng phiu, tiệm xin phép **chưa thể nhận giặt** được bạn nhé ạ.<br>• **Lý do**: Vì đồ công sở thường cần được ủi (là) hoặc giặt khô chuyên dụng để giữ đứng form, trong khi 1997 Laundry chỉ chuyên về dịch vụ giặt sấy gập (Wash & Fold) và hiện tại chưa có dịch vụ ủi đồ.<br>• Nếu bạn gửi giặt sấy gập thông thường thì quần áo công sở sẽ dễ bị nhăn và mất form dáng đẹp. Tiệm rất mong bạn thông cảm cho sự bất tiện này nhé ạ!"
         },
         {
           id: "shirt_query",
@@ -1639,13 +1643,13 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "bleach_query",
           short: "🧼 Có tẩy ố / tẩy vết bẩn?",
           keywords: ["tẩy đồ", "tay do", "tẩy ố", "tay o", "tẩy trắng", "tay trang", "tẩy vết bẩn", "tay vet ban", "vết bẩn cứng đầu", "vet ban cung dau", "bị dơ", "bi do", "bleach", "stain removal"],
-          response: "🧼 Dạ tiệm xin phép **chưa nhận dịch vụ tẩy đồ, tẩy ố hoặc xử lý các vết bẩn cứng đầu chuyên sâu** bạn nhé ạ.<br>• **Lý do**: Vì Nice Fold chỉ chuyên cung cấp dịch vụ giặt sấy gập tự động thông thường (Wash & Fold). Các vết bẩn thông thường như bụi bẩn, mồ hôi sẽ được làm sạch tốt, tuy nhiên đối với các vết ố vàng lâu ngày, vết mực, dầu mỡ cứng đầu thì giặt máy thông thường sẽ không thể tự biến mất được nếu không qua quy trình tẩy rửa chuyên biệt bằng hóa chất mạnh.<br>• Tiệm rất mong bạn thông cảm giúp tiệm nhé ạ!"
+          response: "🧼 Dạ tiệm xin phép **chưa nhận dịch vụ tẩy đồ, tẩy ố hoặc xử lý các vết bẩn cứng đầu chuyên sâu** bạn nhé ạ.<br>• **Lý do**: Vì 1997 Laundry chỉ chuyên cung cấp dịch vụ giặt sấy gập tự động thông thường (Wash & Fold). Các vết bẩn thông thường như bụi bẩn, mồ hôi sẽ được làm sạch tốt, tuy nhiên đối với các vết ố vàng lâu ngày, vết mực, dầu mỡ cứng đầu thì giặt máy thông thường sẽ không thể tự biến mất được nếu không qua quy trình tẩy rửa chuyên biệt bằng hóa chất mạnh.<br>• Tiệm rất mong bạn thông cảm giúp tiệm nhé ạ!"
         },
         {
           id: "dryclean_query",
           short: "🧺 Giặt khô / Giặt ủi",
           keywords: ["giặt ủi", "giặt khô", "giat ui", "giat kho", "ủi đồ", "ui do", "ủi", "ui", "giặt hấp", "giat hap", "lụa", "lua", "áo dài", "ao dai", "đồ da", "do da", "áo da", "ao da", "quần da", "quan da", "leather jacket", "silk", "vest", "blazer", "đồ dạ", "ao dạ", "áo dạ", "đồ len", "ao len", "áo len", "hàng hiệu", "hang hieu", "designer", "đính đá", "dinh da", "cườm", "cuorm", "spa hàng hiệu", "spa hang hieu", "phục hồi", "phuc hoi", "spa", "áo cưới", "ao cuoi", "váy cưới", "vay cuoi", "áo phao", "ao phao", "áo khoác phao", "ao khoac phao"],
-          response: "⚠️ Dạ tiệm xin lỗi vì hiện tại **Nice Fold chưa hỗ trợ dịch vụ giặt khô, giặt hấp hoặc ủi phẳng đồ riêng lẻ** bạn nhé ạ.<br>• **Lý do**: Vì Nice Fold chuyên cung cấp dịch vụ giặt sấy gập tự động bằng máy (Wash & Fold) và vệ sinh giày bằng tay. Các chất liệu nhạy cảm hoặc chỉ được giặt khô như: <strong>đồ vest/blazer, đồ lụa (bao gồm áo dài lụa), đồ da, len, dạ, áo cưới/váy cưới, áo phao lông vũ, hoặc quần áo đính kết đá/cườm phức tạp...</strong> đòi hỏi quy trình giặt hấp hoặc chăm sóc thủ công riêng biệt để tránh làm hỏng, co rút hay xẹp form dáng vải ạ.<br>• Để đảm bảo an toàn tuyệt đối, tránh hư hỏng cho những trang phục đặc biệt của bạn, tiệm xin phép chưa nhận các món đồ đặc biệt này nhé ạ. Rất mong bạn thông cảm giúp tiệm nha!"
+          response: "⚠️ Dạ tiệm xin lỗi vì hiện tại **1997 Laundry chưa hỗ trợ dịch vụ giặt khô, giặt hấp hoặc ủi phẳng đồ riêng lẻ** bạn nhé ạ.<br>• **Lý do**: Vì 1997 Laundry chuyên cung cấp dịch vụ giặt sấy gập tự động bằng máy (Wash & Fold) và vệ sinh giày bằng tay. Các chất liệu nhạy cảm hoặc chỉ được giặt khô như: <strong>đồ vest/blazer, đồ lụa (bao gồm áo dài lụa), đồ da, len, dạ, áo cưới/váy cưới, áo phao lông vũ, hoặc quần áo đính kết đá/cườm phức tạp...</strong> đòi hỏi quy trình giặt hấp hoặc chăm sóc thủ công riêng biệt để tránh làm hỏng, co rút hay xẹp form dáng vải ạ.<br>• Để đảm bảo an toàn tuyệt đối, tránh hư hỏng cho những trang phục đặc biệt của bạn, tiệm xin phép chưa nhận các món đồ đặc biệt này nhé ạ. Rất mong bạn thông cảm giúp tiệm nha!"
         },
         {
           id: "leather_shoes_query",
@@ -1657,7 +1661,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "shoes_query",
           short: "👟 Giá giặt giày",
           keywords: ["giày", "giay", "giặt giày", "giat giay", "giày da", "giay da", "sneaker", "sneakers"],
-          response: "👟 Dạ Nice Fold gửi bạn bảng giá dịch vụ vệ sinh giày chuyên sâu bằng tay tỉ mỉ của tiệm nhé ạ:<br>• **Giày thể thao & Vải Canvas**: 150.000đ / đôi<br>• **Giày da & Da lộn cao cấp**: 220.000đ / đôi<br>• **Gói hỏa tốc lấy sau 24h**: +100.000đ / đôi<br>• **Phí giao nhận khứ hồi (2 chiều)**: 50.000đ.<br>Bạn nhắn lại cho tiệm nếu cần đặt lịch vệ sinh giày nhé ạ!"
+          response: "👟 Dạ 1997 Laundry gửi bạn bảng giá dịch vụ vệ sinh giày chuyên sâu bằng tay tỉ mỉ của tiệm nhé ạ:<br>• **Giày thể thao & Vải Canvas**: 150.000đ / đôi<br>• **Giày da & Da lộn cao cấp**: 220.000đ / đôi<br>• **Gói hỏa tốc lấy sau 24h**: +100.000đ / đôi<br>• **Phí giao nhận khứ hồi (2 chiều)**: 50.000đ.<br>Bạn nhắn lại cho tiệm nếu cần đặt lịch vệ sinh giày nhé ạ!"
         },
         {
           id: "after5",
@@ -1699,7 +1703,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "coverage_query",
           short: "🛵 Khu vực phục vụ",
           keywords: ["quận 1", "quan 1", "quận 3", "quan 3", "thảo điền", "thao dien", "quận 2", "quan 2", "quận 7", "quan 7", "bình thạnh", "binh thanh", "khu vực", "khu vuc", "quận nào", "quan nao", "quận", "quan", "district"],
-          response: "🛵 <strong>Khu vực phục vụ</strong>: Nice Fold phục vụ giao nhận tận nơi và miễn phí vận chuyển trong phạm vi 6km (bao gồm hầu hết khu vực <strong>Quận 1, Quận 3, Bình Thạnh và Thảo Điền (Quận 2)</strong>).<br>Đối với các khu vực xa hơn (như Quận 7, Quận 4, Phú Nhuận,...), tiệm có thể hỗ trợ giao nhận với phụ phí nhỏ từ 20.000đ - 50.000đ tùy khoảng cách thực tế từ xưởng ở Quận 1 nhé!"
+          response: "🛵 <strong>Khu vực phục vụ</strong>: 1997 Laundry phục vụ giao nhận tận nơi và miễn phí vận chuyển trong phạm vi 6km (bao gồm hầu hết khu vực <strong>Quận 1, Quận 3, Bình Thạnh và Thảo Điền (Quận 2)</strong>).<br>Đối với các khu vực xa hơn (như Quận 7, Quận 4, Phú Nhuận,...), tiệm có thể hỗ trợ giao nhận với phụ phí nhỏ từ 20.000đ - 50.000đ tùy khoảng cách thực tế từ xưởng ở Quận 1 nhé!"
         },
         {
           id: "pickup",
@@ -1753,7 +1757,7 @@ document.addEventListener('DOMContentLoaded', () => {
           id: "pricing_query",
           short: "💵 Bảng giá dịch vụ",
           keywords: ["price", "pricing", "cost", "how much", "rate", "fee", "charge", "giá", "bao nhiêu", "tiền", "dịch vụ", "dich vu", "services", "service", "what services"],
-          response: "Nice Fold Saigon gửi bạn bảng giá các dịch vụ chính (đã bao gồm giặt, sấy khô và xếp gọn):<br>• <strong>🧺 Tiêu chuẩn 24H</strong>: 170.000đ cho 3kg đầu (mỗi kg tiếp theo +40.000đ).<br>• <strong>⚡ Lấy trong ngày</strong>: 250.000đ cho 4kg đầu (mỗi kg tiếp theo +50.000đ).<br>• <strong>🚀 Hỏa tốc 4H</strong>: 330.000đ cho 4kg đầu (mỗi kg tiếp theo +70.000đ).<br>• <strong>👟 Giặt giày tay</strong>: 150.000đ – 220.000đ / đôi.<br><br>Vui lòng chọn gói tương ứng ở dưới để đặt lịch hoặc xem chi tiết:"
+          response: "1997 Laundry gửi bạn bảng giá các dịch vụ chính (đã bao gồm giặt, sấy khô và xếp gọn):<br>• <strong>🧺 Tiêu chuẩn 24H</strong>: 170.000đ cho 3kg đầu (mỗi kg tiếp theo +40.000đ).<br>• <strong>⚡ Lấy trong ngày</strong>: 250.000đ cho 4kg đầu (mỗi kg tiếp theo +50.000đ).<br>• <strong>🚀 Hỏa tốc 4H</strong>: 330.000đ cho 4kg đầu (mỗi kg tiếp theo +70.000đ).<br>• <strong>👟 Giặt giày tay</strong>: 150.000đ – 220.000đ / đôi.<br><br>Vui lòng chọn gói tương ứng ở dưới để đặt lịch hoặc xem chi tiết:"
         },
         {
           id: "hesitate_query",
@@ -1774,14 +1778,15 @@ document.addEventListener('DOMContentLoaded', () => {
 2️⃣ <strong>Tên của bạn</strong>:<br>
 3️⃣ <strong>Địa chỉ / Tên khách sạn</strong>:<br>
 4️⃣ <strong>Số phòng</strong>:<br>
-5️⃣ <strong>Hình thức lấy đồ (Không bắt buộc)</strong>: <em>(ví dụ: gửi tại lễ tân khách sạn)</em><br>
-6️⃣ <strong>Bạn có đồ trắng cần giặt riêng không?</strong> <em>(+30,000 VND)</em> 🧺<br>
-7️⃣ <strong>Số điện thoại (Zalo/WhatsApp)</strong>:`,
+5️⃣ <strong>Link Google Maps (Không bắt buộc)</strong>:<br>
+6️⃣ <strong>Hình thức lấy đồ (Không bắt buộc)</strong>: <em>(ví dụ: gửi tại lễ tân khách sạn)</em><br>
+7️⃣ <strong>Bạn có đồ trắng cần giặt riêng không?</strong> <em>(+30,000 VND)</em> 🧺<br>
+8️⃣ <strong>Số điện thoại (Zalo/WhatsApp)</strong>:`,
       missingLabels: {
         time: '1️⃣ Thời gian lấy đồ mong muốn',
         hotel: '3️⃣ Địa chỉ / Tên khách sạn và/hoặc 4️⃣ Số phòng',
-        whites: '6️⃣ Bạn có đồ trắng cần giặt riêng không? (Có/Không)',
-        phone: '7️⃣ Số điện thoại (Zalo/WhatsApp)'
+        whites: '7️⃣ Bạn có đồ trắng cần giặt riêng không? (Có/Không)',
+        phone: '8️⃣ Số điện thoại (Zalo/WhatsApp)'
       },
       missingIntro: "Cảm ơn bạn! Tôi đã nhận được một số thông tin, nhưng vẫn còn thiếu vài thông tin sau để hoàn thành đặt lịch:<br><br>",
       missingOutro: "<br><br>Vui lòng bổ sung các thông tin còn thiếu ở trên nhé!",
@@ -1988,14 +1993,14 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // --- DYNAMIC AI AGENT CHAT (Bé Hai) ---
+    // --- DYNAMIC AI AGENT CHAT (Bé Ba) ---
     // Disable input fields to prevent parallel messages
     if (chatbotInput) chatbotInput.disabled = true;
     const submitBtn = chatbotForm ? chatbotForm.querySelector('button[type="submit"]') : null;
     if (submitBtn) submitBtn.disabled = true;
 
     // Show thinking indicator
-    const loadingMsgId = appendBotMessage(bookingSession.lang === 'vi' ? 'Bé Hai đang trả lời... ⏳' : 'Bé Hai is typing... ⏳');
+    const loadingMsgId = appendBotMessage(bookingSession.lang === 'vi' ? 'Bé Ba đang trả lời... ⏳' : 'Bé Ba is typing... ⏳');
     
     let chatSessionId = localStorage.getItem('chatbot_session_id');
     if (!chatSessionId) {
@@ -2104,7 +2109,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Separate Whites: yes, no, separate, white, whit, color, có, không, tách, trắng
     const whitesPattern = /(yes|no|separate|white|whit|color|có|không|tách|trắng|dơ|màu)/i;
-    if (!whitesPattern.test(normalized) && !normalized.includes("6️⃣") && !normalized.includes("white clothes")) {
+    if (!whitesPattern.test(normalized) && !normalized.includes("6️⃣") && !normalized.includes("7️⃣") && !normalized.includes("white clothes")) {
       missing.push({
         id: 'whites',
         label: localScript.missingLabels.whites
@@ -2113,7 +2118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Phone Number check: check for a sequence of 9 to 11 digits
     const phonePattern = /(\b\d{9,11}\b|\+?\d{1,4}[-.\s]?\d{9,11})/i;
-    if (!phonePattern.test(normalized) && !normalized.includes("7️⃣") && !normalized.includes("phone") && !normalized.includes("sđt") && !normalized.includes("sdt")) {
+    if (!phonePattern.test(normalized) && !normalized.includes("7️⃣") && !normalized.includes("8️⃣") && !normalized.includes("phone") && !normalized.includes("sđt") && !normalized.includes("sdt")) {
       missing.push({
         id: 'phone',
         label: localScript.missingLabels.phone
@@ -2137,7 +2142,8 @@ document.addEventListener('DOMContentLoaded', () => {
                salesScript[bookingSession.lang].packages[bookingSession.data.packageId].title : 
                salesScript[bookingSession.lang].packages.sameday.title,
       whites: localScript.whitesNo,
-      phone: localScript.notProvided
+      phone: localScript.notProvided,
+      mapLink: ''
     };
 
     // 1. Extract Pickup Time
@@ -2189,6 +2195,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     result.phone = extractedPhone;
 
+    // Extract Google Maps Link
+    const mapLinkRegex = /(https?:\/\/(maps\.google\.com|www\.google\.com\/maps|maps\.app\.goo\.gl|goo\.gl\/maps)\/[^\s]+)/i;
+    const mapLinkMatch = text.match(mapLinkRegex);
+    let extractedMapLink = '';
+    if (mapLinkMatch) {
+      extractedMapLink = mapLinkMatch[0];
+    }
+    result.mapLink = extractedMapLink;
+
     // 5. Subtract keywords and extract Room Number separately
     let hotelStr = text;
     if (timeMatch) hotelStr = hotelStr.replace(timeMatch[0], '');
@@ -2196,6 +2211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whitesMatch) hotelStr = hotelStr.replace(whitesMatch[0], '');
     if (optionMatch) hotelStr = hotelStr.replace(optionMatch[0], '');
     if (phoneMatch) hotelStr = hotelStr.replace(phoneMatch[0], '');
+    if (mapLinkMatch) hotelStr = hotelStr.replace(mapLinkMatch[0], '');
 
     hotelStr = hotelStr.replace(/[-–,.]/g, ' ').replace(/\s+/g, ' ').trim();
 
@@ -2247,6 +2263,31 @@ document.addEventListener('DOMContentLoaded', () => {
       bookingSession.lang = detectedLang;
     }
     const localScript = salesScript[bookingSession.lang];
+
+    // Check for cancel request
+    const normalizedText = (text || '').toLowerCase();
+    const isCancelRequest = chipId === 'cancel' || 
+                            normalizedText === 'cancel' || 
+                            normalizedText === 'hủy' || 
+                            normalizedText === 'huy' || 
+                            normalizedText.includes('hủy đặt lịch') ||
+                            normalizedText.includes('huy dat lich') ||
+                            normalizedText.includes('cancel booking');
+
+    if (isCancelRequest) {
+      bookingSession.active = false;
+      bookingSession.step = 0;
+      bookingSession.data = {
+        packageId: null,
+        packageName: '',
+        priceText: ''
+      };
+      bookingSession.userResponseText = '';
+      appendBotMessage(localScript.cancelGreeting);
+      showInitialMainMenu();
+      return;
+    }
+
     const step = bookingSession.step;
 
     if (step === 1) {
@@ -2308,7 +2349,7 @@ document.addEventListener('DOMContentLoaded', () => {
         1️⃣ <strong>${localScript.confirmLabels.time}</strong>: ${parsed.time}<br>
         2️⃣ <strong>${localScript.confirmLabels.name}</strong>: ${parsed.name}<br>
         3️⃣ <strong>${localScript.confirmLabels.hotel}</strong>: ${parsed.hotel}<br>
-        4️⃣ <strong>${localScript.confirmLabels.room}</strong>: ${parsed.room}<br>
+        ${parsed.mapLink ? `📍 <strong>Google Maps Link</strong>: <a href="${parsed.mapLink}" target="_blank" style="color: var(--color-pink); word-break: break-all;">${parsed.mapLink}</a><br>` : ''}4️⃣ <strong>${localScript.confirmLabels.room}</strong>: ${parsed.room}<br>
         5️⃣ <strong>${localScript.confirmLabels.option}</strong>: ${parsed.option}<br>
         6️⃣ <strong>${localScript.confirmLabels.whites}</strong>: ${parsed.whites}<br>
         7️⃣ <strong>${localScript.confirmLabels.phone}</strong>: ${parsed.phone}<br>
@@ -2360,13 +2401,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingCode = 'NF' + Math.floor(1000 + Math.random() * 9000);
 
     // Format pre-filled booking message block
-    const finalBookingMessage = `${bookingSession.lang === 'vi' ? 'Yêu cầu đặt lịch giặt ủi Nice Fold Saigon' : 'Nice Fold Saigon - Laundry Booking Request'}
+    const finalBookingMessage = `${bookingSession.lang === 'vi' ? 'Yêu cầu đặt lịch giặt ủi 1997 Laundry' : '1997 Laundry - Laundry Booking Request'}
 ---------------------------------------
 Mã đơn hàng / Booking Code: #${bookingCode}
 1️⃣ ${localScript.confirmLabels.time}: ${parsed.time}
 2️⃣ ${localScript.confirmLabels.name}: ${parsed.name}
 3️⃣ ${localScript.confirmLabels.hotel}: ${parsed.hotel}
-4️⃣ ${localScript.confirmLabels.room}: ${parsed.room}
+${parsed.mapLink ? `📍 Google Maps: ${parsed.mapLink}\n` : ''}4️⃣ ${localScript.confirmLabels.room}: ${parsed.room}
 5️⃣ ${localScript.confirmLabels.option}: ${parsed.option}
 6️⃣ ${localScript.confirmLabels.whites}: ${parsed.whites}
 7️⃣ ${localScript.confirmLabels.phone}: ${parsed.phone}
@@ -2386,6 +2427,7 @@ Mã đơn hàng / Booking Code: #${bookingCode}
         email: '',
         hotelAddress: parsed.hotel,
         roomNumber: parsed.room,
+        mapLink: parsed.mapLink,
         service: parsed.service,
         totalVnd: totalVnd
       })
@@ -2434,8 +2476,8 @@ Mã đơn hàng / Booking Code: #${bookingCode}
     if (chatbotBody && chatbotBody.children.length === 0) {
       const isVi = bookingSession.lang === 'vi';
       const welcomeMsg = isVi ?
-        "Xin chào! Tôi là Bé Hai, trợ lý giặt ủi Nice Fold Saigon. Tôi có thể giúp gì cho bạn hôm nay? 🧺 Hãy chọn một gói dịch vụ bên dưới để xem thông tin nhanh, hoặc đặt câu hỏi tự do cho tôi nhé!" :
-        "Hello! I am Bé Hai, your Nice Fold Saigon laundry assistant. How can I help you today? 🧺 Please choose one of our packages below for instant details, or ask me any question directly!";
+        "Xin chào! Tôi là Bé Ba, trợ lý giặt ủi 1997 Laundry. Tôi có thể giúp gì cho bạn hôm nay? 🧺 Hãy chọn một gói dịch vụ bên dưới để xem thông tin nhanh, hoặc đặt câu hỏi tự do cho tôi nhé!" :
+        "Hello! I am Bé Ba, your 1997 Laundry laundry assistant. How can I help you today? 🧺 Please choose one of our packages below for instant details, or ask me any question directly!";
       
       appendBotMessage(welcomeMsg);
       showInitialMainMenu();
