@@ -1841,6 +1841,173 @@ img {
 }
 
 /* ==========================================
+   TEAM SECTION
+   ========================================== */
+.team-section {
+    padding: 100px 0;
+    background-color: var(--color-bg-light);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    align-items: end; /* Creates staggered layout */
+    margin-bottom: 60px;
+}
+
+.team-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-bg-soft);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--color-border-light);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    padding: 24px;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(9, 0, 45, 0.05);
+}
+
+.team-visual-wrapper {
+    width: 100%;
+    height: 240px;
+    border-radius: var(--border-radius-md);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.team-visual-wrapper.tall-wrapper {
+    height: 340px; /* Middle card is taller */
+}
+
+.team-img-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-dark-card) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.team-icon-large {
+    font-size: 60px;
+    color: var(--color-text-light);
+}
+
+/* Glassmorphic card overlay on tall middle card */
+.glass-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius-md);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--color-text-light);
+    box-shadow: 0 8px 32px rgba(9, 0, 45, 0.2);
+}
+
+.glass-overlay .stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.glass-overlay .stat-label {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Badge overlay on right column card */
+.badge-light-overlay {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+    background-color: var(--color-bg-light);
+    color: var(--color-accent-dark);
+    font-size: 9px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(9, 0, 45, 0.15);
+    letter-spacing: 0.5px;
+}
+
+.team-info h3 {
+    font-size: 18px;
+    color: var(--color-bg-dark);
+    margin-bottom: 8px;
+}
+
+.team-info p {
+    font-size: 13.5px;
+    color: var(--color-text-gray);
+    line-height: 1.5;
+}
+
+.team-bottom-headline {
+    max-width: 900px;
+    margin: 0 auto;
+    border-top: 1px solid var(--color-border-light);
+    padding-top: 50px;
+}
+
+.team-bottom-headline h3 {
+    font-size: 24px;
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-bg-dark);
+}
+
+/* Visual animations inside placeholders */
+.bubbles-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.bo-bubble {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    animation: bubble-float-anim 4s ease-in-out infinite alternate;
+}
+
+.bo-bubble.bob1 {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    left: 30px;
+}
+
+.bo-bubble.bob2 {
+    width: 30px;
+    height: 30px;
+    bottom: 30px;
+    right: 40px;
+    animation-delay: 1.5s;
+}
+
+/* ==========================================
    RESPONSIVE DESIGN (MOBILE ADAPTATION)
    ========================================== */
 @media (max-width: 1024px) {
@@ -1874,6 +2041,20 @@ img {
 
 @media (max-width: 768px) {
     .section-title { font-size: 30px; }
+    
+    /* Team responsive stack */
+    .team-grid {
+        grid-template-columns: 1fr;
+        max-width: 440px;
+        margin: 0 auto 40px auto;
+        gap: 40px;
+    }
+    .team-visual-wrapper.tall-wrapper {
+        height: 240px; /* Reset center card height on mobile */
+    }
+    .team-bottom-headline h3 {
+        font-size: 18px;
+    }
     
     /* Toggle Mobile Navigation Menu */
     .mobile-menu-toggle {
