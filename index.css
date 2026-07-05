@@ -271,7 +271,7 @@ img {
 }
 
 .nav-item:hover, .nav-item.active {
-    color: var(--color-accent-dark);
+    color: var(--color-accent);
     border-bottom-color: var(--color-accent);
 }
 
@@ -283,7 +283,7 @@ img {
 
 .btn-phone {
     background-color: var(--color-bg-dark);
-    color: var(--color-text-light);
+    color: var(--color-accent); /* All header text orange */
     border-radius: var(--border-radius-sm);
     padding: 10px 18px;
     font-size: 13px;
@@ -304,7 +304,7 @@ img {
     background: none;
     border: none;
     font-size: 24px;
-    color: var(--color-bg-dark);
+    color: var(--color-accent); /* Make toggle icon orange */
     cursor: pointer;
 }
 
@@ -659,7 +659,12 @@ img {
    ========================================== */
 .steps-section {
     padding: 100px 0;
-    background-color: var(--color-bg-soft);
+    background-color: var(--color-accent-light); /* Peach cream #ffdac2 (secondary color) */
+}
+
+.steps-section .section-badge {
+    background-color: var(--color-accent-dark); /* Deep rust orange */
+    color: var(--color-bg-light);
 }
 
 .steps-grid {
