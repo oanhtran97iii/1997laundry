@@ -463,4 +463,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ==========================================
+       8. SCROLL REVEAL & PARALLAX FOR TEAM SECTION
+       ========================================== */
+    const revealCards = document.querySelectorAll('.reveal-card');
+
+    if (revealCards.length > 0) {
+        // Intersection Observer for scroll reveal fade-in/slide-up
+        const cardObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealCards.forEach(card => cardObserver.observe(card));
+
+        // Parallax background-shift on scroll
+        const placeholders = document.querySelectorAll('.team-img-placeholder');
+        
+        window.addEventListener('scroll', () => {
+            placeholders.forEach(ph => {
+                const rect = ph.getBoundingClientRect();
+                const viewHeight = window.innerHeight;
+                
+                if (rect.top < viewHeight && rect.bottom > 0) {
+                    // Calculate percentage of element progression through viewport
+                    const scrollRatio = (viewHeight - rect.top) / (viewHeight + rect.height);
+                    const bgY = 35 + (scrollRatio * 30); // scale background Y pos from 35% to 65%
+                    ph.style.backgroundPosition = `50% ${bgY}%`;
+                }
+            });
+        });
+    }
+
 });
