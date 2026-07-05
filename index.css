@@ -313,11 +313,39 @@ img {
    ========================================== */
 .hero-section {
     padding: 160px 0 100px 0;
+    position: relative;
+    overflow: hidden;
     background: radial-gradient(circle at 80% 20%, rgba(242, 106, 25, 0.05) 0%, transparent 50%),
                 radial-gradient(circle at 10% 80%, rgba(9, 0, 45, 0.02) 0%, transparent 40%);
 }
 
+.hero-fabric-bg {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 60%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.16; /* Subtle blend */
+    pointer-events: none;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(to top, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%),
+                        linear-gradient(to top, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+.hero-fabric-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translateY(0);
+    transition: transform 0.1s ease-out;
+}
+
 .hero-container {
+    position: relative;
+    z-index: 2; /* Keep content above background */
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 60px;
@@ -913,6 +941,11 @@ img {
     font-size: 32px;
     color: var(--color-accent);
     animation: washer-spin-anim 4s linear infinite;
+    transition: animation-duration 0.3s ease;
+}
+
+.cap-content-panel:hover .washer-spin {
+    animation-duration: 1.2s; /* Spins faster on hover */
 }
 
 .wash-bubble-animation {
@@ -952,6 +985,11 @@ img {
     position: relative;
     z-index: 2;
     animation: hanger-sway-anim 3s ease-in-out infinite;
+    transition: animation-duration 0.3s ease;
+}
+
+.cap-content-panel:hover .hanger-shirt {
+    animation-duration: 1.2s; /* Sways faster on hover (breeze feel) */
 }
 
 .hanger-hook {
@@ -963,6 +1001,37 @@ img {
     position: absolute;
     top: 5px;
     z-index: 1;
+}
+
+}
+
+/* Steam Animation (Gợi ý 3) */
+.steam-container {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 20px;
+    opacity: 0.6;
+    z-index: 5;
+}
+
+.steam-line {
+    width: 4px;
+    height: 40px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0));
+    border-radius: 50%;
+    filter: blur(2.5px);
+    animation: steam-rise-anim 2s infinite linear;
+}
+
+.steam-line.s1 { animation-delay: 0s; }
+.steam-line.s2 { animation-delay: 0.6s; }
+.steam-line.s3 { animation-delay: 1.2s; }
+
+@keyframes steam-rise-anim {
+    0% { transform: translateY(15px) scaleX(1); opacity: 0; }
+    40% { opacity: 0.7; }
+    100% { transform: translateY(-50px) scaleX(2.5); opacity: 0; }
 }
 
 /* Shoe Spa Visual */

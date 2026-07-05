@@ -486,8 +486,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Parallax background-shift on scroll
         const placeholders = document.querySelectorAll('.team-img-placeholder');
+        const fabricBg = document.querySelector('.hero-fabric-bg img');
         
         window.addEventListener('scroll', () => {
+            // Hero Fabric Parallax (Gợi ý 4)
+            if (fabricBg) {
+                const scrollPos = window.scrollY;
+                if (scrollPos < window.innerHeight) {
+                    fabricBg.style.transform = `translateY(${scrollPos * 0.22}px)`;
+                }
+            }
+
+            // Team Cards Parallax
             placeholders.forEach(ph => {
                 const rect = ph.getBoundingClientRect();
                 const viewHeight = window.innerHeight;
