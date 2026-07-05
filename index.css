@@ -228,6 +228,22 @@ img {
     font-weight: 700;
 }
 
+.logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition-smooth);
+}
+
+.main-header.scrolled .logo-img {
+    height: 38px;
+}
+
+.logo-img-footer {
+    height: 44px;
+    filter: brightness(0) invert(1); /* Make the dark logo white in the dark footer */
+}
+
 .logo-num {
     color: var(--color-accent);
 }
