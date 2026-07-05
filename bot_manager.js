@@ -2524,7 +2524,7 @@ Respond ONLY with a JSON object in this format:
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer 0efe653ca15f03f4ccec8f007cec08a3',
+            'Authorization': `Bearer ${process.env.GOCLAW_API_KEY}`,
             'X-GoClaw-User-Id': `telegram-${chatId}`,
             'X-GoClaw-Agent-Id': process.env.AGENT_ID || '1997-laundry-assistant'
           },
