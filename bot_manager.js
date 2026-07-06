@@ -1920,12 +1920,8 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
 
             // sendTelegramMessage(chatId, `✅ Đã nhận đồ đơn hàng <b>#${bookingCode}</b>! Cập nhật trạng thái thành: <b>Đã lấy đồ</b>.`, message.message_id);
             
-            // Forward alert to BILL_PICKUP group
-            const billText = `🧺 <b>ĐỒ ĐÃ VỀ TIỆM / CLOTHES RECEIVED</b>
----------------------------------------
-📌 Mã đơn: <code>${bookingCode}</code>
-👤 Khách hàng: <b>${currentOrder.name}</b>
-🚨 <i>Vui lòng cân đồ, lên hóa đơn giấy và chụp ảnh reply tin nhắn này kèm cân nặng (VD: "4.2kg") để xác nhận giặt!</i>`;
+            const billText = `📌 Mã đơn: <code>${bookingCode}</code> - ${currentOrder.name} - Đồ đã về tiệm\n` +
+                             `Chụp ảnh cân nặng và hóa đơn thể hiện số tiền reply tin nhắn này.`;
             
             let res2;
             if (photoFileId) {
