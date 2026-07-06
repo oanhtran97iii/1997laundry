@@ -696,49 +696,63 @@ async function analyzeImageWithAI(imagePath, systemPrompt, userPrompt) {
   const apiKey = process.env.GEMINI_API_KEY;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-  try {
-    const parts = [];
-    parts.push({ text: `${systemPrompt}\n\n${userPrompt}` });
+  let attempts = 0;
+  const maxAttempts = 3;
 
-    const absPath = path.join(__dirname, imagePath.replace(/^\//, ''));
-    if (fs.existsSync(absPath)) {
-      parts.push({
-        inlineData: {
-          mimeType: getMimeType(absPath),
-          data: fileToBase64(absPath)
-        }
-      });
-    }
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const parts = [];
+      parts.push({ text: `${systemPrompt}\n\n${userPrompt}` });
 
-    const payload = {
-      contents: [{ parts }],
-      generationConfig: {
-        responseMimeType: "application/json"
+      const absPath = path.join(__dirname, imagePath.replace(/^\//, ''));
+      if (fs.existsSync(absPath)) {
+        parts.push({
+          inlineData: {
+            mimeType: getMimeType(absPath),
+            data: fileToBase64(absPath)
+          }
+        });
       }
-    };
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+      const payload = {
+        contents: [{ parts }],
+        generationConfig: {
+          responseMimeType: "application/json"
+        }
+      };
 
-    if (!response.ok) {
-      console.error('Gemini Vision analysis API error:', await response.text());
-      return null;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.status === 429) {
+        console.warn(`[Gemini API] Rate limit (429) hit. Retrying in 8 seconds... (Attempt ${attempts}/${maxAttempts})`);
+        await new Promise(resolve => setTimeout(resolve, 8000));
+        continue;
+      }
+
+      if (!response.ok) {
+        console.error('Gemini Vision analysis API error:', await response.text());
+        return null;
+      }
+
+      const data = await response.json();
+      const rawText = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
+      if (!rawText) return null;
+
+      return JSON.parse(rawText.trim());
+    } catch (err) {
+      console.error(`AI Vision analysis error (Attempt ${attempts}/${maxAttempts}):`, err);
+      if (attempts >= maxAttempts) return null;
+      await new Promise(resolve => setTimeout(resolve, 3000));
     }
-
-    const data = await response.json();
-    const rawText = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
-    if (!rawText) return null;
-
-    return JSON.parse(rawText.trim());
-  } catch (err) {
-    console.error('AI Vision analysis error:', err);
-    return null;
   }
+  return null;
 }
 
 async function transcribeImageWithAI(imagePath, userPrompt) {
@@ -793,38 +807,52 @@ async function analyzeTextWithAI(textToAnalyze, systemPrompt, userPrompt) {
   const apiKey = process.env.GEMINI_API_KEY;
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
-  try {
-    const payload = {
-      contents: [{
-        parts: [{ text: `${systemPrompt}\n\n${userPrompt}\n\nText to analyze:\n${textToAnalyze}` }]
-      }],
-      generationConfig: {
-        responseMimeType: "application/json"
+  let attempts = 0;
+  const maxAttempts = 3;
+
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const payload = {
+        contents: [{
+          parts: [{ text: `${systemPrompt}\n\n${userPrompt}\n\nText to analyze:\n${textToAnalyze}` }]
+        }],
+        generationConfig: {
+          responseMimeType: "application/json"
+        }
+      };
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.status === 429) {
+        console.warn(`[Gemini API] Rate limit (429) hit. Retrying in 8 seconds... (Attempt ${attempts}/${maxAttempts})`);
+        await new Promise(resolve => setTimeout(resolve, 8000));
+        continue;
       }
-    };
 
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
+      if (!response.ok) {
+        console.error('Gemini text analysis API error:', await response.text());
+        return null;
+      }
 
-    if (!response.ok) {
-      console.error('Gemini text analysis API error:', await response.text());
-      return null;
+      const data = await response.json();
+      const rawText = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
+      if (!rawText) return null;
+
+      return JSON.parse(rawText.trim());
+    } catch (err) {
+      console.error(`AI text analysis error (Attempt ${attempts}/${maxAttempts}):`, err);
+      if (attempts >= maxAttempts) return null;
+      await new Promise(resolve => setTimeout(resolve, 3000));
     }
-
-    const data = await response.json();
-    const rawText = data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
-    if (!rawText) return null;
-
-    return JSON.parse(rawText.trim());
-  } catch (err) {
-    console.error('AI text analysis error:', err);
-    return null;
   }
+  return null;
 }
 
 function fallbackParseOrderText(text) {
