@@ -654,12 +654,13 @@ switch ($action) {
         $orders = readData($ordersFile);
         $id = isset($body['id']) ? $body['id'] : '';
 
-        // Update customer details if phone or email are passed from admin order creation
+        // Update customer details if phone, email, or name are passed from admin order creation
         $customerId = isset($body['customer_id']) ? $body['customer_id'] : '';
         $phoneInput = isset($body['phone']) ? trim($body['phone']) : '';
         $emailInput = isset($body['email']) ? trim($body['email']) : '';
+        $nameInput = isset($body['name']) ? trim($body['name']) : '';
 
-        if (!empty($customerId) && (!empty($phoneInput) || !empty($emailInput))) {
+        if (!empty($customerId) && (!empty($phoneInput) || !empty($emailInput) || !empty($nameInput))) {
             $customers = readData($customersFile);
             $custUpdated = false;
             foreach ($customers as &$c) {
@@ -670,6 +671,9 @@ switch ($action) {
                     }
                     if (!empty($emailInput)) {
                         $c['email'] = $emailInput;
+                    }
+                    if (!empty($nameInput)) {
+                        $c['name'] = $nameInput;
                     }
                     $custUpdated = true;
                     break;
@@ -687,6 +691,7 @@ switch ($action) {
             if ($o['id'] == $id || $o['Mã đặt lịch'] == $id) {
                 $oldStatus = isset($o['Trạng thái đơn']) ? $o['Trạng thái đơn'] : '';
                 if (isset($body['customer_id'])) $o['SĐT liên hệ (ID Khách)'] = $body['customer_id'];
+                if (isset($body['name'])) $o['Tên khách hàng'] = $body['name'];
                 if (isset($body['product_id'])) $o['Gói giặt'] = $body['product_id'];
                 if (isset($body['amount'])) $o['Tổng tiền bill tạm tính'] = floatval($body['amount']);
                 if (isset($body['status'])) {
@@ -734,12 +739,13 @@ switch ($action) {
             $amount = isset($body['amount']) ? floatval($body['amount']) : 0;
             $status = isset($body['status']) ? $body['status'] : 'Chờ XN';
             $orderDate = isset($body['order_date']) ? $body['order_date'] : '';
+            $customerNameInput = !empty($nameInput) ? $nameInput : "Tạo từ Admin";
 
             $orders[] = [
                 "id" => $bookingCode,
                 "Mã đặt lịch" => $bookingCode,
                 "SĐT liên hệ (ID Khách)" => $customerId,
-                "Tên khách hàng" => "Tạo từ Admin",
+                "Tên khách hàng" => $customerNameInput,
                 "Tên khách sạn & Địa chỉ" => "",
                 "Số phòng" => "",
                 "Thời gian nhận" => $orderDate,

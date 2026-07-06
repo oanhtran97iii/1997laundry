@@ -533,6 +533,10 @@
           </select>
         </div>
         <div class="form-group">
+          <label for="ord-name">Tên khách hàng</label>
+          <input type="text" id="ord-name" class="form-control" placeholder="Nhập hoặc chỉnh sửa tên khách hàng">
+        </div>
+        <div class="form-group">
           <label for="ord-phone">Số điện thoại</label>
           <input type="text" id="ord-phone" class="form-control" placeholder="Số điện thoại của khách hàng">
         </div>
@@ -871,15 +875,18 @@
 
     function onCustomerSelectChange() {
       const custSelect = document.getElementById('ord-cust');
+      const nameInput = document.getElementById('ord-name');
       const phoneInput = document.getElementById('ord-phone');
       const emailInput = document.getElementById('ord-email');
       if (!custSelect || !phoneInput || !emailInput) return;
       const selectedId = custSelect.value;
       const customer = customersList.find(c => String(c.id) === String(selectedId));
       if (customer) {
+        if (nameInput) nameInput.value = customer.name || '';
         phoneInput.value = customer.phone || '';
         emailInput.value = customer.email || '';
       } else {
+        if (nameInput) nameInput.value = '';
         phoneInput.value = '';
         emailInput.value = '';
       }
@@ -951,6 +958,7 @@
       const payload = {
         id: id,
         customer_id: document.getElementById('ord-cust').value,
+        name: document.getElementById('ord-name').value,
         phone: document.getElementById('ord-phone').value,
         email: document.getElementById('ord-email').value,
         product_id: document.getElementById('ord-prod').value,
@@ -1018,14 +1026,19 @@
 
         await loadDropdownSelects();
 
-        document.getElementById('ord-id').value = o.id;
-        document.getElementById('ord-cust').value = o.customer_id;
-        document.getElementById('ord-prod').value = o.product_id;
-        document.getElementById('ord-amount').value = o.amount;
-        document.getElementById('ord-status').value = o.status;
-        document.getElementById('ord-date').value = o.order_date;
+        document.getElementById('ord-id').value = o.id || o['Mã đặt lịch'] || '';
+        document.getElementById('ord-cust').value = o['SĐT liên hệ (ID Khách)'] || o.customer_id || '';
+        document.getElementById('ord-prod').value = o['Gói giặt'] || o.product_id || '';
+        document.getElementById('ord-amount').value = o['Tổng tiền bill tạm tính'] || o.amount || 0;
+        document.getElementById('ord-status').value = o['Trạng thái đơn'] || o.status || '';
+        document.getElementById('ord-date').value = o['Thời gian nhận'] || o.order_date || '';
 
         onCustomerSelectChange();
+
+        const savedName = o['Tên khách hàng'] || o.customer_name || '';
+        if (savedName) {
+          document.getElementById('ord-name').value = savedName;
+        }
 
         document.getElementById('orderModalTitle').innerText = "Chỉnh sửa Đơn hàng";
         openModal('orderModal');
