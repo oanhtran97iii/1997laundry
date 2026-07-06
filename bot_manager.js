@@ -1329,8 +1329,7 @@ async function handleTelegramUpdate(update) {
             cardText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
           }
 
-          cardText += `\n---------------------------------------\n` +
-                     `🚨 <i>Shipper phản hồi (reply) tin nhắn này (bằng chữ hoặc ảnh) để cập nhật trạng thái "Đã lấy"!</i>`;
+
 
           const res = await sendTelegramMessage(chatId, cardText);
           if (res && res.result && res.result.message_id) {
