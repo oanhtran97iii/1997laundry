@@ -847,6 +847,12 @@ function fallbackParseOrderText(text) {
       break;
     }
   }
+  if (!pickup_time) {
+    const nowMatch = text.match(/(?:bây giờ|bay gio|ngay|ngay lap tuc|asap)/i);
+    if (nowMatch) {
+      pickup_time = 'Lấy liền';
+    }
+  }
 
   // 2. Phone extraction
   const phoneRegex = /(\+?\d{1,4}[\s()-]*\d{3,4}[\s()-]*\d{3,4})/g;
@@ -856,21 +862,32 @@ function fallbackParseOrderText(text) {
   }
 
   // 3. Name and room extraction
-  // Pattern: "Name - Room" or "Name Room"
-  const nameRoomRegex = /([a-zA-ZÀ-ỹ\s]+)\s*-\s*(\d+)/i;
-  const nameRoomMatch = text.match(nameRoomRegex);
-  if (nameRoomMatch) {
-    name = nameRoomMatch[1].trim();
-    room = nameRoomMatch[2].trim();
-  } else {
-    // Look for lines containing " - " or just a number
-    for (const line of lines) {
-      if (line.includes('-') && !line.includes('+') && !line.includes('http') && !line.includes('same')) {
-        const parts = line.split('-');
-        if (parts.length === 2 && !isNaN(parts[1].trim())) {
-          name = parts[0].trim();
-          room = parts[1].trim();
-          break;
+  const nameMatch = text.match(/(?:tên|ten|name)\s*:\s*([a-zA-ZÀ-ỹ\s]+)/i);
+  if (nameMatch) {
+    name = nameMatch[1].trim().split('\n')[0].split('-')[0].trim();
+  }
+  
+  const roomMatch = text.match(/(?:phòng|phong|room|r|p\.?)\s*(\d+)/i);
+  if (roomMatch) {
+    room = roomMatch[1];
+  }
+
+  if (name === 'Group Customer' || !room) {
+    const nameRoomRegex = /([a-zA-ZÀ-ỹ\s]+)\s*-\s*(\d+)/i;
+    const nameRoomMatch = text.match(nameRoomRegex);
+    if (nameRoomMatch) {
+      if (name === 'Group Customer') name = nameRoomMatch[1].trim();
+      if (!room) room = nameRoomMatch[2].trim();
+    } else {
+      // Look for lines containing " - " or just a number
+      for (const line of lines) {
+        if (line.includes('-') && !line.includes('+') && !line.includes('http') && !line.includes('same')) {
+          const parts = line.split('-');
+          if (parts.length === 2 && !isNaN(parts[1].trim())) {
+            if (name === 'Group Customer') name = parts[0].trim();
+            if (!room) room = parts[1].trim();
+            break;
+          }
         }
       }
     }
@@ -887,33 +904,37 @@ function fallbackParseOrderText(text) {
   }
 
   // 5. Hotel extraction
-  // Look for lines after the phone number, or look for lines containing "ks" or "hotel"
-  let phoneLineIndex = -1;
-  for (let i = 0; i < lines.length; i++) {
-    if (phone && lines[i].includes(phone)) {
-      phoneLineIndex = i;
-      break;
-    }
+  const hotelMatch = text.match(/(?:khách sạn|khach san|ks|hotel)\s+([a-zA-ZÀ-ỹ0-9\s,.-]+)/i);
+  if (hotelMatch) {
+    hotel = hotelMatch[1].trim().split('\n')[0].split('.')[0].trim();
   }
 
-  if (phoneLineIndex !== -1 && phoneLineIndex + 1 < lines.length) {
-    // Take the line after phone as hotel (if it's not a google map link)
-    const nextLine = lines[phoneLineIndex + 1];
-    if (!nextLine.includes('http') && !nextLine.includes('📍')) {
-      hotel = nextLine;
-    } else if (phoneLineIndex + 2 < lines.length) {
-      const nextNextLine = lines[phoneLineIndex + 2];
-      if (!nextNextLine.includes('http') && !nextNextLine.includes('📍')) {
-        hotel = nextNextLine;
+  if (hotel === '1997 Laundry Shop') {
+    let phoneLineIndex = -1;
+    for (let i = 0; i < lines.length; i++) {
+      if (phone && lines[i].includes(phone)) {
+        phoneLineIndex = i;
+        break;
+      }
+    }
+
+    if (phoneLineIndex !== -1 && phoneLineIndex + 1 < lines.length) {
+      const nextLine = lines[phoneLineIndex + 1];
+      if (!nextLine.includes('http') && !nextLine.includes('📍')) {
+        hotel = nextLine;
+      } else if (phoneLineIndex + 2 < lines.length) {
+        const nextNextLine = lines[phoneLineIndex + 2];
+        if (!nextNextLine.includes('http') && !nextNextLine.includes('📍')) {
+          hotel = nextNextLine;
+        }
       }
     }
   }
 
-  // Double check: if hotel is still default, look for lines containing "ks" or "hotel" or "reverie" or "sheraton"
   if (hotel === '1997 Laundry Shop') {
     for (const line of lines) {
       const lowerLine = line.toLowerCase();
-      if (lowerLine.startsWith('ks') || lowerLine.startsWith('khách sạn') || lowerLine.startsWith('khach san') || lowerLine.includes('hotel') || lowerLine.includes('reverie') || lowerLine.includes('sheraton') || lowerLine.includes('caravelle') || lowerLine.includes('pullman')) {
+      if (lowerLine.startsWith('ks') || lowerLine.startsWith('khách sạn') || lowerLine.startsWith('khach san') || lowerLine.includes('hotel') || lowerLine.includes('reverie') || lowerLine.includes('sheraton') || lowerLine.includes('caravelle') || lowerLine.includes('pullman') || lowerLine.includes('indigo')) {
         hotel = line;
         break;
       }
@@ -921,21 +942,20 @@ function fallbackParseOrderText(text) {
   }
 
   // 6. Notes extraction
-  // Look for comments like "có tiền trong đồ" or words after "-"
-  const notesMatch = text.match(/(?:-|có)\s*(tiền trong đồ|đồ màu|cẩn thận|gấp)/i);
+  const notesMatch = text.match(/(?:-|có)\s*(tiền trong đồ|đồ màu|cẩn thận|gấp|trắng)/i);
   if (notesMatch) {
     notes = notesMatch[0].replace(/^-/, '').trim();
   }
 
   return {
-    is_order_request: !!(phone || name !== 'Group Customer' || room),
+    is_order_request: !!(phone || name !== 'Group Customer' || room || hotel !== '1997 Laundry Shop'),
     name,
     phone,
     hotel,
     room,
     product_id,
     pickup_time,
-    pickup_option: 'Reception',
+    pickup_option: 'Lễ tân',
     notes,
     confidence: 0.9,
     reason: 'Parsed using regex fallback.'
