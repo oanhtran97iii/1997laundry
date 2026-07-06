@@ -1125,6 +1125,22 @@ function fallbackParseOrderText(text) {
   };
 }
 
+function isOrderInfoSuspicious(aiRes) {
+  if (!aiRes) return true;
+  const hotel = (aiRes.hotel || '').toLowerCase().trim();
+  const name = (aiRes.name || '').toLowerCase().trim();
+  
+  if (!hotel || hotel.includes('1997 laundry') || hotel.includes('1997 premium') || hotel.includes('laundry shop')) {
+    return true;
+  }
+  
+  if (!name || name === 'group customer' || name === 'group chat customer' || name.includes('từ khách') || name.includes('lễ tân') || name.includes('reception') || name.includes('same day') || name.includes('next day') || name.includes('express') || /^\+?\d+$/.test(name)) {
+    return true;
+  }
+  
+  return false;
+}
+
 async function runLeftoverSocksMatcher(targetPath, candidates) {
   if (candidates.length === 0) return null;
   
@@ -1263,6 +1279,154 @@ async function handleTelegramUpdate(update) {
   }
 
   console.log(`[Telegram Webhook] chatId: ${chatId}, replyTo: ${replyTo ? replyTo.message_id : 'none'}, hasPhoto: ${!!message.photo}, text: "${text}"`);
+
+  // --- HANDLE ADMIN CORRECTION OF SUSPENDED ORDERS ---
+  if (replyTo && (chatId === ADMIN_CHAT_ID || ADMIN_CHAT_IDS.includes(chatId))) {
+    const adminReplyMsgId = String(replyTo.message_id);
+    try {
+      const suspended = await dbGet(
+        "SELECT * FROM suspended_orders WHERE admin_msg_id = ?",
+        [adminReplyMsgId]
+      );
+      
+      if (suspended) {
+        console.log(`[Admin Correction] Found suspended order for admin_msg_id: ${adminReplyMsgId}`);
+        
+        // Parse original and admin's correction text
+        const originalAiRes = fallbackParseOrderText(suspended.original_text);
+        const adminAiRes = fallbackParseOrderText(text);
+        
+        // Merge them
+        const mergedAiRes = {
+          is_order_request: true,
+          name: (adminAiRes.name && adminAiRes.name !== 'Group Customer') ? adminAiRes.name : originalAiRes.name,
+          phone: adminAiRes.phone ? adminAiRes.phone : originalAiRes.phone,
+          hotel: (adminAiRes.hotel && adminAiRes.hotel !== '1997 Laundry Shop') ? adminAiRes.hotel : originalAiRes.hotel,
+          room: adminAiRes.room ? adminAiRes.room : originalAiRes.room,
+          product_id: adminAiRes.product_id || originalAiRes.product_id,
+          pickup_time: adminAiRes.pickup_time ? adminAiRes.pickup_time : originalAiRes.pickup_time,
+          pickup_option: adminAiRes.pickup_option || originalAiRes.pickup_option,
+          notes: adminAiRes.notes ? adminAiRes.notes : originalAiRes.notes
+        };
+
+        if (isOrderInfoSuspicious(mergedAiRes)) {
+          // Still suspicious! Notify admin again
+          const alertMsg = `⚠️ <b>[BÉ BA CẢNH BÁO LỖI LÊN ĐƠN]</b>\n` +
+                           `Thông tin chỉnh sửa vẫn chưa hợp lệ/thiếu địa chỉ:\n` +
+                           `- Tên: <code>${mergedAiRes.name || 'Chưa rõ'}</code>\n` +
+                           `- SĐT: <code>${mergedAiRes.phone || 'Chưa rõ'}</code>\n` +
+                           `- Khách sạn: <code>${mergedAiRes.hotel || 'Chưa rõ'}</code>\n` +
+                           `- Phòng: <code>${mergedAiRes.room || 'Chưa rõ'}</code>\n\n` +
+                           `👉 <b>Admin vui lòng reply trực tiếp tin nhắn này kèm theo thông tin sửa đổi hoàn chỉnh!</b>`;
+          
+          const sentAdminMsg = await sendTelegramMessage(chatId, alertMsg, message.message_id);
+          if (sentAdminMsg && sentAdminMsg.result) {
+            await dbRun(
+              "INSERT INTO suspended_orders (original_text, original_chat_id, admin_msg_id) VALUES (?, ?, ?)",
+              [suspended.original_text, suspended.original_chat_id, String(sentAdminMsg.result.message_id)]
+            );
+          }
+          return;
+        }
+
+        // Valid! Create the order
+        let finalName = mergedAiRes.name || 'Group Chat Customer';
+        const finalPhone = mergedAiRes.phone ? mergedAiRes.phone.trim() : null;
+        const finalHotel = mergedAiRes.hotel || '1997 Laundry Central';
+        let finalRoom = mergedAiRes.room || '';
+        const finalProductId = mergedAiRes.product_id || 2;
+        const finalNotes = mergedAiRes.notes || '';
+        const finalPickupTime = mergedAiRes.pickup_time || 'Chưa rõ';
+        const finalPickupOption = mergedAiRes.pickup_option || 'Lễ tân';
+
+        // Check map link in both texts
+        const mapLinkRegex = /(https?:\/\/(?:www\.)?(?:google\.com\/maps|maps\.app\.goo\.gl)\/\S+)/i;
+        const matchOriginal = suspended.original_text.match(mapLinkRegex);
+        const matchAdmin = text.match(mapLinkRegex);
+        const mapLink = matchAdmin ? matchAdmin[1] : (matchOriginal ? matchOriginal[1] : '');
+
+        // Generate booking code
+        const bookingCode = 'LTT' + String(Math.floor(Date.now() / 1000)).slice(-4);
+        
+        let baseAmount = 250000;
+        if (finalProductId === 1) baseAmount = 170000;
+        else if (finalProductId === 3) baseAmount = 330000;
+
+        let customerId = null;
+        if (finalPhone) {
+          const existingCust = await dbGet("SELECT id FROM customers WHERE phone = ?", [finalPhone]);
+          if (existingCust) {
+            customerId = existingCust.id;
+            await dbRun("UPDATE customers SET name = ?, hotel = ?, room = ? WHERE id = ?", [finalName, finalHotel, finalRoom, customerId]);
+          }
+        }
+        
+        if (!customerId) {
+          const result = await dbRun(
+            "INSERT INTO customers (name, phone, hotel, room) VALUES (?, ?, ?, ?)",
+            [finalName, finalPhone, finalHotel, finalRoom]
+          );
+          customerId = result.lastID;
+        }
+
+        if (mapLink && customerId) {
+          await dbRun("UPDATE customers SET map_link = ? WHERE id = ?", [mapLink, customerId]);
+        }
+
+        const phoneDigits = (finalPhone || '').replace(/\D/g, '');
+        const isViPhoneNum = phoneDigits.startsWith('84') || phoneDigits.startsWith('0');
+        const langVal = isViPhoneNum ? 'vi' : 'en';
+
+        // Insert order
+        await dbRun(
+          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang, notes, collect_scheduled_time) 
+           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?, ?)`,
+          [bookingCode, customerId, finalProductId, baseAmount, new Date().toISOString(), langVal, finalNotes, finalPickupTime]
+        );
+
+        syncOrderUpdateToN8n(bookingCode, baseAmount, 'Chờ lấy');
+
+        // Fetch simplified name
+        const productRow = await dbGet("SELECT name FROM products WHERE id = ?", [finalProductId]);
+        const productName = productRow ? productRow.name : 'Giặt sấy';
+        const simplifiedProduct = getSimplifiedProductName(finalProductId, productName, finalNotes);
+
+        const cleanRoom = finalRoom ? ` - R${finalRoom.replace(/^r/i, '')}` : '';
+
+        // Create new order confirmation message
+        let confirmMsg = `🟧 <b>ĐƠN MỚI</b>\n` +
+                         `[GIỜ LẤY: ${finalPickupTime.toUpperCase()}]\n` +
+                         `<b><code>${bookingCode}</code></b>\n` +
+                         `${finalPickupOption}\n` +
+                         `${simplifiedProduct} - <i>"${finalNotes || 'Không có'}"</i>\n` +
+                         `${finalName}${cleanRoom}\n` +
+                         `<code>${finalPhone || 'Chưa rõ'}</code>\n` +
+                         `<b>${finalHotel.toUpperCase()}</b>`;
+
+        if (mapLink) {
+          confirmMsg += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+        }
+
+        // Send to original group
+        const resMsg = await sendTelegramMessage(suspended.original_chat_id, confirmMsg);
+        if (resMsg && resMsg.result && resMsg.result.message_id) {
+          await dbRun(
+            "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'pickup')",
+            [bookingCode, resMsg.result.message_id, suspended.original_chat_id]
+          );
+        }
+
+        // Delete mapping from suspended_orders
+        await dbRun("DELETE FROM suspended_orders WHERE id = ?", [suspended.id]);
+
+        // Reply to admin to confirm
+        sendTelegramMessage(chatId, `✅ <b>THÀNH CÔNG:</b> Đã chỉnh sửa thông tin đơn hàng và tự động đẩy lên lại group <code>${suspended.original_chat_id}</code> với mã đơn: <code>${bookingCode}</code>!`, message.message_id);
+        return;
+      }
+    } catch (e) {
+      console.error('[Admin Correction] Error processing correction:', e);
+    }
+  }
 
   // --- CHECK UNCOLLECTED ORDERS COMMAND ---
   const lowerText = text.toLowerCase();
@@ -2759,6 +2923,31 @@ Respond ONLY with a JSON object in this format:
       console.log(`[DON_NHAN Auto-Order] Final parse result:`, aiRes);
 
       if (aiRes && aiRes.is_order_request) {
+        if (isOrderInfoSuspicious(aiRes)) {
+          console.log(`[DON_NHAN Auto-Order] Suspected error/placeholder values found in parsed order info! Suspending...`);
+          
+          const alertMsg = `⚠️ <b>[BÉ BA CẢNH BÁO LỖI LÊN ĐƠN]</b>\n` +
+                           `Phát hiện thông tin đơn hàng bị lỗi/nghi vấn:\n` +
+                           `- Tên: <code>${aiRes.name || 'Chưa rõ'}</code>\n` +
+                           `- SĐT: <code>${aiRes.phone || 'Chưa rõ'}</code>\n` +
+                           `- Khách sạn: <code>${aiRes.hotel || 'Chưa rõ'}</code>\n` +
+                           `- Phòng: <code>${aiRes.room || 'Chưa rõ'}</code>\n\n` +
+                           `<b>Nội dung gốc:</b>\n` +
+                           `<code>${text}</code>\n\n` +
+                           `👉 <b>Admin vui lòng reply trực tiếp tin nhắn này kèm theo thông tin sửa đổi hoặc gửi thông tin chuẩn để Bé Ba tự lên lại đơn!</b>`;
+          
+          const sentAdminMsg = await sendTelegramMessage(ADMIN_CHAT_ID, alertMsg);
+          if (sentAdminMsg && sentAdminMsg.result) {
+            await dbRun(
+              "INSERT INTO suspended_orders (original_text, original_chat_id, admin_msg_id) VALUES (?, ?, ?)",
+              [text, chatId, String(sentAdminMsg.result.message_id)]
+            );
+          }
+          
+          await sendTelegramMessage(chatId, `⚠️ Phát hiện thông tin đơn hàng bị thiếu/sai sót địa chỉ. Bé Ba đã chuyển về cho Admin xử lý và xác nhận lại!`, message.message_id);
+          return;
+        }
+
         let name = aiRes.name || 'Group Chat Customer';
         const phone = aiRes.phone ? aiRes.phone.trim() : null;
         const hotel = aiRes.hotel || '1997 Laundry Central';
@@ -3138,6 +3327,15 @@ ${paymentStatusText}
 // --- INIT MAIN CONTROLLER ---
 function init(app, sqliteDb) {
   db = sqliteDb;
+
+  dbRun(`
+    CREATE TABLE IF NOT EXISTS suspended_orders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      original_text TEXT,
+      original_chat_id TEXT,
+      admin_msg_id TEXT
+    )
+  `).catch(err => console.error('Failed to create suspended_orders table:', err));
   
   if (!TELEGRAM_TOKEN || TELEGRAM_TOKEN === 'disabled') {
     console.log('Telegram Bot integration is disabled for 1997 Laundry.');
