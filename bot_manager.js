@@ -764,7 +764,8 @@ async function analyzeImageWithAI(imagePath, systemPrompt, userPrompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
   let attempts = 0;
-  const maxAttempts = 3;
+  const maxAttempts = 5;
+  let delay = 5000;
 
   while (attempts < maxAttempts) {
     attempts++;
@@ -798,8 +799,9 @@ async function analyzeImageWithAI(imagePath, systemPrompt, userPrompt) {
       });
 
       if (response.status === 429) {
-        console.warn(`[Gemini API] Rate limit (429) hit. Retrying in 8 seconds... (Attempt ${attempts}/${maxAttempts})`);
-        await new Promise(resolve => setTimeout(resolve, 8000));
+        console.warn(`[Gemini API] Rate limit (429) hit. Retrying in ${delay / 1000} seconds... (Attempt ${attempts}/${maxAttempts})`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+        delay *= 1.5;
         continue;
       }
 
@@ -816,7 +818,8 @@ async function analyzeImageWithAI(imagePath, systemPrompt, userPrompt) {
     } catch (err) {
       console.error(`AI Vision analysis error (Attempt ${attempts}/${maxAttempts}):`, err);
       if (attempts >= maxAttempts) return null;
-      await new Promise(resolve => setTimeout(resolve, 3000));
+      await new Promise(resolve => setTimeout(resolve, delay));
+      delay *= 1.5;
     }
   }
   return null;
@@ -2085,7 +2088,9 @@ Respond ONLY with a JSON object in this format:
               );
               syncOrderUpdateToN8n(bookingCode, extractedAmount, 'Chờ giặt');
 
-              sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã có hóa đơn (<b>${extractedAmount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+              const cleanRoomNum = (updatedOrder.room || '').replace(/^r/i, '').trim();
+              const roomStr = cleanRoomNum ? ` - R${cleanRoomNum}` : '';
+              sendTelegramMessage(chatId, `📌 Mã đơn: <b>${bookingCode}</b> - <b>${updatedOrder.name}</b>${roomStr} - Chuyển sang Chờ giặt`, message.message_id);
 
               // 2. WhatsApp notification
               const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
@@ -2412,7 +2417,9 @@ Respond ONLY with a JSON object in this format:
                   );
                   syncOrderUpdateToN8n(bookingCode, updatedOrder.amount, 'Chờ giặt');
 
-                  sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã có hóa đơn (<b>${updatedOrder.amount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+                  const cleanRoomNum = (updatedOrder.room || '').replace(/^r/i, '').trim();
+                  const roomStr = cleanRoomNum ? ` - R${cleanRoomNum}` : '';
+                  sendTelegramMessage(chatId, `📌 Mã đơn: <b>${bookingCode}</b> - <b>${updatedOrder.name}</b>${roomStr} - Chuyển sang Chờ giặt`, message.message_id);
 
                   // Send WhatsApp notification
                   const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
