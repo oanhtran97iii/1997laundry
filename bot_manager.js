@@ -1111,12 +1111,12 @@ async function handleTelegramUpdate(update) {
       if (filteredOrders.length === 0) {
         sendTelegramMessage(chatId, `📌 <b>BÁO CÁO ĐƠN CHƯA LẤY (2 ngày qua)${filterLabel}:</b>\n\n🎉 Hiện không có đơn hàng nào chưa lấy phù hợp.`, message.message_id);
       } else {
-        await sendTelegramMessage(chatId, `📋 <b>DANH SÁCH ĐƠN CHƯA LẤY (2 ngày qua)${filterLabel}</b>\n---------------------------------------\nTổng cộng: <b>${filteredOrders.length} đơn</b>\n\n<i>Bé Ba đang gửi thẻ thông tin từng đơn bên dưới. Vui lòng reply trực tiếp vào thẻ đơn để cập nhật trạng thái "Đã lấy".</i>`, message.message_id);
+        await sendTelegramMessage(chatId, `🔴 <b>DANH SÁCH ĐƠN CHƯA LẤY (2 ngày qua)${filterLabel}</b>\n---------------------------------------\nTổng cộng: <b>${filteredOrders.length} đơn</b>\n\n<i>Bé Ba đang gửi thẻ thông tin từng đơn bên dưới. Vui lòng reply trực tiếp vào thẻ đơn để cập nhật trạng thái "Đã lấy".</i>`, message.message_id);
 
         for (const o of filteredOrders) {
           const roomStr = o.room ? `P.${o.room}` : 'N/A';
           const hotelStr = o.hotel ? `(${o.hotel})` : '';
-          const cardText = `🧺 <b>ĐƠN CHƯA LẤY / UNCOLLECTED ORDER</b>
+          const cardText = `🔴 <b>ĐƠN CHƯA LẤY / UNCOLLECTED ORDER</b>
 ---------------------------------------
 📌 Mã đơn: <code>${o.booking_code}</code>
 ⏰ Giờ hẹn: ${o.order_date}
@@ -2427,12 +2427,41 @@ Respond ONLY with a JSON object in this format:
       console.log(`[DON_NHAN Auto-Order] Final parse result:`, aiRes);
 
       if (aiRes && aiRes.is_order_request) {
-        const name = aiRes.name || 'Group Chat Customer';
+        let name = aiRes.name || 'Group Chat Customer';
         const phone = aiRes.phone || '';
         const hotel = aiRes.hotel || '1997 Laundry Central';
-        const room = aiRes.room || '';
+        let room = aiRes.room || '';
         const productId = aiRes.product_id || 2; // Default to Same-day
         const notes = aiRes.notes || '';
+        
+        // Javascript name cleanup: remove helper lines or room info from name
+        if (name.includes('\n')) {
+          const nameLines = name.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+          let likelyName = '';
+          for (const line of nameLines) {
+            const lowerLine = line.toLowerCase();
+            if (lowerLine.includes('lễ tân') || lowerLine.includes('reception') || lowerLine.includes('same day') || lowerLine.includes('standard') || lowerLine.includes('express') || lowerLine.includes('hỏa tốc') || lowerLine.includes('siêu tốc')) {
+              continue;
+            }
+            likelyName = line;
+            break;
+          }
+          if (likelyName) {
+            name = likelyName;
+          } else {
+            name = nameLines[nameLines.length - 1];
+          }
+        }
+
+        // Clean room number from name if it's still attached (e.g. "Alper Kaya - R204")
+        if (name.includes('-')) {
+          const parts = name.split('-');
+          const possibleRoom = parts[parts.length - 1].trim();
+          if (/^r?\d+$/i.test(possibleRoom)) {
+            if (!room) room = possibleRoom.replace(/^r/i, '');
+            name = parts.slice(0, -1).join('-').trim();
+          }
+        }
         
         // Extract Google Maps link if any
         const mapLinkRegex = /(https?:\/\/(?:www\.)?(?:google\.com\/maps|maps\.app\.goo\.gl)\/\S+)/i;
@@ -2495,12 +2524,13 @@ Respond ONLY with a JSON object in this format:
 
         const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
 
-        let confirmMsg = `🔴 <b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
-                         `🎫 <b><code>${bookingCode}</code></b>\n` +
+        let confirmMsg = `🟧 <b>ĐƠN MỚI</b>\n` +
+                         `🔴 <b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
+                         `🟢 <b><code>${bookingCode}</code></b>\n` +
                          `📍 ${aiRes.pickup_option || 'Lễ tân'}\n` +
                          `📦 ${productName} - <i>"${formattedNotes}"</i>\n` +
                          `👤 ${name}${cleanRoom}\n` +
-                         `📞 <code>${phone || 'Chưa rõ'}</code>\n` +
+                         `🟢 <code>${phone || 'Chưa rõ'}</code>\n` +
                          `🏢 ${hotel}`;
 
         if (mapLink) {
