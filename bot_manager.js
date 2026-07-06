@@ -120,6 +120,41 @@ function deleteTelegramMessage(chatId, messageId) {
   });
 }
 
+function parseHourFromString(timeStr) {
+  if (!timeStr) return null;
+  const clean = timeStr.toLowerCase().trim();
+  
+  // Try matching HH:MM or HHhMM or HHh
+  // E.g. "11:30", "11h30", "11h", "11:00", "9:00"
+  const matchHm = clean.match(/^(\d{1,2})(?::|h)(\d{2})?/);
+  if (matchHm) {
+    let hour = parseInt(matchHm[1], 10);
+    
+    // Check for am/pm indicators in the string
+    if (clean.includes('pm') && hour < 12) {
+      hour += 12;
+    } else if (clean.includes('am') && hour === 12) {
+      hour = 0;
+    }
+    return hour;
+  }
+
+  // Try matching "9", "9am", "1pm", "13"
+  const matchSimple = clean.match(/^(\d{1,2})\s*(am|pm|g|giờ|gio)?/);
+  if (matchSimple) {
+    let hour = parseInt(matchSimple[1], 10);
+    const ampm = matchSimple[2];
+    if (ampm === 'pm' && hour < 12) {
+      hour += 12;
+    } else if (ampm === 'am' && hour === 12) {
+      hour = 0;
+    }
+    return hour;
+  }
+  
+  return null;
+}
+
 function sendTelegramPhoto(chatId, photoPathOrFileId, caption, replyToMessageId = null) {
   // If it's a file ID, we can send it directly via JSON
   if (typeof photoPathOrFileId === 'string' && !photoPathOrFileId.startsWith('/')) {
@@ -1069,7 +1104,7 @@ async function handleTelegramUpdate(update) {
 
     try {
       const uncollectedOrders = await dbAll(
-        `SELECT o.booking_code, o.order_date, o.notes, c.name, c.phone, c.hotel, c.room, c.map_link, p.name as product_name
+        `SELECT o.booking_code, o.order_date, o.notes, o.collect_scheduled_time, c.name, c.phone, c.hotel, c.room, c.map_link, p.name as product_name
          FROM orders o
          JOIN customers c ON o.customer_id = c.id
          JOIN products p ON o.product_id = p.id
@@ -1095,11 +1130,14 @@ async function handleTelegramUpdate(update) {
       let filteredOrders = uncollectedOrders;
       if (hourFilter !== null) {
         filteredOrders = uncollectedOrders.filter(o => {
-          const localHour = getVietnamHour(o.order_date);
+          let orderHour = parseHourFromString(o.collect_scheduled_time);
+          if (orderHour === null) {
+            orderHour = getVietnamHour(o.order_date);
+          }
           if (filterType === 'before') {
-            return localHour < hourFilter;
+            return orderHour < hourFilter;
           } else {
-            return localHour >= hourFilter;
+            return orderHour >= hourFilter;
           }
         });
       }
@@ -1133,7 +1171,9 @@ async function handleTelegramUpdate(update) {
           const hotelStr = (o.hotel || '').toUpperCase();
           const mapLink = o.map_link || '';
 
-          let cardText = `🔴 <b>[GIỜ LẤY: ${formattedTime}]</b>\n` +
+          const displayPickupTime = o.collect_scheduled_time || formattedTime;
+
+          let cardText = `🔴 <b>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</b>\n` +
                          `🟢 <b><code>${o.booking_code}</code></b>\n` +
                          `📍 Lễ tân\n` +
                          `📦 ${o.product_name} - <i>"${formattedNotes}"</i>\n` +
@@ -2526,9 +2566,9 @@ Respond ONLY with a JSON object in this format:
         
         // Create new order in SQLite DB (order_status = 'Chờ lấy')
         await dbRun(
-          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang, notes) 
-           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?)`,
-          [bookingCode, customerId, productId, baseAmount, new Date().toISOString(), langVal, notes]
+          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang, notes, collect_scheduled_time) 
+           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?, ?)`,
+          [bookingCode, customerId, productId, baseAmount, new Date().toISOString(), langVal, notes, aiRes.pickup_time || '']
         );
         
         // Sync to n8n (so the admin panel updates)
