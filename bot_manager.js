@@ -2073,11 +2073,7 @@ Respond ONLY with a JSON object in this format:
               [bookingCode]
             );
 
-            // If both weight and bill are successfully matched/recorded, transition status and perform notifications
-            const hasWeight = updatedOrder && updatedOrder.weight > 0;
-            const hasBill = updatedOrder && updatedOrder.bill_photo_url && updatedOrder.amount > 0;
-
-            if (updatedOrder && (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') && hasWeight && hasBill) {
+            if (updatedOrder && (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') && isBillMatched) {
               const isPaid = updatedOrder.status === 'Đã thanh toán';
               const extractedAmount = updatedOrder.amount;
               const billPhotoPath = updatedOrder.bill_photo_url;
@@ -2089,7 +2085,7 @@ Respond ONLY with a JSON object in this format:
               );
               syncOrderUpdateToN8n(bookingCode, extractedAmount, 'Chờ giặt');
 
-              sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã đủ thông tin (Cân nặng: <b>${updatedOrder.weight} kg</b>, Hóa đơn: <b>${extractedAmount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+              sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã có hóa đơn (<b>${extractedAmount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
 
               // 2. WhatsApp notification
               const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
@@ -2159,13 +2155,6 @@ Respond ONLY with a JSON object in this format:
                   [bookingCode, res3.result.message_id, GROUPS.XEP_DO]
                 );
               }
-            } else if (updatedOrder && (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy')) {
-              // Tell the group what is still missing
-              const missingParts = [];
-              if (!hasWeight) missingParts.push("Cân nặng (Scale photo / text)");
-              if (!hasBill) missingParts.push("Ảnh hóa đơn (Receipt photo)");
-
-              sendTelegramMessage(chatId, `⏳ Đã ghi nhận thông tin đơn <b>#${bookingCode}</b>. Còn thiếu: <b>${missingParts.join(', ')}</b> để chuyển trạng thái sang Chờ giặt và gửi bill cho khách.`, message.message_id);
             }
           }
 
@@ -2415,10 +2404,7 @@ Respond ONLY with a JSON object in this format:
               );
 
               if (updatedOrder) {
-                const hasWeight = updatedOrder.weight > 0;
-                const hasBill = updatedOrder.bill_photo_url && updatedOrder.amount > 0;
-
-                if ((updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') && hasWeight && hasBill) {
+                if (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') {
                   // Transition order status to 'Chờ giặt'
                   await dbRun(
                     "UPDATE orders SET order_status = 'Chờ giặt' WHERE booking_code = ?",
@@ -2426,7 +2412,7 @@ Respond ONLY with a JSON object in this format:
                   );
                   syncOrderUpdateToN8n(bookingCode, updatedOrder.amount, 'Chờ giặt');
 
-                  sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã đủ thông tin (Cân nặng: <b>${updatedOrder.weight} kg</b>, Hóa đơn: <b>${updatedOrder.amount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+                  sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã có hóa đơn (<b>${updatedOrder.amount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
 
                   // Send WhatsApp notification
                   const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
@@ -2495,11 +2481,6 @@ Respond ONLY with a JSON object in this format:
                       [bookingCode, res3.result.message_id, GROUPS.XEP_DO]
                     );
                   }
-                } else if (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') {
-                  const missingParts = [];
-                  if (!hasWeight) missingParts.push("Cân nặng (Scale photo / text)");
-                  if (!hasBill) missingParts.push("Ảnh hóa đơn (Receipt photo)");
-                  sendTelegramMessage(chatId, `⏳ Đã ghi nhận thông tin đơn <b>#${bookingCode}</b>. Còn thiếu: <b>${missingParts.join(', ')}</b> để chuyển trạng thái sang Chờ giặt và gửi bill cho khách.`, message.message_id);
                 }
               }
             } else {
