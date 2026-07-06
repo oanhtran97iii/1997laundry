@@ -966,7 +966,8 @@ function fallbackParseOrderText(text) {
   // Search for lines containing "hotel", "khách sạn", "khach san", "ks"
   for (const line of lines) {
     const lowerLine = line.toLowerCase();
-    if (lowerLine.includes('hotel') || lowerLine.includes('khách sạn') || lowerLine.includes('khach san') || lowerLine.includes('ks') || lowerLine.includes('indigo') || lowerLine.includes('vela') || lowerLine.includes('sheraton')) {
+    const hotelKeywords = ['hotel', 'khách sạn', 'khach san', 'ks', 'apartment', 'condo', 'living', 'residence', 'villa', 'homestay', 'house', 'home', 'suites', 'sila', 'indigo', 'vela', 'sheraton', 'lotte', 'nikko', 'ha do', 'centrosa', 'palace'];
+    if (hotelKeywords.some(keyword => lowerLine.includes(keyword))) {
       // Clean numbering prefix (e.g. "4) la vela saigon hotel" -> "la vela saigon hotel")
       let cleanHotel = line.replace(/^\d+[\/)]\s*/, '').trim();
       // Remove starting emoji or map symbol if any
@@ -1019,44 +1020,68 @@ function fallbackParseOrderText(text) {
     }
   }
 
-  // 5. Time extraction
-  const timeKeywords = ['pm', 'am', 'h', 'g', 'giờ', 'gio', 'bây giờ', 'bay gio', 'ngay', 'asap'];
-  for (const line of lines) {
-    const lowerLine = line.toLowerCase();
-    const cleanLine = line.replace(/^\d+[\/)]\s*/, '').trim();
-    
-    // Check if line contains pm/am and is not a name/hotel/laundry line
-    const isTimeLine = timeKeywords.some(keyword => lowerLine.includes(keyword)) && 
-                       !lowerLine.includes('hotel') && 
-                       !lowerLine.includes('laundry') && 
-                       !lowerLine.includes('room') &&
-                       cleanLine.length < 15;
-    if (isTimeLine) {
-      pickup_time = cleanLine;
-      break;
+  // 5. Time extraction (support HH:MM, HHhMM, HHh, HHam/pm)
+  const timeRegex = /\b(?:1[0-2]|0?[1-9]):[0-5][0-9]\b|\b(?:[01]?[0-9]|2[0-3]):[0-5][0-9]\b|\b\d{1,2}(?:h|g)\d{2}\b|\b\d{1,2}\s*(?:am|pm)\b/i;
+  const timeMatch = textWithoutUrls.match(timeRegex);
+  if (timeMatch) {
+    pickup_time = timeMatch[0].trim();
+  } else {
+    const timeKeywords = ['pm', 'am', 'h', 'g', 'giờ', 'gio', 'bây giờ', 'bay gio', 'ngay', 'asap'];
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      const cleanLine = line.replace(/^\d+[\/)]\s*/, '').trim();
+      
+      const isTimeLine = timeKeywords.some(keyword => lowerLine.includes(keyword)) && 
+                         !lowerLine.includes('hotel') && 
+                         !lowerLine.includes('laundry') && 
+                         !lowerLine.includes('room') &&
+                         cleanLine.length < 15;
+      if (isTimeLine) {
+        pickup_time = cleanLine;
+        break;
+      }
     }
   }
   if (!pickup_time) {
-    const nowMatch = text.match(/(?:bây giờ|bay gio|ngay|ngay lap tuc|asap)/i);
+    const nowMatch = textWithoutUrls.match(/(?:bây giờ|bay gio|ngay|ngay lap tuc|asap)/i);
     if (nowMatch) {
       pickup_time = 'Lấy liền';
     }
   }
 
-  // 6. Product ID extraction
-  const lowerText = text.toLowerCase();
-  if (lowerText.includes('express') || lowerText.includes('hỏa tốc') || lowerText.includes('siêu tốc') || lowerText.includes('4h')) {
-    product_id = 3;
-  } else if (lowerText.includes('standard') || lowerText.includes('24h') || lowerText.includes('thường')) {
-    product_id = 1;
-  } else {
-    product_id = 2; // Same-day
+  // 6. Product ID & Notes extraction (parse parentheses notes from the package line)
+  for (const line of lines) {
+    const lowerLine = line.toLowerCase();
+    if (lowerLine.includes('next day') || lowerLine.includes('next-day') || lowerLine.includes('standard') || lowerLine.includes('24h') || lowerLine.includes('thường') || lowerLine.includes('tiêu chuẩn') || lowerLine.includes('tieu chuan')) {
+      product_id = 1;
+      const noteMatch = line.match(/\(([^)]+)\)/);
+      if (noteMatch) {
+        notes = noteMatch[1].trim();
+      }
+      break;
+    } else if (lowerLine.includes('same day') || lowerLine.includes('same-day') || lowerLine.includes('trong ngày') || lowerLine.includes('trong ngay') || lowerLine.includes('nhanh')) {
+      product_id = 2;
+      const noteMatch = line.match(/\(([^)]+)\)/);
+      if (noteMatch) {
+        notes = noteMatch[1].trim();
+      }
+      break;
+    } else if (lowerLine.includes('express') || lowerLine.includes('4h') || lowerLine.includes('hỏa tốc') || lowerLine.includes('hoa toc') || lowerLine.includes('siêu tốc') || lowerLine.includes('sieu toc')) {
+      product_id = 3;
+      const noteMatch = line.match(/\(([^)]+)\)/);
+      if (noteMatch) {
+        notes = noteMatch[1].trim();
+      }
+      break;
+    }
   }
 
-  // 7. Notes extraction
-  const notesMatch = text.match(/(?:-|có)\s*(tiền trong đồ|đồ màu|cẩn thận|gấp|trắng|separate|weigh)/i);
-  if (notesMatch) {
-    notes = notesMatch[0].replace(/^-/, '').trim();
+  // 7. Fallback notes extraction
+  if (!notes) {
+    const notesMatch = textWithoutUrls.match(/(?:-|có)\s*(tiền trong đồ|đồ màu|cẩn thận|gấp|trắng|separate|weigh)/i);
+    if (notesMatch) {
+      notes = notesMatch[0].replace(/^-/, '').trim();
+    }
   }
 
   return {
