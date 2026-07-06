@@ -2579,7 +2579,7 @@ Respond ONLY with a JSON object in this format:
 
       if (aiRes && aiRes.is_order_request) {
         let name = aiRes.name || 'Group Chat Customer';
-        const phone = aiRes.phone || '';
+        const phone = aiRes.phone ? aiRes.phone.trim() : null;
         const hotel = aiRes.hotel || '1997 Laundry Central';
         let room = aiRes.room || '';
         const productId = aiRes.product_id || 2; // Default to Same-day
