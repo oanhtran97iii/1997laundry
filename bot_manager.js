@@ -2493,15 +2493,17 @@ Respond ONLY with a JSON object in this format:
         const formattedNotes = notes ? notes : 'Không có';
         const formattedRoom = room ? room : 'Chưa rõ';
 
-        let confirmMsg = `🔴 <b><code>[GIỜ LẤY: ${formattedPickupTime}]</code></b>\n` +
-                         `📍 <b>Nơi lấy:</b> ${aiRes.pickup_option || 'Lễ tân'}\n` +
-                         `📦 <b>Dịch vụ - Ghi chú:</b> ${productName} - <i>"${formattedNotes}"</i>\n` +
-                         `👤 <b>Tên khách - Số phòng:</b> ${name} - ${formattedRoom}\n` +
-                         `📞 <b>Số điện thoại:</b> <code>${phone || 'Chưa rõ'}</code>\n` +
-                         `🏢 <b>Khách sạn/Địa chỉ:</b> ${hotel}`;
+        const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
+
+        let confirmMsg = `🔴 <b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
+                         `📍 ${aiRes.pickup_option || 'Lễ tân'}\n` +
+                         `📦 ${productName} - <i>"${formattedNotes}"</i>\n` +
+                         `👤 ${name}${cleanRoom}\n` +
+                         `📞 <code>${phone || 'Chưa rõ'}</code>\n` +
+                         `🏢 ${hotel}`;
 
         if (mapLink) {
-          confirmMsg += `\n🗺️ <b>Link Maps:</b> <a href="${mapLink}">Xem Bản Đồ</a>`;
+          confirmMsg += `\n🗺️ Link Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
         }
         
         const resMsg = await sendTelegramMessage(chatId, confirmMsg);
