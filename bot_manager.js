@@ -77,6 +77,49 @@ function sendTelegramMessage(chatId, text, replyToMessageId = null, replyMarkup 
   });
 }
 
+function deleteTelegramMessage(chatId, messageId) {
+  if (!TELEGRAM_TOKEN || TELEGRAM_TOKEN === 'disabled') {
+    return Promise.resolve(null);
+  }
+  const payload = {
+    chat_id: chatId,
+    message_id: messageId
+  };
+  const postData = JSON.stringify(payload);
+  const options = {
+    hostname: 'api.telegram.org',
+    port: 443,
+    path: `/bot${TELEGRAM_TOKEN}/deleteMessage`,
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(postData)
+    },
+    family: 4
+  };
+
+  return new Promise((resolve) => {
+    const req = https.request(options, (res) => {
+      let body = '';
+      res.on('data', chunk => body += chunk);
+      res.on('end', () => {
+        try {
+          const json = JSON.parse(body);
+          resolve(json);
+        } catch (e) {
+          resolve(null);
+        }
+      });
+    });
+    req.on('error', (err) => {
+      console.error('deleteTelegramMessage error:', err);
+      resolve(null);
+    });
+    req.write(postData);
+    req.end();
+  });
+}
+
 function sendTelegramPhoto(chatId, photoPathOrFileId, caption, replyToMessageId = null) {
   // If it's a file ID, we can send it directly via JSON
   if (typeof photoPathOrFileId === 'string' && !photoPathOrFileId.startsWith('/')) {
@@ -2358,8 +2401,8 @@ Extract these details:
    - 3: Express Wash & Fold (4h) (Keywords: Express, 4h, 4-Hour, Siêu tốc, Hỏa tốc)
    - Default: 2 (if Same-day is mentioned or no specific package is specified).
 7. "pickup_time": Estimated pickup time (string or null, e.g. "9:00 AM", "1:00 PM").
-8. "pickup_option": "Lễ tân" or "Reception" (string, default "Reception").
-9. "notes": Any additional notes like "có tiền trong đồ", "cẩn thận đồ màu", etc. (string or null).
+8. "pickup_option": Detailed pickup location or instructions, e.g. "Lễ tân", "Từ khách", "Đến lễ tân gọi khách", "Gửi bảo vệ", or any specific pickup method/notes mentioned (string, default "Lễ tân").
+9. "notes": Any additional service notes or laundry remarks like "có đồ giặt không sấy", "kèm hình", "có tiền", or "cẩn thận đồ màu", etc. (string or null).
 
 Respond ONLY with a JSON object in this format:
 {
@@ -2391,6 +2434,11 @@ Respond ONLY with a JSON object in this format:
         const productId = aiRes.product_id || 2; // Default to Same-day
         const notes = aiRes.notes || '';
         
+        // Extract Google Maps link if any
+        const mapLinkRegex = /(https?:\/\/(?:www\.)?(?:google\.com\/maps|maps\.app\.goo\.gl)\/\S+)/i;
+        const match = text.match(mapLinkRegex);
+        const mapLink = match ? match[1] : '';
+
         // Generate new booking code (NF + last 4 digits of timestamp)
         const bookingCode = 'LTT' + String(Math.floor(Date.now() / 1000)).slice(-4);
         
@@ -2416,6 +2464,10 @@ Respond ONLY with a JSON object in this format:
           );
           customerId = result.lastID;
         }
+
+        if (mapLink && customerId) {
+          await dbRun("UPDATE customers SET map_link = ? WHERE id = ?", [mapLink, customerId]);
+        }
         
         // Default language based on phone
         const phoneDigits = (phone || '').replace(/\D/g, '');
@@ -2436,27 +2488,32 @@ Respond ONLY with a JSON object in this format:
         const productRow = await dbGet("SELECT name FROM products WHERE id = ?", [productId]);
         const productName = productRow ? productRow.name : 'Giặt sấy';
         
-        // Send confirmation back to the DON_NHAN group
-        const confirmMsg = `🔔 <b>BÉ BA ĐÃ TỰ ĐỘNG TẠO ĐƠN:</b>
----------------------------------------
-📌 Mã đơn: <code>${bookingCode}</code>
-👤 Khách hàng: <b>${name}</b>
-🏢 Khách sạn: ${hotel} ${room ? `(Phòng: ${room})` : ''}
-📞 SĐT: <code>${phone}</code>
-📦 Dịch vụ: <b>${productName}</b>
-💵 Tạm tính: <b>${baseAmount.toLocaleString('vi-VN')} VND</b>
-⏰ Giờ lấy: ${aiRes.pickup_time || 'Chưa rõ'}
-📝 Ghi chú: <i>"${notes || 'Không có'}"</i>
----------------------------------------
-✅ Đơn hàng đã được đồng bộ lên website và hệ thống Admin!`;
+        // Send confirmation back to the DON_NHAN group (custom order and styling)
+        const formattedPickupTime = (aiRes.pickup_time || 'Chưa rõ').toUpperCase();
+        const formattedNotes = notes ? notes : 'Không có';
+        const formattedRoom = room ? room : 'Chưa rõ';
+
+        let confirmMsg = `🔴 <b><code>[GIỜ LẤY: ${formattedPickupTime}]</code></b>\n` +
+                         `📍 <b>Nơi lấy:</b> ${aiRes.pickup_option || 'Lễ tân'}\n` +
+                         `📦 <b>Dịch vụ - Ghi chú:</b> ${productName} - <i>"${formattedNotes}"</i>\n` +
+                         `👤 <b>Tên khách - Số phòng:</b> ${name} - ${formattedRoom}\n` +
+                         `📞 <b>Số điện thoại:</b> <code>${phone || 'Chưa rõ'}</code>\n` +
+                         `🏢 <b>Khách sạn/Địa chỉ:</b> ${hotel}`;
+
+        if (mapLink) {
+          confirmMsg += `\n🗺️ <b>Link Maps:</b> <a href="${mapLink}">Xem Bản Đồ</a>`;
+        }
         
-        const resMsg = await sendTelegramMessage(chatId, confirmMsg, message.message_id);
+        const resMsg = await sendTelegramMessage(chatId, confirmMsg);
         if (resMsg && resMsg.result && resMsg.result.message_id) {
           await dbRun(
             "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'pickup')",
             [bookingCode, resMsg.result.message_id, chatId]
           );
         }
+
+        // Delete the original input message to keep the group clean
+        await deleteTelegramMessage(chatId, message.message_id);
       }
     } catch (err) {
       console.error('[DON_NHAN Auto-Order] auto order creation failed:', err);
