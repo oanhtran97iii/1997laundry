@@ -203,6 +203,25 @@ function getVietnamTimeMinutes(dateStr) {
   }
 }
 
+function getSimplifiedProductName(productId, productName, notesText) {
+  const notes = (notesText || '').toLowerCase();
+  const lowerName = (productName || '').toLowerCase();
+  
+  if (productId === 3 || lowerName.includes('4h') || lowerName.includes('express')) {
+    return '4-Hour Express';
+  } else if (productId === 2 || lowerName.includes('same') || lowerName.includes('trong ngày')) {
+    return 'Same-day';
+  } else {
+    const hasTachTrang = notes.includes('tách trắng') || 
+                          notes.includes('tach trang') || 
+                          notes.includes('tách riêng') || 
+                          notes.includes('tach rieng') || 
+                          notes.includes('giặt riêng') || 
+                          notes.includes('giat rieng');
+    return hasTachTrang ? 'Next-day (có tách trắng)' : 'Next-day (không tách trắng)';
+  }
+}
+
 function sendTelegramPhoto(chatId, photoPathOrFileId, caption, replyToMessageId = null) {
   // If it's a file ID, we can send it directly via JSON
   if (typeof photoPathOrFileId === 'string' && !photoPathOrFileId.startsWith('/')) {
@@ -904,7 +923,9 @@ async function analyzeTextWithAI(textToAnalyze, systemPrompt, userPrompt) {
 }
 
 function fallbackParseOrderText(text) {
-  const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  // Remove URLs first to prevent place ID collision with room numbers
+  const textWithoutUrls = text.replace(/https?:\/\/\S+/gi, '');
+  const lines = textWithoutUrls.split('\n').map(l => l.trim()).filter(l => l.length > 0);
   
   // Default values
   let name = 'Group Customer';
@@ -917,7 +938,7 @@ function fallbackParseOrderText(text) {
 
   // 1. Phone extraction
   const phoneRegex = /(\+?\d{1,4}[\s()-]*\d{3,4}[\s()-]*\d{3,4})/g;
-  const phoneMatch = text.match(phoneRegex);
+  const phoneMatch = textWithoutUrls.match(phoneRegex);
   if (phoneMatch) {
     phone = phoneMatch[0].trim();
   } else {
@@ -935,8 +956,8 @@ function fallbackParseOrderText(text) {
     }
   }
 
-  // 2. Room extraction
-  const roomMatch = text.match(/(?:phòng|phong|room|r|p\.?)\s*(\d+)/i);
+  // 2. Room extraction (use word boundary to prevent matching inside Place IDs)
+  const roomMatch = textWithoutUrls.match(/\b(?:phòng|phong|room|p|r)\.?\s*(\d+)\b/i);
   if (roomMatch) {
     room = roomMatch[1];
   }
@@ -964,7 +985,7 @@ function fallbackParseOrderText(text) {
     
     if (hasRoomNum || hasNameLabel) {
       let cleanName = line.replace(/^\d+[\/)]\s*/, '')
-                          .replace(/(?:phòng|phong|room|r|p\.?)\s*\d+/i, '')
+                          .replace(/\b(?:phòng|phong|room|p|r)\.?\s*\d+\b/i, '')
                           .replace(/[()]/g, '')
                           .replace(/(?:tên|ten|name)\s*:\s*/i, '')
                           .trim();
@@ -978,15 +999,15 @@ function fallbackParseOrderText(text) {
 
   // Fallback for name if still default
   if (name === 'Group Customer') {
-    const nameRoomRegex = /([a-zA-ZÀ-ỹ\s&]+)\s*-\s*(\d+)/i;
-    const nameRoomMatch = text.match(nameRoomRegex);
+    const nameRoomRegex = /([a-zA-ZÀ-ỹ\s&]+)\s*-\s*(?:room|r|p|phòng|phong)?\s*(\d+)/i;
+    const nameRoomMatch = textWithoutUrls.match(nameRoomRegex);
     if (nameRoomMatch) {
       name = nameRoomMatch[1].trim();
       if (!room) room = nameRoomMatch[2].trim();
     } else {
       // Check for lines with " - "
       for (const line of lines) {
-        if (line.includes('-') && !line.includes('+') && !line.includes('http') && !line.includes('same')) {
+        if (line.includes('-') && !line.includes('+') && !line.includes('same')) {
           const parts = line.split('-');
           if (parts.length === 2 && !isNaN(parts[1].trim())) {
             name = parts[0].trim();
@@ -1294,13 +1315,15 @@ async function handleTelegramUpdate(update) {
 
           const displayPickupTime = o.collect_scheduled_time || formattedTime;
 
-          let cardText = `🔴 <b><code>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</code></b>\n` +
-                         `<code>${o.booking_code}</code>\n` +
-                         `<code>Lễ tân</code>\n` +
-                         `<code>${o.product_name} - "${formattedNotes}"</code>\n` +
-                         `<code>${o.name}${cleanRoom}</code>\n` +
+          const simplifiedProduct = getSimplifiedProductName(o.product_id, o.product_name, o.notes);
+
+          let cardText = `🔴 <b>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</b>\n` +
+                         `<b><code>${o.booking_code}</code></b>\n` +
+                         `Lễ tân\n` +
+                         `${simplifiedProduct} - <i>"${formattedNotes}"</i>\n` +
+                         `${o.name}${cleanRoom}\n` +
                          `<code>${o.phone || 'Chưa rõ'}</code>\n` +
-                         `<code>${hotelStr}</code>`;
+                         `<b>${hotelStr}</b>`;
 
           if (mapLink) {
             cardText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
@@ -1356,11 +1379,11 @@ async function handleTelegramUpdate(update) {
           const cardText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
 ---------------------------------------
 Mã đơn: <code>${o.booking_code}</code>
-Khách hàng: <code>${o.name}</code>
+Khách hàng: <b>${o.name}</b>
 SĐT: <code>${o.phone}</code>
-Khách sạn: <code>${o.hotel || 'N/A'}</code>
-Số phòng: <code>${o.room || 'N/A'}</code>
-Số tiền: <code>${(o.amount || 0).toLocaleString('vi-VN')} VND</code>
+Khách sạn: ${o.hotel || 'N/A'}
+Số phòng: ${o.room || 'N/A'}
+Số tiền: <b>${(o.amount || 0).toLocaleString('vi-VN')} VND</b>
 ---------------------------------------
 ${paymentText}
 ---------------------------------------
@@ -1572,7 +1595,7 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
 
     try {
       const order = await dbGet(
-        `SELECT o.booking_code, o.order_status, o.amount, o.order_date, o.notes, o.collect_scheduled_time, 
+        `SELECT o.booking_code, o.product_id, o.order_status, o.amount, o.order_date, o.notes, o.collect_scheduled_time, 
                 p.name as product_name, c.name as cust_name, c.phone, c.hotel, c.room, c.map_link
          FROM orders o
          JOIN customers c ON o.customer_id = c.id
@@ -1602,14 +1625,16 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
         const hotelStr = (order.hotel || '').toUpperCase();
         const mapLink = order.map_link || '';
 
+        const simplifiedProduct = getSimplifiedProductName(order.product_id, order.product_name, order.notes);
+
         let responseText = `🔍 <b>TRUY VẤN ĐƠN HÀNG / ORDER STATUS</b>\n` +
-                           `<code>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</code>\n` +
-                           `<code>${order.booking_code}</code>\n` +
-                           `<code>Lễ tân</code>\n` +
-                           `<code>${order.product_name} - "${formattedNotes}"</code>\n` +
-                           `<code>${order.cust_name}${cleanRoom}</code>\n` +
+                           `[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]\n` +
+                           `<b><code>${order.booking_code}</code></b>\n` +
+                           `Lễ tân\n` +
+                           `${simplifiedProduct} - <i>"${formattedNotes}"</i>\n` +
+                           `${order.cust_name}${cleanRoom}\n` +
                            `<code>${order.phone || 'Chưa rõ'}</code>\n` +
-                           `<code>${hotelStr}</code>\n` +
+                           `<b>${hotelStr}</b>\n` +
                            `Tình trạng: <b>${readableStatus}</b>`;
 
         if (mapLink) {
@@ -2781,14 +2806,16 @@ Respond ONLY with a JSON object in this format:
 
         const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
 
+        const simplifiedProduct = getSimplifiedProductName(productId, productName, notes);
+
         let confirmMsg = `🟧 <b>ĐƠN MỚI</b>\n` +
-                         `<code>[GIỜ LẤY: ${formattedPickupTime}]</code>\n` +
-                         `<code>${bookingCode}</code>\n` +
-                         `<code>${aiRes.pickup_option || 'Lễ tân'}</code>\n` +
-                         `<code>${productName} - "${formattedNotes}"</code>\n` +
-                         `<code>${name}${cleanRoom}</code>\n` +
+                         `[GIỜ LẤY: ${formattedPickupTime}]\n` +
+                         `<b><code>${bookingCode}</code></b>\n` +
+                         `${aiRes.pickup_option || 'Lễ tân'}\n` +
+                         `${simplifiedProduct} - <i>"${formattedNotes}"</i>\n` +
+                         `${name}${cleanRoom}\n` +
                          `<code>${phone || 'Chưa rõ'}</code>\n` +
-                         `<code>${hotel.toUpperCase()}</code>`;
+                         `<b>${hotel.toUpperCase()}</b>`;
 
         if (mapLink) {
           confirmMsg += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
