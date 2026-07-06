@@ -1141,6 +1141,43 @@ function isOrderInfoSuspicious(aiRes) {
   return false;
 }
 
+function findMatchingOrderForReceipt(info, orders) {
+  if (!info || info.type !== 'receipt') return null;
+  
+  const extCode = String(info.booking_code || '').toUpperCase().trim();
+  const extName = String(info.name || '').toLowerCase().trim();
+  const extRoom = String(info.room || '').trim();
+  const extHotel = String(info.hotel || '').toLowerCase().trim();
+  
+  for (const o of orders) {
+    const oCode = String(o.booking_code || '').toUpperCase().trim();
+    const oName = String(o.name || '').toLowerCase().trim();
+    const oRoom = String(o.room || '').trim();
+    const oHotel = String(o.hotel || '').toLowerCase().trim();
+    
+    // 1. Match by booking code
+    if (extCode && oCode.includes(extCode)) {
+      return o;
+    }
+    
+    // 2. Match by room number (if room is not empty)
+    if (extRoom && oRoom && (extRoom === oRoom || oRoom.includes(extRoom) || extRoom.includes(oRoom))) {
+      return o;
+    }
+    
+    // 3. Match by name
+    if (extName && oName && (extName.includes(oName) || oName.includes(extName))) {
+      return o;
+    }
+    
+    // 4. Match by hotel
+    if (extHotel && oHotel && (extHotel.includes(oHotel) || oHotel.includes(extHotel))) {
+      return o;
+    }
+  }
+  return null;
+}
+
 async function runLeftoverSocksMatcher(targetPath, candidates) {
   if (candidates.length === 0) return null;
   
@@ -1887,7 +1924,7 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
       );
 
       if (mapping) {
-        const bookingCode = mapping.booking_code;
+        let bookingCode = mapping.booking_code;
         console.log(`[Telegram Webhook] Found mapping: bookingCode: ${bookingCode}, type: ${mapping.message_type}, currentChatId: ${chatId}`);
         const currentOrder = await dbGet(
           "SELECT o.*, c.name, c.phone, c.hotel, c.room FROM orders o JOIN customers c ON o.customer_id = c.id WHERE o.booking_code = ?",
@@ -1954,7 +1991,12 @@ Determine if the image is:
 
 Extract the relevant information:
 - If it is a "scale", extract the weight value as a number in kg (e.g., 4.39). Note: if the scale shows 4390 or 4390g, convert it to 4.39.
-- If it is a "receipt", extract the grand total amount as an integer number (e.g., 260000). Look for labels like "Grand Total", "Total Amount", "Total", "Tổng tiền", "Thanh toán", or the last large sum at the bottom.
+- If it is a "receipt", extract:
+  * grand total amount as an integer number (e.g., 260000). Look for labels like "Grand Total", "Total Amount", "Total", "Tổng tiền", "Thanh toán", or the last large sum at the bottom.
+  * customer name if printed on the receipt.
+  * room number if printed on the receipt.
+  * booking code (e.g., LTTxxxx) if printed on the receipt.
+  * hotel name if printed on the receipt.
 
 Respond ONLY with a JSON object in this format:
 {
@@ -1962,14 +2004,35 @@ Respond ONLY with a JSON object in this format:
   "weight": number or null,
   "amount": number or null,
   "payment_status": "paid" | "unpaid",
+  "name": string or null,
+  "room": string or null,
+  "booking_code": string or null,
+  "hotel": string or null,
   "confidence": number,
   "reason": "explanation"
 }`;
 
-            const userPrompt = "Classify this laundry-related image and extract weight or bill amount.";
+            const userPrompt = "Classify this laundry-related image and extract weight, bill amount, and matching fields.";
             
             const aiRes = await analyzeImageWithAI(localPath, systemPrompt, userPrompt);
             console.log(`[Stage 3] AI Vision result for ${bookingCode}:`, aiRes);
+
+            if (aiRes && aiRes.type === 'receipt') {
+              // Retrieve candidate orders to match
+              const candidateOrders = await dbAll(
+                `SELECT o.booking_code, o.amount, o.order_status, o.weight, o.bill_photo_url, o.status, 
+                        c.name, c.phone, c.hotel, c.room, c.lang 
+                 FROM orders o 
+                 JOIN customers c ON o.customer_id = c.id 
+                 WHERE o.order_status IN ('Chờ lấy', 'Đã lấy', 'Chờ giặt')`
+              );
+              
+              const matched = findMatchingOrderForReceipt(aiRes, candidateOrders);
+              if (matched) {
+                bookingCode = matched.booking_code;
+                console.log(`[Stage 3] Auto-matched receipt to booking: ${bookingCode}`);
+              }
+            }
 
             let isBillMatched = false;
             let extractedAmount = 0;
@@ -2304,54 +2367,36 @@ Respond ONLY with a JSON object in this format:
             sendTelegramMessage(chatId, `⚖️ Bé Ba ghi nhận cân nặng: <b>${aiRes.weight} kg</b>. (Đang chờ ảnh hóa đơn để khớp đơn hàng).`, message.message_id);
           } 
           else if (aiRes.type === 'receipt' && aiRes.amount) {
-            let bookingCode = aiRes.matched_booking_code;
-            
-            // Programmatic backup match using all extracted fields (name, phone, room, hotel)
-            if (!bookingCode && aiRes.extracted_details) {
-              const details = aiRes.extracted_details;
-              const cleanPhone = details.phone ? details.phone.replace(/\D/g, '') : '';
-              if (cleanPhone) {
-                // 1. Try to search by phone number
-                const match = await dbGet(
-                  `SELECT o.booking_code FROM orders o
-                   JOIN customers c ON o.customer_id = c.id
-                   WHERE (c.phone = ? OR c.phone LIKE ?) AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
-                   ORDER BY o.order_date DESC LIMIT 1`,
-                  [cleanPhone, `%${cleanPhone.slice(-8)}%`]
-                );
-                if (match) {
-                  bookingCode = match.booking_code;
-                  console.log(`[Programmatic Match] Found order ${bookingCode} by phone: ${cleanPhone}`);
-                }
-              }
-              if (!bookingCode && details.name) {
-                // 2. Try to search by customer name
-                const match = await dbGet(
-                  `SELECT o.booking_code FROM orders o
-                   JOIN customers c ON o.customer_id = c.id
-                   WHERE c.name LIKE ? AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
-                   ORDER BY o.order_date DESC LIMIT 1`,
-                  [`%${details.name}%`]
-                );
-                if (match) {
-                  bookingCode = match.booking_code;
-                  console.log(`[Programmatic Match] Found order ${bookingCode} by name: ${details.name}`);
-                }
-              }
-            }
+            // Retrieve candidate orders
+            const candidateOrders = await dbAll(
+              `SELECT o.booking_code, o.amount, o.order_status, o.weight, o.bill_photo_url, o.status, 
+                      c.name, c.phone, c.hotel, c.room, c.lang 
+               FROM orders o 
+               JOIN customers c ON o.customer_id = c.id 
+               WHERE o.order_status IN ('Chờ lấy', 'Đã lấy', 'Chờ giặt')`
+            );
+
+            const unifiedInfo = {
+              type: 'receipt',
+              booking_code: aiRes.matched_booking_code,
+              name: aiRes.extracted_details ? aiRes.extracted_details.name : null,
+              room: aiRes.extracted_details ? aiRes.extracted_details.room : null,
+              hotel: aiRes.extracted_details ? aiRes.extracted_details.hotel : null
+            };
+
+            let bookingCode = findMatchingOrderForReceipt(unifiedInfo, candidateOrders)?.booking_code || aiRes.matched_booking_code;
 
             if (bookingCode) {
               const isPaid = aiRes.payment_status === 'paid';
               const paymentStatusDb = isPaid ? 'Đã thanh toán' : 'Chờ thanh toán';
 
-              // Update receipt amount and bill photo in DB, transition to 'Chờ giặt'
+              // Update amount, bill photo, status in DB (do NOT transition order_status directly)
               await dbRun(
-                "UPDATE orders SET amount = ?, bill_photo_url = ?, status = ?, order_status = 'Chờ giặt' WHERE booking_code = ?",
+                "UPDATE orders SET amount = ?, bill_photo_url = ?, status = ? WHERE booking_code = ?",
                 [aiRes.amount, localPath, paymentStatusDb, bookingCode]
               );
-              syncOrderUpdateToN8n(bookingCode, aiRes.amount, 'Chờ giặt');
 
-              sendTelegramMessage(chatId, `💵 Bé Ba đã quét hóa đơn khớp đơn <b>#${bookingCode}</b>: <b>${aiRes.amount.toLocaleString('vi-VN')} VND</b>. Trạng thái chuyển thành: <b>Chờ giặt</b> (${paymentStatusDb}).`, message.message_id);
+              sendTelegramMessage(chatId, `💵 Bé Ba đã quét hóa đơn khớp đơn <b>#${bookingCode}</b>: <b>${aiRes.amount.toLocaleString('vi-VN')} VND</b> (${paymentStatusDb}).`, message.message_id);
 
               // Check if we have a buffered weight within the last 10 minutes
               let weight = 0;
@@ -2359,7 +2404,6 @@ Respond ONLY with a JSON object in this format:
                 weight = global.lastScaleWeight;
                 await dbRun("UPDATE orders SET weight = ? WHERE booking_code = ?", [weight, bookingCode]);
                 sendTelegramMessage(chatId, `⚖️ Tự động khớp cân nặng vừa cân: <b>${weight} kg</b> vào đơn <b>#${bookingCode}</b>!`);
-                // Clear buffer
                 global.lastScaleWeight = null;
                 global.lastScaleTime = 0;
               }
@@ -2371,53 +2415,69 @@ Respond ONLY with a JSON object in this format:
               );
 
               if (updatedOrder) {
-                // Send bill / price notification to customer via WhatsApp
-                const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
-                if (phoneClean) {
-                  const isViPhone = phoneClean.startsWith('84') || phoneClean.startsWith('0');
-                  const useVi = updatedOrder.lang === 'vi' || (!updatedOrder.lang && isViPhone);
-                  const waJid = phoneClean.startsWith('84') || phoneClean.startsWith('65') || phoneClean.startsWith('1') ? `${phoneClean}@s.whatsapp.net` : `84${phoneClean.replace(/^0/, '')}@s.whatsapp.net`;
+                const hasWeight = updatedOrder.weight > 0;
+                const hasBill = updatedOrder.bill_photo_url && updatedOrder.amount > 0;
 
-                  let waMessage = '';
-                  if (useVi) {
-                    waMessage = `1997 Premium Laundry xin gửi thông tin chi tiết đơn hàng *#${bookingCode}* của quý khách:\n⚖️ Cân nặng: *${updatedOrder.weight || 0} kg*\n💰 Tổng tiền: *${(aiRes.amount || 0).toLocaleString('vi-VN')} VND*\nTrạng thái thanh toán: *${isPaid ? 'Đã thanh toán (Paid)' : 'Chờ thanh toán (Unpaid)'}*`;
-                    if (isPaid) {
-                      waMessage += `\nCảm ơn quý khách đã tin tưởng sử dụng dịch vụ! 🧺`;
-                    } else {
-                      waMessage += `\nQuý khách vui lòng liên hệ nhân viên để thanh toán đơn hàng. Xin cảm ơn!`;
-                    }
-                  } else {
-                    waMessage = `1997 Premium Laundry - Invoice details for your order *#${bookingCode}*:\n⚖️ Weight: *${updatedOrder.weight || 0} kg*\n💰 Total Amount: *${(aiRes.amount || 0).toLocaleString('vi-VN')} VND*\nPayment Status: *${isPaid ? 'Paid' : 'Unpaid'}*`;
-                    if (isPaid) {
-                      waMessage += `\nThank you for choosing 1997 Premium Laundry! 🧺`;
-                    } else {
-                      waMessage += `\nPlease contact our staff for payment options. Thank you!`;
-                    }
-                  }
+                if ((updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') && hasWeight && hasBill) {
+                  // Transition order status to 'Chờ giặt'
+                  await dbRun(
+                    "UPDATE orders SET order_status = 'Chờ giặt' WHERE booking_code = ?",
+                    [bookingCode]
+                  );
+                  syncOrderUpdateToN8n(bookingCode, updatedOrder.amount, 'Chờ giặt');
 
-                  if (isWaConnected && sock) {
-                    try {
-                      const absFilePath = path.join(__dirname, localPath.replace(/^\//, ''));
-                      if (isPaid && fs.existsSync(absFilePath)) {
-                        // If paid, send image with caption
-                        await sock.sendMessage(waJid, { 
-                          image: fs.readFileSync(absFilePath), 
-                          caption: waMessage 
-                        });
-                        sendTelegramMessage(chatId, `📱 Đã tự động gửi ảnh hóa đơn & chi tiết thanh toán cho khách hàng qua WhatsApp!`);
+                  sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã đủ thông tin (Cân nặng: <b>${updatedOrder.weight} kg</b>, Hóa đơn: <b>${updatedOrder.amount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+
+                  // Send WhatsApp notification
+                  const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
+                  if (phoneClean) {
+                    const isViPhone = phoneClean.startsWith('84') || phoneClean.startsWith('0');
+                    const useVi = updatedOrder.lang === 'vi' || (!updatedOrder.lang && isViPhone);
+                    const waJid = phoneClean.startsWith('84') || phoneClean.startsWith('65') || phoneClean.startsWith('1') ? `${phoneClean}@s.whatsapp.net` : `84${phoneClean.replace(/^0/, '')}@s.whatsapp.net`;
+
+                    let waMessage = '';
+                    if (useVi) {
+                      waMessage = `1997 Premium Laundry xin gửi thông tin chi tiết đơn hàng *#${bookingCode}* của quý khách:\n⚖️ Cân nặng: *${updatedOrder.weight || 0} kg*\n💰 Tổng tiền: *${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND*\nTrạng thái thanh toán: *${isPaid ? 'Đã thanh toán (Paid)' : 'Chờ thanh toán (Unpaid)'}*`;
+                      if (isPaid) {
+                        waMessage += `\nCảm ơn quý khách đã tin tưởng sử dụng dịch vụ! 🧺`;
                       } else {
-                        // If unpaid, send text only
-                        await sock.sendMessage(waJid, { text: waMessage });
-                        sendTelegramMessage(chatId, `📱 Đã tự động gửi tin nhắn báo giá cho khách hàng qua WhatsApp!`);
+                        waMessage += `\nQuý khách vui lòng liên hệ nhân viên để thanh toán đơn hàng. Xin cảm ơn!`;
                       }
-                    } catch (waErr) {
-                      console.error('WhatsApp direct send bill error:', waErr);
+                    } else {
+                      waMessage = `1997 Premium Laundry - Invoice details for your order *#${bookingCode}*:\n⚖️ Weight: *${updatedOrder.weight || 0} kg*\n💰 Total Amount: *${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND*\nPayment Status: *${isPaid ? 'Paid' : 'Unpaid'}*`;
+                      if (isPaid) {
+                        waMessage += `\nThank you for choosing 1997 Premium Laundry! 🧺`;
+                      } else {
+                        waMessage += `\nPlease contact our staff for payment options. Thank you!`;
+                      }
+                    }
+
+                    if (isWaConnected && sock) {
+                      try {
+                        const absFilePath = path.join(__dirname, localPath.replace(/^\//, ''));
+                        if (isPaid && fs.existsSync(absFilePath)) {
+                          await sock.sendMessage(waJid, { 
+                            image: fs.readFileSync(absFilePath), 
+                            caption: waMessage 
+                          });
+                          sendTelegramMessage(chatId, `📱 Đã tự động gửi ảnh hóa đơn & chi tiết thanh toán cho khách hàng qua WhatsApp!`);
+                        } else {
+                          await sock.sendMessage(waJid, { text: waMessage });
+                          sendTelegramMessage(chatId, `📱 Đã tự động gửi tin nhắn báo giá cho khách hàng qua WhatsApp!`);
+                        }
+                      } catch (waErr) {
+                        console.error('WhatsApp direct send bill error:', waErr);
+                      }
                     }
                   }
-                }
 
-                // Forward to XEP_DO group
-                const foldText = `🧼 <b>ĐANG GIẶT / WASHING & FOLDING</b>
+                  // If UNPAID, tag @admin
+                  if (!isPaid) {
+                    sendTelegramMessage(chatId, `⚠️ <b>ĐƠN HÀNG CHƯA THANH TOÁN (COD):</b> Đơn <b>#${bookingCode}</b> của khách <b>${updatedOrder.name}</b> chưa thanh toán. @admin vui lòng liên hệ khách để hỏi về hình thức thanh toán của khách!`);
+                  }
+
+                  // Forward to XEP_DO group
+                  const foldText = `🧼 <b>ĐANG GIẶT / WASHING & FOLDING</b>
 ---------------------------------------
 📌 Mã đơn: <code>${bookingCode}</code>
 👤 Khách hàng: <b>${updatedOrder.name}</b>
@@ -2427,13 +2487,19 @@ Respond ONLY with a JSON object in this format:
 ⚖️ Cân nặng: <b>${updatedOrder.weight || 0} kg</b>
 💵 Hóa đơn: <b>${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND</b>
 🚨 <i>Sau khi giặt xong và xếp quần áo ngăn nắp, chụp hình gói đồ hoàn chỉnh reply tin nhắn này kèm chữ "xong" hoặc "done"!</i>`;
-                
-                const res3 = await sendTelegramPhoto(GROUPS.XEP_DO, largestPhoto.file_id, foldText);
-                if (res3 && res3.result && res3.result.message_id) {
-                  await dbRun(
-                    "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'fold')",
-                    [bookingCode, res3.result.message_id, GROUPS.XEP_DO]
-                  );
+
+                  const res3 = await sendTelegramPhoto(GROUPS.XEP_DO, largestPhoto.file_id, foldText);
+                  if (res3 && res3.result && res3.result.message_id) {
+                    await dbRun(
+                      "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'fold')",
+                      [bookingCode, res3.result.message_id, GROUPS.XEP_DO]
+                    );
+                  }
+                } else if (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') {
+                  const missingParts = [];
+                  if (!hasWeight) missingParts.push("Cân nặng (Scale photo / text)");
+                  if (!hasBill) missingParts.push("Ảnh hóa đơn (Receipt photo)");
+                  sendTelegramMessage(chatId, `⏳ Đã ghi nhận thông tin đơn <b>#${bookingCode}</b>. Còn thiếu: <b>${missingParts.join(', ')}</b> để chuyển trạng thái sang Chờ giặt và gửi bill cho khách.`, message.message_id);
                 }
               }
             } else {
