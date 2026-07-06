@@ -155,6 +155,54 @@ function parseHourFromString(timeStr) {
   return null;
 }
 
+function parseTimeMinutesFromString(timeStr) {
+  if (!timeStr) return null;
+  const clean = timeStr.toLowerCase().trim();
+  
+  // Try matching HH:MM or HHhMM or HHh
+  // E.g. "11:55", "11h55", "11h", "11:00", "9:00"
+  const matchHm = clean.match(/^(\d{1,2})(?::|h)(\d{2})?/);
+  if (matchHm) {
+    let hour = parseInt(matchHm[1], 10);
+    const minute = matchHm[2] ? parseInt(matchHm[2], 10) : 0;
+    
+    // Check for am/pm indicators in the string
+    if (clean.includes('pm') && hour < 12) {
+      hour += 12;
+    } else if (clean.includes('am') && hour === 12) {
+      hour = 0;
+    }
+    return hour * 60 + minute;
+  }
+
+  // Try matching "9", "9am", "1pm", "13"
+  const matchSimple = clean.match(/^(\d{1,2})\s*(am|pm|g|giờ|gio)?/);
+  if (matchSimple) {
+    let hour = parseInt(matchSimple[1], 10);
+    const ampm = matchSimple[2];
+    if (ampm === 'pm' && hour < 12) {
+      hour += 12;
+    } else if (ampm === 'am' && hour === 12) {
+      hour = 0;
+    }
+    return hour * 60;
+  }
+  
+  return null;
+}
+
+function getVietnamTimeMinutes(dateStr) {
+  try {
+    if (!dateStr) return 0;
+    const d = new Date(dateStr);
+    // Convert UTC to Vietnam local time (UTC+7)
+    const vnTime = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+    return vnTime.getUTCHours() * 60 + vnTime.getUTCMinutes();
+  } catch (e) {
+    return 0;
+  }
+}
+
 function sendTelegramPhoto(chatId, photoPathOrFileId, caption, replyToMessageId = null) {
   // If it's a file ID, we can send it directly via JSON
   if (typeof photoPathOrFileId === 'string' && !photoPathOrFileId.startsWith('/')) {
@@ -1175,38 +1223,48 @@ async function handleTelegramUpdate(update) {
          ORDER BY o.order_date ASC`
       );
 
-      // Check for hour filters
-      let hourFilter = null;
+      // Check for hour/minute filters
+      let targetTimeMinutes = null;
       let filterType = null; // 'before' or 'after'
       
-      const beforeMatch = lowerText.match(/(?:trước|truoc)\s*(\d+)\s*(?:h|giờ|gio)/i);
-      const afterMatch = lowerText.match(/(?:sau)\s*(\d+)\s*(?:h|giờ|gio)/i);
+      const beforeMatch = lowerText.match(/(?:trước|truoc)\s*(\d{1,2})(?::|h|giờ|gio)?\s*(\d{2})?/i);
+      const afterMatch = lowerText.match(/(?:sau)\s*(\d{1,2})(?::|h|giờ|gio)?\s*(\d{2})?/i);
       
       if (beforeMatch) {
-        hourFilter = parseInt(beforeMatch[1], 10);
+        const hrs = parseInt(beforeMatch[1], 10);
+        const mins = beforeMatch[2] ? parseInt(beforeMatch[2], 10) : 0;
+        targetTimeMinutes = hrs * 60 + mins;
         filterType = 'before';
       } else if (afterMatch) {
-        hourFilter = parseInt(afterMatch[1], 10);
+        const hrs = parseInt(afterMatch[1], 10);
+        const mins = afterMatch[2] ? parseInt(afterMatch[2], 10) : 0;
+        targetTimeMinutes = hrs * 60 + mins;
         filterType = 'after';
       }
 
       let filteredOrders = uncollectedOrders;
-      if (hourFilter !== null) {
+      if (targetTimeMinutes !== null) {
         filteredOrders = uncollectedOrders.filter(o => {
-          let orderHour = parseHourFromString(o.collect_scheduled_time);
-          if (orderHour === null) {
-            orderHour = getVietnamHour(o.order_date);
+          let orderMinutes = parseTimeMinutesFromString(o.collect_scheduled_time);
+          if (orderMinutes === null) {
+            orderMinutes = getVietnamTimeMinutes(o.order_date);
           }
           if (filterType === 'before') {
-            return orderHour < hourFilter;
+            return orderMinutes < targetTimeMinutes;
           } else {
-            return orderHour >= hourFilter;
+            return orderMinutes >= targetTimeMinutes;
           }
         });
       }
 
-      const filterLabel = hourFilter !== null 
-        ? ` (Khung giờ: ${filterType === 'before' ? `trước ${hourFilter}h` : `sau ${hourFilter}h`})` 
+      const formatMinutesToHm = (totalMins) => {
+        const hrs = Math.floor(totalMins / 60);
+        const mins = totalMins % 60;
+        return `${hrs}:${String(mins).padStart(2, '0')}`;
+      };
+
+      const filterLabel = targetTimeMinutes !== null 
+        ? ` (Khung giờ: ${filterType === 'before' ? `trước ${formatMinutesToHm(targetTimeMinutes)}` : `sau ${formatMinutesToHm(targetTimeMinutes)}`})` 
         : '';
 
       if (filteredOrders.length === 0) {
