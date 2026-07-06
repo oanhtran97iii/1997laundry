@@ -2391,7 +2391,7 @@ Typically, it contains a pickup time (e.g. 9:00, 1pm), hotel/address name, custo
 
 Extract these details:
 1. "is_order_request": true or false. Set to true ONLY if the text contains at least a hotel/address, name or phone, and is requesting a booking. Set to false if it's general discussion, queries, or irrelevant chat.
-2. "name": Customer's name (string or null). If name contains a room number (e.g., "Winston Hung - 3415" or "Thắng - 712"), extract ONLY the name part (e.g., "Winston Hung" or "Thắng").
+2. "name": Customer's name (string or null). Make sure to extract ONLY the actual person's name (e.g. "Noah Long", "Yu", "Jessica Inskip"). Do NOT include words that describe the pickup location (like "Lễ tân", "Reception", "Gửi bảo vệ"), service keywords (like "Same day", "Express"), or timing. If a name has a room number like "Noah Long - R502", extract ONLY the name part ("Noah Long").
 3. "phone": Customer's phone number (string or null). Format cleanly.
 4. "hotel": Hotel name / address (string or null).
 5. "room": Room number (string or null).
@@ -2496,6 +2496,7 @@ Respond ONLY with a JSON object in this format:
         const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
 
         let confirmMsg = `🔴 <b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
+                         `🎫 <b><code>${bookingCode}</code></b>\n` +
                          `📍 ${aiRes.pickup_option || 'Lễ tân'}\n` +
                          `📦 ${productName} - <i>"${formattedNotes}"</i>\n` +
                          `👤 ${name}${cleanRoom}\n` +
