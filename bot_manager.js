@@ -1591,7 +1591,17 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
 💵 Chi phí: ${(order.amount || 0).toLocaleString('vi-VN')} VND
 🚨 <b>Tình trạng:</b> <u>${readableStatus}</u>`;
         
-        sendTelegramMessage(chatId, responseText, message.message_id);
+        const resMsg = await sendTelegramMessage(chatId, responseText, message.message_id);
+        if (resMsg && resMsg.result && resMsg.result.message_id) {
+          let messageType = 'pickup';
+          if (order.order_status && order.order_status.toLowerCase().includes('giao')) {
+            messageType = 'delivery';
+          }
+          await dbRun(
+            "INSERT OR IGNORE INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, ?)",
+            [bookingCode, resMsg.result.message_id, chatId, messageType]
+          );
+        }
       } else {
         sendTelegramMessage(chatId, `❌ Không tìm thấy đơn hàng có mã <code>${bookingCode}</code> trong hệ thống.`, message.message_id);
       }
