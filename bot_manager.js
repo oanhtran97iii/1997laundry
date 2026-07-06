@@ -2531,7 +2531,7 @@ Respond ONLY with a JSON object in this format:
                          `📦 ${productName} - <i>"${formattedNotes}"</i>\n` +
                          `👤 ${name}${cleanRoom}\n` +
                          `🟢 <code>${phone || 'Chưa rõ'}</code>\n` +
-                         `🏢 ${hotel}`;
+                         `🏢 <b><code>${hotel.toUpperCase()}</code></b>`;
 
         if (mapLink) {
           confirmMsg += `\n🗺️ Link Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
