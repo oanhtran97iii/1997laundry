@@ -2461,11 +2461,51 @@ Respond ONLY with a JSON object in this format:
     }
   }
   // --- 4. AUTO ORDER CREATION FROM MANUAL MESSAGE IN GROUPS.DON_NHAN ---
-  else if (chatId === GROUPS.DON_NHAN && !replyTo && text && !isCheckUncollected) {
+  else if (chatId === GROUPS.DON_NHAN && !replyTo && (text || message.photo) && !isCheckUncollected) {
     try {
-      console.log(`[DON_NHAN Auto-Order] Parsing message in GROUPS.DON_NHAN: "${text}"`);
-      
-      const systemPrompt = `You are an AI assistant for a laundry shop called 1997 Premium Laundry.
+      let aiRes = null;
+      if (message.photo) {
+        console.log(`[DON_NHAN Auto-Order] Parsing image in GROUPS.DON_NHAN...`);
+        const largestPhoto = message.photo[message.photo.length - 1];
+        const localPath = await downloadTelegramFile(largestPhoto.file_id);
+        
+        const visionSystemPrompt = `You are an AI assistant for a laundry shop called 1997 Premium Laundry.
+Analyze the uploaded image (which is typically a screenshot of a customer chat, booking details, or invoice).
+Extract the customer booking details from the image.
+
+Extract these details:
+1. "is_order_request": true or false. Set to true if the image contains customer name, phone number, hotel/address details, or text indicating a request to book/schedule laundry pickup.
+2. "name": Customer's name (string or null). Make sure to extract ONLY the actual person's name. Do NOT include words that describe the pickup location (like "Lễ tân", "Reception"), service keywords (like "Same day"), or timing.
+3. "phone": Customer's phone number (string or null). Format cleanly.
+4. "hotel": Hotel name / address (string or null).
+5. "room": Room number (string or null).
+6. "product_id": Match the package type to one of these product IDs:
+   - 1: Standard Wash & Fold (24h)
+   - 2: Same-day Wash & Fold (8h-12h)
+   - 3: Express Wash & Fold (4h)
+   - Default: 2 (if Same-day is mentioned or no specific package is specified).
+7. "pickup_time": Estimated pickup time (string or null, e.g. "9:00 AM", "1:00 PM").
+8. "pickup_option": Detailed pickup location or instructions, e.g. "Lễ tân", "Từ khách", "Gửi bảo vệ" (string, default "Lễ tân").
+9. "notes": Any additional service notes or laundry remarks like "có đồ giặt không sấy", "có tiền", etc. (string or null).
+
+Respond ONLY with a JSON object in this format:
+{
+  "is_order_request": boolean,
+  "name": string or null,
+  "phone": string or null,
+  "hotel": string or null,
+  "room": string or null,
+  "product_id": number,
+  "pickup_time": string or null,
+  "pickup_option": string,
+  "notes": string or null,
+  "confidence": number,
+  "reason": "explanation"
+}`;
+        aiRes = await analyzeImageWithAI(localPath, visionSystemPrompt, "Read this image and extract order details.");
+      } else {
+        console.log(`[DON_NHAN Auto-Order] Parsing text message in GROUPS.DON_NHAN: "${text}"`);
+        const systemPrompt = `You are an AI assistant for a laundry shop called 1997 Premium Laundry.
 Analyze the provided text message sent by staff.
 Determine if the message is a request to create a new laundry order/booking based on manual customer details.
 Typically, it contains a pickup time (e.g. 9:00, 1pm), hotel/address name, customer name, phone number, and package type.
@@ -2499,11 +2539,11 @@ Respond ONLY with a JSON object in this format:
   "confidence": number,
   "reason": "explanation"
 }`;
-
-      let aiRes = await analyzeTextWithAI(text, systemPrompt, "Parse this manual order message.");
-      if (!aiRes) {
-        console.log(`[DON_NHAN Auto-Order] Gemini parsing failed or quota exceeded. Using regex fallback...`);
-        aiRes = fallbackParseOrderText(text);
+        aiRes = await analyzeTextWithAI(text, systemPrompt, "Parse this manual order message.");
+        if (!aiRes) {
+          console.log(`[DON_NHAN Auto-Order] Gemini parsing failed or quota exceeded. Using regex fallback...`);
+          aiRes = fallbackParseOrderText(text);
+        }
       }
       console.log(`[DON_NHAN Auto-Order] Final parse result:`, aiRes);
 
