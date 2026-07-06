@@ -1572,7 +1572,8 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
 
     try {
       const order = await dbGet(
-        `SELECT o.booking_code, o.order_status, o.amount, p.name as product_name, c.name as cust_name, c.hotel, c.room
+        `SELECT o.booking_code, o.order_status, o.amount, o.order_date, o.notes, o.collect_scheduled_time, 
+                p.name as product_name, c.name as cust_name, c.phone, c.hotel, c.room, c.map_link
          FROM orders o
          JOIN customers c ON o.customer_id = c.id
          JOIN products p ON o.product_id = p.id
@@ -1581,15 +1582,39 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
       );
 
       if (order) {
+        let formattedTime = 'Chưa rõ';
+        if (order.order_date) {
+          try {
+            const d = new Date(order.order_date);
+            const localTime = new Date(d.getTime() + 7 * 60 * 60 * 1000);
+            const hrs = String(localTime.getUTCHours()).padStart(2, '0');
+            const mins = String(localTime.getUTCMinutes()).padStart(2, '0');
+            formattedTime = `${hrs}:${mins}`;
+          } catch (e) {
+            formattedTime = order.order_date;
+          }
+        }
+
+        const displayPickupTime = order.collect_scheduled_time || formattedTime;
         const readableStatus = STATUS_LABELS[order.order_status] || order.order_status;
-        const responseText = `🔍 <b>TRUY VẤN ĐƠN HÀNG / ORDER STATUS:</b>
----------------------------------------
-📌 Mã đơn: <code>${order.booking_code}</code>
-👤 Khách hàng: <b>${order.cust_name}</b>
-🏢 Khách sạn: ${order.hotel} (Phòng: ${order.room})
-📦 Dịch vụ: ${order.product_name}
-💵 Chi phí: ${(order.amount || 0).toLocaleString('vi-VN')} VND
-🚨 <b>Tình trạng:</b> <u>${readableStatus}</u>`;
+        const formattedNotes = order.notes ? order.notes : 'Không có';
+        const cleanRoom = order.room ? ` - R${order.room.replace(/^r/i, '')}` : '';
+        const hotelStr = (order.hotel || '').toUpperCase();
+        const mapLink = order.map_link || '';
+
+        let responseText = `🔍 <b>TRUY VẤN ĐƠN HÀNG / ORDER STATUS</b>\n` +
+                           `<code>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</code>\n` +
+                           `<code>${order.booking_code}</code>\n` +
+                           `<code>Lễ tân</code>\n` +
+                           `<code>${order.product_name} - "${formattedNotes}"</code>\n` +
+                           `<code>${order.cust_name}${cleanRoom}</code>\n` +
+                           `<code>${order.phone || 'Chưa rõ'}</code>\n` +
+                           `<code>${hotelStr}</code>\n` +
+                           `Tình trạng: <b>${readableStatus}</b>`;
+
+        if (mapLink) {
+          responseText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+        }
         
         const resMsg = await sendTelegramMessage(chatId, responseText, message.message_id);
         if (resMsg && resMsg.result && resMsg.result.message_id) {
