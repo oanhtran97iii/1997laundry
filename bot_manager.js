@@ -1986,14 +1986,13 @@ Respond ONLY with a JSON object in this format:
                 isPaid = aiRes.payment_status === 'paid';
                 const paymentStatusDb = isPaid ? 'Đã thanh toán' : 'Chờ thanh toán';
 
-                // Update amount, bill photo, status, and transition status to 'Chờ giặt'
+                // Update amount, bill photo, status
                 await dbRun(
-                  "UPDATE orders SET amount = ?, bill_photo_url = ?, status = ?, order_status = 'Chờ giặt' WHERE booking_code = ?",
+                  "UPDATE orders SET amount = ?, bill_photo_url = ?, status = ? WHERE booking_code = ?",
                   [aiRes.amount, localPath, paymentStatusDb, bookingCode]
                 );
-                syncOrderUpdateToN8n(bookingCode, aiRes.amount, 'Chờ giặt');
 
-                sendTelegramMessage(chatId, `💵 Bé Ba đã quét hóa đơn đơn <b>#${bookingCode}</b>: <b>${aiRes.amount.toLocaleString('vi-VN')} VND</b>. Trạng thái chuyển thành: <b>Chờ giặt</b> (${paymentStatusDb}).`, message.message_id);
+                sendTelegramMessage(chatId, `💵 Bé Ba đã quét hóa đơn đơn <b>#${bookingCode}</b>: <b>${aiRes.amount.toLocaleString('vi-VN')} VND</b> (${paymentStatusDb}).`, message.message_id);
               }
             }
 
@@ -2011,8 +2010,25 @@ Respond ONLY with a JSON object in this format:
               [bookingCode]
             );
 
-            // If a bill was successfully matched, perform notifications and forward to XEP_DO immediately
-            if (isBillMatched && updatedOrder) {
+            // If both weight and bill are successfully matched/recorded, transition status and perform notifications
+            const hasWeight = updatedOrder && updatedOrder.weight > 0;
+            const hasBill = updatedOrder && updatedOrder.bill_photo_url && updatedOrder.amount > 0;
+
+            if (updatedOrder && (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy') && hasWeight && hasBill) {
+              const isPaid = updatedOrder.status === 'Đã thanh toán';
+              const extractedAmount = updatedOrder.amount;
+              const billPhotoPath = updatedOrder.bill_photo_url;
+
+              // 1. Transition order status in DB to 'Chờ giặt'
+              await dbRun(
+                "UPDATE orders SET order_status = 'Chờ giặt' WHERE booking_code = ?",
+                [bookingCode]
+              );
+              syncOrderUpdateToN8n(bookingCode, extractedAmount, 'Chờ giặt');
+
+              sendTelegramMessage(chatId, `✅ Đơn hàng <b>#${bookingCode}</b> đã đủ thông tin (Cân nặng: <b>${updatedOrder.weight} kg</b>, Hóa đơn: <b>${extractedAmount.toLocaleString('vi-VN')} VND</b>). Trạng thái chuyển thành: <b>Chờ giặt</b>.`, message.message_id);
+
+              // 2. WhatsApp notification
               const phoneClean = (updatedOrder.phone || '').replace(/\D/g, '');
               if (phoneClean) {
                 const isViPhone = phoneClean.startsWith('84') || phoneClean.startsWith('0');
@@ -2038,16 +2054,14 @@ Respond ONLY with a JSON object in this format:
 
                 if (isWaConnected && sock) {
                   try {
-                    const absFilePath = path.join(__dirname, localPath.replace(/^\//, ''));
+                    const absFilePath = path.join(__dirname, billPhotoPath.replace(/^\//, ''));
                     if (isPaid && fs.existsSync(absFilePath)) {
-                      // If paid, send image with caption
                       await sock.sendMessage(waJid, { 
                         image: fs.readFileSync(absFilePath), 
                         caption: waMessage 
                       });
                       sendTelegramMessage(chatId, `📱 Đã tự động gửi ảnh hóa đơn & chi tiết thanh toán cho khách hàng qua WhatsApp!`);
                     } else {
-                      // If unpaid, send text only
                       await sock.sendMessage(waJid, { text: waMessage });
                       sendTelegramMessage(chatId, `📱 Đã tự động gửi tin nhắn báo giá cho khách hàng qua WhatsApp!`);
                     }
@@ -2057,12 +2071,12 @@ Respond ONLY with a JSON object in this format:
                 }
               }
 
-              // If UNPAID, tag @admin in the Telegram group so they follow up
+              // 3. If UNPAID, tag @admin in the Telegram group so they follow up
               if (!isPaid) {
                 sendTelegramMessage(chatId, `⚠️ <b>ĐƠN HÀNG CHƯA THANH TOÁN (COD):</b> Đơn <b>#${bookingCode}</b> của khách <b>${updatedOrder.name}</b> chưa thanh toán. @admin vui lòng liên hệ khách để hỏi về hình thức thanh toán của khách!`);
               }
 
-              // Forward to XEP_DO group
+              // 4. Forward to XEP_DO group
               const foldText = `🧼 <b>ĐANG GIẶT / WASHING & FOLDING</b>
 ---------------------------------------
 📌 Mã đơn: <code>${bookingCode}</code>
@@ -2073,21 +2087,22 @@ Respond ONLY with a JSON object in this format:
 ⚖️ Cân nặng: <b>${updatedOrder.weight || 0} kg</b>
 💵 Hóa đơn: <b>${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND</b>
 🚨 <i>Sau khi giặt xong và xếp quần áo ngăn nắp, chụp hình gói đồ hoàn chỉnh reply tin nhắn này kèm chữ "xong" hoặc "done"!</i>`;
-              
-              const res3 = await sendTelegramPhoto(GROUPS.XEP_DO, largestPhoto.file_id, foldText);
+
+              const photoToSend = photoFileId || billPhotoPath;
+              const res3 = await sendTelegramPhoto(GROUPS.XEP_DO, photoToSend, foldText);
               if (res3 && res3.result && res3.result.message_id) {
                 await dbRun(
                   "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'fold')",
                   [bookingCode, res3.result.message_id, GROUPS.XEP_DO]
                 );
               }
-            } else {
+            } else if (updatedOrder && (updatedOrder.order_status === 'Đã lấy' || updatedOrder.order_status === 'Chờ lấy')) {
               // Tell the group what is still missing
               const missingParts = [];
-              if (!updatedOrder || !(updatedOrder.weight > 0)) missingParts.push("Cân nặng (Scale photo / text)");
-              if (!updatedOrder || !updatedOrder.bill_photo_url) missingParts.push("Ảnh hóa đơn (Receipt photo)");
-              
-              sendTelegramMessage(chatId, `⏳ Đã ghi nhận thông tin đơn <b>#${bookingCode}</b>. Còn thiếu: <b>${missingParts.join(', ')}</b> để gửi bill cho khách và chuyển trạng thái sang Đang giặt sấy.`);
+              if (!hasWeight) missingParts.push("Cân nặng (Scale photo / text)");
+              if (!hasBill) missingParts.push("Ảnh hóa đơn (Receipt photo)");
+
+              sendTelegramMessage(chatId, `⏳ Đã ghi nhận thông tin đơn <b>#${bookingCode}</b>. Còn thiếu: <b>${missingParts.join(', ')}</b> để chuyển trạng thái sang Chờ giặt và gửi bill cho khách.`, message.message_id);
             }
           }
 
