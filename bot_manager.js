@@ -872,6 +872,19 @@ function fallbackParseOrderText(text) {
   const phoneMatch = text.match(phoneRegex);
   if (phoneMatch) {
     phone = phoneMatch[0].trim();
+  } else {
+    // If no numeric phone found, check if there is a Zalo/FB text
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      if (lowerLine.includes('zalo') || lowerLine.includes('fb') || lowerLine.includes('facebook')) {
+        let cleanContact = line.replace(/^\d+[\/)]\s*/, '').trim();
+        cleanContact = cleanContact.replace(/^(?:sđt|sdt|phone|📞|liên hệ|lien he)\s*:\s*/i, '').trim();
+        if (cleanContact.length < 30) {
+          phone = cleanContact;
+          break;
+        }
+      }
+    }
   }
 
   // 2. Room extraction
@@ -2506,7 +2519,7 @@ Extract the customer booking details from the image.
 Extract these details:
 1. "is_order_request": true or false. Set to true if the image contains customer name, phone number, hotel/address details, or text indicating a request to book/schedule laundry pickup.
 2. "name": Customer's name (string or null). Make sure to extract ONLY the actual person's name. Do NOT include words that describe the pickup location (like "Lễ tân", "Reception"), service keywords (like "Same day"), or timing.
-3. "phone": Customer's phone number (string or null). Format cleanly.
+3. "phone": Customer's phone number or contact channel (e.g. "zalo", "fb", "Zalo/FB", string or null). If the message specifies contact via zalo or facebook instead of a numeric phone, extract that string.
 4. "hotel": Hotel name / address (string or null).
 5. "room": Room number (string or null).
 6. "product_id": Match the package type to one of these product IDs:
@@ -2543,7 +2556,7 @@ Typically, it contains a pickup time (e.g. 9:00, 1pm), hotel/address name, custo
 Extract these details:
 1. "is_order_request": true or false. Set to true ONLY if the text contains at least a hotel/address, name or phone, and is requesting a booking. Set to false if it's general discussion, queries, or irrelevant chat.
 2. "name": Customer's name (string or null). Make sure to extract ONLY the actual person's name (e.g. "Noah Long", "Yu", "Jessica Inskip"). Do NOT include words that describe the pickup location (like "Lễ tân", "Reception", "Gửi bảo vệ"), service keywords (like "Same day", "Express"), or timing. If a name has a room number like "Noah Long - R502", extract ONLY the name part ("Noah Long").
-3. "phone": Customer's phone number (string or null). Format cleanly.
+3. "phone": Customer's phone number or contact channel (e.g. "zalo", "fb", "Zalo/FB", string or null). If the message specifies contact via zalo or facebook instead of a numeric phone, extract that string.
 4. "hotel": Hotel name / address (string or null).
 5. "room": Room number (string or null).
 6. "product_id": Match the package type to one of these product IDs:
