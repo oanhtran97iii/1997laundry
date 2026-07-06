@@ -1294,13 +1294,13 @@ async function handleTelegramUpdate(update) {
 
           const displayPickupTime = o.collect_scheduled_time || formattedTime;
 
-          let cardText = `🔴 <b>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</b>\n` +
-                         `<b><code>${o.booking_code}</code></b>\n` +
-                         `Lễ tân\n` +
-                         `${o.product_name} - <i>"${formattedNotes}"</i>\n` +
-                         `${o.name}${cleanRoom}\n` +
+          let cardText = `🔴 <b><code>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</code></b>\n` +
+                         `<code>${o.booking_code}</code>\n` +
+                         `<code>Lễ tân</code>\n` +
+                         `<code>${o.product_name} - "${formattedNotes}"</code>\n` +
+                         `<code>${o.name}${cleanRoom}</code>\n` +
                          `<code>${o.phone || 'Chưa rõ'}</code>\n` +
-                         `<b>${hotelStr}</b>`;
+                         `<code>${hotelStr}</code>`;
 
           if (mapLink) {
             cardText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
@@ -1356,11 +1356,11 @@ async function handleTelegramUpdate(update) {
           const cardText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
 ---------------------------------------
 Mã đơn: <code>${o.booking_code}</code>
-Khách hàng: <b>${o.name}</b>
+Khách hàng: <code>${o.name}</code>
 SĐT: <code>${o.phone}</code>
-Khách sạn: ${o.hotel || 'N/A'}
-Số phòng: ${o.room || 'N/A'}
-Số tiền: <b>${(o.amount || 0).toLocaleString('vi-VN')} VND</b>
+Khách sạn: <code>${o.hotel || 'N/A'}</code>
+Số phòng: <code>${o.room || 'N/A'}</code>
+Số tiền: <code>${(o.amount || 0).toLocaleString('vi-VN')} VND</code>
 ---------------------------------------
 ${paymentText}
 ---------------------------------------
@@ -2747,13 +2747,13 @@ Respond ONLY with a JSON object in this format:
         const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
 
         let confirmMsg = `🟧 <b>ĐƠN MỚI</b>\n` +
-                         `<b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
-                         `<b><code>${bookingCode}</code></b>\n` +
-                         `${aiRes.pickup_option || 'Lễ tân'}\n` +
-                         `${productName} - <i>"${formattedNotes}"</i>\n` +
-                         `${name}${cleanRoom}\n` +
+                         `<code>[GIỜ LẤY: ${formattedPickupTime}]</code>\n` +
+                         `<code>${bookingCode}</code>\n` +
+                         `<code>${aiRes.pickup_option || 'Lễ tân'}</code>\n` +
+                         `<code>${productName} - "${formattedNotes}"</code>\n` +
+                         `<code>${name}${cleanRoom}</code>\n` +
                          `<code>${phone || 'Chưa rõ'}</code>\n` +
-                         `<b>${hotel.toUpperCase()}</b>`;
+                         `<code>${hotel.toUpperCase()}</code>`;
 
         if (mapLink) {
           confirmMsg += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
