@@ -998,14 +998,18 @@ function fallbackParseOrderText(text) {
     }
   }
 
-  // Fallback for name if still default
   if (name === 'Group Customer') {
-    const nameRoomRegex = /([a-zA-ZÀ-ỹ\s&]+)\s*-\s*(?:room|r|p|phòng|phong)?\s*(\d+)/i;
-    const nameRoomMatch = textWithoutUrls.match(nameRoomRegex);
-    if (nameRoomMatch) {
-      name = nameRoomMatch[1].trim();
-      if (!room) room = nameRoomMatch[2].trim();
-    } else {
+    const nameRoomRegex = /([a-zA-ZÀ-ỹ &]+)\s*-\s*(?:room|r|p|phòng|phong)?\s*(\d+)/i;
+    for (const line of lines) {
+      const nameRoomMatch = line.match(nameRoomRegex);
+      if (nameRoomMatch) {
+        name = nameRoomMatch[1].trim();
+        if (!room) room = nameRoomMatch[2].trim();
+        break;
+      }
+    }
+    
+    if (name === 'Group Customer') {
       // Check for lines with " - "
       for (const line of lines) {
         if (line.includes('-') && !line.includes('+') && !line.includes('same')) {
@@ -1084,6 +1088,28 @@ function fallbackParseOrderText(text) {
     }
   }
 
+  // 8. Fallback address detection
+  if (hotel === '1997 Laundry Shop') {
+    for (const line of lines) {
+      const lowerLine = line.toLowerCase();
+      if (line !== name && line !== phone && line !== pickup_time && 
+          !lowerLine.includes('same day') && !lowerLine.includes('next day') && !lowerLine.includes('express') &&
+          (line.match(/^\d+/) || lowerLine.includes('đường') || lowerLine.includes('phường') || lowerLine.includes('quận') || lowerLine.includes('ward') || lowerLine.includes('district') || lowerLine.includes('📍') || lowerLine.includes('street'))) {
+        hotel = line.replace(/^[📍🏢🗺️]\s*/, '').trim();
+        break;
+      }
+    }
+  }
+
+  // 9. Pickup option extraction
+  let pickup_option = 'Lễ tân';
+  const lowerTextForOption = textWithoutUrls.toLowerCase();
+  if (lowerTextForOption.includes('từ khách') || lowerTextForOption.includes('tu khach') || lowerTextForOption.includes('gọi khách') || lowerTextForOption.includes('goi khach') || lowerTextForOption.includes('đến phòng') || lowerTextForOption.includes('den phong')) {
+    pickup_option = 'Từ khách';
+  } else if (lowerTextForOption.includes('bảo vệ') || lowerTextForOption.includes('bao ve') || lowerTextForOption.includes('security')) {
+    pickup_option = 'Gửi bảo vệ';
+  }
+
   return {
     is_order_request: !!(phone || name !== 'Group Customer' || room || hotel !== '1997 Laundry Shop'),
     name,
@@ -1092,7 +1118,7 @@ function fallbackParseOrderText(text) {
     room,
     product_id,
     pickup_time,
-    pickup_option: 'Lễ tân',
+    pickup_option,
     notes,
     confidence: 0.9,
     reason: 'Parsed using regex fallback.'
