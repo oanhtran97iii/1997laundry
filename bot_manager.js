@@ -1237,15 +1237,15 @@ async function handleTelegramUpdate(update) {
           const displayPickupTime = o.collect_scheduled_time || formattedTime;
 
           let cardText = `🔴 <b>[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]</b>\n` +
-                         `🟢 <b><code>${o.booking_code}</code></b>\n` +
-                         `📍 Lễ tân\n` +
-                         `📦 ${o.product_name} - <i>"${formattedNotes}"</i>\n` +
-                         `👤 ${o.name}${cleanRoom}\n` +
-                         `🟢 <code>${o.phone || 'Chưa rõ'}</code>\n` +
-                         `🏢 <b>${hotelStr}</b>`;
+                         `<b><code>${o.booking_code}</code></b>\n` +
+                         `Lễ tân\n` +
+                         `${o.product_name} - <i>"${formattedNotes}"</i>\n` +
+                         `${o.name}${cleanRoom}\n` +
+                         `<code>${o.phone || 'Chưa rõ'}</code>\n` +
+                         `<b>${hotelStr}</b>`;
 
           if (mapLink) {
-            cardText += `\n🗺️ Link Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+            cardText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
           }
 
           cardText += `\n---------------------------------------\n` +
@@ -1292,21 +1292,21 @@ async function handleTelegramUpdate(update) {
         for (const o of undelivered) {
           const isPaid = o.payment_status === 'Đã thanh toán' || o.payment_status === 'paid' || o.order_status === 'Chờ giao (đã thanh toán)';
           const paymentText = isPaid 
-            ? `✅ <b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
-            : `⚠️ <b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n🚨 <b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
+            ? `<b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
+            : `<b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n<b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
 
           const cardText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
 ---------------------------------------
-📌 Mã đơn: <code>${o.booking_code}</code>
-👤 Khách hàng: <b>${o.name}</b>
-📞 SĐT: <code>${o.phone}</code>
-🏢 Khách sạn: ${o.hotel || 'N/A'}
-🚪 Số phòng: ${o.room || 'N/A'}
-💰 Số tiền: <b>${(o.amount || 0).toLocaleString('vi-VN')} VND</b>
+Mã đơn: <code>${o.booking_code}</code>
+Khách hàng: <b>${o.name}</b>
+SĐT: <code>${o.phone}</code>
+Khách sạn: ${o.hotel || 'N/A'}
+Số phòng: ${o.room || 'N/A'}
+Số tiền: <b>${(o.amount || 0).toLocaleString('vi-VN')} VND</b>
 ---------------------------------------
 ${paymentText}
 ---------------------------------------
-🚨 <i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
+<i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
 
           const res = await sendTelegramMessage(chatId, cardText);
           if (res && res.result && res.result.message_id) {
@@ -2689,16 +2689,16 @@ Respond ONLY with a JSON object in this format:
         const cleanRoom = room ? ` - R${room.replace(/^r/i, '')}` : '';
 
         let confirmMsg = `🟧 <b>ĐƠN MỚI</b>\n` +
-                         `🔴 <b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
-                         `🟢 <b><code>${bookingCode}</code></b>\n` +
-                         `📍 ${aiRes.pickup_option || 'Lễ tân'}\n` +
-                         `📦 ${productName} - <i>"${formattedNotes}"</i>\n` +
-                         `👤 ${name}${cleanRoom}\n` +
-                         `🟢 <code>${phone || 'Chưa rõ'}</code>\n` +
-                         `🏢 <b>${hotel.toUpperCase()}</b>`;
+                         `<b>[GIỜ LẤY: ${formattedPickupTime}]</b>\n` +
+                         `<b><code>${bookingCode}</code></b>\n` +
+                         `${aiRes.pickup_option || 'Lễ tân'}\n` +
+                         `${productName} - <i>"${formattedNotes}"</i>\n` +
+                         `${name}${cleanRoom}\n` +
+                         `<code>${phone || 'Chưa rõ'}</code>\n` +
+                         `<b>${hotel.toUpperCase()}</b>`;
 
         if (mapLink) {
-          confirmMsg += `\n🗺️ Link Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+          confirmMsg += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
         }
         
         const resMsg = await sendTelegramMessage(chatId, confirmMsg);
