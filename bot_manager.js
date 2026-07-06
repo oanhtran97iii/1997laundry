@@ -1918,9 +1918,8 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
             );
             syncOrderUpdateToN8n(bookingCode, currentOrder.amount, 'Đã lấy', true);
 
-            // sendTelegramMessage(chatId, `✅ Đã nhận đồ đơn hàng <b>#${bookingCode}</b>! Cập nhật trạng thái thành: <b>Đã lấy đồ</b>.`, message.message_id);
-            
-            const billText = `📌 Mã đơn: <b><code>${bookingCode}</code></b> - <b>${currentOrder.name}</b> - Đồ đã về tiệm\n` +
+            const cleanRoom = currentOrder.room ? ` - R${currentOrder.room.replace(/^r/i, '')}` : '';
+            const billText = `📌 Mã đơn: <b><code>${bookingCode}</code></b> - <b>${currentOrder.name}${cleanRoom}</b> - Đồ đã về tiệm\n` +
                              `Chụp ảnh cân nặng và hóa đơn thể hiện số tiền reply tin nhắn này.`;
             
             let res2;
