@@ -362,12 +362,12 @@ async function syncOrderUpdateToN8n(bookingCode, amount, status, skipTelegram = 
 
 // --- STATE MACHINE STATUS LABELS ---
 const STATUS_LABELS = {
-  'Chưa lấy': 'Chưa lấy (Shipper đang qua lấy đồ / Shipper is on the way to collect)',
-  'Đã lấy': 'Đã lấy đồ (Đang vận chuyển về tiệm / Collected & arriving at laundry room)',
-  'Chờ giặt': 'Chờ giặt (Washing / drying / folding)',
-  'Chờ giao (đã thanh toán)': 'Đang chờ giao - Đã thanh toán (Paid & ready for delivery)',
-  'Chờ giao chưa thanh toán': 'Đang chờ giao - Chưa thanh toán (Unpaid / COD)',
-  'Hoàn thành': 'Đã giao thành công (Delivered successfully! 🎉)'
+  'Chưa lấy': 'Chờ lấy',
+  'Đã lấy': 'Đã lấy đồ',
+  'Chờ giặt': 'Chờ giặt',
+  'Chờ giao (đã thanh toán)': 'Chờ giao (Đã thanh toán)',
+  'Chờ giao chưa thanh toán': 'Chờ giao (Chưa thanh toán)',
+  'Hoàn thành': 'Hoàn thành'
 };
 
 // --- WHATSAPP HELPER FUNCTIONS ---
