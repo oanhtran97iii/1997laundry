@@ -1048,10 +1048,17 @@ async function handleTelegramUpdate(update) {
 
   // --- CHECK UNCOLLECTED ORDERS COMMAND ---
   const lowerText = text.toLowerCase();
-  const isCheckUncollected = (lowerText.includes('check') && (lowerText.includes('chưa lấy') || lowerText.includes('chua lay') || lowerText.includes('cần lấy') || lowerText.includes('can lay') || lowerText.includes('cần thu') || lowerText.includes('can thu'))) || 
-                             lowerText.startsWith('/check_chua_lay') ||
-                             lowerText.startsWith('/check_chualay') ||
-                             lowerText.startsWith('/check_can_lay');
+  const isCheckUncollected = (lowerText.includes('check') && (
+                                lowerText.includes('chưa lấy') || lowerText.includes('chua lay') || 
+                                lowerText.includes('cần lấy') || lowerText.includes('can lay') || 
+                                lowerText.includes('cần thu') || lowerText.includes('can thu') ||
+                                lowerText.includes('chưa nhận') || lowerText.includes('chua nhan') ||
+                                lowerText.includes('cần nhận') || lowerText.includes('can nhan')
+                              )) || 
+                              lowerText.startsWith('/check_chua_lay') ||
+                              lowerText.startsWith('/check_chualay') ||
+                              lowerText.startsWith('/check_can_lay') ||
+                              lowerText.startsWith('/check_chua_nhan');
 
   if (isCheckUncollected) {
     const isStaffChat = Object.values(GROUPS).includes(chatId) || ADMIN_CHAT_IDS.includes(chatId);
@@ -1061,20 +1068,13 @@ async function handleTelegramUpdate(update) {
     }
 
     try {
-      const twoDaysAgo = new Date();
-      twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
-      const pad = (n) => String(n).padStart(2, '0');
-      const dateThreshold = `${twoDaysAgo.getFullYear()}-${pad(twoDaysAgo.getMonth()+1)}-${pad(twoDaysAgo.getDate())} ${pad(twoDaysAgo.getHours())}:${pad(twoDaysAgo.getMinutes())}:${pad(twoDaysAgo.getSeconds())}`;
-
       const uncollectedOrders = await dbAll(
-        `SELECT o.booking_code, o.order_date, c.name, c.phone, c.hotel, c.room, p.name as product_name
+        `SELECT o.booking_code, o.order_date, o.notes, c.name, c.phone, c.hotel, c.room, c.map_link, p.name as product_name
          FROM orders o
          JOIN customers c ON o.customer_id = c.id
          JOIN products p ON o.product_id = p.id
          WHERE (o.order_status = 'Chưa lấy' OR o.order_status = 'Chờ lấy' OR o.order_status IS NULL)
-           AND o.order_date >= ?
-         ORDER BY o.order_date ASC`,
-        [dateThreshold]
+         ORDER BY o.order_date ASC`
       );
 
       // Check for hour filters
@@ -1109,23 +1109,44 @@ async function handleTelegramUpdate(update) {
         : '';
 
       if (filteredOrders.length === 0) {
-        sendTelegramMessage(chatId, `📌 <b>BÁO CÁO ĐƠN CHƯA LẤY (2 ngày qua)${filterLabel}:</b>\n\n🎉 Hiện không có đơn hàng nào chưa lấy phù hợp.`, message.message_id);
+        sendTelegramMessage(chatId, `📌 <b>BÁO CÁO ĐƠN CHƯA LẤY${filterLabel}:</b>\n\n🎉 Hiện không có đơn hàng nào chưa lấy phù hợp.`, message.message_id);
       } else {
-        await sendTelegramMessage(chatId, `🔴 <b>DANH SÁCH ĐƠN CHƯA LẤY (2 ngày qua)${filterLabel}</b>\n---------------------------------------\nTổng cộng: <b>${filteredOrders.length} đơn</b>\n\n<i>Bé Ba đang gửi thẻ thông tin từng đơn bên dưới. Vui lòng reply trực tiếp vào thẻ đơn để cập nhật trạng thái "Đã lấy".</i>`, message.message_id);
+        await sendTelegramMessage(chatId, `🔴 <b>DANH SÁCH ĐƠN CHƯA LẤY${filterLabel}</b>\n---------------------------------------\nTổng cộng: <b>${filteredOrders.length} đơn</b>\n\n<i>Bé Ba đang gửi thẻ thông tin từng đơn bên dưới. Vui lòng reply trực tiếp vào thẻ đơn để cập nhật trạng thái "Đã lấy".</i>`, message.message_id);
 
         for (const o of filteredOrders) {
-          const roomStr = o.room ? `P.${o.room}` : 'N/A';
-          const hotelStr = o.hotel ? `(${o.hotel})` : '';
-          const cardText = `🔴 <b>ĐƠN CHƯA LẤY / UNCOLLECTED ORDER</b>
----------------------------------------
-📌 Mã đơn: <code>${o.booking_code}</code>
-⏰ Giờ hẹn: ${o.order_date}
-👤 Khách: <b>${o.name}</b>
-📦 Dịch vụ: <b>${o.product_name}</b>
-🚪 Phòng: <b>${roomStr} ${hotelStr}</b>
-📞 SĐT: <code>${o.phone}</code>
----------------------------------------
-🚨 <i>Shipper phản hồi (reply) tin nhắn này (bằng chữ hoặc ảnh) để cập nhật trạng thái "Đã lấy"!</i>`;
+          // Format hours:minutes (Vietnam time UTC+7) from order_date
+          let formattedTime = 'Chưa rõ';
+          if (o.order_date) {
+            try {
+              const d = new Date(o.order_date);
+              const localTime = new Date(d.getTime() + 7 * 60 * 60 * 1000);
+              const hrs = String(localTime.getUTCHours()).padStart(2, '0');
+              const mins = String(localTime.getUTCMinutes()).padStart(2, '0');
+              formattedTime = `${hrs}:${mins}`;
+            } catch (e) {
+              formattedTime = o.order_date;
+            }
+          }
+
+          const formattedNotes = o.notes ? o.notes : 'Không có';
+          const cleanRoom = o.room ? ` - R${o.room.replace(/^r/i, '')}` : '';
+          const hotelStr = (o.hotel || '').toUpperCase();
+          const mapLink = o.map_link || '';
+
+          let cardText = `🔴 <b>[GIỜ LẤY: ${formattedTime}]</b>\n` +
+                         `🟢 <b><code>${o.booking_code}</code></b>\n` +
+                         `📍 Lễ tân\n` +
+                         `📦 ${o.product_name} - <i>"${formattedNotes}"</i>\n` +
+                         `👤 ${o.name}${cleanRoom}\n` +
+                         `🟢 <code>${o.phone || 'Chưa rõ'}</code>\n` +
+                         `🏢 <b>${hotelStr}</b>`;
+
+          if (mapLink) {
+            cardText += `\n🗺️ Link Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+          }
+
+          cardText += `\n---------------------------------------\n` +
+                     `🚨 <i>Shipper phản hồi (reply) tin nhắn này (bằng chữ hoặc ảnh) để cập nhật trạng thái "Đã lấy"!</i>`;
 
           const res = await sendTelegramMessage(chatId, cardText);
           if (res && res.result && res.result.message_id) {
