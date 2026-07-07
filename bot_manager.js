@@ -3311,45 +3311,7 @@ Respond ONLY with a JSON object in this format:
     // Fallback: If it's a private chat, forward the message to goClaw completions API
     const isGroupChat = Number(chatId) < 0;
     if (!isGroupChat && (text || message.photo)) {
-      // 1. Intercept short greetings to show welcome message with buttons instantly
-      if (!message.photo && text) {
-        const cleanText = text.replace(/[^a-zA-Z0-9\/]/g, '').trim().toLowerCase();
-        const viGreetings = ['chào', 'chao', 'xin chào', 'xin chao'];
-        const enGreetings = ['/start', 'hi', 'hello', 'hey', 'hola', 'start'];
-        if (viGreetings.includes(cleanText) || enGreetings.includes(cleanText)) {
-          const isVi = viGreetings.includes(cleanText);
-          const welcomeText = isVi 
-            ? `Dạ, chào anh/chị! 🧺 Em là trợ lý của 1997 Premium Laundry. Rất vui được gặp anh/chị ạ. Vui lòng chọn dịch vụ anh/chị cần:`
-            : `Hello! 🧺 I'm the assistant for 1997 Premium Laundry. It's a pleasure to meet you. Please choose the service you need:`;
-          const replyMarkup = {
-            keyboard: [
-              [{ text: 'Same-day Express' }],
-              [{ text: '4-Hour Express' }],
-              [{ text: 'Next-day Laundry' }]
-            ],
-            resize_keyboard: true,
-            one_time_keyboard: true
-          };
-          sendTelegramMessage(chatId, welcomeText, message.message_id, replyMarkup);
-          return;
-        }
 
-        // 2. Intercept Change Package option
-        if (text.toLowerCase().includes('change package') || text.includes('🔙 Change Package')) {
-          const welcomeText = `Please choose the service you need:`;
-          const replyMarkup = {
-            keyboard: [
-              [{ text: 'Same-day Express' }],
-              [{ text: '4-Hour Express' }],
-              [{ text: 'Next-day Laundry' }]
-            ],
-            resize_keyboard: true,
-            one_time_keyboard: true
-          };
-          sendTelegramMessage(chatId, welcomeText, message.message_id, replyMarkup);
-          return;
-        }
-      }
 
       try {
         console.log(`[Telegram Webhook] Forwarding message to goClaw for chatId: ${chatId}. Has photo: ${!!message.photo}`);
