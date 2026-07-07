@@ -3358,27 +3358,7 @@ Respond ONLY with a JSON object in this format:
               sendTelegramMessage(ADMIN_CHAT_ID, adminAlert);
             }
 
-            // Check if AI reply asks to book the service
-            const lowerReply = cleanReply.toLowerCase();
-            const suggestsBooking = lowerReply.includes('book') || 
-                                    lowerReply.includes('booking') || 
-                                    lowerReply.includes('đặt dịch vụ') || 
-                                    lowerReply.includes('đăng ký dịch vụ') ||
-                                    lowerReply.includes('đặt lịch') ||
-                                    lowerReply.includes('đặt đơn');
-            
-            let replyMarkup = null;
-            if (suggestsBooking) {
-              replyMarkup = {
-                keyboard: [
-                  [{ text: '📝 Proceed Booking' }],
-                  [{ text: '🔙 Change Package' }]
-                ],
-                resize_keyboard: true,
-                one_time_keyboard: true
-              };
-            }
-            sendTelegramMessage(chatId, cleanReply, message.message_id, replyMarkup);
+            sendTelegramMessage(chatId, cleanReply, message.message_id);
           }
         } else {
           const errText = await response.text();
