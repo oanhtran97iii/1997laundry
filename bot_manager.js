@@ -1279,7 +1279,32 @@ function alertUnpaidOrder(bookingCode, delText) {
   }
   
   // 3. Send to CHECK_THANH_TOAN group for administrative record
-  sendTelegramMessage(GROUPS.CHECK_THANH_TOAN, `⚠️ <b>ĐƠN GIAO CHƯA THANH TOÁN (COD):</b>\n\n${delText}`);
+  sendTelegramMessage(GROUPS.CHECK_THANH_TOAN, `⚠️ <b>ĐƠN GIAO CHƯA THANH TOÁN (COD):</b>\n\n${delText}`)
+    .then(resCheck => {
+      if (resCheck && resCheck.result && resCheck.result.message_id) {
+        dbRun(
+          "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'alert_check_thanh_toan')",
+          [bookingCode, resCheck.result.message_id, GROUPS.CHECK_THANH_TOAN]
+        ).catch(err => console.error('Failed to save alert_check_thanh_toan mapping:', err));
+      }
+    });
+
+  // 4. Send to Trực Livechat group (dynamic capture)
+  dbGet("SELECT value FROM system_settings WHERE key = 'livechat_chat_id'")
+    .then(row => {
+      if (row && row.value) {
+        sendTelegramMessage(row.value, `⚠️ <b>ĐƠN GIAO CHƯA THANH TOÁN (COD):</b>\n\n${delText}`)
+          .then(resLive => {
+            if (resLive && resLive.result && resLive.result.message_id) {
+              dbRun(
+                "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'alert_livechat')",
+                [bookingCode, resLive.result.message_id, row.value]
+              ).catch(err => console.error('Failed to save alert_livechat mapping:', err));
+            }
+          });
+      }
+    })
+    .catch(err => console.error('Failed to get livechat_chat_id in alert:', err));
 }
 
 function getVietnamHour(dateStr) {
@@ -1319,6 +1344,15 @@ async function handleTelegramUpdate(update) {
   }
 
   console.log(`[Telegram Webhook] chatId: ${chatId}, replyTo: ${replyTo ? replyTo.message_id : 'none'}, hasPhoto: ${!!message.photo}, text: "${text}"`);
+
+  // Dynamically capture Trực Livechat group ID
+  if (message.chat && message.chat.title && message.chat.title.toLowerCase().includes('livechat')) {
+    const livechatId = String(message.chat.id);
+    dbRun(
+      "INSERT OR REPLACE INTO system_settings (key, value) VALUES ('livechat_chat_id', ?)",
+      [livechatId]
+    ).catch(err => console.error('Failed to save livechat_chat_id:', err));
+  }
 
   // --- HANDLE ADMIN CORRECTION OF SUSPENDED ORDERS ---
   if (replyTo && (chatId === ADMIN_CHAT_ID || ADMIN_CHAT_IDS.includes(chatId))) {
@@ -1612,7 +1646,7 @@ async function handleTelegramUpdate(update) {
   if (isCountUndelivered) {
     try {
       const undelivered = await dbAll(
-        `SELECT o.booking_code, o.amount, o.status as payment_status, o.order_status, c.name, c.phone, c.hotel, c.room
+        `SELECT o.booking_code, o.amount, o.status as payment_status, o.order_status, o.notes, c.name, c.phone, c.hotel, c.room
          FROM orders o
          JOIN customers c ON o.customer_id = c.id
          WHERE o.order_status IN ('Chờ giao', 'Chờ giao (đã thanh toán)', 'Chờ giao chưa thanh toán')
@@ -1626,22 +1660,22 @@ async function handleTelegramUpdate(update) {
 
         for (const o of undelivered) {
           const isPaid = o.payment_status === 'Đã thanh toán' || o.payment_status === 'paid' || o.order_status === 'Chờ giao (đã thanh toán)';
-          const paymentText = isPaid 
-            ? `<b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
-            : `<b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n<b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
+          
+          const deliveryNotes = (o.notes || '').trim();
+          const deliveryTimeStr = deliveryNotes ? `\nGiờ giao: <b>${deliveryNotes}</b>` : '';
 
-          const cardText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
----------------------------------------
-Mã đơn: <code>${o.booking_code}</code>
-Khách hàng: <b>${o.name}</b>
-SĐT: <code>${o.phone}</code>
-Khách sạn: ${o.hotel || 'N/A'}
-Số phòng: ${o.room || 'N/A'}
-Số tiền: <b>${(o.amount || 0).toLocaleString('vi-VN')} VND</b>
----------------------------------------
-${paymentText}
----------------------------------------
-<i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
+          const nameRoomStr = o.room ? `${o.name} - ${o.room.replace(/^r/i, '')}` : o.name;
+          const hotelStr = o.hotel ? `<b>${String(o.hotel).toUpperCase().trim()}</b>` : 'Chưa rõ';
+          
+          const statusLine = isPaid
+            ? `✅ <b>đã thanh toán</b>`
+            : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(o.amount || 0).toLocaleString('vi-VN')} VND</b>`;
+
+          const cardText = `<b>Đơn cần giao: ${o.booking_code}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${o.phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
 
           const res = await sendTelegramMessage(chatId, cardText);
           if (res && res.result && res.result.message_id) {
@@ -1814,7 +1848,7 @@ ${paymentText}
 💵 Doanh thu tạm tính: <b>${(order.amount || 0).toLocaleString('vi-VN')} VND</b>
 ✅ Đã giao hàng & thanh toán thành công!`;
           
-          sendTelegramMessage(GROUPS.REPORT_DOANH_THU, revText);
+          sendTelegramMessage(ADMIN_CHAT_ID, revText);
 
           // AUTOMATICALLY SEND CONFIRMATION VIA WHATSAPP (100% AUTOMATED)
           const waMessage = `🎉 *1997 Premium Laundry - Laundry Delivered!* 🎉
@@ -1881,19 +1915,29 @@ Thank you for choosing 1997 Premium Laundry! We hope to serve you again on your 
 
         const simplifiedProduct = getSimplifiedProductName(order.product_id, order.product_name, order.notes);
 
-        let responseText = `🔍 <b>TRUY VẤN ĐƠN HÀNG / ORDER STATUS</b>\n` +
-                           `[GIỜ LẤY: ${displayPickupTime.toUpperCase()}]\n` +
-                           `<b><code>${order.booking_code}</code></b>\n` +
-                           `Lễ tân\n` +
-                           `${simplifiedProduct} - <i>"${formattedNotes}"</i>\n` +
-                           `${order.cust_name}${cleanRoom}\n` +
-                           `<code>${order.phone || 'Chưa rõ'}</code>\n` +
-                           `<b>${hotelStr}</b>\n` +
-                           `Tình trạng: <b>${readableStatus}</b>`;
+        const isPaid = order.payment_status === 'Đã thanh toán' || order.payment_status === 'paid' || order.order_status === 'Chờ giao (đã thanh toán)' || order.order_status === 'Hoàn thành';
+        const isDelivered = order.order_status === 'Đã giao' || order.order_status === 'Hoàn thành';
+        
+        const deliveryNotes = (order.notes || '').trim();
+        const deliveryTimeStr = deliveryNotes ? `\nGiờ giao: <b>${deliveryNotes}</b>` : '';
 
-        if (mapLink) {
-          responseText += `\nLink Maps: <a href="${mapLink}">Xem Bản Đồ</a>`;
+        const nameRoomStr = order.room ? `${order.cust_name} - ${order.room.replace(/^r/i, '')}` : order.cust_name;
+        const hotelStrFormatted = order.hotel ? `<b>${String(order.hotel).toUpperCase().trim()}</b>` : 'Chưa rõ';
+        
+        let statusLine = '';
+        if (isDelivered) {
+          statusLine = `✅ <b>đã giao hoàn thành</b>`;
+        } else {
+          statusLine = isPaid 
+            ? `✅ <b>đã thanh toán</b>`
+            : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(order.amount || 0).toLocaleString('vi-VN')} VND</b>`;
         }
+
+        let responseText = `<b>Đơn cần giao: ${order.booking_code}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${order.phone || 'Chưa rõ'}</code>
+${hotelStrFormatted}
+${statusLine}`;
         
         const resMsg = await sendTelegramMessage(chatId, responseText, message.message_id);
         if (resMsg && resMsg.result && resMsg.result.message_id) {
@@ -2186,22 +2230,21 @@ Respond ONLY with a JSON object in this format:
             sendTelegramMessage(chatId, `📦 Đơn hàng <b>#${bookingCode}</b> đã xếp xong! Trạng thái: <b>${newDeliveryStatus}</b>.`, message.message_id);
 
             // Trigger Delivery alert in DON_GIAO group
-            const paymentStatusText = isOrderPaid 
-              ? `✅ <b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
-              : `⚠️ <b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n🚨 <b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
+            const deliveryNotes = (currentOrder.notes || '').trim();
+            const deliveryTimeStr = deliveryNotes ? `\nGiờ giao: <b>${deliveryNotes}</b>` : '';
 
-            const delText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
----------------------------------------
-📌 Mã đơn: <code>${bookingCode}</code>
-👤 Khách hàng: <b>${currentOrder.name}</b>
-📞 SĐT: <code>${currentOrder.phone}</code>
-🏢 Khách sạn: ${currentOrder.hotel}
-🚪 Số phòng: ${currentOrder.room}
-💰 Số tiền: <b>${(currentOrder.amount || 0).toLocaleString('vi-VN')} VND</b>
----------------------------------------
-${paymentStatusText}
----------------------------------------
-🚨 <i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
+            const nameRoomStr = currentOrder.room ? `${currentOrder.name} - ${currentOrder.room.replace(/^r/i, '')}` : currentOrder.name;
+            const hotelStr = currentOrder.hotel ? `<b>${String(currentOrder.hotel).toUpperCase().trim()}</b>` : 'Chưa rõ';
+            
+            const statusLine = isOrderPaid
+              ? `✅ <b>đã thanh toán</b>`
+              : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(currentOrder.amount || 0).toLocaleString('vi-VN')} VND</b>`;
+
+            const delText = `<b>Đơn cần giao: ${bookingCode}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${currentOrder.phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
             
             let res4;
             if (photoFileId) {
@@ -2223,43 +2266,133 @@ ${paymentStatusText}
             }
           }
 
-          // --- STAGE 5: Delivery Done Reply in DON_GIAO ---
-          else if (chatId === GROUPS.DON_GIAO && mapping.message_type === 'delivery' && (text.toLowerCase().includes('done') || text.toLowerCase().includes('xong'))) {
-            let localPath = null;
-            if (message.photo) {
-              const largestPhoto = message.photo[message.photo.length - 1];
-              localPath = await downloadTelegramFile(largestPhoto.file_id);
+          // --- STAGE 4.5: Payment / Livechat Reply to Alert ---
+          else if (mapping.message_type === 'alert_check_thanh_toan' || mapping.message_type === 'alert_livechat') {
+            const lowerRepText = text.toLowerCase().trim();
+            if (lowerRepText === 'đã thanh toán' || lowerRepText === 'da thanh toan' || lowerRepText === 'paid' || lowerRepText === 'ok') {
+              await dbRun(
+                "UPDATE orders SET status = 'Đã thanh toán', order_status = 'Chờ giao (đã thanh toán)' WHERE booking_code = ?",
+                [bookingCode]
+              );
+              syncOrderUpdateToN8n(bookingCode, currentOrder.amount, 'Chờ giao (đã thanh toán)');
+              sendTelegramMessage(chatId, `✅ Đã ghi nhận thanh toán cho đơn hàng <b>#${bookingCode}</b>. Đang tự động lên lại thẻ shipper mới...`, message.message_id);
+              updateDeliveryCardToPaid(bookingCode);
+            } else if (text.trim()) {
+              const livechatNotes = text.trim();
+              const deliveryMapping = await dbGet(
+                "SELECT telegram_message_id, telegram_chat_id FROM order_telegram_mappings WHERE booking_code = ? AND message_type = 'delivery' LIMIT 1",
+                [bookingCode]
+              );
+              if (deliveryMapping) {
+                sendTelegramMessage(
+                  deliveryMapping.telegram_chat_id, 
+                  `📝 <b>Cập nhật livechat:</b> ${livechatNotes}`, 
+                  deliveryMapping.telegram_message_id
+                );
+                const updatedOrder = await dbGet(
+                  "SELECT o.booking_code, o.amount, o.notes, o.status as payment_status, o.order_status, c.name, c.phone, c.hotel, c.room FROM orders o JOIN customers c ON o.customer_id = c.id WHERE o.booking_code = ?",
+                  [bookingCode]
+                );
+                if (updatedOrder) {
+                  const isPaid = updatedOrder.payment_status === 'Đã thanh toán' || updatedOrder.payment_status === 'paid' || updatedOrder.order_status === 'Chờ giao (đã thanh toán)';
+                  let deliveryNotes = (updatedOrder.notes || '').trim();
+                  const updatedNotes = deliveryNotes ? `${deliveryNotes} | Livechat: ${livechatNotes}` : `Livechat: ${livechatNotes}`;
+                  await dbRun("UPDATE orders SET notes = ? WHERE booking_code = ?", [updatedNotes, bookingCode]);
+                  const deliveryTimeStr = `\nGiờ giao: <b>${updatedNotes}</b>`;
+                  const nameRoomStr = updatedOrder.room ? `${updatedOrder.name} - ${updatedOrder.room.replace(/^r/i, '')}` : updatedOrder.name;
+                  const hotelStr = updatedOrder.hotel ? `<b>${String(updatedOrder.hotel).toUpperCase().trim()}</b>` : 'Chưa rõ';
+                  const statusLine = isPaid 
+                    ? `✅ <b>đã thanh toán</b>`
+                    : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND</b>`;
+                  const delText = `<b>Đơn cần giao: ${bookingCode}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${updatedOrder.phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
+                  const resNew = await sendTelegramMessage(deliveryMapping.telegram_chat_id, delText);
+                  if (resNew && resNew.result && resNew.result.message_id) {
+                    await dbRun(
+                      "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
+                      [bookingCode, resNew.result.message_id, deliveryMapping.telegram_chat_id]
+                    );
+                  }
+                }
+              }
+              sendTelegramMessage(chatId, `📝 Đã chuyển tiếp lưu ý giao nhận sang nhóm Shipper: <i>"${livechatNotes}"</i>`, message.message_id);
             }
+          }
 
-            await dbRun(
-              "UPDATE orders SET order_status = 'Đã giao', status = 'Hoàn thành', delivery_photo_url = ? WHERE booking_code = ?",
-              [localPath, bookingCode]
-            );
-            syncOrderUpdateToN8n(bookingCode, currentOrder.amount, 'Hoàn thành');
+          // --- STAGE 5: Delivery Done / Reply Note in DON_GIAO ---
+          else if (chatId === GROUPS.DON_GIAO && mapping.message_type === 'delivery') {
+            const lowerRepText = text.toLowerCase().trim();
+            if (lowerRepText.includes('done') || lowerRepText.includes('xong')) {
+              let localPath = null;
+              if (message.photo) {
+                const largestPhoto = message.photo[message.photo.length - 1];
+                localPath = await downloadTelegramFile(largestPhoto.file_id);
+              }
 
-            sendTelegramMessage(chatId, `🎉 Đơn hàng <b>#${bookingCode}</b> đã giao thành công và đóng đơn!`, message.message_id);
+              await dbRun(
+                "UPDATE orders SET order_status = 'Đã giao', status = 'Hoàn thành', delivery_photo_url = ? WHERE booking_code = ?",
+                [localPath, bookingCode]
+              );
+              syncOrderUpdateToN8n(bookingCode, currentOrder.amount, 'Hoàn thành');
 
-            // Send daily revenue summary alert
-            const revText = `💰 <b>BÁO CÁO DOANH THU / COMPLETED ORDER</b>
+              sendTelegramMessage(chatId, `🎉 Đơn hàng <b>#${bookingCode}</b> đã giao thành công và đóng đơn!`, message.message_id);
+
+              // Send daily revenue summary alert
+              const revText = `💰 <b>BÁO CÁO DOANH THU / COMPLETED ORDER</b>
 ---------------------------------------
 📌 Mã đơn: <code>${bookingCode}</code>
 👤 Khách hàng: <b>${currentOrder.name}</b>
 💵 Doanh thu tạm tính: <b>${(currentOrder.amount || 0).toLocaleString('vi-VN')} VND</b>
 ✅ Đã giao hàng & thanh toán thành công!`;
-            
-            sendTelegramMessage(GROUPS.REPORT_DOANH_THU, revText);
+              
+              sendTelegramMessage(ADMIN_CHAT_ID, revText);
 
-            // AUTOMATICALLY SEND CONFIRMATION VIA WHATSAPP (100% AUTOMATED)
-            const phoneClean = (currentOrder.phone || '').replace(/\D/g, '');
-            const isViPhone = phoneClean.startsWith('84') || phoneClean.startsWith('0');
-            const useVi = currentOrder.lang === 'vi' || (!currentOrder.lang && isViPhone);
+              // AUTOMATICALLY SEND CONFIRMATION VIA WHATSAPP (100% AUTOMATED)
+              const phoneClean = (currentOrder.phone || '').replace(/\D/g, '');
+              const isViPhone = phoneClean.startsWith('84') || phoneClean.startsWith('0');
+              const useVi = currentOrder.lang === 'vi' || (!currentOrder.lang && isViPhone);
 
-            const waMessage = useVi
-              ? `Xin chào *${currentOrder.name}*,\nĐơn hàng giặt ủi *#${bookingCode}* của quý khách đã được shipper giao đến thành công! 🛵\n1997 Premium Laundry xin gửi hình ảnh xác nhận giao nhận ở trên. Cảm ơn quý khách đã tin tưởng sử dụng dịch vụ! 🧺`
-              : `🎉 *1997 Premium Laundry - Laundry Delivered!* 🎉\n---------------------------------------\nDear *${currentOrder.name}*,\nWe are pleased to inform you that your laundry order *#${bookingCode}* has been successfully delivered by our shipper! 🛵\nPlease check the attached photo for delivery confirmation. Thank you for choosing 1997 Premium Laundry! 🧺`;
+              const waMessage = useVi
+                ? `Xin chào *${currentOrder.name}*,\nĐơn hàng giặt ủi *#${bookingCode}* của quý khách đã được shipper giao đến thành công! 🛵\n1997 Premium Laundry xin gửi hình ảnh xác nhận giao nhận ở trên. Cảm ơn quý khách đã tin tưởng sử dụng dịch vụ! 🧺`
+                : `🎉 *1997 Premium Laundry - Laundry Delivered!* 🎉\n---------------------------------------\nDear *${currentOrder.name}*,\nWe are pleased to inform you that your laundry order *#${bookingCode}* has been successfully delivered by our shipper! 🛵\nPlease check the attached photo for delivery confirmation. Thank you for choosing 1997 Premium Laundry! 🧺`;
 
-            // Trigger WhatsApp message via VPS Gateway
-            sendWhatsAppConfirmation(currentOrder.phone, waMessage, localPath);
+              // Trigger WhatsApp message via VPS Gateway
+              sendWhatsAppConfirmation(currentOrder.phone, waMessage, localPath);
+            } else if (text.trim()) {
+              // Any other reply in DON_GIAO is treated as a delivery note update!
+              const livechatNotes = text.trim();
+              const updatedOrder = await dbGet(
+                "SELECT o.booking_code, o.amount, o.notes, o.status as payment_status, o.order_status, c.name, c.phone, c.hotel, c.room FROM orders o JOIN customers c ON o.customer_id = c.id WHERE o.booking_code = ?",
+                [bookingCode]
+              );
+              if (updatedOrder) {
+                const isPaid = updatedOrder.payment_status === 'Đã thanh toán' || updatedOrder.payment_status === 'paid' || updatedOrder.order_status === 'Chờ giao (đã thanh toán)';
+                let deliveryNotes = (updatedOrder.notes || '').trim();
+                const updatedNotes = deliveryNotes ? `${deliveryNotes} | Livechat: ${livechatNotes}` : `Livechat: ${livechatNotes}`;
+                await dbRun("UPDATE orders SET notes = ? WHERE booking_code = ?", [updatedNotes, bookingCode]);
+                const deliveryTimeStr = `\nGiờ giao: <b>${updatedNotes}</b>`;
+                const nameRoomStr = updatedOrder.room ? `${updatedOrder.name} - ${updatedOrder.room.replace(/^r/i, '')}` : updatedOrder.name;
+                const hotelStr = updatedOrder.hotel ? `<b>${String(updatedOrder.hotel).toUpperCase().trim()}</b>` : 'Chưa rõ';
+                const statusLine = isPaid 
+                  ? `✅ <b>đã thanh toán</b>`
+                  : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(updatedOrder.amount || 0).toLocaleString('vi-VN')} VND</b>`;
+                const delText = `<b>Đơn cần giao: ${bookingCode}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${updatedOrder.phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
+                const resNew = await sendTelegramMessage(chatId, delText);
+                if (resNew && resNew.result && resNew.result.message_id) {
+                  await dbRun(
+                    "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
+                    [bookingCode, resNew.result.message_id, chatId]
+                  );
+                }
+              }
+            }
           }
           // --- STAGE 6: Admin/Staff payment confirmation reply in CHECK_THANH_TOAN ---
           else if (chatId === GROUPS.CHECK_THANH_TOAN && mapping.message_type === 'payment_check' && (text.toLowerCase().includes('done') || text.toLowerCase().includes('xác nhận') || text.toLowerCase().includes('xac nhan') || text.toLowerCase().includes('hoàn thành') || text.toLowerCase().includes('hoan thanh'))) {
@@ -2554,7 +2687,7 @@ Respond ONLY with a JSON object in this format:
         const localPath = await downloadTelegramFile(largestPhoto.file_id);
         console.log(`[Delivery Handler] Received direct photo in DON_GIAO. Local path: ${localPath}`);
 
-        sendTelegramMessage(chatId, `🤖 Bé Ba đang quét nội dung hóa đơn để xử lý yêu cầu giao hàng... ⏳`, message.message_id);
+        // sendTelegramMessage(chatId, `🤖 Bé Ba đang quét nội dung hóa đơn để xử lý yêu cầu giao hàng... ⏳`, message.message_id);
 
         const systemPrompt = `You are an AI assistant for a laundry shop. Analyze the uploaded receipt/invoice image.
 Your task is to:
@@ -2597,172 +2730,203 @@ Respond ONLY with a JSON object in this format:
         const aiRes = await analyzeImageWithAI(localPath, systemPrompt, userPrompt);
         console.log(`[Delivery Handler] AI Vision result:`, aiRes);
 
-        if (aiRes && aiRes.is_bill) {
-          const isPaid = aiRes.payment_status === 'paid';
-          const paymentStatusDb = isPaid ? 'Đã thanh toán' : 'Chờ thanh toán';
-          const receiptNumber = aiRes.receipt_number || null;
-          
-          const paymentStatusText = isPaid 
-            ? `✅ <b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
-            : `⚠️ <b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n🚨 <b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
-
-          let matchedOrder = null;
-          let bookingCode = null;
-
-          // Try matching by booking_code first
-          if (aiRes.booking_code) {
-            matchedOrder = await dbGet(
-              "SELECT o.*, c.name, c.phone, c.hotel, c.room FROM orders o JOIN customers c ON o.customer_id = c.id WHERE o.booking_code = ?",
-              [aiRes.booking_code]
-            );
-            if (matchedOrder) bookingCode = matchedOrder.booking_code;
-          }
-
-          // If not matched by booking_code, try matching by phone or name in active orders
-          if (!matchedOrder && aiRes.extracted_details) {
-            const details = aiRes.extracted_details;
-            const cleanPhone = details.phone ? details.phone.replace(/\D/g, '') : '';
+        if (aiRes) {
+          if (aiRes.is_bill) {
+            const isPaid = aiRes.payment_status === 'paid';
+            const paymentStatusDb = isPaid ? 'Đã thanh toán' : 'Chờ thanh toán';
+            const receiptNumber = aiRes.receipt_number || null;
             
-            if (cleanPhone) {
+            const paymentStatusText = isPaid 
+              ? `✅ <b>TRẠNG THÁI: ĐÃ THANH TOÁN (PAID)</b>\n<i>(Đơn hàng đã được thanh toán, chỉ cần giao đồ)</i>`
+              : `⚠️ <b>TRẠNG THÁI: CHƯA THANH TOÁN (COD)</b>\n🚨 <b>Vui lòng nhắn tin trước cho khách để báo số tiền và sắp xếp lấy tiền trước khi đi giao!</b>`;
+
+            let matchedOrder = null;
+            let bookingCode = null;
+
+            // Try matching by booking_code first
+            if (aiRes.booking_code) {
               matchedOrder = await dbGet(
-                `SELECT o.*, c.name, c.phone, c.hotel, c.room 
-                 FROM orders o 
-                 JOIN customers c ON o.customer_id = c.id 
-                 WHERE (c.phone = ? OR c.phone LIKE ?) AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
-                 ORDER BY o.order_date DESC LIMIT 1`,
-                [cleanPhone, `%${cleanPhone.slice(-8)}%`]
+                "SELECT o.*, c.name, c.phone, c.hotel, c.room FROM orders o JOIN customers c ON o.customer_id = c.id WHERE o.booking_code = ?",
+                [aiRes.booking_code]
               );
-            }
-            if (!matchedOrder && details.name) {
-              matchedOrder = await dbGet(
-                `SELECT o.*, c.name, c.phone, c.hotel, c.room 
-                 FROM orders o 
-                 JOIN customers c ON o.customer_id = c.id 
-                 WHERE c.name LIKE ? AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
-                 ORDER BY o.order_date DESC LIMIT 1`,
-                [`%${details.name}%`]
-              );
-            }
-            if (matchedOrder) bookingCode = matchedOrder.booking_code;
-          }
-
-          // Case A: Matched existing order
-          if (matchedOrder) {
-            const newDeliveryStatus = isPaid ? 'Chờ giao (đã thanh toán)' : 'Chờ giao chưa thanh toán';
-
-            await dbRun(
-              "UPDATE orders SET order_status = ?, status = ?, receipt_number = ? WHERE booking_code = ?",
-              [newDeliveryStatus, paymentStatusDb, receiptNumber, bookingCode]
-            );
-            syncOrderUpdateToN8n(bookingCode, matchedOrder.amount, newDeliveryStatus);
-
-            sendTelegramMessage(chatId, `🚚 Đã khớp đơn hàng <b>#${bookingCode}</b>! Cập nhật trạng thái thành: <b>${newDeliveryStatus}</b>.`, message.message_id);
-
-            // Post delivery request message and mapping so shipper can done/xong reply to it
-            const delText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST</b>
----------------------------------------
-📌 Mã đơn: <code>${bookingCode}</code> ${receiptNumber ? `(HĐ: <code>${receiptNumber}</code>)` : ''}
-👤 Khách hàng: <b>${matchedOrder.name}</b>
-📞 SĐT: <code>${matchedOrder.phone}</code>
-🏢 Khách sạn: ${matchedOrder.hotel}
-🚪 Số phòng: ${matchedOrder.room}
-💰 Số tiền: <b>${(matchedOrder.amount || 0).toLocaleString('vi-VN')} VND</b>
----------------------------------------
-${paymentStatusText}
----------------------------------------
-🚨 <i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
-            
-            const res4 = await sendTelegramPhoto(GROUPS.DON_GIAO, largestPhoto.file_id, delText);
-            if (res4 && res4.result && res4.result.message_id) {
-              await dbRun(
-                "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
-                [bookingCode, res4.result.message_id, GROUPS.DON_GIAO]
-              );
+              if (matchedOrder) bookingCode = matchedOrder.booking_code;
             }
 
-            // Forward directly to shipper & admin if unpaid
-            if (!isPaid) {
-              alertUnpaidOrder(bookingCode, delText);
-            }
-          } 
-          // Case B: Walk-in delivery request (delivery 20.000 and details)
-          else if (aiRes.is_walkin_delivery_request && aiRes.extracted_details) {
-            const details = aiRes.extracted_details;
-            const name = details.name || 'Walk-in Customer';
-            const phone = details.phone || '';
-            const hotel = details.hotel || '1997 Laundry Shop';
-            const room = details.room || '';
-            const amount = details.amount || 0;
-
-            // Generate new booking code
-            const bookingCode = 'LTT' + String(Math.floor(Date.now() / 1000)).slice(-4);
-
-            // Lookup or create customer
-            let customerId = null;
-            if (phone) {
-              const existingCust = await dbGet("SELECT id FROM customers WHERE phone = ?", [phone]);
-              if (existingCust) {
-                customerId = existingCust.id;
-                await dbRun("UPDATE customers SET name = ?, hotel = ?, room = ? WHERE id = ?", [name, hotel, room, customerId]);
+            // If not matched by booking_code, try matching by phone or name in active orders
+            if (!matchedOrder && aiRes.extracted_details) {
+              const details = aiRes.extracted_details;
+              const cleanPhone = details.phone ? details.phone.replace(/\D/g, '') : '';
+              
+              if (cleanPhone) {
+                matchedOrder = await dbGet(
+                  `SELECT o.*, c.name, c.phone, c.hotel, c.room 
+                   FROM orders o 
+                   JOIN customers c ON o.customer_id = c.id 
+                   WHERE (c.phone = ? OR c.phone LIKE ?) AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
+                   ORDER BY o.order_date DESC LIMIT 1`,
+                  [cleanPhone, `%${cleanPhone.slice(-8)}%`]
+                );
               }
+              if (!matchedOrder && details.name) {
+                matchedOrder = await dbGet(
+                  `SELECT o.*, c.name, c.phone, c.hotel, c.room 
+                   FROM orders o 
+                   JOIN customers c ON o.customer_id = c.id 
+                   WHERE c.name LIKE ? AND o.order_status NOT IN ('Hoàn thành', 'Đã giao')
+                   ORDER BY o.order_date DESC LIMIT 1`,
+                  [`%${details.name}%`]
+                );
+              }
+              if (matchedOrder) bookingCode = matchedOrder.booking_code;
             }
 
-            if (!customerId) {
-              const result = await dbRun(
-                "INSERT INTO customers (name, phone, hotel, room) VALUES (?, ?, ?, ?)",
-                [name, phone, hotel, room]
-              );
-              customerId = result.lastID;
-            }
+            // Case A: Matched existing order
+            if (matchedOrder) {
+              const newDeliveryStatus = isPaid ? 'Chờ giao (đã thanh toán)' : 'Chờ giao chưa thanh toán';
 
-            // Create new order in SQLite DB
-            const phoneDigits = (phone || '').replace(/\D/g, '');
-            const isViPhoneNum = phoneDigits.startsWith('84') || phoneDigits.startsWith('0');
-            const langVal = isViPhoneNum ? 'vi' : 'en';
-
-            const newDeliveryStatus = isPaid ? 'Chờ giao (đã thanh toán)' : 'Chờ giao chưa thanh toán';
-
-            await dbRun(
-              "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, receipt_number, lang) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)",
-              [bookingCode, customerId, amount, paymentStatusDb, newDeliveryStatus, new Date().toISOString(), receiptNumber, langVal]
-            );
-
-            // Sync to n8n
-            syncOrderUpdateToN8n(bookingCode, amount, newDeliveryStatus);
-
-            sendTelegramMessage(chatId, `🆕 Phát hiện đơn Khách tới tiệm giao về! Đã tự động tạo đơn mới trên Admin: <b>#${bookingCode}</b> (${isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}).`, message.message_id);
-
-            // Post delivery card for shipper
-            const delText = `🛵 <b>YÊU CẦU GIAO HÀNG / DELIVERY REQUEST (KHÁCH TIỆM)</b>
----------------------------------------
-📌 Mã đơn: <code>${bookingCode}</code> (Tự tạo) ${receiptNumber ? `(HĐ: <code>${receiptNumber}</code>)` : ''}
-👤 Khách hàng: <b>${name}</b>
-📞 SĐT: <code>${phone}</code>
-🏢 Địa chỉ giao: ${hotel}
-🚪 Số phòng: ${room}
-💰 Tổng thanh toán: <b>${amount.toLocaleString('vi-VN')} VND</b>
----------------------------------------
-${paymentStatusText}
----------------------------------------
-🚨 <i>Shipper giao hàng chụp ảnh và reply tin nhắn này kèm chữ "done" hoặc "xong" để hoàn tất đơn hàng!</i>`;
-
-            const res4 = await sendTelegramPhoto(GROUPS.DON_GIAO, largestPhoto.file_id, delText);
-            if (res4 && res4.result && res4.result.message_id) {
               await dbRun(
-                "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
-                [bookingCode, res4.result.message_id, GROUPS.DON_GIAO]
+                "UPDATE orders SET order_status = ?, status = ?, receipt_number = ? WHERE booking_code = ?",
+                [newDeliveryStatus, paymentStatusDb, receiptNumber, bookingCode]
               );
-            }
+              syncOrderUpdateToN8n(bookingCode, matchedOrder.amount, newDeliveryStatus);
 
-            // Forward directly to shipper & admin if unpaid
-            if (!isPaid) {
-              alertUnpaidOrder(bookingCode, delText);
+              // sendTelegramMessage(chatId, `🚚 Đã khớp đơn hàng <b>#${bookingCode}</b>! Cập nhật trạng thái thành: <b>${newDeliveryStatus}</b>.`, message.message_id);
+
+              // Post delivery request message and mapping so shipper can done/xong reply to it
+              // 1. Get delivery Notes (Giờ giao)
+              let deliveryNotes = aiRes.extracted_details ? (aiRes.extracted_details.delivery_notes || '') : '';
+              if (!deliveryNotes) {
+                deliveryNotes = matchedOrder.notes || '';
+              }
+              deliveryNotes = deliveryNotes.trim();
+              const deliveryTimeStr = deliveryNotes ? `\nGiờ giao: <b>${deliveryNotes}</b>` : '';
+
+              // 2. Format name and room
+              const displayName = matchedOrder.name || 'Khách vãng lai';
+              const displayRoom = matchedOrder.room || '';
+              const nameRoomStr = displayRoom ? `${displayName} - ${displayRoom.replace(/^r/i, '')}` : displayName;
+
+              // 3. Format Hotel in UPPERCASE BOLD
+              const displayHotel = matchedOrder.hotel || 'Chưa rõ';
+              const hotelStr = `<b>${String(displayHotel).toUpperCase().trim()}</b>`;
+
+              // 4. Format Payment Status
+              const displayAmount = matchedOrder.amount || 0;
+              const statusLine = isPaid 
+                ? `✅ <b>đã thanh toán</b>`
+                : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(displayAmount).toLocaleString('vi-VN')} VND</b>`;
+
+              // 5. Construct final text
+              const delText = `<b>Đơn cần giao: ${bookingCode}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${matchedOrder.phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
+              
+              const res4 = await sendTelegramPhoto(GROUPS.DON_GIAO, largestPhoto.file_id, delText);
+              if (res4 && res4.result && res4.result.message_id) {
+                await dbRun(
+                  "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
+                  [bookingCode, res4.result.message_id, GROUPS.DON_GIAO]
+                );
+              }
+
+              // Forward directly to shipper & admin if unpaid
+              if (!isPaid) {
+                alertUnpaidOrder(bookingCode, delText);
+              }
+            } 
+            // Case B: Walk-in delivery request (delivery 20.000 and details)
+            else if (aiRes.is_walkin_delivery_request && aiRes.extracted_details) {
+              const details = aiRes.extracted_details;
+              const name = details.name || 'Walk-in Customer';
+              const phone = details.phone || '';
+              const hotel = details.hotel || '1997 Laundry Shop';
+              const room = details.room || '';
+              const amount = details.amount || 0;
+
+              // Generate new booking code
+              const bookingCode = 'LTT' + String(Math.floor(Date.now() / 1000)).slice(-4);
+
+              // Lookup or create customer
+              let customerId = null;
+              if (phone) {
+                const existingCust = await dbGet("SELECT id FROM customers WHERE phone = ?", [phone]);
+                if (existingCust) {
+                  customerId = existingCust.id;
+                  await dbRun("UPDATE customers SET name = ?, hotel = ?, room = ? WHERE id = ?", [name, hotel, room, customerId]);
+                }
+              }
+
+              if (!customerId) {
+                const result = await dbRun(
+                  "INSERT INTO customers (name, phone, hotel, room) VALUES (?, ?, ?, ?)",
+                  [name, phone, hotel, room]
+                );
+                customerId = result.lastID;
+              }
+
+              // Create new order in SQLite DB
+              const phoneDigits = (phone || '').replace(/\D/g, '');
+              const isViPhoneNum = phoneDigits.startsWith('84') || phoneDigits.startsWith('0');
+              const langVal = isViPhoneNum ? 'vi' : 'en';
+
+              const newDeliveryStatus = isPaid ? 'Chờ giao (đã thanh toán)' : 'Chờ giao chưa thanh toán';
+
+              await dbRun(
+                "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, receipt_number, lang) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)",
+                [bookingCode, customerId, amount, paymentStatusDb, newDeliveryStatus, new Date().toISOString(), receiptNumber, langVal]
+              );
+
+              // Sync to n8n
+              syncOrderUpdateToN8n(bookingCode, amount, newDeliveryStatus);
+
+              sendTelegramMessage(chatId, `🆕 Phát hiện đơn Khách tới tiệm giao về! Đã tự động tạo đơn mới trên Admin: <b>#${bookingCode}</b> (${isPaid ? 'Đã thanh toán' : 'Chưa thanh toán'}).`, message.message_id);
+
+              // Post delivery card for shipper
+              // 1. Get delivery Notes (Giờ giao)
+              let deliveryNotes = details.delivery_notes || '';
+              deliveryNotes = deliveryNotes.trim();
+              const deliveryTimeStr = deliveryNotes ? `\nGiờ giao: <b>${deliveryNotes}</b>` : '';
+
+              // 2. Format name and room
+              const nameRoomStr = room ? `${name} - ${room.replace(/^r/i, '')}` : name;
+
+              // 3. Format Hotel in UPPERCASE BOLD
+              const hotelStr = `<b>${String(hotel).toUpperCase().trim()}</b>`;
+
+              // 4. Format Payment Status
+              const statusLine = isPaid 
+                ? `✅ <b>đã thanh toán</b>`
+                : `⚠️ <b>chưa thanh toán (COD) - thu hộ: ${(amount).toLocaleString('vi-VN')} VND</b>`;
+
+              // 5. Construct final text
+              const delText = `<b>Đơn cần giao: ${bookingCode}</b>${deliveryTimeStr}
+${nameRoomStr}
+<code>${phone || 'Chưa rõ'}</code>
+${hotelStr}
+${statusLine}`;
+
+              const res4 = await sendTelegramPhoto(GROUPS.DON_GIAO, largestPhoto.file_id, delText);
+              if (res4 && res4.result && res4.result.message_id) {
+                await dbRun(
+                  "INSERT INTO order_telegram_mappings (booking_code, telegram_message_id, telegram_chat_id, message_type) VALUES (?, ?, ?, 'delivery')",
+                  [bookingCode, res4.result.message_id, GROUPS.DON_GIAO]
+                );
+              }
+
+              // Forward directly to shipper & admin if unpaid
+              if (!isPaid) {
+                alertUnpaidOrder(bookingCode, delText);
+              }
+            } else {
+              sendTelegramMessage(chatId, `⚠️ Ảnh hóa đơn gửi lên không khớp với đơn hàng nào trong hệ thống và cũng không phải là yêu cầu giao hàng từ khách tại tiệm (thiếu thông tin hoặc phí delivery 20.000).`, message.message_id);
             }
           } else {
-            sendTelegramMessage(chatId, `⚠️ Ảnh hóa đơn gửi lên không khớp với đơn hàng nào trong hệ thống và cũng không phải là yêu cầu giao hàng từ khách tại tiệm (thiếu thông tin hoặc phí delivery 20.000).`, message.message_id);
+            sendTelegramMessage(chatId, `⚠️ Ảnh gửi lên không phải là ảnh hóa đơn/bill hợp lệ để xử lý giao hàng.`, message.message_id);
           }
         } else {
-          sendTelegramMessage(chatId, `⚠️ Ảnh gửi lên không phải là ảnh hóa đơn/bill hợp lệ để xử lý giao hàng.`, message.message_id);
+          sendTelegramMessage(chatId, `❌ Hệ thống nhận diện AI đang gặp sự cố hoặc hết hạn mức lượt quét trong ngày. Vui lòng liên hệ Admin để kiểm tra khóa API.`, message.message_id);
         }
       } catch (err) {
         console.error('Delivery handler failed:', err);
@@ -2796,45 +2960,49 @@ Respond ONLY with a JSON object in this format:
         const aiRes = await analyzeImageWithAI(localPath, systemPrompt, userPrompt);
         console.log(`[Payment Check] AI Vision result:`, aiRes);
 
-        if (aiRes && aiRes.is_payment_slip) {
-          let matchTx = null;
-          
-          if (aiRes.transaction_code) {
-            matchTx = await dbGet(
-              `SELECT * FROM sepay_transactions 
-               WHERE reference_code = ? 
-                  OR content LIKE ? 
-                  OR sepay_id = ?`,
-              [aiRes.transaction_code, `%${aiRes.transaction_code}%`, aiRes.transaction_code]
-            );
-          }
+        if (aiRes) {
+          if (aiRes.is_payment_slip) {
+            let matchTx = null;
+            
+            if (aiRes.transaction_code) {
+              matchTx = await dbGet(
+                `SELECT * FROM sepay_transactions 
+                 WHERE reference_code = ? 
+                    OR content LIKE ? 
+                    OR sepay_id = ?`,
+                [aiRes.transaction_code, `%${aiRes.transaction_code}%`, aiRes.transaction_code]
+              );
+            }
 
-          if (!matchTx && aiRes.amount) {
-            matchTx = await dbGet(
-              `SELECT * FROM sepay_transactions 
-               WHERE transfer_amount = ? 
-                 AND datetime(created_at) >= datetime('now', '-1 day')
-               ORDER BY created_at DESC LIMIT 1`,
-              [aiRes.amount]
-            );
-          }
+            if (!matchTx && aiRes.amount) {
+              matchTx = await dbGet(
+                `SELECT * FROM sepay_transactions 
+                 WHERE transfer_amount = ? 
+                   AND datetime(created_at) >= datetime('now', '-1 day')
+                 ORDER BY created_at DESC LIMIT 1`,
+                [aiRes.amount]
+              );
+            }
 
-          if (matchTx) {
-            sendTelegramMessage(
-              chatId, 
-              `✅ <b>ĐÃ NHẬN TIỀN (SEPAY/NGÂN HÀNG):</b>\n\nGiao dịch thành công đã được hệ thống ghi nhận!\n\n💵 Số tiền: <b>${matchTx.transfer_amount.toLocaleString('vi-VN')} VND</b>\n🏦 Cổng/Ngân hàng: <b>${matchTx.gateway || 'N/A'}</b>\n⏰ Thời gian nhận: <code>${matchTx.transaction_date || matchTx.created_at}</code>\n📝 Nội dung CK: <i>"${matchTx.content}"</i>\n📌 Mã GD: <code>${matchTx.reference_code || 'N/A'}</code>`, 
-              message.message_id
-            );
+            if (matchTx) {
+              sendTelegramMessage(
+                chatId, 
+                `✅ <b>ĐÃ NHẬN TIỀN (SEPAY/NGÂN HÀNG):</b>\n\nGiao dịch thành công đã được hệ thống ghi nhận!\n\n💵 Số tiền: <b>${matchTx.transfer_amount.toLocaleString('vi-VN')} VND</b>\n🏦 Cổng/Ngân hàng: <b>${matchTx.gateway || 'N/A'}</b>\n⏰ Thời gian nhận: <code>${matchTx.transaction_date || matchTx.created_at}</code>\n📝 Nội dung CK: <i>"${matchTx.content}"</i>\n📌 Mã GD: <code>${matchTx.reference_code || 'N/A'}</code>`, 
+                message.message_id
+              );
+            } else {
+              const displayAmount = aiRes.amount ? `${aiRes.amount.toLocaleString('vi-VN')} VND` : 'Không rõ';
+              sendTelegramMessage(
+                chatId, 
+                `❌ <b>CHƯA NHẬN ĐƯỢC TIỀN TRÊN HỆ THỐNG:</b>\n\nHệ thống SePay/Ngân hàng <b>chưa nhận được</b> hoặc chưa ghi nhận giao dịch này trong cơ sở dữ liệu.\n\n💵 Số tiền trên ảnh: <b>${displayAmount}</b>\n📌 Mã GD trên ảnh: <code>${aiRes.transaction_code || 'N/A'}</code>\n🚨 <i>Vui lòng kiểm tra lại tài khoản hoặc đợi vài phút để hệ thống cập nhật!</i>`, 
+                message.message_id
+              );
+            }
           } else {
-            const displayAmount = aiRes.amount ? `${aiRes.amount.toLocaleString('vi-VN')} VND` : 'Không rõ';
-            sendTelegramMessage(
-              chatId, 
-              `❌ <b>CHƯA NHẬN ĐƯỢC TIỀN TRÊN HỆ THỐNG:</b>\n\nHệ thống SePay/Ngân hàng <b>chưa nhận được</b> hoặc chưa ghi nhận giao dịch này trong cơ sở dữ liệu.\n\n💵 Số tiền trên ảnh: <b>${displayAmount}</b>\n📌 Mã GD trên ảnh: <code>${aiRes.transaction_code || 'N/A'}</code>\n🚨 <i>Vui lòng kiểm tra lại tài khoản hoặc đợi vài phút để hệ thống cập nhật!</i>`, 
-              message.message_id
-            );
+            sendTelegramMessage(chatId, `⚠️ Ảnh gửi lên không phải là ảnh hóa đơn chuyển khoản/thanh toán hợp lệ.`, message.message_id);
           }
         } else {
-          sendTelegramMessage(chatId, `⚠️ Ảnh gửi lên không phải là ảnh hóa đơn chuyển khoản/thanh toán hợp lệ.`, message.message_id);
+          sendTelegramMessage(chatId, `❌ Hệ thống nhận diện AI đang gặp sự cố hoặc hết hạn mức lượt quét trong ngày. Vui lòng liên hệ Admin để kiểm tra khóa API.`, message.message_id);
         }
       } catch (err) {
         console.error('Payment check direct handler failed:', err);
@@ -3146,9 +3314,13 @@ Respond ONLY with a JSON object in this format:
       // 1. Intercept short greetings to show welcome message with buttons instantly
       if (!message.photo && text) {
         const cleanText = text.replace(/[^a-zA-Z0-9\/]/g, '').trim().toLowerCase();
-        const greetings = ['/start', 'hi', 'hello', 'chào', 'chao', 'hey', 'hola', 'start'];
-        if (greetings.includes(cleanText)) {
-          const welcomeText = `Dạ, chào anh/chị! 🧺 Em là trợ lý của 1997 Premium Laundry. Rất vui được gặp anh/chị ạ. Vui lòng chọn dịch vụ anh/chị cần:`;
+        const viGreetings = ['chào', 'chao', 'xin chào', 'xin chao'];
+        const enGreetings = ['/start', 'hi', 'hello', 'hey', 'hola', 'start'];
+        if (viGreetings.includes(cleanText) || enGreetings.includes(cleanText)) {
+          const isVi = viGreetings.includes(cleanText);
+          const welcomeText = isVi 
+            ? `Dạ, chào anh/chị! 🧺 Em là trợ lý của 1997 Premium Laundry. Rất vui được gặp anh/chị ạ. Vui lòng chọn dịch vụ anh/chị cần:`
+            : `Hello! 🧺 I'm the assistant for 1997 Premium Laundry. It's a pleasure to meet you. Please choose the service you need:`;
           const replyMarkup = {
             keyboard: [
               [{ text: 'Same-day Express' }],
@@ -3164,7 +3336,7 @@ Respond ONLY with a JSON object in this format:
 
         // 2. Intercept Change Package option
         if (text.toLowerCase().includes('change package') || text.includes('🔙 Change Package')) {
-          const welcomeText = `Dạ, vui lòng chọn dịch vụ anh/chị cần:`;
+          const welcomeText = `Please choose the service you need:`;
           const replyMarkup = {
             keyboard: [
               [{ text: 'Same-day Express' }],
@@ -3249,9 +3421,11 @@ Respond ONLY with a JSON object in this format:
         } else {
           const errText = await response.text();
           console.error('[Telegram Webhook] goClaw completions API error:', errText);
+          sendTelegramMessage(chatId, `❌ Hệ thống đang gặp sự cố kết nối với AI (goClaw). Vui lòng thử lại sau hoặc liên hệ Admin để kiểm tra.`, message.message_id);
         }
       } catch (err) {
         console.error('[Telegram Webhook] Fallback to goClaw failed:', err);
+        sendTelegramMessage(chatId, `❌ Đã xảy ra lỗi kết nối với hệ thống AI. Vui lòng liên hệ Admin.`, message.message_id);
       }
     }
   }
