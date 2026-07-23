@@ -18,38 +18,36 @@
   <div class="gradient-blob blob-3"></div>
 
   <!-- Sticky Header Navigation -->
-  <header class="main-header" id="mainHeader">
-    <div class="header-container">
-      <a href="./" class="logo-link" id="headerLogoLink">
-        <img src="logo-dark.svg" alt="1997 Premium Laundry Logo" class="header-logo-img">
-      </a>
-      
-      <nav class="nav-links" id="mainNav">
-        <a href="./" class="nav-item">Home</a>
-        <a href="./#pricing" class="nav-item">Pricing</a>
-        <a href="shoes.html" class="nav-item active">Shoes Cleaning</a>
-        <a href="bedding.html" class="nav-item">Linens & Bedding</a>
-        <a href="booking.html" class="nav-item">Book Appointment</a>
-      </nav>
-
-      <div class="header-cta" id="headerCtaWrapper" style="display: flex; align-items: center;">
-        <div class="lang-switch-wrapper" style="margin-right: 1.25rem;">
-          <select class="lang-select" id="langSelect">
-            <option value="en">🇬🇧 EN</option>
-            <option value="vi">🇻🇳 VI</option>
-          </select>
+  <header class="main-header" id="navbar">
+        <div class="container header-container">
+            <a href="#" class="logo" id="header-logo">
+                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="shoes.html" class="nav-item active">Shoes Cleaning</a>
+                <a href="bedding.html" class="nav-item">Linens & Bedding</a>
+                <a href="booking.html" class="nav-item">Book Appointment</a>
+            </nav>
+            <div class="header-ctas" style="display: flex; align-items: center;">
+                <div class="lang-switch-wrapper" style="margin-right: 1.25rem;">
+                  <select class="lang-select" id="langSelect">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="vi">🇻🇳 VI</option>
+                  </select>
+                </div>
+                <a href="booking.html" class="btn btn-primary btn-cta" id="btn-header-cta">
+                    <span>Book Now</span> <i class="fa-solid fa-chevron-right"></i>
+                </a>
+                <a href="tel:0373991602" class="btn btn-phone" id="btn-header-phone">
+                    <i class="fa-solid fa-phone"></i> <span>0373 991 602</span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
-        <a href="booking.html" class="pill-button btn-primary btn-pulse-attention" id="headerCtaBtn">Book Now</a>
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+    </header>
 
     <!-- Hero Section -->
   <section class="hero-section" id="hero">
