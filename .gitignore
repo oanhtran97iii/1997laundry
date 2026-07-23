@@ -4,6 +4,8 @@ node_modules/
 # Local databases
 brain.db
 brain_backup.db
+laundry.db
+*.db
 
 # Environment variables & secrets
 .env

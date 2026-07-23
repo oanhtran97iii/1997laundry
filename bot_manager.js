@@ -375,6 +375,24 @@ const userStates = new Map();
 
 async function handleWhatsAppInboundMessage(phone, text, rawMsg) {
   const cleanText = text.trim().toLowerCase();
+  
+  // Extract referral tracking source if present in inbound message text
+  const refMatch = text.match(/\[Ref:\s*([^\]]+)\]/i) || 
+                   text.match(/(?:Source|Ref):\s*([^\n\r]+)/i) ||
+                   text.match(/#([A-Z0-9_-]+)\s*$/i);
+  if (refMatch) {
+      const code = refMatch[1].toUpperCase().trim();
+      let source = 'Direct / Website';
+      if (code === 'MAPS-ADS') source = 'Google Maps Ads';
+      else if (code === 'SEARCH-GENERAL') source = 'Google Search Ads (general)';
+      else if (code === 'SEARCH-EXPRESS') source = 'Google Search Ads (express)';
+      else if (code === 'MAPS-ORGANIC') source = 'Google Maps Organic';
+      else if (code === 'DIRECT') source = 'Direct / Website';
+      
+      global.referralCache[phone] = source;
+      console.log(`[WhatsApp Inbound] Associated phone ${phone} with referral source: ${source}`);
+  }
+
   let state = userStates.get(phone) || { step: 'idle', data: {} };
   
   if (cleanText === 'menu' || cleanText === 'reset' || (state.step === 'idle' && (cleanText === 'hi' || cleanText === 'hello' || cleanText === 'xin chào' || cleanText === 'chào'))) {
@@ -468,10 +486,11 @@ async function handleWhatsAppInboundMessage(phone, text, rawMsg) {
           customerId = res.lastID;
         }
         
+        const referralSource = global.referralCache[phone] || global.referralCache[`+${formattedPhone}`] || 'Direct / Website';
         await dbRun(
-          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, notes) 
-           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?)`,
-          [bookingCode, customerId, state.data.productId, state.data.estimatedAmount, new Date().toISOString(), 'Đặt qua WhatsApp Flow']
+          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, notes, referral_source) 
+           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?)`,
+          [bookingCode, customerId, state.data.productId, state.data.estimatedAmount, new Date().toISOString(), 'Đặt qua WhatsApp Flow', referralSource]
         );
         
         const successMsg = `🔔 Đặt lịch thành công! Mã đơn hàng của anh/chị là: ${bookingCode}.\n\nCảm ơn anh/chị đã lựa chọn 1997 Laundry! 🌸`;
@@ -1452,10 +1471,11 @@ async function handleTelegramUpdate(update) {
         const langVal = isViPhoneNum ? 'vi' : 'en';
 
         // Insert order
+        const referralSource = global.referralCache[customerId] || global.referralCache[finalPhone] || 'Direct / Website';
         await dbRun(
-          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang, notes, collect_scheduled_time) 
-           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?, ?)`,
-          [bookingCode, customerId, finalProductId, baseAmount, new Date().toISOString(), langVal, finalNotes, finalPickupTime]
+          `INSERT INTO orders (booking_code, customer_id, product_id, amount, status, order_status, order_date, lang, notes, collect_scheduled_time, referral_source) 
+           VALUES (?, ?, ?, ?, 'Chờ thanh toán', 'Chờ lấy', ?, ?, ?, ?, ?)`,
+          [bookingCode, customerId, finalProductId, baseAmount, new Date().toISOString(), langVal, finalNotes, finalPickupTime, referralSource]
         );
 
         syncOrderUpdateToN8n(bookingCode, baseAmount, 'Chờ lấy');
@@ -3532,7 +3552,7 @@ function init(app, sqliteDb) {
   });
   
   // 2. Set Telegram webhook URL programmatically
-  const webhookUrl = `https://nicefoldsaigon.vn/api/telegram-webhook-1997`;
+  const webhookUrl = `https://1997laundry.com/api/telegram-webhook-1997`;
   const setWebhookApiUrl = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/setWebhook?url=${encodeURIComponent(webhookUrl)}&allowed_updates=${encodeURIComponent(JSON.stringify(["message", "edited_message", "callback_query", "my_chat_member"]))}`;
   
   https.get(setWebhookApiUrl, { family: 4 }, (res) => {

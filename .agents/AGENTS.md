@@ -15,3 +15,8 @@ Khi người dùng thực hiện kiểm thử (test luồng), trainning botchat 
 3. **Báo cáo và Hướng dẫn copy-paste**: AI hiển thị rõ phần nội dung đã cập nhật (được định dạng sẵn trong khối code markdown) để người dùng chỉ cần copy và dán trực tiếp vào mục tài liệu tương ứng trên trang Admin goClaw của Agent `1997-laundry-assistant`.
 4. **Không cần câu lệnh kích hoạt**: Luồng này sẽ tự động chạy bất cứ khi nào người dùng nói về việc "cập nhật kiến thức", "sửa thông tin dịch vụ", hoặc đưa ra các quy tắc/câu trả lời mẫu mới cần bot ghi nhớ.
 
+## Goclaw Skill Connection Requirement
+- **Rule**: Whenever the user requests to write a Facebook post, draft a marketing article, create content, or generate social media posts (e.g., matching keywords "viết bài facebook", "lên bài fb", "write facebook post", "tạo content"), you MUST trigger and connect to the GoClaw Skill **`1997-fb-post-expert`** to perform the task. Do NOT write the post using your own general memory; always delegate the logic to the `1997-fb-post-expert` Skill.
+- **Rule**: For all customer support, booking requests, service inquiries, payments, or complaints (e.g., matching questions about packages, pricing, ironing, dry cleaning, damaged items, no cash), you MUST trigger and connect to the GoClaw Skill **`laundry-customer-support-expert`** to handle the response, ensuring correct guidelines and escalation rules.
+- **Rule**: Whenever the user requests to generate an Instagram feed, write Instagram posts, or design 5 photos/captions for Instagram (e.g., matching keywords "lên bài instagram", "thiết kế instagram feed", "tạo 5 ảnh đăng instagram", "viết bài insta", "instagram post"), you MUST trigger and connect to the GoClaw Skill **`laundry-instagram-creator`** to perform the task.
+

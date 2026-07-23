@@ -8,15 +8,15 @@ header("Content-Type: application/json");
 
 // --- Resend Email Templates and Helpers ---
 
-define('EMAIL_1_SUBJECT', 'Welcome to Nice Fold Saigon! 🧼');
+define('EMAIL_1_SUBJECT', 'Welcome to 1997 Premium Laundry! 🧼');
 define('EMAIL_1_HTML', '
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Thank you for sharing your laundry preferences with us!</p>
-  <p>Welcome to Nice Fold Saigon, a premium laundry service designed specifically for travelers and hotel guests in Ho Chi Minh City. Our mission is simple: to make your stay completely hassle-free by taking care of your laundry with the highest standards of hygiene and reliability.</p>
+  <p>Welcome to 1997 Premium Laundry, a premium laundry service designed specifically for travelers and hotel guests in Ho Chi Minh City. Our mission is simple: to make your stay completely hassle-free by taking care of your laundry with the highest standards of hygiene and reliability.</p>
   
   <p>We have saved your preferences. When you are ready to get your laundry done, here is what you can look forward to:</p>
   <ul>
@@ -25,8 +25,8 @@ define('EMAIL_1_HTML', '
   </ul>
   
   <p>Keep an eye on your inbox—over the next few days, we\'ll share a few travel hacks to help you avoid common laundry traps in Saigon.</p>
-  <p>Welcome to Nice Fold!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Welcome to 1997 Laundry!</p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 ');
 
@@ -34,7 +34,7 @@ define('EMAIL_2_SUBJECT', 'Travel Hack: How to save space and laundry fees in Sa
 define('EMAIL_2_HTML', '
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Here is a quick tip to make your stay in Saigon easier: try packing light. Carrying heavy bags through Ho Chi Minh City\'s busy streets is no fun. Packing light is easy if you wash your clothes on-the-go.</p>
@@ -43,9 +43,9 @@ define('EMAIL_2_HTML', '
     <li><strong>Hotel Laundry</strong>: It is convenient, but hotels usually charge <em>per piece</em>, which quickly adds up and can double your budget.</li>
     <li><strong>Street Laundry</strong>: While very cheap, they often mix garments from multiple customers to save costs. This compromises hygiene.</li>
   </ol>
-  <p>At Nice Fold Saigon, we wash each customer\'s clothes 100% separately to ensure absolute cleanliness, and we coordinate directly with your hotel front desk for drop-off and pickup. You get your clothes back same-day without any hassle.</p>
+  <p>At 1997 Premium Laundry, we wash each customer\'s clothes 100% separately to ensure absolute cleanliness, and we coordinate directly with your hotel front desk for drop-off and pickup. You get your clothes back same-day without any hassle.</p>
   <p>Have a wonderful trip in Vietnam!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 ');
 
@@ -53,7 +53,7 @@ define('EMAIL_3_SUBJECT', 'Get your laundry done in Saigon (Same-day & Express d
 define('EMAIL_3_HTML', '
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>If you need your laundry done quickly in Ho Chi Minh City, check us out.</p>
@@ -64,26 +64,26 @@ define('EMAIL_3_HTML', '
     <li><strong>Standard Wash & Fold (24h)</strong> - 40,000 VND / kg.</li>
   </ul>
   <p>We also offer Premium Shoe Cleaning at 150,000 VND / pair to refresh your walking shoes.</p>
-  <p><strong>Why choose Nice Fold Saigon?</strong></p>
+  <p><strong>Why choose 1997 Premium Laundry?</strong></p>
   <ul>
     <li><strong>Checkout Guarantee</strong>: We promise to return your laundry before your hotel checkout time so you can catch your flight.</li>
     <li><strong>100% Separate Wash</strong>: We wash every order individually—never mixed with others.</li>
   </ul>
   <p>Book your slot now and pay securely online:</p>
   <p style="text-align: center; margin: 30px 0;">
-    <a href="https://nicefoldsaigon.vn/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
+    <a href="https://1997laundry.com/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
   </p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 ');
 
 define('ORDER_CONFIRMATION_HTML', '
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
-  <p>Thank you for choosing Nice Fold Saigon! Your order <strong>#{booking_code}</strong> has been successfully created and is being processed.</p>
+  <p>Thank you for choosing 1997 Premium Laundry! Your order <strong>#{booking_code}</strong> has been successfully created and is being processed.</p>
   <div style="background-color: #f7fafc; border: 1px solid #edf2f7; border-radius: 6px; padding: 15px; margin: 20px 0;">
     <h3 style="margin-top: 0; color: #041d40;">Order Summary</h3>
     <table style="width: 100%; border-collapse: collapse;">
@@ -112,15 +112,15 @@ define('ORDER_CONFIRMATION_HTML', '
     <li><strong>Checkout Guarantee</strong>: We will deliver your clean clothes back to your hotel reception before your checkout time so you can travel worry-free.</li>
   </ul>
   <p>If you have any questions, feel free to contact us via WhatsApp or Zalo.</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 ');
 
-define('ORDER_COMPLETED_SUBJECT', 'Payment Confirmed & Thank you! - Nice Fold Saigon 🌸');
+define('ORDER_COMPLETED_SUBJECT', 'Payment Confirmed & Thank you! - 1997 Premium Laundry 🌸');
 define('ORDER_COMPLETED_HTML', '
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="Nice Fold Saigon" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Premium Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Your payment for order <strong>#{booking_code}</strong> has been successfully received and confirmed. Thank you very much!</p>
@@ -147,7 +147,7 @@ define('ORDER_COMPLETED_HTML', '
     <a href="https://maps.app.goo.gl/NiceFoldSaigon" style="background-color: #041d40; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Leave a Google Review ★★★★★</a>
   </p>
   <p>Thank you again, and have a safe and wonderful trip!</p>
-  <p>Best regards,<br><strong>The Nice Fold Saigon Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Premium Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 ');
 
@@ -185,7 +185,7 @@ function send_email_via_resend($to_email, $subject, $html_content) {
 
     $ch = curl_init("https://api.resend.com/emails");
     $payload = json_encode([
-        "from" => "Nice Fold Saigon <hi@nicefoldsaigon.vn>",
+        "from" => "1997 Premium Laundry <hi@1997laundry.com>",
         "to" => [$to_email],
         "subject" => $subject,
         "html" => $html_content
@@ -250,7 +250,7 @@ function send_booking_confirmation($name, $email, $service_name, $amount_val, $b
         [$name, $service_name, $formatted_amount, $hotel_address, $room_number, $booking_code],
         ORDER_CONFIRMATION_HTML
     );
-    send_email_via_resend($email, "Booking Confirmation #$booking_code - Nice Fold Saigon 🛎️", $email_body);
+    send_email_via_resend($email, "Booking Confirmation #$booking_code - 1997 Premium Laundry 🛎️", $email_body);
 }
 
 function send_payment_confirmation($name, $email, $service_name, $amount_val, $booking_code) {
@@ -461,12 +461,16 @@ switch ($action) {
             "Phí vận chuyển" => isset($body['shipFee']) ? floatval($body['shipFee']) : 0,
             "Phụ phí" => isset($body['surcharge']) ? floatval($body['surcharge']) : 0,
             "Tổng tiền bill tạm tính" => isset($body['totalVnd']) ? floatval($body['totalVnd']) : 0,
+            "Nguồn khách" => isset($body['referralSource']) ? $body['referralSource'] : 'Direct / Website',
             "Trạng thái đơn" => "Chờ XN",
             "Ngày tạo" => date('Y-m-d H:i:s')
         ];
 
         $orders[] = $newOrder;
         writeData($ordersFile, $orders);
+
+        // Auto-generate/update the referral report file
+        generate_referral_report();
 
         // Trigger order confirmation email
         $email = isset($body['email']) ? $body['email'] : '';
@@ -901,6 +905,8 @@ switch ($action) {
                 return $o['id'] != $id && $o['Mã đặt lịch'] != $id;
             });
             writeData($ordersFile, $newOrders);
+            // Re-generate report on deletion
+            generate_referral_report();
             echo json_encode(["success" => true]);
         } elseif ($type === 'customers') {
             $customers = readData($customersFile);
@@ -918,5 +924,97 @@ switch ($action) {
         http_response_code(404);
         echo json_encode(["error" => "Endpoint not found"]);
         break;
+}
+
+// --- Dynamic Referral Reporting Engine ---
+function generate_referral_report() {
+    global $ordersFile;
+    $orders = readData($ordersFile);
+    
+    $totalStats = [];
+    $monthlyStats = [];
+    $dailyStats = [];
+    
+    foreach ($orders as $o) {
+        $source = isset($o['Nguồn khách']) ? $o['Nguồn khách'] : 'Direct / Website';
+        $revenue = isset($o['Tổng tiền bill tạm tính']) ? floatval($o['Tổng tiền bill tạm tính']) : 0;
+        
+        $dateStr = isset($o['Ngày tạo']) ? $o['Ngày tạo'] : '';
+        if (empty($dateStr)) {
+            continue;
+        }
+        $dateObj = strtotime($dateStr);
+        $month = date('Y-m', $dateObj);
+        $day = date('Y-m-d', $dateObj);
+        
+        // Total
+        if (!isset($totalStats[$source])) {
+            $totalStats[$source] = ['orders' => 0, 'revenue' => 0];
+        }
+        $totalStats[$source]['orders']++;
+        $totalStats[$source]['revenue'] += $revenue;
+        
+        // Monthly
+        if (!isset($monthlyStats[$month])) {
+            $monthlyStats[$month] = [];
+        }
+        if (!isset($monthlyStats[$month][$source])) {
+            $monthlyStats[$month][$source] = ['orders' => 0, 'revenue' => 0];
+        }
+        $monthlyStats[$month][$source]['orders']++;
+        $monthlyStats[$month][$source]['revenue'] += $revenue;
+        
+        // Daily
+        if (!isset($dailyStats[$day])) {
+            $dailyStats[$day] = [];
+        }
+        if (!isset($dailyStats[$day][$source])) {
+            $dailyStats[$day][$source] = ['orders' => 0, 'revenue' => 0];
+        }
+        $dailyStats[$day][$source]['orders']++;
+        $dailyStats[$day][$source]['revenue'] += $revenue;
+    }
+    
+    // Sort keys descending
+    krsort($monthlyStats);
+    krsort($dailyStats);
+    
+    $md = "# 1997 Laundry - Báo cáo Nguồn Khách hàng (Real-time Referral Report)\n";
+    $md .= "*Cập nhật tự động lúc: " . date('Y-m-d H:i:s') . "*\n\n";
+    
+    $md .= "## 📊 TỔNG HỢP CHUNG (TẤT CẢ THỜI GIAN)\n";
+    $md .= "| Nguồn khách | Số lượng đơn | Tổng doanh thu dự kiến |\n";
+    $md .= "| :--- | :---: | :---: |\n";
+    foreach ($totalStats as $source => $stat) {
+        $md .= "| " . $source . " | " . $stat['orders'] . " | " . number_format($stat['revenue'], 0, ',', '.') . " VND |\n";
+    }
+    $md .= "\n";
+    
+    $md .= "## 📅 THỐNG KÊ CHI TIẾT THEO THÁNG\n";
+    foreach ($monthlyStats as $month => $sources) {
+        $md .= "### 🗓️ Tháng " . $month . "\n";
+        $md .= "| Nguồn khách | Số lượng đơn | Tổng doanh thu dự kiến |\n";
+        $md .= "| :--- | :---: | :---: |\n";
+        foreach ($sources as $source => $stat) {
+            $md .= "| " . $source . " | " . $stat['orders'] . " | " . number_format($stat['revenue'], 0, ',', '.') . " VND |\n";
+        }
+        $md .= "\n";
+    }
+    
+    $md .= "## 📆 THỐNG KÊ CHI TIẾT THEO NGÀY (7 Ngày gần nhất)\n";
+    $dayCount = 0;
+    foreach ($dailyStats as $day => $sources) {
+        if ($dayCount >= 7) break;
+        $md .= "### 📍 Ngày " . $day . "\n";
+        $md .= "| Nguồn khách | Số lượng đơn | Tổng doanh thu dự kiến |\n";
+        $md .= "| :--- | :---: | :---: |\n";
+        foreach ($sources as $source => $stat) {
+            $md .= "| " . $source . " | " . $stat['orders'] . " | " . number_format($stat['revenue'], 0, ',', '.') . " VND |\n";
+        }
+        $md .= "\n";
+        $dayCount++;
+    }
+    
+    @file_put_contents(__DIR__ . '/data/referral_report.md', $md);
 }
 ?>

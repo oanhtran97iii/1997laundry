@@ -1,6 +1,6 @@
 import os
 
-files_to_modify = ['index.html', 'booking.html', 'pay.html', 'server.js', 'bot_manager.js']
+files_to_modify = ['index.html', 'booking.html', 'pay.html', 'server.js', 'bot_manager.js', 'shoes.html', 'bedding.html', 'api.php', 'admin/index.html', 'server.py']
 
 replacements = [
     ("Nice Fold Saigon", "1997 Premium Laundry"),

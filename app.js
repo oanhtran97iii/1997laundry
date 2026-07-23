@@ -4,6 +4,100 @@ document.addEventListener('DOMContentLoaded', () => {
   const WHATSAPP_PHONE = '84373991602';
   const ZALO_URL = 'https://zalo.me/0373991602';
 
+  // --- UTM Tracking & Referral Source Extraction ---
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmCampaign = urlParams.get('utm_campaign');
+  const utmSource = urlParams.get('utm_source');
+  const referrer = document.referrer ? document.referrer.toLowerCase() : '';
+
+  let referralSource = 'Direct / Website';
+  let refCode = 'DIRECT';
+
+  // 1. Check if we have campaign query parameters in current URL
+  if (utmCampaign || utmSource || urlParams.get('gclid')) {
+    if (utmCampaign) {
+      const campaignLower = utmCampaign.toLowerCase();
+      if (campaignLower.includes('general')) {
+        referralSource = 'Google Search Ads (general)';
+        refCode = 'SEARCH-GENERAL';
+      } else if (campaignLower.includes('express') || campaignLower.includes('leads')) {
+        referralSource = 'Google Search Ads (express)';
+        refCode = 'SEARCH-EXPRESS';
+      } else if (campaignLower.includes('maps') || campaignLower.includes('map')) {
+        referralSource = 'Google Maps Ads';
+        refCode = 'MAPS-ADS';
+      } else {
+        referralSource = `Campaign: ${utmCampaign}`;
+        refCode = utmCampaign.toUpperCase();
+      }
+    } else if (utmSource === 'google' && urlParams.get('utm_medium') === 'organic') {
+      referralSource = 'Google Maps Organic';
+      refCode = 'MAPS-ORGANIC';
+    } else if (urlParams.get('gclid')) {
+      referralSource = 'Google Ads (Auto)';
+      refCode = 'GOOGLE-ADS-AUTO';
+    }
+    // Save to sessionStorage to persist across page navigations
+    sessionStorage.setItem('referralSource', referralSource);
+    sessionStorage.setItem('refCode', refCode);
+  } 
+  // 2. If no current UTM, but we came from an external referrer (exclude our own domains)
+  else if (referrer && !referrer.includes('1997laundry.com') && !referrer.includes('nicefoldsaigon.vn')) {
+    if (referrer.includes('google.com')) {
+      referralSource = 'Google Search (Organic)';
+      refCode = 'SEO-GOOGLE';
+    } else if (referrer.includes('facebook.com') || referrer.includes('fb.me') || referrer.includes('l.facebook.com')) {
+      referralSource = 'Facebook Organic';
+      refCode = 'FB-ORGANIC';
+    } else if (referrer.includes('instagram.com') || referrer.includes('l.instagram.com')) {
+      referralSource = 'Instagram Organic';
+      refCode = 'IG-ORGANIC';
+    } else if (referrer.includes('tripadvisor.com')) {
+      referralSource = 'TripAdvisor Organic';
+      refCode = 'TRIPADVISOR';
+    } else {
+      try {
+        const url = new URL(referrer);
+        referralSource = `Referral: ${url.hostname}`;
+        refCode = `REF-${url.hostname.replace('www.', '').split('.')[0].toUpperCase()}`;
+      } catch (e) {
+        // Ignore
+      }
+    }
+    // Save to sessionStorage
+    sessionStorage.setItem('referralSource', referralSource);
+    sessionStorage.setItem('refCode', refCode);
+  }
+  // 3. If no UTM and no external referrer, load from existing session data if present
+  else if (sessionStorage.getItem('referralSource') && sessionStorage.getItem('refCode')) {
+    referralSource = sessionStorage.getItem('referralSource');
+    refCode = sessionStorage.getItem('refCode');
+  }
+
+  // --- Dynamic WhatsApp Link Updater ---
+  // Automatically updates all direct WhatsApp links on the page with pre-filled message text including the referral source.
+  const updateWhatsAppDirectLinks = () => {
+    const isVi = (localStorage.getItem('site_lang') || 'en') === 'vi';
+    const messageText = isVi 
+      ? `Chào 1997 Laundry, mình thấy tiệm từ ${referralSource} và muốn hỏi về dịch vụ [Mã: ${refCode}]`
+      : `Hi 1997 Laundry, I saw you via ${referralSource} and would like to ask about your services [Ref: ${refCode}]`;
+      
+    const encodedText = encodeURIComponent(messageText);
+    const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+    
+    waLinks.forEach(link => {
+      // Get the base href (remove existing query params)
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const baseUrl = href.split('?')[0];
+      // Set the new href with tracking text
+      link.setAttribute('href', `${baseUrl}?text=${encodedText}`);
+    });
+  };
+  
+  // Run it immediately
+  updateWhatsAppDirectLinks();
+
   // --- TRANSLATION SYSTEM ---
   const TRANSLATIONS = {
     // Navigation & General
@@ -101,17 +195,17 @@ document.addEventListener('DOMContentLoaded', () => {
     "💬 Send Pickup Order via Zalo": "💬 Gửi thông tin đặt lịch qua Zalo",
 
     // Select options
-    "Standard Wash & Fold (24h) - 40,000 VND / kg (Min 3kg)": "Giặt sấy tiêu chuẩn (24h) - 40.000 VND / kg (Tối thiểu 3kg)",
-    "Same-day Wash & Fold (8h-12h) - 50,000 VND / kg (Min 4kg)": "Giặt sấy lấy trong ngày (8h-12h) - 50.000 VND / kg (Tối thiểu 4kg)",
-    "Express Wash & Fold (4h) - 70,000 VND / kg (Min 4kg)": "Giặt sấy hỏa tốc (4h) - 70.000 VND / kg (Tối thiểu 4kg)",
+    "Standard Wash & Fold (24h) - 30,000 VND / kg (Min 3.5kg)": "Giặt sấy tiêu chuẩn (24h) - 30.000 VND / kg (Tối thiểu 3.5kg)",
+    "Same-day Express Wash & Fold - 180,000 VND (Up to 5kg, +30k/kg extra)": "Giặt sấy lấy trong ngày (Same-day Express) - 180.000 VND (Tối đa 5kg, thêm +30k/kg)",
+    "Express Wash & Fold (4h) - 220,000 VND (Up to 5kg, +35k/kg extra)": "Giặt sấy hỏa tốc (Express 4h) - 220.000 VND (Tối đa 5kg, thêm +35k/kg)",
     "Shoes Cleaning - From 150,000 VND / pair (Min 1 pair)": "Vệ sinh giày - Từ 150.000 VND / đôi (Tối thiểu 1 đôi)",
     "Topper Cleaning - 60,000 VND / kg (Min 1kg)": "Giặt topper - 60.000 VND / kg (Tối thiểu 1kg)",
     "Curtain Cleaning - 50,000 VND / kg (Min 1kg)": "Giặt rèm cửa - 50.000 VND / kg (Tối thiểu 1kg)",
     "Beddings & Linens - 40,000 VND / kg (Min 3kg)": "Giặt chăn ga gối nệm - 40.000 VND / kg (Tối thiểu 3kg)",
 
-    "Round-trip Pickup & Delivery (50,000 VND)": "Giao nhận khứ hồi tận nơi (50.000 VND)",
-    "Return Delivery Only (25,000 VND)": "Chỉ giao đồ đã giặt về (25.000 VND)",
-    "Pickup Collection Only (25,000 VND)": "Chỉ đến lấy đồ đi giặt (25.000 VND)",
+    "Round-trip Pickup & Delivery (40,000 VND)": "Giao nhận khứ hồi tận nơi (40.000 VND)",
+    "Return Delivery Only (20,000 VND)": "Chỉ giao đồ đã giặt về (20.000 VND)",
+    "Pickup Collection Only (20,000 VND)": "Chỉ đến lấy đồ đi giặt (20.000 VND)",
     "Self Drop-off & self collection (0 VND)": "Tự mang tới tiệm và tự lấy (0 VND)",
 
     // Placeholders
@@ -159,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Shoes dry in humidity-controlled rooms naturally. Heat is never used, protecting glue and shape.": "Giày được sấy khô tự nhiên trong phòng kiểm soát độ ẩm. Không sử dụng nhiệt để bảo vệ keo dán và phom dáng.",
     "Flat-Rate Shoes Care Packages": "Bảng giá dịch vụ vệ sinh giày đồng giá",
     "Simple pricing based on shoe material. Standard turnaround is 3 days (Express 24h available for +100k VND/pair!).": "Giá cước đơn giản theo chất liệu giày. Thời gian giao nhận chuẩn là 3 ngày (Hỏa tốc 24h sẵn sàng với phụ phí +100k VND/đôi!).",
-    "Delivery fee: 50,000 VND round-trip (or deduct 25k/way if self drop-off/collect).": "Phí giao nhận: 50.000 VND khứ hồi (hoặc trừ 25k/chiều nếu tự mang tới/lấy đồ).",
+    "Delivery fee: 40,000 VND round-trip (or deduct 20k/way if self drop-off/collect).": "Phí giao nhận: 40.000 VND khứ hồi (hoặc trừ 20k/chiều nếu tự mang tới/lấy đồ).",
     "Sneakers & Canvas": "Giày Sneaker & Giày Vải",
     "Best for everyday running shoes, canvas sneakers, and knit materials (e.g. Adidas Ultraboost, Converse, Vans).": "Phù hợp nhất cho giày chạy bộ hàng ngày, giày vải canvas và chất liệu dệt (ví dụ: Adidas Ultraboost, Converse, Vans).",
     "Select Service": "Chọn dịch vụ này",
@@ -260,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Hygienic Cleaning for Linens & Bedding": "Giặt sấy Vệ sinh Chăn ga & Gối đệm",
     "Keep your bedroom fresh and allergen-free. We provide professional deep cleaning for bedsheets, heavy duvets, mattress toppers, and curtains. 100% separate washes and complete machine drying guaranteed.": "Giữ phòng ngủ luôn sạch mát và không còn tác nhân gây dị ứng. Chúng tôi cung cấp dịch vụ làm sạch sâu chuyên nghiệp cho drap trải giường, chăn bông dày, tấm bảo vệ nệm topper và rèm cửa. Cam kết giặt riêng 100% và sấy khô hoàn toàn bằng máy.",
     "Delivery:": "Giao nhận:",
-    "50,000 VND round-trip (Free if self drop-off/collect)": "50.000 VND khứ hồi (Miễn phí nếu tự mang tới/lấy đồ)",
+    "40,000 VND round-trip (Free if self drop-off/collect)": "40.000 VND khứ hồi (Miễn phí nếu tự mang tới/lấy đồ)",
     "Stain treatment:": "Tẩy vết bẩn:",
     "Charged separately per item (see details below)": "Tính phí riêng biệt theo từng món (xem chi tiết bên dưới)",
     "Optional Add-on": "Tùy chọn thêm",
@@ -306,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Select Service": "Chọn dịch vụ",
     "Topper: 60k | Curtain: 50k / kg": "Topper: 60k | Rèm cửa: 50k / kg",
     "Delivery:": "Giao nhận:",
-    "50,000 VND round-trip (Free if self drop-off/collect)": "50.000 VND khứ hồi (Miễn phí nếu tự mang tới/lấy đồ)",
+    "40,000 VND round-trip (Free if self drop-off/collect)": "40.000 VND khứ hồi (Miễn phí nếu tự mang tới/lấy đồ)",
     "Stain treatment:": "Tẩy vết bẩn:",
     "Charged separately per item (see details below)": "Tính phí riêng biệt theo từng món (xem chi tiết bên dưới)",
     "Optional Add-on": "Tùy chọn thêm",
@@ -427,9 +521,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Rates configuration
   const RATES = {
-    standard: { price: 40000, minWeight: 3, label: 'Standard Wash & Fold (24h)', unit: 'kg' },
-    sameday: { price: 50000, minWeight: 4, label: 'Same-day Wash & Fold (8h-12h)', unit: 'kg' },
-    express: { price: 70000, minWeight: 4, label: 'Express Wash & Fold (4h)', unit: 'kg' },
+    standard: { price: 30000, minWeight: 3.5, label: 'Standard Wash & Fold (24h)', unit: 'kg' },
+    sameday: { price: 180000, minWeight: 5, label: 'Same-day Express Wash & Fold', unit: 'kg' },
+    express: { price: 220000, minWeight: 5, label: 'Express Wash & Fold (4h)', unit: 'kg' },
     shoes: { price: 150000, minWeight: 1, label: 'Shoes Cleaning', unit: 'pair', isPerItem: true },
     topper: { price: 60000, minWeight: 1, label: 'Topper Cleaning', unit: 'kg' },
     curtain: { price: 50000, minWeight: 1, label: 'Curtain Cleaning', unit: 'kg' },
@@ -549,14 +643,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Calculate price
-    const laundryTotalVnd = weight * rateConfig.price;
+    let laundryTotalVnd = 0;
+    if (service === 'sameday') {
+      const basePrice = 180000;
+      const baseWeight = 5;
+      const extraRate = 30000;
+      if (weight <= baseWeight) {
+        laundryTotalVnd = basePrice;
+      } else {
+        laundryTotalVnd = basePrice + (weight - baseWeight) * extraRate;
+      }
+    } else if (service === 'express') {
+      const basePrice = 220000;
+      const baseWeight = 5;
+      const extraRate = 35000;
+      if (weight <= baseWeight) {
+        laundryTotalVnd = basePrice;
+      } else {
+        laundryTotalVnd = basePrice + (weight - baseWeight) * extraRate;
+      }
+    } else {
+      laundryTotalVnd = weight * rateConfig.price;
+    }
     
     // Calculate ship fee
-    let shipFeeVnd = 50000;
+    let shipFeeVnd = 40000;
     if (shipSelect) {
       const shipOption = shipSelect.value;
-      if (shipOption === 'roundtrip') shipFeeVnd = 50000;
-      else if (shipOption === 'deliveryonly' || shipOption === 'pickuponly') shipFeeVnd = 25000;
+      if (shipOption === 'roundtrip') shipFeeVnd = 40000;
+      else if (shipOption === 'deliveryonly' || shipOption === 'pickuponly') shipFeeVnd = 20000;
       else if (shipOption === 'selfservice') shipFeeVnd = 0;
     }
 
@@ -581,6 +696,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       if (calcSurchargeLabel) calcSurchargeLabel.textContent = 'Express Shoes Surcharge:';
+    } else if (service === 'sameday' || service === 'express') {
+      // For sameday and express, white garments wash is included in the base/extra price
+      if (shoesExpressGroup) shoesExpressGroup.style.display = 'none';
+      if (whitesCheckboxGroup) whitesCheckboxGroup.style.display = 'flex';
+      if (whitesCheckbox) {
+        whitesCheckbox.checked = true;
+        whitesCheckbox.disabled = true; // Surcharge is included
+      }
+      surchargeVnd = 0;
+      if (calcSurchargeLabel) calcSurchargeLabel.textContent = 'Separate Whites:';
     } else {
       // Toggle checkboxes UI
       if (shoesExpressGroup) shoesExpressGroup.style.display = 'none';
@@ -833,7 +958,8 @@ document.addEventListener('DOMContentLoaded', () => {
 ${mapLink ? `📍 Bản đồ: ${mapLink}\n` : ''}🚪 Số phòng: ${roomNumber}
 ⏰ Thời gian nhận đồ: ${pickupTime}
 💵 Phương thức thanh toán: ${paymentMethod === 'cash' ? 'Tiền mặt (Cash)' : 'Chuyển khoản (Bank Transfer)'}
-💵 Tổng tiền tạm tính: ${formattedVnd} (${formattedUsd})`
+💵 Tổng tiền tạm tính: ${formattedVnd} (${formattedUsd})
+🔍 Nguồn: ${referralSource}`
 :
 `1997 Laundry - Laundry Booking Request
 ---------------------------------------
@@ -847,7 +973,8 @@ ${mapLink ? `📍 Bản đồ: ${mapLink}\n` : ''}🚪 Số phòng: ${roomNumber
 ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
 ⏰ Preferred Pickup Time: ${pickupTime}
 💵 Payment Method: ${paymentMethod === 'cash' ? 'Cash' : 'Bank Transfer'}
-💵 Estimated Total: ${formattedVnd} (${formattedUsd})`;
+💵 Estimated Total: ${formattedVnd} (${formattedUsd})
+🔍 Source: ${referralSource}`;
 
         const activeBtnId = e.submitter ? e.submitter.id : 'submit-whatsapp';
 
@@ -890,7 +1017,8 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           pickupTime: pickupTime,
           pickupMethod: pickupTypeLabel,
           separateWhites: service === 'shoes' ? (shoesExpressCheckbox && shoesExpressCheckbox.checked ? 'Express 24h' : 'No') : (whitesCheckbox && whitesCheckbox.checked ? 'Yes' : 'No'),
-          paymentMethod: paymentMethod
+          paymentMethod: paymentMethod,
+          referralSource: referralSource
         })
       })
       .then(() => {
@@ -1544,19 +1672,19 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
       packages: {
         sameday: {
           title: "Giặt sấy lấy trong ngày (Same-day)",
-          details: "<strong>Chi tiết Gói Giặt sấy lấy trong ngày (Same-day)</strong>:<br>• <strong>Giá cước</strong>: 250.000 VND cho 4 kg đầu tiên, mỗi kg tiếp theo +50.000 VND.<br>• <strong>Thời gian trả</strong>: Trả lại lúc 7h–9h tối cùng ngày (nếu lấy trước 2h chiều).<br>• <strong>VAT</strong>: Đã bao gồm 10% VAT.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
+          details: "<strong>Chi tiết Gói Giặt sấy lấy trong ngày (Same-day)</strong>:<br>• <strong>Giá cước</strong>: Gói trọn gói 180.000 VND cho tối đa 5 kg, mỗi kg tiếp theo +30.000 VND.<br>• <strong>Thời gian trả</strong>: Trả lại lúc 7h–9h tối cùng ngày (nếu lấy trước 2h chiều).<br>• <strong>VAT</strong>: Đã bao gồm 10% VAT.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
         },
         express: {
           title: "Giặt sấy hỏa tốc 4 tiếng (4-Hrs Express)",
-          details: "<strong>Chi tiết Gói Giặt sấy hỏa tốc 4 tiếng (4-Hrs Express)</strong>:<br>• <strong>Giá cước</strong>: 330.000 VND cho 4 kg đầu tiên, mỗi kg tiếp theo +70.000 VND.<br>• <strong>Thời gian trả</strong>: Trả lại sau 4 tiếng kể từ khi nhận đồ.<br>• <strong>VAT</strong>: Đã bao gồm 10% VAT.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
+          details: "<strong>Chi tiết Gói Giặt sấy hỏa tốc 4 tiếng (4-Hrs Express)</strong>:<br>• <strong>Giá cước</strong>: Gói trọn gói 220.000 VND cho tối đa 5 kg, mỗi kg tiếp theo +35.000 VND.<br>• <strong>Thời gian trả</strong>: Trả lại sau 4 tiếng kể từ khi nhận đồ.<br>• <strong>VAT</strong>: Đã bao gồm 10% VAT.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
         },
         standard: {
           title: "Giặt sấy tiêu chuẩn 24h (Standard)",
-          details: "<strong>Chi tiết Gói Giặt sấy tiêu chuẩn 24h (Standard)</strong>:<br>• <strong>Giá cước</strong>: 170.000 VND cho 3 kg đầu tiên, mỗi kg tiếp theo +40.000 VND.<br>• <strong>Thời gian trả</strong>: Trả lại sau 24 tiếng.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
+          details: "<strong>Chi tiết Gói Giặt sấy tiêu chuẩn 24h (Standard)</strong>:<br>• <strong>Giá cước</strong>: 30.000 VND / kg (Tối thiểu 3.5 kg / đơn).<br>• <strong>Thời gian trả</strong>: Trả lại sau 24 tiếng.<br>• <strong>Giặt riêng đồ trắng</strong>: Phụ phí +30.000 VND.",
         },
         other: {
           title: "Dịch vụ khác",
-          details: "<strong>Dịch vụ vệ sinh cao cấp khác</strong>:<br>• <strong>Giặt giày</strong>: Giặt tay chuyên sâu (Giày thể thao & Vải: 150.000 VND / đôi | Da & Da lộn: 220.000 VND / đôi. Hỏa tốc 24h: +100.000 VND / đôi. Phí ship: 50.000 VND khứ hồi).<br>• <strong>Tấm bảo vệ nệm (Topper)</strong>: 60.000 VND / kg (giao nhận 24h).<br>• <strong>Rèm cửa</strong>: 50.000 VND / kg.<br>• <strong>Chăn ga gối nệm</strong>: 40.000 VND / kg (tối thiểu 3kg)."
+          details: "<strong>Dịch vụ vệ sinh cao cấp khác</strong>:<br>• <strong>Giặt giày</strong>: Giặt tay chuyên sâu (Giày thể thao & Vải: 150.000 VND / đôi | Da & Da lộn: 220.000 VND / đôi. Hỏa tốc 24h: +100.000 VND / đôi. Phí ship: 40.000 VND khứ hồi).<br>• <strong>Tấm bảo vệ nệm (Topper)</strong>: 60.000 VND / kg (giao nhận 24h).<br>• <strong>Rèm cửa</strong>: 50.000 VND / kg.<br>• <strong>Chăn ga gối nệm</strong>: 40.000 VND / kg (tối thiểu 3kg)."
         }
       },
       questions: [
@@ -1655,7 +1783,7 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           id: "leather_shoes_query",
           short: "👟 Vệ sinh giày da",
           keywords: ["giày da", "giay da", "vệ sinh giày da", "ve sinh giay da", "giặt giày da", "giat giay da", "giày da lộn", "giay da lon"],
-          response: "👟 Dạ tiệm có nhận vệ sinh giày da và da lộn cao cấp bạn nhé ạ!<br>• **Quy trình & Giá**: Giày sẽ được vệ sinh chuyên sâu hoàn toàn bằng tay tỉ mỉ với mức giá là <strong>220.000đ / đôi</strong>.<br>• Tiệm có hỗ trợ giao nhận tận nơi với phí khứ hồi (2 chiều lấy & giao) là 50.000đ. Bạn có thể bấm nút đặt lịch bên dưới để tiệm cho shipper qua nhận giày nhé ạ!"
+          response: "👟 Dạ tiệm có nhận vệ sinh giày da và da lộn cao cấp bạn nhé ạ!<br>• **Quy trình & Giá**: Giày sẽ được vệ sinh chuyên sâu hoàn toàn bằng tay tỉ mỉ với mức giá là <strong>220.000đ / đôi</strong>.<br>• Tiệm có hỗ trợ giao nhận tận nơi với phí khứ hồi (2 chiều lấy & giao) là 40.000đ. Bạn có thể bấm nút đặt lịch bên dưới để tiệm cho shipper qua nhận giày nhé ạ!"
         },
         {
           id: "shoes_query",
@@ -1703,7 +1831,7 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           id: "coverage_query",
           short: "🛵 Khu vực phục vụ",
           keywords: ["quận 1", "quan 1", "quận 3", "quan 3", "thảo điền", "thao dien", "quận 2", "quan 2", "quận 7", "quan 7", "bình thạnh", "binh thanh", "khu vực", "khu vuc", "quận nào", "quan nao", "quận", "quan", "district"],
-          response: "🛵 <strong>Khu vực phục vụ</strong>: 1997 Laundry phục vụ giao nhận tận nơi và miễn phí vận chuyển trong phạm vi 6km (bao gồm hầu hết khu vực <strong>Quận 1, Quận 3, Bình Thạnh và Thảo Điền (Quận 2)</strong>).<br>Đối với các khu vực xa hơn (như Quận 7, Quận 4, Phú Nhuận,...), tiệm có thể hỗ trợ giao nhận với phụ phí nhỏ từ 20.000đ - 50.000đ tùy khoảng cách thực tế từ xưởng ở Quận 1 nhé!"
+          response: "🛵 <strong>Khu vực phục vụ</strong>: 1997 Laundry phục vụ giao nhận tận nơi và miễn phí vận chuyển trong phạm vi 6km (bao gồm hầu hết khu vực <strong>Quận 1, Quận 3, Bình Thạnh và Thảo Điền (Quận 2)</strong>).<br>Đối với các khu vực xa hơn (như Quận 7, Quận 4, Phú Nhuận,...), tiệm có thể hỗ trợ giao nhận với phụ phí nhỏ từ 20.000đ - 40.000đ tùy khoảng cách thực tế từ xưởng ở Quận 1 nhé!"
         },
         {
           id: "pickup",
@@ -1715,7 +1843,7 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           id: "address_query",
           short: "📍 Địa chỉ & Tự mang đồ",
           keywords: ["địa chỉ", "dia chi", "tự mang", "tu mang", "đến tiệm", "den tiem", "đến cửa hàng", "den cua hang", "xưởng", "xuong", "address", "location", "drop off myself", "dropoff myself"],
-          response: "📍 <strong>Địa chỉ & Tự mang đồ</strong>: Bạn hoàn toàn có thể tự mang đồ qua xưởng giặt của tiệm tại địa chỉ: **121/10 Lê Thị Riêng, Bến Thành, Quận 1, TP.HCM**. Bạn xem vị trí Google Maps trực tiếp tại đây nhé: <a href='https://maps.app.goo.gl/gJG1N3VRNuTYXMSy9' target='_blank'>Google Maps Link</a>.<br>Lưu ý: Tự mang đồ qua và tự lấy sẽ được giảm 25.000đ/lượt (tổng cộng 50.000đ khứ hồi)!"
+          response: "📍 <strong>Địa chỉ & Tự mang đồ</strong>: Bạn hoàn toàn có thể tự mang đồ qua xưởng giặt của tiệm tại địa chỉ: **121/10 Lê Thị Riêng, Bến Thành, Quận 1, TP.HCM**. Bạn xem vị trí Google Maps trực tiếp tại đây nhé: <a href='https://maps.app.goo.gl/gJG1N3VRNuTYXMSy9' target='_blank'>Google Maps Link</a>.<br>Lưu ý: Tự mang đồ qua và tự lấy sẽ được giảm 20.000đ/lượt (tổng cộng 40.000đ khứ hồi)!"
         },
         {
           id: "vat",
@@ -1757,7 +1885,7 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           id: "pricing_query",
           short: "💵 Bảng giá dịch vụ",
           keywords: ["price", "pricing", "cost", "how much", "rate", "fee", "charge", "giá", "bao nhiêu", "tiền", "dịch vụ", "dich vu", "services", "service", "what services"],
-          response: "1997 Laundry gửi bạn bảng giá các dịch vụ chính (đã bao gồm giặt, sấy khô và xếp gọn):<br>• <strong>🧺 Tiêu chuẩn 24H</strong>: 170.000đ cho 3kg đầu (mỗi kg tiếp theo +40.000đ).<br>• <strong>⚡ Lấy trong ngày</strong>: 250.000đ cho 4kg đầu (mỗi kg tiếp theo +50.000đ).<br>• <strong>🚀 Hỏa tốc 4H</strong>: 330.000đ cho 4kg đầu (mỗi kg tiếp theo +70.000đ).<br>• <strong>👟 Giặt giày tay</strong>: 150.000đ – 220.000đ / đôi.<br><br>Vui lòng chọn gói tương ứng ở dưới để đặt lịch hoặc xem chi tiết:"
+          response: "1997 Laundry gửi bạn bảng giá các dịch vụ chính (đã bao gồm giặt, sấy khô và xếp gọn):<br>• <strong>🧺 Tiêu chuẩn 24H</strong>: 30.000đ / kg (Tối thiểu 3.5kg).<br>• <strong>⚡ Lấy trong ngày</strong>: 180.000đ cho tối đa 5kg (mỗi kg tiếp theo +30.000đ).<br>• <strong>🚀 Hỏa tốc 4H</strong>: 220.000đ cho tối đa 5kg (mỗi kg tiếp theo +35.000đ).<br>• <strong>👟 Giặt giày tay</strong>: 150.000đ – 220.000đ / đôi.<br><br>Vui lòng chọn gói tương ứng ở dưới để đặt lịch hoặc xem chi tiết:"
         },
         {
           id: "hesitate_query",
@@ -2412,7 +2540,8 @@ ${parsed.mapLink ? `📍 Google Maps: ${parsed.mapLink}\n` : ''}4️⃣ ${localS
 6️⃣ ${localScript.confirmLabels.whites}: ${parsed.whites}
 7️⃣ ${localScript.confirmLabels.phone}: ${parsed.phone}
 📦 ${localScript.confirmLabels.service}: ${parsed.service}
-💰 Tổng cước tạm tính / Total: ${totalVnd.toLocaleString('vi-VN')} VND`;
+💰 Tổng cước tạm tính / Total: ${totalVnd.toLocaleString('vi-VN')} VND
+🔍 ${bookingSession.lang === 'vi' ? 'Nguồn' : 'Source'}: ${referralSource}`;
 
     // Save booking to backend SQLite database
     fetch('api.php?action=booking', {
@@ -2429,7 +2558,8 @@ ${parsed.mapLink ? `📍 Google Maps: ${parsed.mapLink}\n` : ''}4️⃣ ${localS
         roomNumber: parsed.room,
         mapLink: parsed.mapLink,
         service: parsed.service,
-        totalVnd: totalVnd
+        totalVnd: totalVnd,
+        referralSource: referralSource
       })
     })
     .then(res => res.json())

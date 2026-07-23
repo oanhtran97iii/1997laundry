@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Nice Fold Saigon</title>
+  <title>Admin Dashboard | 1997 Premium Laundry</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* Premium Theme Variables matching Nice Fold */
+    /* Premium Theme Variables matching 1997 Laundry */
     :root {
       --color-navy: #0d1b3e;
       --color-blue: #3182ce;
@@ -333,7 +333,7 @@
     <!-- Admin Header -->
     <header class="admin-header">
       <div>
-        <h1 class="brand-title">Nice Fold Saigon</h1>
+        <h1 class="brand-title">1997 Premium Laundry</h1>
         <p class="brand-subtitle">Management Control Center (No Auth Required)</p>
       </div>
       <a href="../" class="btn btn-secondary" style="text-decoration: none;">View Site</a>
@@ -1132,7 +1132,7 @@
       const cleanPhone = phone.replace(/\+/g, '').replace(/\s/g, '');
       const formattedAmount = amountVal.toLocaleString('vi-VN');
       const origin = window.location.origin;
-      const msg = `*Nice Fold Saigon - Hóa đơn dịch vụ / Laundry Invoice* 🧺\n\n----------------------------------\n• Mã đặt lịch / Booking Code: *${id}*\n• Khách hàng / Customer: *${name}*\n\n👉 *TỔNG TIỀN / TOTAL BILL:*\n💰 *${formattedAmount} VND*\n----------------------------------\n\n*Link thanh toán tự động / Payment Link:*\n👉 ${origin}/pay.html?amount=${amountVal}&desc=${id}\n\nXin cảm ơn! / Thank you! ❤️`;
+      const msg = `*1997 Premium Laundry - Hóa đơn dịch vụ / Laundry Invoice* 🧺\n\n----------------------------------\n• Mã đặt lịch / Booking Code: *${id}*\n• Khách hàng / Customer: *${name}*\n\n👉 *TỔNG TIỀN / TOTAL BILL:*\n💰 *${formattedAmount} VND*\n----------------------------------\n\n*Link thanh toán tự động / Payment Link:*\n👉 ${origin}/pay.html?amount=${amountVal}&desc=${id}\n\nXin cảm ơn! / Thank you! ❤️`;
       
       const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
@@ -1155,7 +1155,7 @@
       
       const formattedAmount = amountVal.toLocaleString('vi-VN');
       const origin = window.location.origin;
-      const msg = `*Nice Fold Saigon - Hóa đơn dịch vụ / Laundry Invoice* 🧺\n\n----------------------------------\n• Mã đặt lịch / Booking Code: *${id}*\n• Khách hàng / Customer: *${name}*\n\n👉 *TỔNG TIỀN / TOTAL BILL:*\n💰 *${formattedAmount} VND*\n----------------------------------\n\n*Link thanh toán tự động / Payment Link:*\n👉 ${origin}/pay.html?amount=${amountVal}&desc=${id}\n\nXin cảm ơn! / Thank you! ❤️`;
+      const msg = `*1997 Premium Laundry - Hóa đơn dịch vụ / Laundry Invoice* 🧺\n\n----------------------------------\n• Mã đặt lịch / Booking Code: *${id}*\n• Khách hàng / Customer: *${name}*\n\n👉 *TỔNG TIỀN / TOTAL BILL:*\n💰 *${formattedAmount} VND*\n----------------------------------\n\n*Link thanh toán tự động / Payment Link:*\n👉 ${origin}/pay.html?amount=${amountVal}&desc=${id}\n\nXin cảm ơn! / Thank you! ❤️`;
       
       navigator.clipboard.writeText(msg).then(() => {
         alert(`Đã copy tin nhắn Zalo cho đơn ${id} vào bộ nhớ đệm!`);

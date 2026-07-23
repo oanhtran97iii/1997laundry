@@ -17,6 +17,9 @@ const botManager = require('./bot_manager');
 const PORT = process.env.PORT || 3000;
 const DB_PATH = path.join(__dirname, 'brain.db');
 
+// --- Global Referral Source Cache ---
+global.referralCache = {};
+
 // --- Helper: Get Resend API Key ---
 function getResendApiKey() {
     // 1. Try environment variable
@@ -394,6 +397,17 @@ async function initializeAndMigrateDb() {
             );
         `);
 
+        await dbRun(`
+            CREATE TABLE IF NOT EXISTS missing_items (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                booking_code TEXT,
+                photo_path TEXT NOT NULL,
+                date_added TEXT DEFAULT CURRENT_TIMESTAMP,
+                is_resolved INTEGER DEFAULT 0,
+                agent_notified INTEGER DEFAULT 0
+            );
+        `);
+
         // Check for new columns and migrate
         const columnsInfo = await dbQuery("PRAGMA table_info(orders);");
         const existingColumns = columnsInfo.map(c => c.name);
@@ -411,7 +425,8 @@ async function initializeAndMigrateDb() {
             "delivery_proof_photo_url": "TEXT",
             "receipt_number": "TEXT",
             "lang": "TEXT",
-            "agent_notified": "INTEGER DEFAULT 0"
+            "agent_notified": "INTEGER DEFAULT 0",
+            "referral_source": "TEXT"
         };
 
         for (const [colName, colType] of Object.entries(newCols)) {
@@ -427,6 +442,10 @@ async function initializeAndMigrateDb() {
         if (!existingCustColumns.includes("map_link")) {
             console.log("Adding column map_link to customers table...");
             await dbRun("ALTER TABLE customers ADD COLUMN map_link TEXT;");
+        }
+        if (!existingCustColumns.includes("referral_source")) {
+            console.log("Adding column referral_source to customers table...");
+            await dbRun("ALTER TABLE customers ADD COLUMN referral_source TEXT;");
         }
 
         // Migrate sepay_transactions table to add agent_notified
@@ -784,9 +803,10 @@ app.all('/api.php', async (req, res) => {
                     if (prodRow) productId = prodRow.id;
                 }
 
+                const referralSource = body.referralSource || global.referralCache[phone] || 'Direct / Website';
                 await dbRun(
-                    "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, lang) VALUES (?, ?, ?, ?, 'Chờ XN', ?)",
-                    [bookingCode, customerId, productId, amount, body.lang || 'en']
+                    "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, lang, referral_source) VALUES (?, ?, ?, ?, 'Chờ XN', ?, ?)",
+                    [bookingCode, customerId, productId, amount, body.lang || 'en', referralSource]
                 );
 
                 // Trigger booking confirmation mail in background
@@ -1221,6 +1241,243 @@ app.post('/api/chat', async (req, res) => {
         console.error('Chat proxy error:', err);
         return res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+// --- Simple In-Memory Chat History Cache for Pancake Webhook ---
+const pancakeSessions = {};
+
+// --- Pancake Webhook Endpoint (Direct connection bypassing n8n) ---
+app.post('/api/pancake-webhook', async (req, res) => {
+    // Acknowledge webhook receipt immediately to avoid Pancake timeouts
+    res.status(200).send('OK');
+
+    try {
+        const payload = req.body;
+        console.log('[Pancake Webhook] Incoming payload:', JSON.stringify(payload));
+        
+        // 1. Validate payload structure
+        if (!payload || !payload.event || !payload.data || !payload.data.message) {
+            console.log('[Pancake Webhook] Validation failed: missing event, data, or message field.');
+            return;
+        }
+
+        // Avoid echo loops (messages sent by the page/bot itself)
+        if (payload.data.message.is_echo || payload.data.sender.id === payload.page_id) {
+            return;
+        }
+
+        const senderId = payload.data.sender.id;
+        const messageText = payload.data.message.text;
+        const pageId = payload.page_id;
+        
+        if (!messageText) return;
+
+        // Parse referral tracking source if present in incoming message
+        const refMatch = messageText.match(/\[Ref:\s*([^\]]+)\]/i) || 
+                         messageText.match(/(?:Source|Ref):\s*([^\n\r]+)/i) ||
+                         messageText.match(/#([A-Z0-9_-]+)\s*$/i);
+        let source = 'Direct / Website';
+        if (refMatch) {
+            const code = refMatch[1].toUpperCase().trim();
+            if (code === 'MAPS-ADS') source = 'Google Maps Ads';
+            else if (code === 'SEARCH-GENERAL') source = 'Google Search Ads (general)';
+            else if (code === 'SEARCH-EXPRESS') source = 'Google Search Ads (express)';
+            else if (code === 'MAPS-ORGANIC') source = 'Google Maps Organic';
+            else if (code === 'DIRECT') source = 'Direct / Website';
+            else source = code; // Custom campaign codes
+            
+            global.referralCache[senderId] = source;
+            console.log(`[Pancake Webhook] Associated sender ID ${senderId} with source: ${source}`);
+        }
+
+        // Record as a Lead immediately if not already recorded
+        try {
+            const customerPhone = `pancake-${senderId}`;
+            let customer = await dbGet("SELECT id FROM customers WHERE phone = ?", [customerPhone]);
+            let custId;
+            if (!customer) {
+                const insertCust = await dbRun(
+                    "INSERT INTO customers (name, phone, email) VALUES (?, ?, ?)",
+                    [payload.data.sender.name || 'Customer', customerPhone, 'pancake@laundry.com']
+                );
+                custId = insertCust.lastID;
+            } else {
+                custId = customer.id;
+            }
+
+            // Check if a Lead order already exists for this customer
+            const leadBookingCode = `LEAD-${senderId.substring(0, 8)}`;
+            let order = await dbGet("SELECT id FROM orders WHERE booking_code = ?", [leadBookingCode]);
+            if (!order) {
+                // Get a valid product ID
+                const prod = await dbGet("SELECT id FROM products LIMIT 1");
+                const prodId = prod ? prod.id : 1;
+                
+                await dbRun(
+                    "INSERT INTO orders (booking_code, customer_id, product_id, amount, status, referral_source, order_date) VALUES (?, ?, ?, 0, 'Lead', ?, datetime('now', 'localtime'))",
+                    [leadBookingCode, custId, prodId, source]
+                );
+                console.log(`[Pancake Webhook] Created new Lead for ${payload.data.sender.name || 'Customer'} (Source: ${source})`);
+            }
+        } catch (dbErr) {
+            console.error('[Pancake Webhook] Error recording lead in DB:', dbErr);
+        }
+
+        // 2. Manage Chat Session History (Max 10 messages for context)
+        if (!pancakeSessions[senderId]) {
+            pancakeSessions[senderId] = [];
+        }
+        
+        const history = pancakeSessions[senderId];
+        history.push({ role: 'user', content: messageText });
+        if (history.length > 10) {
+            history.shift();
+        }
+
+        // 3. Prepare AI Payload with a strict, smart System Prompt
+        const systemPrompt = `You are Bé Hai, the smart, helpful, and natural human-like chat assistant for 1997 Premium Laundry & 1997laundry.com. 
+Your primary goal is to book laundry orders while offering a premium customer experience.
+
+CRITICAL CONVERSATIONAL RULES:
+1. Talk naturally like a friendly, caring receptionist. NEVER repeat long templates or lists of questions.
+2. ALWAYS answer the customer's specific question directly first (e.g., if they ask about delivery time, payment, or pricing).
+3. If information is missing, ask for only ONE detail at a time (e.g., ask for room number first, then phone, etc.) in a conversational way. Do not list all questions 1️⃣ to 6️⃣ in every message.
+4. DO NOT contradict yourself. Keep details consistent. (For example, check if they ordered Express or Standard before stating delivery times).
+5. Surcharges & Rates:
+   - Standard: 40k/kg (min 3kg).
+   - Same-day: 50k/kg (min 4kg).
+   - Express (4h): 70k/kg (min 4kg).
+   - Bedding/Linens: 40k/kg (min 3kg).
+   - Curtain: 50k/kg (min 1kg).
+   - Topper: 60k/kg (min 1kg).
+   - Whites separate wash: +30k VND flat surcharge.
+   - Pickup & Delivery: 40k VND round trip (or as negotiated).
+6. Payment Methods:
+   - We accept cash (in VND or major currencies) or bank transfer/Wise for international cards.
+   - If the guest won't be at the hotel during return, they can leave cash in their bag, leave it at the reception, or pay via Bank Transfer/Wise.
+
+Current Customer Name: ${payload.data.sender.name || 'Customer'}.`;
+
+        const messages = [
+            { role: 'system', content: systemPrompt },
+            ...history
+        ];
+
+        // 4. Call GoClaw completions API
+        const goclawResponse = await fetch('http://localhost:3002/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer 0efe653ca15f03f4ccec8f007cec08a3`,
+                'X-GoClaw-User-Id': `pancake-${senderId}`,
+                'X-GoClaw-Agent-Id': process.env.AGENT_ID || '1997-laundry-assistant'
+            },
+            body: JSON.stringify({ messages })
+        });
+
+        if (!goclawResponse.ok) {
+            console.error('Pancake AI Webhook: GoClaw API error');
+            return;
+        }
+
+        const data = await goclawResponse.json();
+        const aiReply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+
+        if (aiReply) {
+            // Save AI reply to history
+            history.push({ role: 'assistant', content: aiReply });
+            
+            // 5. Send message back to Pancake
+            const pancakeToken = process.env.PANCAKE_ACCESS_TOKEN || 'YOUR_PANCAKE_ACCESS_TOKEN';
+            const sendUrl = `https://botcake.io/api/public_api/v1/pages/${pageId}/messages/send_message`;
+            
+            const sendResponse = await fetch(sendUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'access-token': pancakeToken
+                },
+                body: JSON.stringify({
+                    psid: senderId,
+                    message: { text: aiReply }
+                })
+            });
+
+            if (!sendResponse.ok) {
+                const sendErr = await sendResponse.text();
+                console.error('Pancake AI Webhook: Failed to send message back via Pancake API:', sendErr);
+            } else {
+                console.log(`[Pancake AI] Successfully replied to ${senderId}: "${aiReply.substring(0, 40)}..."`);
+            }
+        }
+    } catch (err) {
+        console.error('Error in Pancake AI Webhook:', err);
+    }
+});
+
+// --- API Endpoint: Retrieve Orders with Referral Sources for Dashboard ---
+const getOrdersHandler = async (req, res) => {
+    try {
+        const rows = await dbQuery(`
+            SELECT 
+                o.id, 
+                o.booking_code as "Mã đặt lịch", 
+                c.phone as "SĐT liên hệ (ID Khách)", 
+                c.name as "Tên khách hàng", 
+                o.amount as "Tổng tiền bill tạm tính", 
+                o.status as "Trạng thái đơn", 
+                o.order_date as "Ngày tạo", 
+                o.referral_source as "Nguồn khách"
+            FROM orders o
+            LEFT JOIN customers c ON o.customer_id = c.id
+            ORDER BY o.id DESC
+        `);
+        return res.json(rows);
+    } catch (err) {
+        console.error('Error fetching orders for dashboard:', err);
+        return res.status(500).json({ error: err.message });
+    }
+};
+
+app.get('/api/orders', getOrdersHandler);
+app.get('/api/debug-db', async (req, res) => {
+    try {
+        const tables = await dbQuery("SELECT name FROM sqlite_master WHERE type='table';");
+        const customers = await dbQuery("SELECT * FROM customers LIMIT 10;");
+        const orders = await dbQuery("SELECT * FROM orders LIMIT 10;");
+        return res.json({ tables, customers, orders });
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+});
+app.get('/api/debug-logs', async (req, res) => {
+    try {
+        const fs = require('fs');
+        const logPath = '/root/.pm2/logs/1997laundry-out.log';
+        const errPath = '/root/.pm2/logs/1997laundry-error.log';
+        let logs = 'OUT LOG:\n';
+        if (fs.existsSync(logPath)) {
+            logs += fs.readFileSync(logPath, 'utf8').slice(-5000);
+        } else {
+            logs += 'No log file found at ' + logPath;
+        }
+        logs += '\n\nERROR LOG:\n';
+        if (fs.existsSync(errPath)) {
+            logs += fs.readFileSync(errPath, 'utf8').slice(-5000);
+        } else {
+            logs += 'No error log file found at ' + errPath;
+        }
+        res.setHeader('Content-Type', 'text/plain');
+        return res.send(logs);
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+app.get('/api.php', (req, res) => {
+    if (req.query.action === 'orders') {
+        return getOrdersHandler(req, res);
+    }
+    return res.status(404).json({ error: "Action not found" });
 });
 
 // Serve Admin Static Files behind Auth
