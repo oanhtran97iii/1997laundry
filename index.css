@@ -9,6 +9,9 @@
     --color-accent-light: #ffdac2; /* Soft orange cream color */
     --color-accent-dark: #a64603;  /* Deep rust orange */
     --color-accent-glow: rgba(242, 106, 25, 0.4);
+    --color-pink: var(--color-accent);
+    --color-navy: var(--color-bg-dark);
+    --color-yellow: var(--color-accent-hover);
     --color-text-dark: #09002d;
     --color-text-light: #ffffff;
     --color-text-gray: #777777;     /* Sleek description gray */
