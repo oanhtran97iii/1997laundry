@@ -12,11 +12,12 @@ TARGET_DIR = "/var/www/1997-laundry"
 files_to_upload = [
     "index.html",
     "bedding.html",
-    "",
     "app.js",
     "index.css",
     "pay.html",
     "shoes.html",
+    "sitemap.html",
+    "sitemap.xml",
     "report.html",
     "server.js",
     "bot_manager.js",
@@ -39,6 +40,21 @@ files_to_upload = [
     "hotel-laundry-vs-outside-services-saigon.html",
     "best-same-day-dry-cleaning-services-district-1.html"
 ]
+
+def upload_dir(sftp, local_dir, remote_dir):
+    try:
+        sftp.mkdir(remote_dir)
+    except IOError:
+        pass
+    for item in os.listdir(local_dir):
+        local_path = os.path.join(local_dir, item)
+        remote_path = f"{remote_dir}/{item}"
+        if os.path.isdir(local_path):
+            upload_dir(sftp, local_path, remote_path)
+        else:
+            print(f"  Uploading {local_path} -> {remote_path}...")
+            sftp.put(local_path, remote_path)
+
 
 def main():
     print("🚀 Starting automated Python deployer to VPS...")
@@ -69,6 +85,10 @@ def main():
             else:
                 print(f"  ⚠️ File not found locally: {local_path}")
                 
+        # Upload assets folder recursively
+        print("📤 Uploading assets directory recursively...")
+        upload_dir(sftp, "assets", f"{TARGET_DIR}/assets")
+        
         sftp.close()
         print("✅ All files uploaded successfully.")
         
