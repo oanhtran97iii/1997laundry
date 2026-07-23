@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sessionStorage.setItem('refCode', refCode);
   } 
   // 2. If no current UTM, but we came from an external referrer (exclude our own domains)
-  else if (referrer && !referrer.includes('1997laundry.com') && !referrer.includes('nicefoldsaigon.vn')) {
+  else if (referrer && !referrer.includes('1997laundry.com') && !referrer.includes('1997laundry.com')) {
     if (referrer.includes('google.com')) {
       referralSource = 'Google Search (Organic)';
       refCode = 'SEO-GOOGLE';

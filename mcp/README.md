@@ -1,6 +1,6 @@
-# 🛠️ Nice Fold Saigon MCP Server
+# 🛠️ 1997 Premium Laundry MCP Server
 
-Máy chủ giao thức MCP (Model Context Protocol) sử dụng giao thức **Streamable HTTP** để cung cấp các "tay chân" (tools) quản trị hệ thống Nice Fold Saigon cho AI Agent (goClaw).
+Máy chủ giao thức MCP (Model Context Protocol) sử dụng giao thức **Streamable HTTP** để cung cấp các "tay chân" (tools) quản trị hệ thống 1997 Premium Laundry cho AI Agent (goClaw).
 
 Máy chủ được cấu hình lắng nghe cổng **3001** tại địa chỉ nội bộ **127.0.0.1 (localhost)** để bảo mật tuyệt đối, tránh lộ lọt API ra ngoài internet.
 
@@ -31,7 +31,7 @@ Dán nội dung cấu hình mẫu dưới đây vào tệp:
 
 ```ini
 [Unit]
-Description=Nice Fold Saigon MCP Server
+Description=1997 Premium Laundry MCP Server
 After=network.target
 
 [Service]

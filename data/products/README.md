@@ -1,6 +1,6 @@
 # Gợi ý nội dung cho thư mục products
 
-Dưới đây là mẫu nội dung phù hợp với dịch vụ trên website Nice Fold Saigon.
+Dưới đây là mẫu nội dung phù hợp với dịch vụ trên website 1997 Premium Laundry.
 
 ## 1. Standard Wash & Fold
 - Tên dịch vụ: Standard Wash & Fold

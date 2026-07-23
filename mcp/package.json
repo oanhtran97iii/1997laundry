@@ -1,7 +1,7 @@
 {
-  "name": "nice-fold-saigon-mcp",
+  "name": "1997-laundry-saigon-mcp",
   "version": "1.0.0",
-  "description": "MCP Server for Nice Fold Saigon Web App Integration",
+  "description": "MCP Server for 1997 Premium Laundry Web App Integration",
   "main": "index.js",
   "type": "module",
   "scripts": {

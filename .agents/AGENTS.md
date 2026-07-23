@@ -1,12 +1,12 @@
 # Antigravity Agent Rules
 
 ## Brand Isolation & Scope Rules
-- **Rule**: Nice Fold and 1997 Laundry are two strictly separated brands.
-- **Rule**: Any feature request, modification, or bug fix requested for `behaiday_bot` or Nice Fold MUST ONLY be implemented in the `nice-fold-saigon-premium` project and VPS path `/opt/my-website/`. It must never affect `bebane_bot` or 1997 Laundry.
-- **Rule**: Any feature request, modification, or bug fix requested for `bebane_bot` or 1997 Laundry MUST ONLY be implemented in the `1997-laundry` project and VPS path `/opt/laundry1997/`. It must never affect `behaiday_bot` or Nice Fold.
+- **Rule**: 1997 Laundry and 1997 Laundry are two strictly separated brands.
+- **Rule**: Any feature request, modification, or bug fix requested for `behaiday_bot` or 1997 Laundry MUST ONLY be implemented in the `1997-laundry-saigon-premium` project and VPS path `/opt/my-website/`. It must never affect `bebane_bot` or 1997 Laundry.
+- **Rule**: Any feature request, modification, or bug fix requested for `bebane_bot` or 1997 Laundry MUST ONLY be implemented in the `1997-laundry` project and VPS path `/opt/laundry1997/`. It must never affect `behaiday_bot` or 1997 Laundry.
 - **Rule**: Always keep all bot tokens, endpoints, and database models separated:
-  - Nice Fold: `@behaiday_bot`, `nicefoldsaigon.vn`, port `3000`/`3001`, `goclaw` DB mapping.
-  - 1997 Laundry: `@bebane_bot`, `1997laundry.com` (proxied under `nicefoldsaigon.vn/1997/`), port `4000`/`4001`, `LTT` order code prefix, `Bé Ba` name.
+  - 1997 Laundry: `@behaiday_bot`, `1997laundry.com`, port `3000`/`3001`, `goclaw` DB mapping.
+  - 1997 Laundry: `@bebane_bot`, `1997laundry.com` (proxied under `1997laundry.com/1997/`), port `4000`/`4001`, `LTT` order code prefix, `Bé Ba` name.
 
 ## Agent Training & Context Update Workflow (SOP)
 Khi người dùng thực hiện kiểm thử (test luồng), trainning botchat hoặc muốn cập nhật bất kỳ kiến thức/chính sách mới nào của 1997 Laundry:

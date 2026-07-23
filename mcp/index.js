@@ -88,7 +88,7 @@ async function sendEmailViaResend(toEmail, subject, htmlContent) {
 
     try {
         const payload = {
-            from: "1997 Laundry <hi@nicefoldsaigon.vn>",
+            from: "1997 Laundry <hi@1997laundry.com>",
             to: [toEmail],
             subject: subject,
             html: htmlContent
@@ -128,7 +128,7 @@ const EMAIL_1_SUBJECT = "Welcome to 1997 Laundry! 🧼";
 const EMAIL_1_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="1997 Laundry" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Thank you for sharing your laundry preferences with us!</p>
@@ -142,7 +142,7 @@ const EMAIL_1_HTML = `
   
   <p>Keep an eye on your inbox—over the next few days, we'll share a few travel hacks to help you avoid common laundry traps in Saigon.</p>
   <p>Welcome to 1997 Laundry!</p>
-  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -150,7 +150,7 @@ const EMAIL_2_SUBJECT = "Travel Hack: How to save space and laundry fees in Saig
 const EMAIL_2_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="1997 Laundry" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Here is a quick tip to make your stay in Saigon easier: try packing light. Carrying heavy bags through Ho Chi Minh City's busy streets is no fun. Packing light is easy if you wash your clothes on-the-go.</p>
@@ -161,7 +161,7 @@ const EMAIL_2_HTML = `
   </ol>
   <p>At 1997 Laundry, we wash each customer's clothes 100% separately to ensure absolute cleanliness, and we coordinate directly with your hotel front desk for drop-off and pickup. You get your clothes back same-day without any hassle.</p>
   <p>Have a wonderful trip in Vietnam!</p>
-  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -169,7 +169,7 @@ const EMAIL_3_SUBJECT = "Get your laundry done in Saigon (Same-day & Express del
 const EMAIL_3_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="1997 Laundry" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>If you need your laundry done quickly in Ho Chi Minh City, check us out.</p>
@@ -187,16 +187,16 @@ const EMAIL_3_HTML = `
   </ul>
   <p>Book your slot now and pay securely online:</p>
   <p style="text-align: center; margin: 30px 0;">
-    <a href="https://nicefoldsaigon.vn/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
+    <a href="https://1997laundry.com/booking.html" style="background-color: #ff66c5; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Book Now & Pay</a>
   </p>
-  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
 const ORDER_CONFIRMATION_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="1997 Laundry" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Thank you for choosing 1997 Laundry! Your order <strong>#{booking_code}</strong> has been successfully created and is being processed.</p>
@@ -228,7 +228,7 @@ const ORDER_CONFIRMATION_HTML = `
     <li><strong>Checkout Guarantee</strong>: We will deliver your clean clothes back to your hotel reception before your checkout time so you can travel worry-free.</li>
   </ul>
   <p>If you have any questions, feel free to contact us via WhatsApp or Zalo.</p>
-  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -236,7 +236,7 @@ const ORDER_COMPLETED_SUBJECT = "Payment Confirmed & Thank you! - 1997 Laundry �
 const ORDER_COMPLETED_HTML = `
 <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <img src="https://nicefoldsaigon.vn/logo.png" alt="1997 Laundry" style="max-width: 150px;">
+    <img src="https://1997laundry.com/logo.png" alt="1997 Laundry" style="max-width: 150px;">
   </div>
   <p>Hi {name},</p>
   <p>Your payment for order <strong>#{booking_code}</strong> has been successfully received and confirmed. Thank you very much!</p>
@@ -263,7 +263,7 @@ const ORDER_COMPLETED_HTML = `
     <a href="https://maps.app.goo.gl/1997 LaundrySaigon" style="background-color: #041d40; color: white; padding: 10px 20px; text-decoration: none; font-weight: bold; border-radius: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Leave a Google Review ★★★★★</a>
   </p>
   <p>Thank you again, and have a safe and wonderful trip!</p>
-  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://nicefoldsaigon.vn" style="color: #041d40; text-decoration: none;">nicefoldsaigon.vn</a></p>
+  <p>Best regards,<br><strong>The 1997 Laundry Team</strong><br><a href="https://1997laundry.com" style="color: #041d40; text-decoration: none;">1997laundry.com</a></p>
 </div>
 `;
 
@@ -327,7 +327,7 @@ function triggerEmailSequence(name, email, serviceName = "Laundry Service", amou
 // --- Dynamic MCP Server Instantiation Helper ---
 function createMcpServer() {
     const server = new McpServer({
-        name: "nice-fold-saigon-mcp",
+        name: "1997-laundry-saigon-mcp",
         version: "1.0.0",
     });
 
