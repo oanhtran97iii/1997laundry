@@ -2609,6 +2609,19 @@ img {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Chat icon outer double ring */
+#chatbotToggle {
+  background-color: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  border: 6px solid rgba(242, 106, 25, 0.3) !important;
+  background-clip: padding-box;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+#chatbotToggle:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(242, 106, 25, 0.4) !important;
+}
+
 .floating-cta-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(4, 29, 64, 0.12);
@@ -3184,6 +3197,19 @@ body:has(#chatbotWidget:not(.hidden)) .mobile-floating-cta-bar {
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Chat icon outer double ring */
+#chatbotToggle {
+  background-color: var(--color-accent) !important;
+  color: var(--color-white) !important;
+  border: 6px solid rgba(242, 106, 25, 0.3) !important;
+  background-clip: padding-box;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+#chatbotToggle:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(242, 106, 25, 0.4) !important;
+}
+
 .floating-cta-btn:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(4, 29, 64, 0.12);
@@ -3197,34 +3223,40 @@ body:has(#chatbotWidget:not(.hidden)) .mobile-floating-cta-bar {
 .cta-whatsapp {
   background-color: #25D366;
   color: var(--color-white);
+  border: 6px solid rgba(37, 211, 102, 0.3) !important;
+  background-clip: padding-box;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
 }
 
 .cta-whatsapp:hover {
-  background-color: var(--color-white);
-  color: #25D366;
-  border-color: #25D366;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4) !important;
 }
 
 .cta-phone {
   background-color: #FF4B4B;
   color: var(--color-white);
+  border: 6px solid rgba(255, 75, 75, 0.3) !important;
+  background-clip: padding-box;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
 }
 
 .cta-phone:hover {
-  background-color: var(--color-white);
-  color: #FF4B4B;
-  border-color: #FF4B4B;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(255, 75, 75, 0.4) !important;
 }
 
 .cta-zalo {
   background-color: #0068ff;
   color: var(--color-white);
+  border: 6px solid rgba(0, 104, 255, 0.3) !important;
+  background-clip: padding-box;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
 }
 
 .cta-zalo:hover {
-  background-color: var(--color-white);
-  color: #0068ff;
-  border-color: #0068ff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 104, 255, 0.4) !important;
 }
 
 .cta-maps {
