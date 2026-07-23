@@ -21,8 +21,23 @@ files_to_upload = [
     "server.js",
     "bot_manager.js",
     "logo.png",
+    "logo-dark.svg",
+    "logo-light.svg",
     ".env",
-    "package.json"
+    "package.json",
+    # 12 SEO Landing Pages
+    "laundry-service-le-thanh-ton.html",
+    "laundry-near-caravelle-hotel-saigon.html",
+    "laundry-near-sheraton-saigon.html",
+    "laundry-near-rex-hotel-saigon.html",
+    "laundry-near-park-hyatt-saigon.html",
+    "laundry-service-thao-dien.html",
+    "laundry-service-masteri-thao-dien.html",
+    "laundry-service-vinhomes-central-park.html",
+    "how-much-does-laundry-cost-in-vietnam.html",
+    "laundry-in-bui-vien-avoid-scams.html",
+    "hotel-laundry-vs-outside-services-saigon.html",
+    "best-same-day-dry-cleaning-services-district-1.html"
 ]
 
 def main():
