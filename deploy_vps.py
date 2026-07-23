@@ -12,7 +12,7 @@ TARGET_DIR = "/var/www/1997-laundry"
 files_to_upload = [
     "index.html",
     "bedding.html",
-    "booking.html",
+    "",
     "app.js",
     "index.css",
     "pay.html",

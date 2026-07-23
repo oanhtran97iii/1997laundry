@@ -20,7 +20,7 @@ echo ""
 # Step 2: Upload updated files
 echo "📤 Uploading updated pages, styles, and assets..."
 ssh -p $PORT $USER@$IP "mkdir -p $TARGET_DIR/uploads"
-scp -P $PORT index.html bedding.html booking.html app.js index.css pay.html shoes.html report.html server.js bot_manager.js logo.png logo-dark.svg logo-light.svg .env package.json laundry-service-le-thanh-ton.html laundry-near-caravelle-hotel-saigon.html laundry-near-sheraton-saigon.html laundry-near-rex-hotel-saigon.html laundry-near-park-hyatt-saigon.html laundry-service-thao-dien.html laundry-service-masteri-thao-dien.html laundry-service-vinhomes-central-park.html how-much-does-laundry-cost-in-vietnam.html laundry-in-bui-vien-avoid-scams.html hotel-laundry-vs-outside-services-saigon.html best-same-day-dry-cleaning-services-district-1.html $USER@$IP:$TARGET_DIR/
+scp -P $PORT index.html bedding.html  app.js index.css pay.html shoes.html report.html server.js bot_manager.js logo.png logo-dark.svg logo-light.svg .env package.json laundry-service-le-thanh-ton.html laundry-near-caravelle-hotel-saigon.html laundry-near-sheraton-saigon.html laundry-near-rex-hotel-saigon.html laundry-near-park-hyatt-saigon.html laundry-service-thao-dien.html laundry-service-masteri-thao-dien.html laundry-service-vinhomes-central-park.html how-much-does-laundry-cost-in-vietnam.html laundry-in-bui-vien-avoid-scams.html hotel-laundry-vs-outside-services-saigon.html best-same-day-dry-cleaning-services-district-1.html $USER@$IP:$TARGET_DIR/
 
 if [ $? -ne 0 ]; then
     echo "❌ File upload failed. Please verify your password and try again."
