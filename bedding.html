@@ -51,58 +51,25 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="hero" style="padding-top: 140px; padding-bottom: 80px;">
-    <div class="section-container hero-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+    <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-fabric-bg">
+        <img src="assets/images/fabric_bg.jpg" alt="1997 Laundry">
+    </div>
+    <div class="container hero-container">
       <div class="hero-content">
-        <span class="section-badge badge-hero" id="heroBadge">Premium Bedding Care</span>
-        <h1 class="hero-title" id="heroMainTitle" style="font-size: 3rem; margin-bottom: 1.5rem;">
-          Hygienic Cleaning for <span style="color: var(--color-pink);">Linens & Bedding</span>
-        </h1>
-        <p class="hero-desc" id="heroDescription" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--color-text-muted);">
+        <span class="badge" id="hero-badge">PREMIUM SERVICE</span>
+        <h1 class="hero-title" id="hero-headline">Hygienic Cleaning for <span style="color: var(--color-accent);">Linens & Bedding</span></h1>
+        <p class="hero-subtitle" id="hero-subtext">
           Keep your bedroom fresh and allergen-free. We provide professional deep cleaning for bedsheets, heavy duvets, mattress toppers, and curtains. 100% separate washes and complete machine drying guaranteed.
         </p>
-        <div class="hero-cta-group" style="display: flex; gap: 1.5rem;">
-          <a href="booking.html?service=bedding" class="pill-button btn-primary">Book Bedding Clean</a>
-          <a href="#bedding-pricing" class="pill-button btn-outline">View Pricing</a>
+        <div class="hero-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <a href="booking.html?service=bedding" class="btn btn-primary">Book Bedding Clean</a>
+          <a href="#bedding-pricing" class="btn btn-secondary">View Pricing</a>
         </div>
       </div>
-      <div class="hero-image-wrapper">
-        <img src="bedding_laundry_premium.jpg" alt="Premium Linens and Bedding Laundry" style="border-radius: 24px; width: 100%; box-shadow: var(--shadow-lg); border: 1px solid rgba(254, 102, 196, 0.15);">
-      </div>
-    </div>
-  </section>
-
-  <!-- Process Section -->
-  <section class="process-section" id="bedding-process" style="background: rgba(4, 29, 64, 0.02); padding: 80px 0;">
-    <div class="section-container">
-      <div class="section-header" style="text-align: center; margin-bottom: 4rem;">
-        <span class="section-badge">Sanitization</span>
-        <h2>Our Bedding Deep Cleaning Process</h2>
-        <p>Bulky bedding items require high-capacity care. Here is how we ensure your sheets and toppers are 100% clean and dry:</p>
-      </div>
-
-      <div class="process-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
-        <div class="process-card" style="background: var(--color-white); padding: 2rem; border-radius: 16px; border: 1px solid rgba(4, 29, 64, 0.05); text-align: center;">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🏷️</span>
-          <h4 style="color: var(--color-navy); font-weight: 700; margin-bottom: 0.75rem;">1. Sorting & Inspection</h4>
-          <p style="font-size: 0.9rem; color: var(--color-text-body);">We inspect fabric care labels and pre-treat any noticeable sweat stains or spills on your liners and mattress protector.</p>
-        </div>
-        <div class="process-card" style="background: var(--color-white); padding: 2rem; border-radius: 16px; border: 1px solid rgba(4, 29, 64, 0.05); text-align: center;">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">💦</span>
-          <h4 style="color: var(--color-navy); font-weight: 700; margin-bottom: 0.75rem;">2. Hygienic Separate Wash</h4>
-          <p style="font-size: 0.9rem; color: var(--color-text-body);">We wash your bedding separately in large-capacity drums using premium detergents. We never mix your items with others.</p>
-        </div>
-        <div class="process-card" style="background: var(--color-white); padding: 2rem; border-radius: 16px; border: 1px solid rgba(4, 29, 64, 0.05); text-align: center;">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">🔥</span>
-          <h4 style="color: var(--color-navy); font-weight: 700; margin-bottom: 0.75rem;">3. High-Temp Machine Dry</h4>
-          <p style="font-size: 0.9rem; color: var(--color-text-body);">Drying at optimal high heat guarantees that heavy blankets and thick toppers are completely dry inside out, killing dust mites.</p>
-        </div>
-        <div class="process-card" style="background: var(--color-white); padding: 2rem; border-radius: 16px; border: 1px solid rgba(4, 29, 64, 0.05); text-align: center;">
-          <span style="font-size: 2.5rem; display: block; margin-bottom: 1rem;">📦</span>
-          <h4 style="color: var(--color-navy); font-weight: 700; margin-bottom: 0.75rem;">4. Packaging & Delivery</h4>
-          <p style="font-size: 0.9rem; color: var(--color-text-body);">Items are neatly folded and packed in dust-proof bags, then delivered straight back to your hotel lobby reception desk.</p>
-        </div>
+      <div class="hero-visual" style="display: flex; justify-content: center; width: 100%;">
+        <img src="bedding_laundry_premium.jpg" alt="Premium Linens, Bedding & Mattress Topper Cleaning" style="border-radius: 28px; width: 100%; max-width: 500px; box-shadow: var(--shadow-lg); border: 1px solid rgba(242, 106, 25, 0.15); object-fit: cover;">
       </div>
     </div>
   </section>
@@ -320,5 +287,6 @@
 
   <!-- Global Application logic script -->
   <script src="app.js?v=19.1"></script>
+  <script src="index.js"></script>
 </body>
 </html>

@@ -51,24 +51,25 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-section" id="hero" style="padding-top: 140px; padding-bottom: 80px;">
-    <div class="section-container hero-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+    <!-- Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-fabric-bg">
+        <img src="assets/images/fabric_bg.jpg" alt="1997 Laundry">
+    </div>
+    <div class="container hero-container">
       <div class="hero-content">
-        <span class="section-badge badge-hero" id="heroBadge">Premium Shoes Care</span>
-        <h1 class="hero-title" id="heroMainTitle" style="font-size: 3rem; margin-bottom: 1.5rem;">
-          Premium Hand-Cleaned <span style="color: var(--color-pink);">Shoes & Sneakers</span>
-        </h1>
-        <p class="hero-desc" id="heroDescription" style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--color-text-muted);">
+        <span class="badge" id="hero-badge">PREMIUM SERVICE</span>
+        <h1 class="hero-title" id="hero-headline">Premium Hand-Cleaned <span style="color: var(--color-accent);">Shoes & Sneakers</span></h1>
+        <p class="hero-subtitle" id="hero-subtext">
           Give your shoes the 5-star treatment they deserve. We clean all types of shoes by hand using premium biological cleaners—no machine damage, 100% slow natural air dry.
         </p>
-        <div class="hero-cta-group" style="display: flex; gap: 1.5rem;">
-          <a href="booking.html?service=shoes" class="pill-button btn-primary">Book Shoes Clean</a>
-          <a href="#shoes-pricing" class="pill-button btn-outline">View Packages</a>
+        <div class="hero-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+          <a href="booking.html?service=shoes" class="btn btn-primary">Book Shoes Clean</a>
+          <a href="#shoes-pricing" class="btn btn-secondary">View Packages</a>
         </div>
       </div>
-      <div class="hero-image-wrapper">
-        <img src="shoes_cleaning_premium.jpg" alt="Premium Shoes Cleaning Service" style="border-radius: 24px; width: 100%; box-shadow: var(--shadow-lg); border: 1px solid rgba(254, 102, 196, 0.15);">
+      <div class="hero-visual" style="display: flex; justify-content: center; width: 100%;">
+        <img src="shoes_cleaning_premium.jpg" alt="Premium Shoes Cleaning Service" style="border-radius: 28px; width: 100%; max-width: 500px; box-shadow: var(--shadow-lg); border: 1px solid rgba(242, 106, 25, 0.15); object-fit: cover;">
       </div>
     </div>
   </section>
@@ -250,5 +251,6 @@
 
   <!-- JavaScript Link -->
   <script src="app.js?v=19.1"></script>
+  <script src="index.js"></script>
 </body>
 </html>
