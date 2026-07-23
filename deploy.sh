@@ -12,7 +12,7 @@ echo "Target Host: $USER@$IP:$PORT"
 echo ""
 
 # Step 1: Set project directory on VPS
-TARGET_DIR="/var/www/1997-laundry"
+TARGET_DIR="/opt/laundry1997"
 
 echo "✅ Target Directory: $TARGET_DIR"
 echo ""

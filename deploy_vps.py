@@ -6,7 +6,7 @@ IP = "103.97.127.31"
 PORT = 2018
 USER = "root"
 PASS = "Q0HS3SsOwH"
-TARGET_DIR = "/var/www/1997-laundry"
+TARGET_DIR = "/opt/laundry1997"
 
 # Files to upload
 files_to_upload = [
