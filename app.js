@@ -895,7 +895,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // URL Parameter Handling for Multi-page redirection pre-fill
-  const urlParams = new URLSearchParams(window.location.search);
   const serviceParam = urlParams.get('service');
   if (serviceParam && RATES[serviceParam]) {
     if (serviceSelect) {
