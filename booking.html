@@ -364,6 +364,169 @@
       from { transform: translateY(30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
+
+    /* Form row side-by-side flex layout (Responsive) */
+    .form-row {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-row .form-group {
+      flex: 1;
+      margin-bottom: 0 !important;
+    }
+    @media (max-width: 650px) {
+      .form-row {
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+    }
+
+    /* Right column cards stack */
+    .right-column-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    /* Ratings & stats card */
+    .ratings-card {
+      background-color: var(--color-bg-dark);
+      border: 1px solid var(--color-border-dark);
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      color: var(--color-text-light);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .ratings-card::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(242,106,25,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ratings-stars {
+      color: #ff9f43;
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+    .ratings-score {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 0.25rem;
+      line-height: 1;
+      color: var(--color-text-light);
+    }
+    .ratings-subtext {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-bottom: 1.75rem;
+    }
+    .ratings-stats {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
+      gap: 10px;
+    }
+    .stat-box {
+      flex: 1;
+      text-align: center;
+    }
+    .stat-box h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--color-accent);
+      margin: 0 0 0.25rem 0;
+    }
+    .stat-box p {
+      font-size: 0.72rem;
+      opacity: 0.8;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Soft orange-cream offer card */
+    .offer-card {
+      background: #fffaf7;
+      border: 2px dashed rgba(242, 106, 25, 0.4);
+      border-radius: 24px;
+      padding: 2rem;
+      color: var(--color-text-dark);
+      position: relative;
+    }
+    .offer-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+    .offer-text {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--color-text-dark);
+      opacity: 0.95;
+      margin: 0;
+    }
+
+    /* Why book online card */
+    .why-us-card {
+      background: var(--color-white);
+      border: 1px solid var(--color-border-light);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .why-us-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--color-bg-dark);
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      border-bottom: 1px solid rgba(4,29,64,0.05);
+      padding-bottom: 10px;
+    }
+    .why-us-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .why-us-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-text-dark);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .why-us-item i {
+      color: var(--color-accent);
+      margin-top: 3px;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+  </style>
   </style>
 </head>
 <body>
@@ -409,43 +572,45 @@
   <section class="booking-section" id="booking-section" style="padding-top: 140px; padding-bottom: 80px;">
     <div class="section-container">
       <div class="booking-grid">
-        
         <!-- Booking Form Card (Left) -->
-        <div class="booking-form-card" id="bookingFormCard">
-          <div class="booking-form-header">
-            <span class="section-badge">Quick Booking</span>
-            <h2>Book Your Laundry Appointment</h2>
-          </div>
-          <form id="whatsappBookingForm">
-            <!-- Row 1: Full Name (Full Width) -->
-            <div class="form-group">
-              <label for="booking-name">Your Full Name *</label>
-              <input type="text" id="booking-name" required placeholder="e.g. John Doe">
+        <div class="booking-form-card" id="bookingFormCard" style="padding: 2.5rem; border-radius: 24px; border: 1px solid var(--color-border-light);">
+          <div class="booking-form-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid rgba(4,29,64,0.05); padding-bottom: 1.25rem;">
+            <div style="text-align: left;">
+              <h2 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--color-bg-dark);">Book Appointment</h2>
+              <p style="margin: 4px 0 0 0; font-size: 0.88rem; color: var(--color-text-gray);">Our team will contact you to confirm the pickup.</p>
             </div>
+            <span class="badge" style="background: rgba(242,106,25,0.1); color: var(--color-accent); font-weight: 700; padding: 6px 12px; border-radius: 100px; font-size: 0.75rem;">30 SECONDS</span>
+          </div>
 
-            <!-- Row 2: WhatsApp/Phone (Full Width for layout spacing) -->
-            <div class="form-group">
-              <label for="booking-whatsapp">WhatsApp/Phone Number *</label>
-              <div style="display: flex; gap: 8px;">
-                <select id="booking-country-code" style="width: 120px; flex-shrink: 0;" required>
-                  <option value="+84">🇻🇳 +84</option>
-                  <option value="+7">🇷🇺 +7</option>
-                  <option value="+44">🇬🇧 +44</option>
-                  <option value="+1">🇺🇸 +1</option>
-                  <option value="+61">🇦🇺 +61</option>
-                  <option value="+82">🇰🇷 +82</option>
-                  <option value="+81">🇯🇵 +81</option>
-                  <option value="+65">🇸🇬 +65</option>
-                  <option value="+49">🇩🇪 +49</option>
-                  <option value="+33">🇫🇷 +33</option>
-                  <option value="+91">🇮🇳 +91</option>
-                </select>
-                <input type="tel" id="booking-whatsapp" required placeholder="e.g. 978900616" pattern="[0-9]*" inputmode="numeric" style="flex-grow: 1;">
+          <form id="whatsappBookingForm">
+            <!-- Row 1: Name & WhatsApp (Double Column) -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-name">Your Full Name *</label>
+                <input type="text" id="booking-name" required placeholder="e.g. John Smith">
+              </div>
+              <div class="form-group">
+                <label for="booking-whatsapp">WhatsApp/Phone Number *</label>
+                <div style="display: flex; gap: 8px;">
+                  <select id="booking-country-code" style="width: 95px; flex-shrink: 0;" required>
+                    <option value="+84">🇻🇳 +84</option>
+                    <option value="+7">🇷🇺 +7</option>
+                    <option value="+44">🇬🇧 +44</option>
+                    <option value="+1">🇺🇸 +1</option>
+                    <option value="+61">🇦🇺 +61</option>
+                    <option value="+82">🇰🇷 +82</option>
+                    <option value="+81">🇯🇵 +81</option>
+                    <option value="+65">🇸🇬 +65</option>
+                    <option value="+49">🇩🇪 +49</option>
+                    <option value="+33">🇫🇷 +33</option>
+                    <option value="+91">🇮🇳 +91</option>
+                  </select>
+                  <input type="tel" id="booking-whatsapp" required placeholder="e.g. 978900616" pattern="[0-9]*" inputmode="numeric" style="flex-grow: 1;">
+                </div>
               </div>
             </div>
 
-
-            <!-- Row 3: Service Package & Estimated Weight -->
+            <!-- Row 2: Service Package & Estimated Weight (Double Column) -->
             <div class="form-row">
               <div class="form-group">
                 <label for="booking-service">Service Package *</label>
@@ -465,65 +630,63 @@
               </div>
             </div>
 
-            <!-- Row 4: Preferred Pickup Time (Full Width) -->
-            <div class="form-group">
-              <label for="booking-pickup-time">Preferred Pickup Time *</label>
-              <input type="datetime-local" id="booking-pickup-time" required>
+            <!-- Row 3: Pickup Time & Where should we collect? (Double Column) -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-pickup-time">Preferred Pickup Time *</label>
+                <input type="datetime-local" id="booking-pickup-time" required>
+              </div>
+              <div class="form-group">
+                <label for="booking-pickup-type">Where should we collect? *</label>
+                <select id="booking-pickup-type" required>
+                  <option value="frontdesk" selected>Leave at hotel front desk (Lễ tân)</option>
+                  <option value="direct">Meet directly in lobby (Gặp trực tiếp)</option>
+                </select>
+              </div>
             </div>
 
-            <!-- Row 5: Where should we collect (Full Width) -->
-            <div class="form-group">
-              <label for="booking-pickup-type">Where should we collect? *</label>
-              <select id="booking-pickup-type" required>
-                <option value="frontdesk" selected>Leave at hotel front desk (Lễ tân)</option>
-                <option value="direct">Meet directly in lobby (Gặp trực tiếp)</option>
-              </select>
+            <!-- Row 4: Shipping Option & Google Maps Link (Double Column) -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-ship">Shipping Option *</label>
+                <select id="booking-ship" required>
+                  <option value="roundtrip" selected>Round-trip Pickup & Delivery (40,000 VND)</option>
+                  <option value="deliveryonly">Return Delivery Only (20,000 VND)</option>
+                  <option value="pickuponly">Pickup Collection Only (20,000 VND)</option>
+                  <option value="selfservice">Self Drop-off & self collection (0 VND)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="booking-map-link">Google Maps Link</label>
+                <input type="url" id="booking-map-link" placeholder="e.g. https://maps.app.goo.gl/... (Optional)">
+              </div>
             </div>
 
-            <!-- Row 6: Shipping Option (Full Width) -->
-            <div class="form-group">
-              <label for="booking-ship">Shipping Option *</label>
-              <select id="booking-ship" required>
-                <option value="roundtrip" selected>Round-trip Pickup & Delivery (40,000 VND)</option>
-                <option value="deliveryonly">Return Delivery Only (20,000 VND)</option>
-                <option value="pickuponly">Pickup Collection Only (20,000 VND)</option>
-                <option value="selfservice">Self Drop-off & self collection (0 VND)</option>
-              </select>
-            </div>
-
-            <!-- Row 7: Separate Whites checkbox (Full Width) -->
+            <!-- Row 5: Add-on Checkboxes (Full Width inline) -->
             <div class="form-group" style="padding-top: 0.25rem; margin-bottom: 1.5rem;">
               <div id="whites-checkbox-group" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.75rem; width: 100%;">
-                <input type="checkbox" id="booking-whites" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--color-pink); flex-shrink: 0;">
+                <input type="checkbox" id="booking-whites" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--color-accent); flex-shrink: 0;">
                 <label for="booking-whites" style="margin-bottom: 0; cursor: pointer; font-weight: 700; color: var(--color-navy); font-size: 0.95rem; text-transform: none; letter-spacing: normal;">
                   Separate white clothes (+30,000 VND)
                 </label>
               </div>
               <div id="shoes-express-group" style="display: none; align-items: center; justify-content: flex-start; gap: 0.75rem; width: 100%;">
-                <input type="checkbox" id="booking-shoes-express" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--color-pink); flex-shrink: 0;">
+                <input type="checkbox" id="booking-shoes-express" style="width: 20px; height: 20px; cursor: pointer; accent-color: var(--color-accent); flex-shrink: 0;">
                 <label for="booking-shoes-express" style="margin-bottom: 0; cursor: pointer; font-weight: 700; color: var(--color-navy); font-size: 0.95rem; text-transform: none; letter-spacing: normal;">
                   Express 24h Shoes (+100,000 VND/pair)
                 </label>
               </div>
             </div>
 
-            <!-- Row 8: Hotel & Room (Double Column) -->
+            <!-- Row 6: Hotel & Room (Double Column) -->
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-group" style="flex: 1.2;">
                 <label for="booking-hotel">Hotel Name & Address *</label>
-                <textarea id="booking-hotel" rows="2" required placeholder="e.g. Caravelle Hotel, 19 Lam Son Square, District 1"></textarea>
+                <textarea id="booking-hotel" rows="2" required placeholder="e.g. Caravelle Hotel, 19 Lam Son Square, District 1" style="height: 58px; resize: none;"></textarea>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="flex: 0.8;">
                 <label for="booking-room">Room Number</label>
-                <textarea id="booking-room" rows="2" placeholder="e.g. Room 502 (or leave at front desk)"></textarea>
-              </div>
-            </div>
-
-            <!-- Row 9: Google Maps Link (Single Column) -->
-            <div class="form-row">
-              <div class="form-group" style="width: 100%;">
-                <label for="booking-map-link">Google Maps Link (Highly recommended for faster delivery!)</label>
-                <input type="url" id="booking-map-link" placeholder="e.g. https://maps.app.goo.gl/... (Paste maps link here)">
+                <textarea id="booking-room" rows="2" placeholder="e.g. Room 502 (or lobby)" style="height: 58px; resize: none;"></textarea>
               </div>
             </div>
 
@@ -532,53 +695,112 @@
               <option value="cash" selected></option>
             </select>
 
-             <div class="form-buttons" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; width: 100%;">
-               <button type="submit" id="submit-whatsapp" class="pill-button btn-whatsapp" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 800; font-size: 1.02rem; padding: 14px 28px; border: none; background-color: #25d366; color: white; width: 100%; cursor: pointer; border-radius: 25px;">
-                 💬 Proceed to Book via WhatsApp
-               </button>
-               <button type="submit" id="submit-zalo" class="pill-button btn-zalo" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 800; font-size: 1.02rem; padding: 14px 28px; border: none; background-color: #0084ff; color: white; width: 100%; cursor: pointer; border-radius: 25px;">
-                 💬 Proceed to Book via Zalo
-               </button>
-             </div>
+            <div class="form-buttons" style="display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; width: 100%;">
+              <button type="submit" id="submit-whatsapp" class="pill-button btn-whatsapp" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 800; font-size: 1.02rem; padding: 14px 28px; border: none; background-color: #25d366; color: white; width: 100%; cursor: pointer; border-radius: 25px;">
+                💬 Proceed to Book via WhatsApp
+              </button>
+              <button type="submit" id="submit-zalo" class="pill-button btn-zalo" style="display: flex; justify-content: center; align-items: center; gap: 8px; font-weight: 800; font-size: 1.02rem; padding: 14px 28px; border: none; background-color: #0084ff; color: white; width: 100%; cursor: pointer; border-radius: 25px;">
+                💬 Proceed to Book via Zalo
+              </button>
+            </div>
           </form>
         </div>
 
-        <!-- Estimator Panel (Right) -->
-        <div class="booking-estimator-card" id="estimatorCard">
-          <span class="section-badge" id="calculatorBadge">Price Calculator</span>
-          <h2>Calculate & Pre-Fill Your Booking</h2>
-          <p>Input your estimated details. The live estimator calculates your total cost instantly in VND and USD. When ready, click to send pre-filled order text.</p>
+        <!-- Right Column Cards Grid (Right) -->
+        <div class="right-column-cards">
           
-          <div class="estimator-panel" id="estimatorLivePanel">
-            <h4>Live Estimation Summary</h4>
-            <div class="estimator-row">
-              <span>Estimated Weight:</span>
-              <span id="calc-weight-display">4 kg</span>
+          <!-- Card 1: Google Ratings & Stats -->
+          <div class="ratings-card">
+            <div class="ratings-stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <div class="estimator-row">
-              <span>Selected Package:</span>
-              <span id="calc-service-display">Same-day Wash & Fold</span>
-            </div>
-            <div class="estimator-row">
-              <span id="calc-surcharge-label">White Clothes Surcharge:</span>
-              <span id="calc-whites-display">0 VND</span>
-            </div>
-            <div class="estimator-row">
-              <span>Shipping Fee:</span>
-              <span id="calc-ship-display">50,000 VND</span>
-            </div>
-            <hr class="estimator-divider">
-            <div class="estimator-total-row">
-              <span>Estimated Total:</span>
-              <div class="estimator-total-pricing">
-                <span id="calc-total-vnd" class="total-vnd">250,000 VND</span>
-                <span id="calc-total-usd" class="total-usd">(~$10.00 USD)</span>
+            <div class="ratings-score">4.9/5</div>
+            <p class="ratings-subtext">Based on 1,500+ verified reviews on Google Maps</p>
+            <div class="ratings-stats">
+              <div class="stat-box">
+                <h4>15,000+</h4>
+                <p>Customers</p>
+              </div>
+              <div class="stat-box" style="border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1); padding: 0 5px;">
+                <h4>50,000+</h4>
+                <p>Garments</p>
+              </div>
+              <div class="stat-box">
+                <h4>10+ Years</h4>
+                <p>Experience</p>
               </div>
             </div>
-            <p class="calculator-notice">* Minimum weights apply (Standard: 3.5kg | Same-day & Express: 5kg). Ship fee is 20,000 VND/way.</p>
           </div>
-        </div>
 
+          <!-- Card 2: Price Calculator (Estimator) -->
+          <div class="booking-estimator-card" id="estimatorCard" style="padding: 2.5rem 2rem; border-radius: 28px;">
+            <span class="section-badge" id="calculatorBadge" style="background: rgba(242,106,25,0.15); color: var(--color-accent);">Price Calculator</span>
+            <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--color-text-light); margin-top: 0.5rem; margin-bottom: 0.5rem;">Live Estimation Summary</h2>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 1.5rem;">The live estimator calculates your total cost instantly in VND and USD.</p>
+            
+            <div class="estimator-panel" id="estimatorLivePanel" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 1.25rem; border-radius: 20px;">
+              <div class="estimator-row">
+                <span>Estimated Weight:</span>
+                <span id="calc-weight-display">5 kg</span>
+              </div>
+              <div class="estimator-row">
+                <span>Selected Package:</span>
+                <span id="calc-service-display">Same-day Wash & Fold</span>
+              </div>
+              <div class="estimator-row">
+                <span id="calc-surcharge-label">White Clothes Surcharge:</span>
+                <span id="calc-whites-display">0 VND</span>
+              </div>
+              <div class="estimator-row">
+                <span>Shipping Fee:</span>
+                <span id="calc-ship-display">40,000 VND</span>
+              </div>
+              <hr class="estimator-divider" style="border-top: 1px dashed rgba(255,255,255,0.15); margin: 12px 0;">
+              <div class="estimator-total-row" style="margin-top: 0;">
+                <span>Estimated Total:</span>
+                <div class="estimator-total-pricing">
+                  <span id="calc-total-vnd" class="total-vnd" style="color: var(--color-accent);">180,000 VND</span>
+                  <span id="calc-total-usd" class="total-usd" style="color: var(--color-text-light); opacity: 0.8;">(~$7.20 USD)</span>
+                </div>
+              </div>
+              <p class="calculator-notice" style="margin-top: 10px; font-size: 0.72rem; opacity: 0.7; color: var(--color-text-light);">* Minimum weights apply (Standard: 3.5kg | Same-day & Express: 5kg). Ship fee is 20,000 VND/way.</p>
+            </div>
+          </div>
+
+          <!-- Card 3: Online Promotion Offer -->
+          <div class="offer-card">
+            <h4 class="offer-title">★ ONLINE BOOKING OFFER</h4>
+            <p class="offer-text">Get a premium detergent upgrade, separate whites sorting, and 15-minute quick reply via Zalo or WhatsApp!</p>
+          </div>
+
+          <!-- Card 4: Why Book Online -->
+          <div class="why-us-card">
+            <h4 class="why-us-title">Why book with 1997 Laundry?</h4>
+            <ul class="why-us-list">
+              <li class="why-us-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Fast WhatsApp/Zalo confirmation in 15 minutes</span>
+              </li>
+              <li class="why-us-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Free lobby pickup & return delivery (up to 3km)</span>
+              </li>
+              <li class="why-us-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>100% separate washes for every customer</span>
+              </li>
+              <li class="why-us-item">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Transparent dynamic pricing (no hidden surcharges)</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
