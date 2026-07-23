@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "White Clothes Surcharge:": "Phụ phí giặt đồ trắng:",
     "Shipping Fee:": "Phí vận chuyển giao nhận:",
     "Estimated Total:": "Tổng chi phí ước tính:",
-    "* Minimum weights apply (Standard: 3kg | Same-day & Express: 4kg). Ship fee is 25,000 VND/way.": "* Áp dụng khối lượng tối thiểu (Standard: 3kg | Same-day & Express: 4kg). Phí ship là 25.000 VND/chiều.",
+    "* Minimum weights apply (Standard: 3.5kg | Same-day & Express: 5kg). Ship fee is 20,000 VND/way.": "* Áp dụng khối lượng tối thiểu (Standard: 3.5kg | Same-day & Express: 5kg). Phí ship là 20.000 VND/chiều.",
     
     // booking.html (Form)
     "Quick Booking": "Đặt lịch nhanh",
@@ -1545,7 +1545,7 @@ ${mapLink ? `📍 Map: ${mapLink}\n` : ''}🚪 Room Number: ${roomNumber}
           id: "address_query",
           short: "📍 Shop Address",
           keywords: ["address", "location", "drop off myself", "dropoff myself", "where are you", "địa chỉ", "dia chi", "tự mang", "tu mang"],
-          response: "📍 <strong>Shop Location & Drop-off</strong>: You can drop off your clothes directly at our laundry workspace at: **121/10 Le Thi Rieng, Ben Thanh, District 1, HCMC**. You can view our direct Google Maps location here: <a href='https://maps.app.goo.gl/gJG1N3VRNuTYXMSy9' target='_blank'>Google Maps Link</a>.<br>Note: Dropping off and collecting yourself gets you a 25,000 VND discount per way (50,000 VND total discount for round-trip)!"
+          response: "📍 <strong>Shop Location & Drop-off</strong>: You can drop off your clothes directly at our laundry workspace at: **121/10 Le Thi Rieng, Ben Thanh, District 1, HCMC**. You can view our direct Google Maps location here: <a href='https://maps.app.goo.gl/gJG1N3VRNuTYXMSy9' target='_blank'>Google Maps Link</a>.<br>Note: Dropping off and collecting yourself gets you a 20,000 VND discount per way (40,000 VND total discount for round-trip)!"
         },
         {
           id: "vat",
