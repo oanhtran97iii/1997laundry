@@ -2594,8 +2594,6 @@ img {
   display: block;
 }
 
-.form-group input:not([type="checkbox"]):not([type="radio"]),
-
 .floating-cta-btn,
 .floating-cta-btn.cta-chat {
   width: 56px;
