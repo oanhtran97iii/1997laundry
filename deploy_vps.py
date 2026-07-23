@@ -11,6 +11,7 @@ TARGET_DIR = "/var/www/1997-laundry"
 # Files to upload
 files_to_upload = [
     "index.html",
+    "favicon.ico",
     "bedding.html",
     "app.js",
     "index.css",
