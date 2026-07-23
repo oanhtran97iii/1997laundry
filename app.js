@@ -417,7 +417,57 @@ document.addEventListener('DOMContentLoaded', () => {
     "Hotel & Room:": "Khách sạn & Phòng:",
     "Estimated Total:": "Tổng tiền tạm tính:",
     "💬 Send via WhatsApp": "💬 Gửi qua WhatsApp",
-    "💬 Send via Zalo (Copy)": "💬 Gửi qua Zalo (Copy)"
+    "💬 Send via Zalo (Copy)": "💬 Gửi qua Zalo (Copy)",
+
+    // Hotel Landing Page Specific Translations
+    "HOTEL VS OUTSIDE LAUNDRY": "KHÁCH SẠN VS GIẶT ỦI BÊN NGOÀI",
+    "Avoid paying premium in-house hotel fees. Enjoy five-star separate washing hygiene at a fraction of the cost.": "Tránh phí dịch vụ đắt đỏ của khách sạn. Trải nghiệm dịch vụ giặt sấy riêng biệt chất lượng cao với chi phí tiết kiệm.",
+    "Price & Service Comparison": "So sánh Giá cả & Dịch vụ",
+    "Cost Estimation": "Ước tính chi phí",
+    "Hotel:": "Khách sạn:",
+    "1997:": "1997:",
+    "(Charges per single item + 13% tax)": "(Tính theo từng cái + 13% thuế phí)",
+    "(Flat weight-based rate, VAT included)": "(Giá cố định theo cân nặng, đã gồm VAT)",
+    "Hygiene Standards": "Tiêu chuẩn vệ sinh",
+    "Mixed guest washes": "Giặt chung đồ các phòng khác",
+    "(Heavy chemical scents)": "(Dùng nhiều mùi hóa chất)",
+    "100% separate machines": "Cam kết giặt riêng 100%",
+    "(Eco-friendly soap & RO water)": "(Xà phòng hữu cơ & nước lọc RO)",
+    "Turnaround Time": "Thời gian giao trả",
+    "24h - 48h": "24h - 48h",
+    "(Late delivery fee check)": "(Dễ trễ giờ check-out bay)",
+    "24h or express 4h": "24h hoặc hỏa tốc 4h",
+    "(Time-critical check out guarantee)": "(Cam kết giao đúng giờ bay / trả phòng)",
+    "Super Close Walk Distance": "Khoảng cách đi bộ siêu gần",
+    "Free Lobby Pickup / Concierge Drop-off": "Lấy đồ miễn phí tại Sảnh / Gửi Lễ tân",
+    
+    // Caravelle
+    "Smart Laundry Choice for Caravelle Hotel Saigon Guests": "Lựa chọn giặt ủi thông minh cho khách Caravelle Hotel Saigon",
+    "Our flagship laundry hub is just a 6-minute walk (500m) from Caravelle Hotel lobby. You can drop off your bag directly on your way out to explore District 1.": "Cửa hàng của chúng tôi chỉ cách sảnh khách sạn Caravelle 6 phút đi bộ (500m). Bạn có thể tự mang tới tiệm trực tiếp trên đường đi chơi Quận 1.",
+    "No need to leave your room! Leave your laundry bag with the Caravelle Hotel Saigon lobby reception desk or concierge, message us on Zalo/WhatsApp, and our driver will handle the rest.": "Không cần rời khỏi phòng! Bạn chỉ cần gửi túi đồ giặt tại quầy lễ tân hoặc concierge sảnh Caravelle Hotel Saigon, nhắn tin cho chúng tôi qua Zalo/WhatsApp, tài xế sẽ tới lấy.",
+    "Save Up to 80% on Laundry near Caravelle Hotel Saigon": "Tiết kiệm đến 80% chi phí giặt ủi gần Caravelle Hotel Saigon",
+    "Skip expensive hotel laundry fees. We collect directly from the Caravelle lobby, wash in separate machines, and deliver back fresh within 24 hours (or 4 hours express).": "Bỏ qua chi phí giặt ủi đắt đỏ của khách sạn. Chúng tôi lấy đồ trực tiếp tại sảnh Caravelle, giặt riêng bằng máy độc lập và giao lại sạch thơm trong 24 giờ (hoặc hỏa tốc 4 giờ).",
+
+    // Sheraton
+    "Smart Laundry Choice for Sheraton Saigon Hotel Guests": "Lựa chọn giặt ủi thông minh cho khách Sheraton Saigon Hotel",
+    "Our flagship laundry hub is just a 5-minute walk (450m) from Sheraton Saigon Hotel lobby. You can drop off your bag directly on your way out to explore District 1.": "Cửa hàng của chúng tôi chỉ cách sảnh khách sạn Sheraton 5 phút đi bộ (450m). Bạn có thể tự mang tới tiệm trực tiếp trên đường đi chơi Quận 1.",
+    "No need to leave your room! Leave your laundry bag with the Sheraton Saigon Hotel lobby reception desk or concierge, message us on Zalo/WhatsApp, and our driver will handle the rest.": "Không cần rời khỏi phòng! Bạn chỉ cần gửi túi đồ giặt tại quầy lễ tân hoặc concierge sảnh Sheraton Saigon Hotel, nhắn tin cho chúng tôi qua Zalo/WhatsApp, tài xế sẽ tới lấy.",
+    "Save Up to 80% on Laundry near Sheraton Saigon Hotel": "Tiết kiệm đến 80% chi phí giặt ủi gần Sheraton Saigon Hotel",
+    "Skip expensive hotel laundry fees. We collect directly from the Sheraton lobby, wash in separate machines, and deliver back fresh within 24 hours (or 4 hours express).": "Bỏ qua chi phí giặt ủi đắt đỏ của khách sạn. Chúng tôi lấy đồ trực tiếp tại sảnh Sheraton, giặt riêng bằng máy độc lập và giao lại sạch thơm trong 24 giờ (hoặc hỏa tốc 4 giờ).",
+
+    // Rex
+    "Smart Laundry Choice for Rex Hotel Saigon Guests": "Lựa chọn giặt ủi thông minh cho khách Rex Hotel Saigon",
+    "Our flagship laundry hub is just a 7-minute walk (600m) from Rex Hotel Saigon lobby. You can drop off your bag directly on your way out to explore District 1.": "Cửa hàng của chúng tôi chỉ cách sảnh khách sạn Rex 7 phút đi bộ (600m). Bạn có thể tự mang tới tiệm trực tiếp trên đường đi chơi Quận 1.",
+    "No need to leave your room! Leave your laundry bag with the Rex Hotel Saigon lobby reception desk or concierge, message us on Zalo/WhatsApp, and our driver will handle the rest.": "Không cần rời khỏi phòng! Bạn chỉ cần gửi túi đồ giặt tại quầy lễ tân hoặc concierge sảnh Rex Hotel Saigon, nhắn tin cho chúng tôi qua Zalo/WhatsApp, tài xế sẽ tới lấy.",
+    "Save Up to 80% on Laundry near Rex Hotel Saigon": "Tiết kiệm đến 80% chi phí giặt ủi gần Rex Hotel Saigon",
+    "Skip expensive hotel laundry fees. We collect directly from the Rex Hotel lobby, wash in separate machines, and deliver back fresh within 24 hours (or 4 hours express).": "Bỏ qua chi phí giặt ủi đắt đỏ của khách sạn. Chúng tôi lấy đồ trực tiếp tại sảnh Rex Hotel, giặt riêng bằng máy độc lập và giao lại sạch thơm trong 24 giờ (hoặc hỏa tốc 4 giờ).",
+
+    // Park Hyatt
+    "Smart Laundry Choice for Park Hyatt Saigon Guests": "Lựa chọn giặt ủi thông minh cho khách Park Hyatt Saigon",
+    "Our flagship laundry hub is just a 5-minute walk (400m) from Park Hyatt Saigon lobby. You can drop off your bag directly on your way out to explore District 1.": "Cửa hàng của chúng tôi chỉ cách sảnh khách sạn Park Hyatt 5 phút đi bộ (400m). Bạn có thể tự mang tới tiệm trực tiếp trên đường đi chơi Quận 1.",
+    "No need to leave your room! Leave your laundry bag with the Park Hyatt Saigon lobby reception desk or concierge, message us on Zalo/WhatsApp, and our driver will handle the rest.": "Không cần rời khỏi phòng! Bạn chỉ cần gửi túi đồ giặt tại quầy lễ tân hoặc concierge sảnh Park Hyatt Saigon, nhắn tin cho chúng tôi qua Zalo/WhatsApp, tài xế sẽ tới lấy.",
+    "Save Up to 80% on Laundry near Park Hyatt Saigon": "Tiết kiệm đến 80% chi phí giặt ủi gần Park Hyatt Saigon",
+    "Skip expensive hotel laundry fees. We collect directly from the Park Hyatt lobby, wash in separate machines, and deliver back fresh within 24 hours (or 4 hours express).": "Bỏ qua chi phí giặt ủi đắt đỏ của khách sạn. Chúng tôi lấy đồ trực tiếp tại sảnh Park Hyatt, giặt riêng bằng máy độc lập và giao lại sạch thơm trong 24 giờ (hoặc hỏa tốc 4 giờ)."
   };
 
   const getTranslation = (text) => {
