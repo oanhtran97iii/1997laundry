@@ -831,17 +831,31 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: center;
             width: 100%;
             border-top: 1px dashed rgba(226, 232, 240, 0.8);
-            padding-top: 20px;
+            padding-top: 22px;
+            text-align: left;
+            max-width: 250px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .express-card-premium .express-specs-list li {
             font-family: var(--font-body);
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--color-text-gray);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .express-card-premium .express-specs-list li i {
+            margin-top: 3px;
+            font-size: 12px;
+            flex-shrink: 0;
         }
 
         .express-card-premium .express-specs-list li:last-child {
@@ -1314,12 +1328,12 @@
                     <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
                     
                     <ul class="express-specs-list">
-                        <li>Cold wash & tumble dry at 60°C</li>
-                        <li>Separate wash for whites: <strong>Included</strong></li>
-                        <li>Extra weight: +35,000 VND/kg</li>
-                        <li>Pickup & delivery: 20,000 VND/way (&lt; 3km)</li>
-                        <li>Over 3km: +8,000 VND/km</li>
-                        <li>8% VAT: <strong>Included</strong> (No iron)</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Cold wash & tumble dry at 60°C</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Separate wash for whites: <strong>Included</strong></span></li>
+                        <li><i class="fa-solid fa-circle-plus" style="color: #64748b;"></i> <span>Extra weight: +35,000 VND/kg</span></li>
+                        <li><i class="fa-solid fa-truck" style="color: var(--color-accent);"></i> <span>Delivery: 20,000 VND/way (&lt; 3km)</span></li>
+                        <li><i class="fa-solid fa-arrow-up-right-from-square" style="color: #64748b;"></i> <span>Over 3km: +8,000 VND/km</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>8% VAT: <strong>Included</strong> (No iron)</span></li>
                     </ul>
                 </div>
 
@@ -1337,12 +1351,12 @@
                     <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
                     
                     <ul class="express-specs-list">
-                        <li>Cold wash & tumble dry at 60°C</li>
-                        <li>Separate wash for whites: <strong>Included</strong></li>
-                        <li>Extra weight: +30,000 VND/kg</li>
-                        <li>Pickup & delivery: 20,000 VND/way (&lt; 3km)</li>
-                        <li>Over 3km: +8,000 VND/km</li>
-                        <li>8% VAT: <strong>Included</strong> (No iron)</li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Cold wash & tumble dry at 60°C</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Separate wash for whites: <strong>Included</strong></span></li>
+                        <li><i class="fa-solid fa-circle-plus" style="color: #64748b;"></i> <span>Extra weight: +30,000 VND/kg</span></li>
+                        <li><i class="fa-solid fa-truck" style="color: var(--color-accent);"></i> <span>Delivery: 20,000 VND/way (&lt; 3km)</span></li>
+                        <li><i class="fa-solid fa-arrow-up-right-from-square" style="color: #64748b;"></i> <span>Over 3km: +8,000 VND/km</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>8% VAT: <strong>Included</strong> (No iron)</span></li>
                     </ul>
                 </div>
 
@@ -1360,12 +1374,12 @@
                     <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
                     
                     <ul class="express-specs-list">
-                        <li>Cold wash & tumble dry at 60°C</li>
-                        <li>Separate wash for whites: <strong>Not Included</strong></li>
-                        <li>Extra weight: +30,000 VND/kg</li>
-                        <li>Pickup & delivery: 20,000 VND/way (&lt; 3km)</li>
-                        <li>Over 3km: +8,000 VND/km</li>
-                        <li>8% VAT: <strong>Included</strong></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Cold wash & tumble dry at 60°C</span></li>
+                        <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444;"></i> <span style="color: #94a3b8;">Separate wash for whites: <strong>Not Included</strong></span></li>
+                        <li><i class="fa-solid fa-circle-plus" style="color: #64748b;"></i> <span>Extra weight: +30,000 VND/kg</span></li>
+                        <li><i class="fa-solid fa-truck" style="color: var(--color-accent);"></i> <span>Delivery: 20,000 VND/way (&lt; 3km)</span></li>
+                        <li><i class="fa-solid fa-arrow-up-right-from-square" style="color: #64748b;"></i> <span>Over 3km: +8,000 VND/km</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>8% VAT: <strong>Included</strong></span></li>
                     </ul>
                 </div>
             </div>
