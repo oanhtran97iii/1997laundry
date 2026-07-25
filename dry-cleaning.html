@@ -330,6 +330,40 @@
             font-weight: 700;
         }
 
+        .promise-notice-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(16, 185, 129, 0.04);
+            border: 1px dashed rgba(16, 185, 129, 0.25);
+            padding: 16px 28px;
+            border-radius: 16px;
+            max-width: 760px;
+            margin: -30px auto 45px auto;
+            text-align: left;
+        }
+        
+        .promise-notice-box i {
+            font-size: 20px;
+            color: #10b981;
+            flex-shrink: 0;
+        }
+        
+        .promise-notice-box p {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .promise-notice-box strong {
+            color: var(--color-bg-dark);
+            font-weight: 700;
+        }
+
         /* Detailed price list styling */
         .detailed-pricing-section {
             padding: 100px 0;
@@ -489,6 +523,12 @@
         }
 
         @media (max-width: 768px) {
+            .promise-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
+            }
             .delivery-notice-box {
                 flex-direction: column;
                 text-align: center;
@@ -587,6 +627,13 @@
                             </div>
                         </div>
                         <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                            <div class="text-box">
+                                <h5>All-Inclusive Price</h5>
+                                <p>No hidden stain fees</p>
+                            </div>
+                        </div>
+                        <div class="spec-capsule">
                             <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
                             <div class="text-box">
                                 <h5>Shaping & Linings</h5>
@@ -638,6 +685,12 @@
             <div class="delivery-notice-box">
                 <i class="fa-solid fa-truck-ramp-box"></i>
                 <p><strong>Delivery Notice:</strong> Package prices do not include shipping. Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km.</p>
+            </div>
+
+            <!-- All-Inclusive Promise Box -->
+            <div class="promise-notice-box">
+                <i class="fa-solid fa-circle-check"></i>
+                <p><strong>All-Inclusive Promise:</strong> 1-for-All Price. <strong>No hidden stain treatment surcharges!</strong> Unlike other dry cleaners in Vietnam that double your bill with separate spot-cleaning fees, our listed price includes complete stain removal and vertical steam pressing.</p>
             </div>
 
             <div class="pricing-list-container">
