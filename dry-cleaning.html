@@ -657,54 +657,29 @@
         }
 
         .product-card-body {
-            padding: 24px;
+            padding: 20px 24px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .product-card-body h3 {
             font-family: var(--font-headline);
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: var(--color-bg-dark);
-            margin: 0 0 10px 0;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
         }
 
-        .product-card-body p {
-            font-family: var(--font-body);
-            font-size: 13px;
-            line-height: 1.5;
-            color: var(--color-text-gray);
-            margin: 0 0 20px 0;
-            flex-grow: 1;
-        }
-
-        .product-card-body .btn-card-link {
+        .product-price {
             font-family: var(--font-headline);
-            font-size: 12.5px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--color-accent);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: color 0.3s ease;
-        }
-
-        .product-card-body .btn-card-link:hover {
-            color: var(--color-bg-dark);
-        }
-
-        .product-card-body .btn-card-link i {
-            font-size: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card-body .btn-card-link:hover i {
-            transform: translateX(4px);
+            display: block;
         }
 
         @media (max-width: 991px) {
@@ -830,8 +805,7 @@
                     </div>
                     <div class="product-card-body">
                         <h3>Suits & Blazers</h3>
-                        <p>We protect original lining structures, prevent shoulder collapse, and restore the crisp tailored form of premium wool/blend suits.</p>
-                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                        <span class="product-price">From 180,000 VND</span>
                     </div>
                 </div>
 
@@ -843,8 +817,7 @@
                     </div>
                     <div class="product-card-body">
                         <h3>Silk & Evening Gowns</h3>
-                        <p>Meticulous care for silk, chiffon, lace, and embellished gowns. Prevents color bleed and preserves delicate textures.</p>
-                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                        <span class="product-price">From 130,000 VND</span>
                     </div>
                 </div>
 
@@ -856,8 +829,7 @@
                     </div>
                     <div class="product-card-body">
                         <h3>Wool & Cashmere</h3>
-                        <p>Gentle organic solvent wash prevents felting, fiber shrinking, or stretching, keeping coats fluffy, soft, and warm.</p>
-                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                        <span class="product-price">From 180,000 VND</span>
                     </div>
                 </div>
 
@@ -869,8 +841,7 @@
                     </div>
                     <div class="product-card-body">
                         <h3>Leather & Fur</h3>
-                        <p>Specialized dry cleaning and leather conditioning to restore essential oils, prevent cracking, and maintain natural luster.</p>
-                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                        <span class="product-price">From 230,000 VND</span>
                     </div>
                 </div>
             </div>
