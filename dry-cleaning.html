@@ -1048,6 +1048,29 @@
                 padding: 6px 12px !important;
                 border-radius: 20px !important;
             }
+
+            /* Benefits & Testimonials Mobile Refinements */
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .benefit-card, .testimonial-card {
+                padding: 30px 20px !important;
+            }
+        }
+
+        /* Desktop grids for benefits and testimonials */
+        .benefits-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -1201,6 +1224,52 @@
                         <h3>T-Shirts</h3>
                         <span class="product-price">From 70,000 VND</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Benefits Section -->
+    <section class="benefits-section" style="padding: 100px 0; background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">WHY CHOOSE US</span>
+                <h2 class="section-title">The 1997 Luxury Care Standard</h2>
+                <p class="section-subtitle">We don't just clean; we restore, protect, and extend the lifespan of your valuable wardrobe.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">100% Odorless Organic Solvents</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        We use premium European hydrocarbon solvents that are completely odorless, skin-safe, and biodegradable. No toxic chemical smell or residue on your garments.
+                    </p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Zero Shrinkage & Crease Retention</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        Our slow-rotation cold extraction process prevents woolen and silk fabrics from shrinking or warping. Retains sharp jacket lapels and trouser crease lines.
+                    </p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Color & Fiber Protection</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        Hydrocarbon solvents naturally coat and nourish fibers, restoring luster to silk, cashmere, down feathers, and protecting garments from color fading.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1520,6 +1589,76 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="padding: 100px 0; background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TESTIMONIALS</span>
+                <h2 class="section-title">Trusted by Luxury Wardrobe Owners</h2>
+                <p class="section-subtitle">Read what our premium clients say about their organic dry cleaning experience in Saigon.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "I send all my tailored business suits here. They restore the shoulders and structure perfectly, and there is zero toxic chemical smell. Worth every penny."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">LH</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Liam Henderson</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Thao Dien, District 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Rất hài lòng với dịch vụ giặt hấp đầm lụa và áo măng tô dạ ở đây. Áo sạch sẽ thơm nhẹ mùi hương tự nhiên, không bị mất dáng."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">MT</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Minh Thư</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Ben Nghe, District 1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Best dry cleaner in Saigon for luxury brands. Handled my Moncler down jacket and silk Chanel blazer with absolute care. Highly recommend!"
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">SK</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Sarah K.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Phu My Hung, District 7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQs Section -->
     <section class="faq-section" id="faq" style="padding: 100px 0; background-color: var(--color-bg-soft);">
         <div class="container">
@@ -1574,6 +1713,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="bottom-cta-section" style="padding: 100px 0; background-color: var(--color-bg-dark); position: relative; overflow: hidden; text-align: center; color: #ffffff;">
+        <div class="hero-blob blob-1" style="background-color: rgba(242, 106, 25, 0.18); filter: blur(100px); top: -50px; left: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        <div class="hero-blob blob-2" style="background-color: rgba(242, 106, 25, 0.08); filter: blur(100px); bottom: -50px; right: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2; max-width: 750px;">
+            <span class="section-badge" style="background-color: rgba(255,255,255,0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">BOOK PICKUP TODAY</span>
+            <h2 style="font-family: var(--font-headline); font-size: 32px; font-weight: 700; color: #ffffff; margin: 20px 0 15px 0; line-height: 1.25;">Ready to Restore Your Luxury Garments?</h2>
+            <p style="font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: #94a3b8; margin: 0 auto 35px auto;">
+                Schedule a convenient home pickup in District 1, 2, 3, 7, Binh Thanh. Let our organic dry cleaning experts care for your valuable wardrobe.
+            </p>
+            
+            <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
+                <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo" style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
+                    <i class="fa-solid fa-comments"></i> Book on Zalo
+                </a>
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa" style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
+                    <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
+                </a>
+            </div>
+            
+            <p style="font-family: var(--font-body); font-size: 13px; color: #64748b; margin-top: 25px; font-weight: 500; margin-bottom: 0;">
+                Or call us directly at <a href="tel:0866137043" style="color: var(--color-accent); font-weight: 700; text-decoration: none;">0866.137.043</a> (7:00 AM - 10:00 PM)
+            </p>
         </div>
     </section>
 
