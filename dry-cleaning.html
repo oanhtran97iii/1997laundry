@@ -23,6 +23,131 @@
             overflow: hidden;
         }
 
+        /* Hero Trust Badge Styling */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(242, 106, 25, 0.08);
+            border: 1px solid rgba(242, 106, 25, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-trust-badge i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .hero-trust-badge span {
+            font-family: var(--font-headline);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Inline Specs Styling */
+        .hero-specs-row-new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item-new {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item-new i {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .spec-item-new span {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-item-divider {
+            width: 1px;
+            height: 14px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dual CTA Styling */
+        .hero-actions-new {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 24px;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-hero-cta-zalo {
+            background-color: #0068ff; /* Zalo Blue */
+        }
+
+        .btn-hero-cta-zalo:hover {
+            background-color: #0056d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 104, 255, 0.22);
+        }
+
+        .btn-hero-cta-wa {
+            background-color: #25D366; /* WhatsApp Green */
+        }
+
+        .btn-hero-cta-wa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+        }
+
+        .pricing-link-secondary {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-link-secondary:hover {
+            color: var(--color-accent);
+        }
+
         /* Animated Background Blobs */
         .hero-blob {
             position: absolute;
@@ -891,6 +1016,38 @@
                 line-height: 1.4 !important;
                 margin-top: 6px !important;
             }
+
+            /* Hero Section Mobile Refinements */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 20px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+            .pricing-link-secondary {
+                font-size: 13px !important;
+            }
+            .hero-specs-row-new {
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .spec-item-divider {
+                display: none !important;
+            }
+            .spec-item-new {
+                background-color: rgba(242, 106, 25, 0.04) !important;
+                border: 1px solid rgba(242, 106, 25, 0.08) !important;
+                padding: 6px 12px !important;
+                border-radius: 20px !important;
+            }
         }
     </style>
 </head>
@@ -935,42 +1092,48 @@
                 <!-- Left Details -->
                 <div class="hero-left-details">
                     <span class="section-badge">PREMIUM DRY CLEANING</span>
+                    
+                    <!-- Trust Rating Badge -->
+                    <div class="hero-trust-badge">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9/5 Google Maps Rating (1,200+ Reviews)</span>
+                    </div>
+
                     <h1>Premium Dry Cleaning & <span class="orange-highlight">Luxury Garments</span></h1>
                     <p class="description">
                         Saigon's premier organic dry cleaning service for suits, wool coats, silk gowns, down jackets, and leather. Every piece undergoes a strict 3-day multi-stage process with premium European solvents to preserve fabrics, lining structure, and original sheen.
                     </p>
                     
-                    <div class="hero-specs-row">
-                        <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-gem"></i></div>
-                            <div class="text-box">
-                                <h5>Luxury Care</h5>
-                                <p>Organic solvents</p>
-                            </div>
+                    <!-- Inline Space-Saving Specs -->
+                    <div class="hero-specs-row-new">
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>Organic Solvents</span>
                         </div>
-                        <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                            <div class="text-box">
-                                <h5>All-Inclusive</h5>
-                                <p>No hidden fees</p>
-                            </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <span>All-Inclusive Price</span>
                         </div>
-                        <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
-                            <div class="text-box">
-                                <h5>Perfect Shape</h5>
-                                <p>No shrinking</p>
-                            </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>No Shrinkage</span>
                         </div>
                     </div>
                     
-                    <div class="hero-actions">
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup">
-                            <i class="fa-solid fa-calendar-days"></i> Schedule Pickup
+                    <!-- High-Converting Dual Booking CTAs -->
+                    <div class="hero-actions-new">
+                        <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo">
+                            <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book on Zalo
                         </a>
-                        <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing">
-                            <i class="fa-solid fa-tags"></i> Check Pricing
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book on WhatsApp
                         </a>
+                    </div>
+
+                    <div class="hero-secondary-links" style="margin-top: 15px; text-align: left;">
+                        <a href="#pricing" class="pricing-link-secondary"><i class="fa-solid fa-tags"></i> View Price List</a>
                     </div>
                 </div>
 
