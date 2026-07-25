@@ -15,12 +15,159 @@
     <link rel="stylesheet" href="index.css?v=1.1">
     
     <style>
-        /* Specific Styles for Curtain Cleaning Page */
         .curtain-hero-redesigned {
             padding: 160px 0 100px 0;
             background: #fbfdfc;
             position: relative;
             overflow: hidden;
+        }
+
+        /* Hero Trust Badge Styling */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(242, 106, 25, 0.08);
+            border: 1px solid rgba(242, 106, 25, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-trust-badge i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .hero-trust-badge span {
+            font-family: var(--font-headline);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Inline Specs Styling */
+        .hero-specs-row-new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item-new {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item-new i {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .spec-item-new span {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-item-divider {
+            width: 1px;
+            height: 14px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dual CTA Styling */
+        .hero-actions-new {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 24px;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-hero-cta-zalo {
+            background-color: #0068ff; /* Zalo Blue */
+        }
+
+        .btn-hero-cta-zalo:hover {
+            background-color: #0056d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 104, 255, 0.22);
+        }
+
+        .btn-hero-cta-wa {
+            background-color: #25D366; /* WhatsApp Green */
+        }
+
+        .btn-hero-cta-wa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+        }
+
+        .pricing-link-secondary {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-link-secondary:hover {
+            color: var(--color-accent);
+        }
+
+        /* Compact Section Spacing rules */
+        .pricing-grid-section, .install-flow-section, .faq-section, .benefits-section, .testimonials-section {
+            padding: 70px 0 !important;
+        }
+
+        .bottom-cta-section {
+            padding: 85px 0 !important;
+        }
+
+        /* Desktop grids for benefits and testimonials */
+        .benefits-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
         }
 
         /* Animated Background Blobs */
@@ -579,11 +726,6 @@
                 font-size: 32px;
             }
 
-            .hero-specs-row {
-                flex-direction: column;
-                gap: 10px;
-            }
-
             .floating-menu-card {
                 position: relative;
                 left: 0;
@@ -600,6 +742,56 @@
 
             .flow-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Hero Section Mobile Refinements */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 20px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+            .pricing-link-secondary {
+                font-size: 13px !important;
+            }
+            .hero-specs-row-new {
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .spec-item-divider {
+                display: none !important;
+            }
+            .spec-item-new {
+                background-color: rgba(242, 106, 25, 0.04) !important;
+                border: 1px solid rgba(242, 106, 25, 0.08) !important;
+                padding: 6px 12px !important;
+                border-radius: 20px !important;
+            }
+
+            /* Compact Spacing on Mobile */
+            .pricing-grid-section, .install-flow-section, .faq-section, .benefits-section, .testimonials-section {
+                padding: 45px 0 !important;
+            }
+
+            .bottom-cta-section {
+                padding: 55px 0 !important;
+            }
+
+            /* Benefits & Testimonials Mobile Refinements */
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .benefit-card, .testimonial-card {
+                padding: 30px 20px !important;
             }
         }
     </style>
@@ -645,35 +837,48 @@
                 <!-- Left Details -->
                 <div class="hero-left-details">
                     <span class="section-badge">HASSLE-FREE HOME PICKUP & INSTALLATION</span>
-                    <h1>Premium Curtain Cleaning & <span class="orange-highlight">Home Installation</span></h1>
+                    
+                    <!-- Trust Rating Badge -->
+                    <div class="hero-trust-badge">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9/5 Google Maps Rating (1,200+ Reviews)</span>
+                    </div>
+
+                    <h1>Premium Curtain Cleaning & <span class="orange-highlight">Home Re-installation</span></h1>
                     <p class="description">
                         Complete premium door-to-door curtain care. Our specialized team handles everything: safe home dismantling, organic deep washing & UVC sanitation, horizontal steam pressing, and meticulous re-hanging.
                     </p>
                     
-                    <div class="hero-specs-row">
-                        <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-house-chimney-user"></i></div>
-                            <div class="text-box">
-                                <h5>Home Removal & Install</h5>
-                                <p>Tháo dỡ & lắp đặt tận nơi</p>
-                            </div>
+                    <!-- Inline Space-Saving Specs -->
+                    <div class="hero-specs-row-new">
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                            <span>Dismantle & Install Included</span>
                         </div>
-                        <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-shield-virus"></i></div>
-                            <div class="text-box">
-                                <h5>Sanitized & Dust-Mite Free</h5>
-                                <p>Clean fabric & fresh scents</p>
-                            </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-leaf"></i>
+                            <span>Organic Deep Wash</span>
+                        </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>No fabric shrinkage</span>
                         </div>
                     </div>
                     
-                    <div class="hero-actions">
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup">
-                            <i class="fa-solid fa-calendar-days"></i> Schedule Home Visit
+                    <!-- High-Converting Dual Booking CTAs -->
+                    <div class="hero-actions-new">
+                        <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo">
+                            <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book on Zalo
                         </a>
-                        <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing">
-                            <i class="fa-solid fa-tags"></i> Check Pricing
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book on WhatsApp
                         </a>
+                    </div>
+
+                    <div class="hero-secondary-links" style="margin-top: 15px; text-align: left;">
+                        <a href="#pricing" class="pricing-link-secondary"><i class="fa-solid fa-tags"></i> View Price List</a>
                     </div>
                 </div>
 
@@ -737,6 +942,52 @@
                     <div class="flow-card-icon"><i class="fa-solid fa-house-circle-check"></i></div>
                     <h3>04. Home Re-installation</h3>
                     <p>We return to your home, hang the fresh curtains back properly, check the rod alignment, and clean the work area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Benefits Section -->
+    <section class="benefits-section" style="background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">WHY CHOOSE US</span>
+                <h2 class="section-title">The 1997 Curtain Care Standard</h2>
+                <p class="section-subtitle">We provide a hassle-free, complete solution to restore your curtains' beauty and clean your home air.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Dismantling & Installation</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        No need to climb ladders. Our specialized team handles everything: safe removal, marking, and complete re-hanging with correct alignment.
+                    </p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-lungs"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Dust & Allergen Sanitizing</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        Curtains act as HCMC dust filters. Our deep wash dissolves embedded grime, dust mites, pet dander, and odors, making your air clean and healthy.
+                    </p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Steam Press & Shape Recovery</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        After washing, curtains are steam ironed using vertical form-finishers. Restores original drape lines and crisp folding structure without co co rút.
+                    </p>
                 </div>
             </div>
         </div>
@@ -843,8 +1094,80 @@
         </div>
     </section>
 
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TESTIMONIALS</span>
+                <h2 class="section-title">Trusted by Busy Homeowners</h2>
+                <p class="section-subtitle">Read what our clients say about our complete curtain cleaning and installation service in Saigon.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Amazing service! The team came, dismantled the heavy curtains in my duplex apartment, cleaned them perfectly, and re-installed them. Zero stress."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">LN</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Liam N.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Thao Dien, District 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Rất ưng ý với dịch vụ giặt rèm của 1997. Rèm được tháo lắp chuyên nghiệp, giặt sạch bụi bẩn và là phẳng lỳ, treo lại thẳng hàng rất đẹp."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">MT</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Minh Thư</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">District 7, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Sophia -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Great communication on WhatsApp. They handled everything from removal to re-installation. The curtains smell wonderful and look brand new!"
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">SG</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Sophia G.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Binh Thanh, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQs Section -->
-    <section class="faq-section" id="faq" style="padding: 100px 0; background-color: #ffffff;">
+    <section class="faq-section" id="faq" style="background-color: #ffffff;">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">FAQ</span>
@@ -897,6 +1220,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="bottom-cta-section" style="background-color: var(--color-bg-dark); position: relative; overflow: hidden; text-align: center; color: #ffffff;">
+        <div class="hero-blob blob-1" style="background-color: rgba(242, 106, 25, 0.18); filter: blur(100px); top: -50px; left: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        <div class="hero-blob blob-2" style="background-color: rgba(242, 106, 25, 0.08); filter: blur(100px); bottom: -50px; right: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2; max-width: 750px;">
+            <span class="section-badge" style="background-color: rgba(255,255,255,0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">BOOK PICKUP TODAY</span>
+            <h2 style="font-family: var(--font-headline); font-size: 32px; font-weight: 700; color: #ffffff; margin: 20px 0 15px 0; line-height: 1.25;">Ready to Clean Your Curtains?</h2>
+            <p style="font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: #94a3b8; margin: 0 auto 35px auto;">
+                Schedule a convenient home visit in District 1, 2, 3, 7, Binh Thanh. Let our specialized team dismantle, wash, press and re-hang them beautifully.
+            </p>
+            
+            <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
+                <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo" style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
+                    <i class="fa-solid fa-comments"></i> Book on Zalo
+                </a>
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa" style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
+                    <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
+                </a>
+            </div>
+            
+            <p style="font-family: var(--font-body); font-size: 13px; color: #64748b; margin-top: 25px; font-weight: 500; margin-bottom: 0;">
+                Or call us directly at <a href="tel:0866137043" style="color: var(--color-accent); font-weight: 700; text-decoration: none;">0866.137.043</a> (7:00 AM - 10:00 PM)
+            </p>
         </div>
     </section>
 
