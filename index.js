@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="spec-suitable-val">${plan.suitable}</p>
             </div>
             
-            <a href="https://zalo.me/0978900615" target="_blank" class="spec-action-btn" style="text-decoration: none;">
+            <a href="https://wa.me/84866137043" target="_blank" class="spec-action-btn" style="text-decoration: none;">
                 ${plan.btnText} <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
             </a>
         `;
