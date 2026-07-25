@@ -16,25 +16,360 @@
     
     <style>
         /* Specific Styles for Express Page */
-        .express-hero {
-            background: linear-gradient(135deg, var(--color-bg-dark) 0%, #150c3d 100%);
-            padding: 120px 0 80px 0;
-            text-align: center;
-            color: #ffffff;
+        /* Redesigned Premium Hero Section */
+        .express-hero-redesigned {
+            padding: 160px 0 100px 0;
+            background: linear-gradient(135deg, #f8faff 0%, #f1f5f9 100%);
             position: relative;
             overflow: hidden;
         }
-        
-        .express-hero::before {
-            content: '';
+
+        .hero-redesigned-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .hero-left-content {
+            text-align: left;
+        }
+
+        .hero-left-content .hero-badge {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            color: #475569;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 30px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02);
+            display: inline-block;
+            margin-bottom: 25px;
+        }
+
+        .hero-main-title {
+            font-family: var(--font-headline);
+            font-size: 48px;
+            line-height: 1.2;
+            font-weight: 800;
+            color: var(--color-bg-dark);
+            margin: 0 0 20px 0;
+        }
+
+        .hero-subtitle-desc {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: #64748b;
+            margin-bottom: 35px;
+            max-width: 580px;
+        }
+
+        /* Pill Get Started CTA Button */
+        .hero-cta-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-pill-cta {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--color-accent);
+            color: #ffffff !important;
+            padding: 8px 8px 8px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 15px;
+            box-shadow: 0 8px 20px rgba(243, 106, 25, 0.2);
+        }
+
+        .hero-pill-cta:hover {
+            background-color: var(--color-accent-dark);
+            box-shadow: 0 10px 25px rgba(243, 106, 25, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero-pill-cta .circle-arrow-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-pill-cta:hover .circle-arrow-icon {
+            transform: rotate(-45deg);
+            background-color: var(--color-accent);
+            color: #ffffff;
+        }
+
+        /* Right Side Worker Card & Badges */
+        .hero-right-card {
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .worker-image-card {
+            width: 370px;
+            height: 480px;
+            border-radius: 32px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            position: relative;
+            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.08);
+            border: 4px solid #ffffff;
+        }
+
+        .worker-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Overlay Badges styling */
+        .overlay-badge {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(242, 106, 25, 0.08) 0%, rgba(9, 0, 45, 0) 70%);
-            pointer-events: none;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(9, 0, 45, 0.06);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .overlay-badge:hover {
+            transform: scale(1.03);
+        }
+
+        .overlay-badge .badge-icon-box {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .overlay-badge .badge-icon-box.orange-bg {
+            background-color: #ffebd8;
+            color: var(--color-accent);
+        }
+
+        .overlay-badge .badge-icon-box.dark-bg {
+            background-color: #e0e7ff;
+            color: #4f46e5;
+        }
+
+        .overlay-badge .badge-text-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .overlay-badge .badge-text-box .title {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            line-height: 1.2;
+        }
+
+        .overlay-badge .badge-text-box .sub {
+            font-family: var(--font-body);
+            font-size: 10.5px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .badge-top-left {
+            top: 40px;
+            left: -40px;
+            z-index: 10;
+        }
+
+        .badge-middle-right {
+            bottom: 120px;
+            right: -30px;
+            z-index: 10;
+        }
+
+        /* Bottom status indicator overlay */
+        .bottom-status-indicator {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(9, 0, 45, 0.05);
+            z-index: 10;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .bottom-status-indicator i {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .bottom-status-indicator span {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* Bottom Stats Banner styling */
+        .stats-banner-container {
+            margin-top: 60px;
+            position: relative;
+            z-index: 5;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stats-banner-card {
+            background-color: #09002d;
+            border-radius: 28px;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1.1fr 2fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.15);
+        }
+
+        .stats-highlight-block {
+            background-color: var(--color-accent);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .stats-highlight-block h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .stats-highlight-block .highlight-text h3 {
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0 0 2px 0;
+        }
+
+        .stats-highlight-block .highlight-text p {
+            font-family: var(--font-body);
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+        }
+
+        .stats-metrics-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .metric-item {
+            display: flex;
+            flex-direction: column;
+            color: #ffffff;
+        }
+
+        .metric-item .val {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .metric-item .lbl {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Responsive Breakpoints for Redesigned Hero */
+        @media (max-width: 1024px) {
+            .hero-redesigned-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero-left-content {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-right-card {
+                justify-content: center;
+            }
+            .stats-banner-card {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .badge-top-left {
+                left: -20px;
+            }
+            .badge-middle-right {
+                right: -20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .express-hero-redesigned {
+                padding: 120px 0 80px 0;
+            }
+            .hero-main-title {
+                font-size: 36px;
+            }
+            .worker-image-card {
+                width: 320px;
+                height: 420px;
+            }
+            .stats-metrics-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                text-align: center;
+            }
         }
         
         .info-grid {
@@ -924,21 +1259,77 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
-    </header>
+    </header>    <!-- Express Laundry Redesigned Hero Section -->
+    <section class="express-hero-redesigned">
+        <div class="container hero-redesigned-container">
+            <!-- Left Side: Title, Desc, and Pill CTA Button -->
+            <div class="hero-left-content">
+                <span class="hero-badge">FAST & PREMIUM LAUNDRY</span>
+                <h1 class="hero-main-title">Get your laundry cleaned & folded in under 4 hours.</h1>
+                <p class="hero-subtitle-desc">1997 Premium Laundry brings professional care closer to you with standard cold-water washing, tumble drying at 60°C, and express return options under 4 hours.</p>
+                <div class="hero-cta-wrapper">
+                    <a href="https://zalo.me/0978900615" target="_blank" class="hero-pill-cta">
+                        <span>Book Service</span>
+                        <div class="circle-arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </div>
 
-    <!-- Express Laundry Hero Section -->
-    <section class="express-hero">
-        <div class="container">
-            <span class="section-badge" style="border-color: var(--color-accent); color: var(--color-accent); background-color: transparent;">EXPRESS SERVICE</span>
-            <h1 style="font-size: 46px; font-weight: 700; margin-top: 15px; margin-bottom: 15px; font-family: var(--font-headline);">Express Laundry Service</h1>
-            <p style="font-size: 16px; color: var(--color-text-muted); max-width: 680px; margin: 0 auto 30px auto; line-height: 1.6; font-family: var(--font-body);">
-                High-quality express washing, tumble drying, and pressing in Ho Chi Minh City. Standard orders returned within 24–36 hours, with super express options in under 4 hours!
-            </p>
-            <div style="display: flex; justify-content: center; gap: 15px;">
-                <a href="https://wa.me/84978900615" target="_blank" class="btn btn-cta-orange" style="text-decoration: none;">
-                    WHATSAPP CHAT <i class="fa-brands fa-whatsapp" style="margin-left: 8px;"></i>
-                </a>
-                <a href="#pricing" class="btn btn-cta-outline" style="text-decoration: none;">VIEW PLANS</a>
+            <!-- Right Side: Graphic Card with Overlay Badges -->
+            <div class="hero-right-card">
+                <div class="worker-image-card">
+                    <img src="assets/images/hero_worker.jpg" alt="1997 Laundry Professional Worker">
+                    <!-- Overlay Badge 1 -->
+                    <div class="overlay-badge badge-top-left">
+                        <div class="badge-icon-box orange-bg"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="badge-text-box">
+                            <span class="title">4-Hour Super Express</span>
+                            <span class="sub">Fastest turnaround</span>
+                        </div>
+                    </div>
+                    <!-- Overlay Badge 2 -->
+                    <div class="overlay-badge badge-middle-right">
+                        <div class="badge-icon-box dark-bg"><i class="fa-solid fa-hotel"></i></div>
+                        <div class="badge-text-box">
+                            <span class="title">Lobby Reception Pickup</span>
+                            <span class="sub">Available upon request</span>
+                        </div>
+                    </div>
+                    <!-- Bottom status indicator box -->
+                    <div class="bottom-status-indicator">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span>Track your laundry status here...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Stats Banner -->
+        <div class="container stats-banner-container">
+            <div class="stats-banner-card">
+                <!-- Highlight block left -->
+                <div class="stats-highlight-block">
+                    <h2>#1</h2>
+                    <div class="highlight-text">
+                        <h3>Premium Laundry Service</h3>
+                        <p>Saigon's top choice for clothing care</p>
+                    </div>
+                </div>
+                <!-- Stats right side -->
+                <div class="stats-metrics-wrapper">
+                    <div class="metric-item">
+                        <span class="val">4 Hours</span>
+                        <span class="lbl">Super express turnaround option</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="val">100%</span>
+                        <span class="lbl">Individual machine wash cycles</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="val">10k+</span>
+                        <span class="lbl">Garments cleaned & pressed annually</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
