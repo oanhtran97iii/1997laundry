@@ -256,6 +256,107 @@
             background-color: rgba(239, 68, 68, 0.08);
             color: #ef4444;
         }
+
+        /* Warning Split Grid Styles */
+        .warning-split-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 25px;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .dry-clean-promo-box {
+            background-color: #f8fafc;
+            border-left: 3.5px solid var(--color-accent);
+            padding: 18px 22px;
+            border-radius: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            border-left-width: 3.5px;
+        }
+        
+        .dry-clean-promo-box h4 {
+            font-family: var(--font-headline);
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dry-clean-promo-box p {
+            font-size: 13px !important;
+            line-height: 1.5 !important;
+            color: var(--color-text-gray) !important;
+            margin-bottom: 12px !important;
+        }
+        
+        .dry-clean-promo-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .dry-clean-promo-box ul li {
+            font-size: 12.5px !important;
+            color: #475569 !important;
+            margin-bottom: 8px !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        
+        .dry-clean-promo-box ul li i {
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+        
+        .warn-right-panel h5 {
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            color: #b91c1c;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .delicate-items-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .delicate-items-list li {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--color-text-gray);
+            margin-bottom: 9px;
+            line-height: 1.4;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        
+        .delicate-items-list li::before {
+            content: "•";
+            color: #ef4444;
+            font-weight: bold;
+            display: inline-block;
+            width: 8px;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .warning-split-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
         
         .info-card-icon {
             width: 48px;
@@ -1536,23 +1637,35 @@
                 <!-- Info 2: Wash Temperature & Dry Clean Only warning -->
                 <div class="info-card warning-card">
                     <div class="info-card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                    <div class="info-card-content">
+                    <div class="info-card-content" style="width: 100%;">
                         <h3>Standard Wash & Dry Policy (Dry Clean Only Warnings)</h3>
-                        <p style="margin-bottom: 12px;">Our standard weight-based laundry services are performed strictly using a <strong>cold-water wash</strong> and <strong>machine tumble-drying at 60°C</strong>. This process is <strong>NOT suitable</strong> for delicate items, and will cause severe shrinkage, loss of garment shape, or color bleeding for the following clothes:</p>
+                        <p style="margin-bottom: 12px; font-size: 13.5px; color: var(--color-text-gray);">Our standard weight-based laundry services are performed strictly using a <strong>cold-water wash</strong> and <strong>machine tumble-drying at 60°C</strong>. This process is <strong>NOT suitable</strong> for delicate items, and will cause severe shrinkage, loss of garment shape, or color bleeding for the following clothes:</p>
                         
-                        <div style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.55; color: #991b1b; background-color: rgba(239, 68, 68, 0.04); border-left: 3px solid #ef4444; padding: 12px 18px; border-radius: 6px; margin: 15px 0; font-weight: 500;">
-                            <strong>Need to clean these delicate items?</strong> Please use our professional <strong>Dry Cleaning</strong> service. For this service, pricing is calculated per item (piece-based), and your garments will be professionally cleaned and steam pressed. The standard turnaround time is <strong>3 days</strong>. Please note that express options are <strong>not available</strong> for dry cleaning, as the process involves multiple delicate steps to ensure your items are properly cared for.
+                        <div class="warning-split-grid">
+                            <div class="warn-left-panel">
+                                <div class="dry-clean-promo-box">
+                                    <h4><i class="fa-solid fa-shirt" style="color: var(--color-accent);"></i> Need Dry Cleaning?</h4>
+                                    <p>Please request our professional, piece-based dry cleaning service instead:</p>
+                                    <ul>
+                                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Standard 3-day turnaround</li>
+                                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Cleaned & steam pressed</li>
+                                        <li><i class="fa-solid fa-circle-xmark" style="color: #ef4444;"></i> Express is not available</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="warn-right-panel">
+                                <h5><i class="fa-solid fa-ban"></i> DO NOT Wash & Dry:</h5>
+                                <ul class="delicate-items-list">
+                                    <li><strong>Suits & Coats</strong> (warps internal structures)</li>
+                                    <li><strong>Wool & Cashmere</strong> (severe shrinkage)</li>
+                                    <li><strong>Silk, Satin & Rayon</strong> (loses shape & sheen)</li>
+                                    <li><strong>Leather & Suede</strong> (cracks, peels & stiffens)</li>
+                                    <li><strong>Embellished Items</strong> (beads & lace tear)</li>
+                                    <li><strong>Down Jackets</strong> (feathers clump up)</li>
+                                </ul>
+                            </div>
                         </div>
-
-                        <ul style="font-family: var(--font-body); font-size: 13.5px; color: var(--color-text-gray); line-height: 1.6; padding-left: 20px; margin: 0;">
-                            <li style="margin-bottom: 6px;"><strong>Suits, Blazers, & Winter Coats</strong>: Internal structuring, linings, and shoulder pads will warp or lose their shape permanently.</li>
-                            <li style="margin-bottom: 6px;"><strong>Wool, Cashmere, & Mohair</strong>: Highly prone to severe felting and shrinking down to a fraction of their original size.</li>
-                            <li style="margin-bottom: 6px;"><strong>Silk, Satin, & Rayon</strong>: Will lose their natural sheen, texture, and contract or twist.</li>
-                            <li style="margin-bottom: 6px;"><strong>Leather, Suede, & Real Fur</strong>: Will crack, peel, stiffen, and lose natural protective oils.</li>
-                            <li style="margin-bottom: 6px;"><strong>Embellished & Embroidered Garments</strong>: Beads, sequins, and fine lace can detach, melt, or tear.</li>
-                            <li style="margin-bottom: 0;"><strong>Natural Down Jackets</strong>: Feathers will clump together and ruin the puffiness/insulation.</li>
-                        </ul>
-                        <p style="margin-top: 12px; font-size: 13px; font-style: italic; color: #64748b;">* These items must only be processed via our professional <strong>Dry Cleaning</strong> service.</p>
                     </div>
                 </div>
                 
