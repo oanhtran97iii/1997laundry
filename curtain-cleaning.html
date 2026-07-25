@@ -60,19 +60,7 @@
             100% { transform: translate(0px, 0px) scale(1); }
         }
 
-        /* Header Revamps styling reuse */
-        .revamped-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(9, 0, 45, 0.03);
-            border-bottom: 1px solid rgba(0,0,0,0.02);
-            transition: all 0.3s ease;
-        }
+
 
         /* Hero Layout Split Columns */
         .curtain-hero-grid {
@@ -618,9 +606,9 @@
 </head>
 <body>
     <!-- Navigation Revamped Header -->
-    <header class="revamped-header" id="header">
+    <header class="main-header" id="navbar">
         <div class="container header-container">
-            <a href="index.html" class="logo">
+            <a href="index.html" class="logo" id="header-logo">
                 <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
             </a>
             <nav class="nav-menu" id="nav-links">
@@ -630,7 +618,7 @@
                 <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
                 <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
                 <a href="curtain-cleaning.html" class="nav-item active">CURTAIN CLEANING</a>
-                <a href="#faq" class="nav-item">FAQs</a>
+                <a href="index.html#faq" class="nav-item">FAQs</a>
             </nav>
             <div class="header-ctas">
                 <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
@@ -640,7 +628,7 @@
                     <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
                 </a>
             </div>
-            <button class="hamburger-menu" id="menu-toggle" aria-label="Toggle Navigation Menu">
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>
