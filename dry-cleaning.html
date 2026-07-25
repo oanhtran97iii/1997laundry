@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoes Cleaning & Leather Care | 1997 Premium Laundry Saigon</title>
-    <meta name="description" content="Saigon's premier sneaker, leather shoes, heels, boots, and luxury handbag cleaning and restoration. Professional hand-wash, Saphir organic care, and UVC sanitization.">
+    <title>Dry Cleaning & Luxury Garments | 1997 Premium Laundry Saigon</title>
+    <meta name="description" content="Saigon's premium dry cleaning service for suits, winter coats, wool, cashmere, silk, leather, and wedding dresses. Meticulous organic cleaning with vertical steam pressing.">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="index.css?v=1.1">
     
     <style>
-        /* Specific Styles for Shoes Cleaning Page */
-        .shoes-hero-redesigned {
+        /* Specific Styles for Dry Cleaning Page */
+        .dry-hero-redesigned {
             padding: 160px 0 100px 0;
-            background: #f8faff;
+            background: #faf8f5;
             position: relative;
             overflow: hidden;
         }
@@ -38,7 +38,7 @@
         .blob-1 {
             width: 500px;
             height: 500px;
-            background-color: rgba(242, 106, 25, 0.2); /* Orange */
+            background-color: rgba(242, 106, 25, 0.12); /* Orange */
             top: -100px;
             left: -150px;
             animation-duration: 26s;
@@ -47,7 +47,7 @@
         .blob-2 {
             width: 600px;
             height: 600px;
-            background-color: rgba(9, 0, 45, 0.1); /* Dark Blue */
+            background-color: rgba(9, 0, 45, 0.06); /* Dark Blue */
             bottom: -150px;
             right: -100px;
             animation-delay: -5s;
@@ -75,7 +75,7 @@
         }
 
         /* Hero Layout Split Columns */
-        .shoes-hero-grid {
+        .dry-hero-grid {
             display: grid;
             grid-template-columns: 1.15fr 0.85fr;
             gap: 40px;
@@ -275,15 +275,6 @@
             border-radius: 4px;
         }
 
-        .floating-menu-card ul.menu-list li span.badge-new {
-            background-color: #ecfdf5;
-            color: #059669;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
         .btn-menu-book {
             display: block;
             width: 100%;
@@ -304,251 +295,7 @@
             box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
         }
 
-        /* 4 Premium Shoes Pricing Tiers */
-        .tiers-section {
-            padding: 100px 0;
-            background-color: #ffffff;
-            border-bottom: 1px solid rgba(0,0,0,0.02);
-            text-align: center;
-        }
-
-        .tiers-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-top: 50px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            align-items: stretch;
-        }
-
-        .tier-card {
-            background-color: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.06);
-            border-radius: 24px;
-            padding: 35px 25px 25px 25px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.3s ease;
-            text-align: left;
-        }
-
-        .tier-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(9, 0, 45, 0.06);
-            border-color: rgba(242, 106, 25, 0.2);
-        }
-
-        /* Gold Card (Featured/Best Seller) styles */
-        .tier-card.featured-gold {
-            background-color: #09002d;
-            color: #ffffff;
-            border-color: var(--color-accent);
-            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.15);
-        }
-
-        .tier-card.featured-gold:hover {
-            border-color: var(--color-accent);
-            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.25);
-        }
-
-        .best-seller-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #eab308, #d97706);
-            color: #ffffff;
-            font-family: var(--font-headline);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .tier-header h4 {
-            font-family: var(--font-headline);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            margin: 0 0 4px 0;
-        }
-
-        .tier-card.featured-gold .tier-header h4 {
-            color: #ffffff;
-        }
-
-        .tier-header span.lbl-code {
-            font-family: var(--font-headline);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--color-text-gray);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .tier-card.featured-gold .tier-header span.lbl-code {
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .tier-price-box {
-            font-family: var(--font-headline);
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: baseline;
-            gap: 4px;
-        }
-
-        .tier-card.featured-gold .tier-price-box {
-            color: #eab308;
-        }
-
-        .tier-price-box span.unit {
-            font-size: 13px;
-            color: var(--color-text-gray);
-            font-weight: 500;
-        }
-
-        .tier-card.featured-gold .tier-price-box span.unit {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .tier-time-badge {
-            background-color: #f1f5f9;
-            color: #475569;
-            font-family: var(--font-headline);
-            font-size: 12px;
-            font-weight: 700;
-            padding: 8px 16px;
-            border-radius: 30px;
-            display: inline-block;
-            margin-bottom: 25px;
-            width: fit-content;
-        }
-
-        .tier-card.featured-gold .tier-time-badge {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-        }
-
-        .tier-features-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 30px 0;
-            border-top: 1px dashed rgba(0,0,0,0.06);
-            padding-top: 20px;
-        }
-
-        .tier-card.featured-gold .tier-features-list {
-            border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .tier-features-list li {
-            font-family: var(--font-body);
-            font-size: 13px;
-            color: var(--color-text-gray);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 500;
-        }
-
-        .tier-card.featured-gold .tier-features-list li {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .tier-features-list li i {
-            color: #22c55e;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
-
-        .tier-card.featured-gold .tier-features-list li i {
-            color: #22c55e;
-        }
-
-        .tier-materials-box {
-            border-top: 1px solid rgba(0,0,0,0.04);
-            padding-top: 15px;
-            margin-top: auto;
-        }
-
-        .tier-card.featured-gold .tier-materials-box {
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .tier-materials-box span.lbl {
-            font-size: 9px;
-            font-weight: 700;
-            color: var(--color-text-gray);
-            display: block;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        .tier-card.featured-gold .tier-materials-box span.lbl {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .tier-materials-box p {
-            font-family: var(--font-body);
-            font-size: 11.5px;
-            color: var(--color-text-gray);
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .tier-card.featured-gold .tier-materials-box p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .btn-tier-cta {
-            display: block;
-            width: 100%;
-            text-align: center;
-            background-color: var(--color-bg-dark);
-            color: #ffffff !important;
-            padding: 12px 0;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 12.5px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
-            margin-bottom: 20px;
-        }
-
-        .btn-tier-cta:hover {
-            background-color: var(--color-accent);
-            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
-        }
-
-        .tier-card.featured-gold .btn-tier-cta {
-            background-color: var(--color-accent);
-            color: #ffffff !important;
-        }
-
-        .tier-card.featured-gold .btn-tier-cta:hover {
-            background-color: #ffffff;
-            color: var(--color-bg-dark) !important;
-            box-shadow: 0 8px 20px rgba(255,255,255,0.1);
-        }
-
+        /* Delivery Notice Box */
         .delivery-notice-box {
             display: flex;
             align-items: center;
@@ -581,15 +328,6 @@
         .delivery-notice-box strong {
             color: var(--color-bg-dark);
             font-weight: 700;
-        }
-        
-        @media (max-width: 768px) {
-            .delivery-notice-box {
-                flex-direction: column;
-                text-align: center;
-                padding: 18px 20px;
-                gap: 10px;
-            }
         }
 
         /* Detailed price list styling */
@@ -629,15 +367,15 @@
         .price-list-items {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 15px;
         }
 
         .price-item-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            border-bottom: 1px solid rgba(0,0,0,0.02);
-            padding-bottom: 12px;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .price-item-row:last-child {
@@ -645,80 +383,77 @@
             padding-bottom: 0;
         }
 
-        .price-item-left {
-            text-align: left;
-        }
-
         .price-item-left h4 {
             font-family: var(--font-headline);
             font-size: 14.5px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--color-bg-dark);
             margin: 0 0 4px 0;
         }
 
         .price-item-left p {
             font-family: var(--font-body);
-            font-size: 12px;
+            font-size: 12.5px;
             color: var(--color-text-gray);
             margin: 0;
         }
 
         .price-item-right {
-            text-align: right;
             font-family: var(--font-headline);
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: var(--color-bg-dark);
             white-space: nowrap;
             margin-left: 20px;
         }
 
-        /* Policy Badges layout */
-        .policy-badges-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+        /* Standard warning list style */
+        .dry-warning-banner {
             max-width: 1000px;
-            margin: 30px auto 0 auto;
+            margin: 45px auto 0 auto;
+            background: #ffffff;
+            border: 1px solid rgba(239, 68, 68, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(239, 68, 68, 0.02);
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 20px;
+            align-items: center;
         }
 
-        .policy-badge-card {
-            background-color: #ffffff;
-            border: 1px solid rgba(0,0,0,0.04);
-            border-radius: 14px;
-            padding: 16px 20px;
+        .dry-warning-banner .warning-icon {
+            width: 60px;
+            height: 60px;
+            background: #fef2f2;
+            color: #ef4444;
+            font-size: 24px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-align: left;
+            justify-content: center;
         }
 
-        .policy-badge-card i {
-            font-size: 18px;
-            color: var(--color-accent);
-            flex-shrink: 0;
+        .dry-warning-banner h4 {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            font-weight: 700;
+            color: #ef4444;
+            margin: 0 0 8px 0;
         }
 
-        .policy-badge-card p {
+        .dry-warning-banner p {
             font-family: var(--font-body);
-            font-size: 12.5px;
-            color: var(--color-bg-dark);
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .policy-badge-card p span {
+            font-size: 13.5px;
             color: var(--color-text-gray);
-            font-weight: 500;
-            display: block;
-            font-size: 11.5px;
-            margin-top: 2px;
+            margin: 0;
+            line-height: 1.5;
         }
 
         /* Responsive Layouts */
         @media (max-width: 991px) {
-            .shoes-hero-grid {
+            .dry-hero-grid {
                 grid-template-columns: 1fr;
                 gap: 50px;
                 text-align: center;
@@ -751,20 +486,24 @@
                 width: 360px;
                 padding: 20px;
             }
+        }
 
-            .combo-layout-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
+        @media (max-width: 768px) {
+            .delivery-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
             }
-
-            .policy-badges-grid {
+            .dry-warning-banner {
                 grid-template-columns: 1fr;
-                gap: 12px;
+                text-align: center;
+                justify-items: center;
             }
         }
 
         @media (max-width: 576px) {
-            .shoes-hero-redesigned {
+            .dry-hero-redesigned {
                 padding-top: 130px;
             }
 
@@ -790,10 +529,6 @@
             .hero-right-gallery {
                 height: 320px;
             }
-
-            .combo-spec-card {
-                padding: 24px;
-            }
         }
     </style>
 </head>
@@ -807,9 +542,9 @@
             <nav class="nav-menu" id="nav-links">
                 <a href="index.html" class="nav-item">HOME</a>
                 <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
-                <a href="shoes-cleaning.html" class="nav-item active">SHOES CLEANING</a>
+                <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
                 <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
-                <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
+                <a href="dry-cleaning.html" class="nav-item active">DRY CLEANING</a>
                 <a href="index.html#carpet-cleaning" class="nav-item">CARPET CLEANING</a>
                 <a href="#faq" class="nav-item">FAQs</a>
             </nav>
@@ -828,35 +563,34 @@
     </header>
 
     <!-- Redesigned Hero Section -->
-    <section class="shoes-hero-redesigned" id="hero">
+    <section class="dry-hero-redesigned" id="hero">
         <!-- Background elements -->
         <div class="hero-blob blob-1"></div>
         <div class="hero-blob blob-2"></div>
         
         <div class="container">
-            <div class="shoes-hero-grid">
+            <div class="dry-hero-grid">
                 <!-- Left Details -->
                 <div class="hero-left-details">
-                    <span class="section-badge">SHOES & LEATHER SPA</span>
-                    <h1>Premium Shoes Cleaning & <span class="orange-highlight">Leather Spa</span></h1>
+                    <span class="section-badge">ORGANIC SOLVENTS & METICULOUS CARE</span>
+                    <h1>Premium Dry Cleaning & <span class="orange-highlight">Luxury Garments</span></h1>
                     <p class="description">
-                        Keep your sneakers, leather shoes, high heels, boots, and luxury handbags looking brand new. Our professional specialists wash every item completely by hand using eco-friendly organic cleaners, sanitized UVC rays, and controlled dehumidifying dry rooms.
+                        Saigon's premier organic dry cleaning service for suits, wool coats, silk gowns, down jackets, and leather. Every piece undergoes a strict 3-day multi-stage process with premium European solvents to preserve fabrics, lining structure, and original sheen.
                     </p>
                     
                     <div class="hero-specs-row">
                         <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-hands-wash"></i></div>
+                            <div class="icon-circle"><i class="fa-solid fa-gem"></i></div>
                             <div class="text-box">
-                                <h5>100% Hand Wash</h5>
-                                <p>No machine damage</p>
+                                <h5>Luxury Garment Care</h5>
+                                <p>Special organic solvents</p>
                             </div>
                         </div>
-
                         <div class="spec-capsule">
-                            <div class="icon-circle"><i class="fa-solid fa-shield-virus"></i></div>
+                            <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
                             <div class="text-box">
-                                <h5>UVC Sanitized</h5>
-                                <p>Kills 99.9% odor/germs</p>
+                                <h5>Shaping & Linings</h5>
+                                <p>No warping or shrinking</p>
                             </div>
                         </div>
                     </div>
@@ -876,13 +610,13 @@
                     <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
                     
                     <div class="floating-menu-card">
-                        <span class="hot-tag">HOT SERVICES</span>
-                        <h3>Featured Care Menu</h3>
+                        <span class="hot-tag">LUXURY CARE</span>
+                        <h3>Dry Clean Featured</h3>
                         <ul class="menu-list">
-                            <li><span><span class="dot">•</span> Express Shoes Cleaning (24h)</span> <span class="badge-popular">FASTEST</span></li>
-                            <li><span><span class="dot">•</span> Sneaker Cleaning</span> <span class="badge-recommended">RECOMMENDED</span></li>
-                            <li><span><span class="dot">•</span> Suede/Nubuck Shoe Cleaning</span> <span class="badge-premium">PREMIUM</span></li>
-                            <li><span><span class="dot">•</span> Designer Handbags Cleaning</span> <span class="badge-new">NEW</span></li>
+                            <li><span><span class="dot">•</span> Suits & Blazer Sets</span> <span class="badge-premium">PREMIUM</span></li>
+                            <li><span><span class="dot">•</span> Silk & Evening Gowns</span> <span class="badge-recommended">RECOMMENDED</span></li>
+                            <li><span><span class="dot">•</span> Leather & Fur Coats</span> <span class="badge-popular">POPULAR</span></li>
+                            <li><span><span class="dot">•</span> Cashmere Sweaters</span> <span class="badge-premium">PREMIUM</span></li>
                         </ul>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-menu-book">BOOK SERVICE NOW</a>
                     </div>
@@ -891,13 +625,13 @@
         </div>
     </section>
 
-    <!-- Shoes Cleaning Pricing Tiers (Image Tiers) -->
-    <section class="tiers-section" id="combos">
+    <!-- Pricing Section -->
+    <section class="detailed-pricing-section" id="pricing">
         <div class="container">
             <div class="text-center header-spacing">
-                <span class="section-badge">PRICING PACKAGES</span>
-                <h2 class="section-title">Choose the Perfect Package for You</h2>
-                <p class="section-subtitle">Select from our standard care tiers tailored to your shoe material and turnaround needs.</p>
+                <span class="section-badge">PRICE LIST</span>
+                <h2 class="section-title">Dry Cleaning & Luxury Garments Pricing</h2>
+                <p class="section-subtitle">Meticulous organic solvent cleaning. Hand pressing and ready-to-wear hanger wrapping included.</p>
             </div>
 
             <!-- Beautiful Delivery Notice Box -->
@@ -906,313 +640,230 @@
                 <p><strong>Delivery Notice:</strong> Package prices do not include shipping. Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km.</p>
             </div>
 
-            <div class="tiers-grid">
-                <!-- Bronze Card -->
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h4>Bronze Package</h4>
-                        <span class="lbl-code">BRONZE</span>
-                    </div>
-                    <div class="tier-price-box">
-                        148,500đ <span class="unit">/ pair</span>
-                    </div>
-                    <div class="tier-time-badge">3–4 Days</div>
-                    
-                    <ul class="tier-features-list">
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Basic cleaning of the entire shoe</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Upper · midsole · outsole · insole · laces</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Deodorization + Sanitization</span></li>
-                    </ul>
-
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
-                    
-                    <div class="tier-materials-box">
-                        <span class="lbl">SUITABLE MATERIALS</span>
-                        <p>Leather · synthetic leather · poly synthetic</p>
-                    </div>
-                </div>
-
-                <!-- Silver Card -->
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h4>Silver Package</h4>
-                        <span class="lbl-code">SILVER</span>
-                    </div>
-                    <div class="tier-price-box">
-                        204,000đ <span class="unit">/ pair</span>
-                    </div>
-                    <div class="tier-time-badge">3–4 Days</div>
-                    
-                    <ul class="tier-features-list">
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Deep cleaning 3–4 times</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Deodorizing + sanitizing + stain extraction</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Deep detail cleaning of every part</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Midsole unyellowing & stain removal</span></li>
-                    </ul>
-
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
-
-                    <div class="tier-materials-box">
-                        <span class="lbl">SUITABLE MATERIALS</span>
-                        <p>Canvas · leather · synthetic leather · artificial leather</p>
-                    </div>
-                </div>
-
-                <!-- Gold Card (Featured) -->
-                <div class="tier-card featured-gold">
-                    <div class="best-seller-badge"><i class="fa-solid fa-star"></i> BEST SELLER</div>
-                    <div class="tier-header">
-                        <h4>Gold Package</h4>
-                        <span class="lbl-code">GOLD · 24H</span>
-                    </div>
-                    <div class="tier-price-box">
-                        250,000đ <span class="unit" style="color: rgba(255,255,255,0.7);">/ pair</span>
-                    </div>
-                    <div class="tier-time-badge">24-Hour Express Return</div>
-                    
-                    <ul class="tier-features-list">
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Basic cleaning of the entire shoe</span></li>
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Upper · midsole · outsole · insole · laces</span></li>
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Deodorization + Sanitization</span></li>
-                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #fb923c; font-weight: 600;">Bronze care + 100k express surcharge</span></li>
-                    </ul>
-
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
-
-                    <div class="tier-materials-box">
-                        <span class="lbl" style="color: rgba(255,255,255,0.6);">SUITABLE MATERIALS</span>
-                        <p>Leather · synthetic leather · poly synthetic</p>
-                    </div>
-                </div>
-
-                <!-- Special Card -->
-                <div class="tier-card">
-                    <div class="tier-header">
-                        <h4>Special Package</h4>
-                        <span class="lbl-code">SPECIAL</span>
-                    </div>
-                    <div class="tier-price-box">
-                        220,000đ <span class="unit">/ pair</span>
-                    </div>
-                    <div class="tier-time-badge">3–4 Days</div>
-                    
-                    <ul class="tier-features-list">
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Custom process for delicate/hard materials</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Preserve structure & original color</span></li>
-                        <li><i class="fa-solid fa-circle-check"></i> <span>Deodorization + Sanitization</span></li>
-                    </ul>
-
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
-
-                    <div class="tier-materials-box">
-                        <span class="lbl">SUITABLE MATERIALS</span>
-                        <p>Suede · Nubuck · Leather dress shoes</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Full Detailed Price List Section (Image 2 & 4) -->
-    <section class="detailed-pricing-section" id="pricing">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge">PRICE LIST</span>
-                <h2 class="section-title">Transparent Shoes & Leather Pricing</h2>
-                <p class="section-subtitle">No hidden fees. Professional premium treatments for every type of leather and fabric.</p>
-            </div>
-
             <div class="pricing-list-container">
-                <!-- Category 1: Sneaker & Casual Cleaning -->
+                <!-- Category 1: Basic Wear -->
                 <div class="pricing-category-card">
-                    <h3>Sneaker & Casual Shoes Cleaning</h3>
+                    <h3>Basic Wear (Trang Phục Cơ Bản)</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Basic Cleaning: Regular Shoes (Vệ sinh cơ bản)</h4>
-                                <p>Outside wipe, sole brush, and light deodorizing for canvas/knit everyday sneakers.</p>
+                                <h4>Tie (Cà vạt)</h4>
+                                <p>Delicate silk/polyester neckties dry cleaned to prevent twisting and preserve shape.</p>
                             </div>
-                            <div class="price-item-right">109,000 VND</div>
+                            <div class="price-item-right">59,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Deep Cleaning: Branded / Regular Sneakers (Vệ sinh chuyên sâu)</h4>
-                                <p>Deep hand-brush wash inside out, laces cleaning, midsole stain release, and UVC sanitizing.</p>
+                                <h4>T-Shirt / Vest Gile / Shorts (Áo thun / Áo Ghi lê / Quần Ngố)</h4>
+                                <p>Standard daily items processed with mild organic solvent to protect soft fabric fibers.</p>
                             </div>
-                            <div class="price-item-right">149,000 VND</div>
+                            <div class="price-item-right">69,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Shirt / Blouse (Áo sơ mi / Áo kiểu nữ)</h4>
+                                <p>Cotton, linen, or silk tops gently dry cleaned and meticulously hand-ironed.</p>
+                            </div>
+                            <div class="price-item-right">79,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Trousers / Short Skirt / Jeans (Quần dài / Chân váy ngắn / Jeans)</h4>
+                                <p>Preserves fabric shape, crease line, and details without hot-wash shrinking.</p>
+                            </div>
+                            <div class="price-item-right">79,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Sweater / Hoodie / Long Skirt / Pleated Skirt (Áo len / Nỉ có cổ / Chân váy dài / Chân váy xếp li)</h4>
+                                <p>Prevents fiber stretching or shrinking. Keeps pleats perfectly sharp and aligned.</p>
+                            </div>
+                            <div class="price-item-right">89,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Scarf - thin (Khăn quàng cổ mỏng)</h4>
+                                <p>Soft silk, chiffon, or linen thin scarves handled with extra delicate care.</p>
+                            </div>
+                            <div class="price-item-right">89,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Short Dress / Cowboy Hat / Panama Hat (Váy liền thân ngắn / Nón phớt nỉ dạ)</h4>
+                                <p>Short casual dresses or structured wool felt/straw hats dry cleaned to retain design shapes.</p>
+                            </div>
+                            <div class="price-item-right">99,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Thick Sweater (Áo len dày)</h4>
+                                <p>Heavier knitwear, thick wool, or cashmere sweaters cleaned without friction felting.</p>
+                            </div>
+                            <div class="price-item-right">109,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Long Dress (Váy liền thân dài)</h4>
+                                <p>Preserves drape, fine stitching, and bottom hem line of full-length luxury dresses.</p>
+                            </div>
+                            <div class="price-item-right">119,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Long Woolen Pants / Scarf - thick (Quần len dài / Khăn quàng cổ dày)</h4>
+                                <p>Heavy wool fibers are conditioned to remain soft, warm, and structured.</p>
+                            </div>
+                            <div class="price-item-right">139,000đ</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Category 2: Suede, Leather & Luxury Spa -->
+                <!-- Category 2: Suits & Coats -->
                 <div class="pricing-category-card">
-                    <h3>Suede, Leather & Luxury Spa</h3>
+                    <h3>Suits & Coats (Âu Phục & Áo Khoác)</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Basic Cleaning: Leather, Suede & Nubuck</h4>
-                                <p>Careful wash tailored for natural fabrics, leather conditioning, and shape preservation.</p>
+                                <h4>Suit Jacket / Traditional Dress (Áo Vest / Áo dài truyền thống - 1pc)</h4>
+                                <p>Protects inner shoulder pads, structure lining, or delicate silk embroidery of traditional dresses.</p>
                             </div>
-                            <div class="price-item-right">189,000 VND</div>
+                            <div class="price-item-right">179,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Deep Cleaning: Leather, Suede & Nubuck</h4>
-                                <p>Deep stain treatment, lining sanitation, leather oil replenishment, and pile restoration.</p>
+                                <h4>Suit / Traditional Dress - 2pcs (Bộ Vest / Bộ Áo dài - 2pcs)</h4>
+                                <p>Complete dry cleaning for a suit set (jacket + trousers) or standard 2-piece traditional dress.</p>
                             </div>
-                            <div class="price-item-right">229,000 VND</div>
+                            <div class="price-item-right">229,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Suede/Nubuck Spa (Spa Da Lộn)</h4>
-                                <p>Manual specialized restoration, deep pile brushing, conditioning, and color guard protection.</p>
+                                <h4>Suit + Gile - 3pcs (Bộ Vest + Ghi lê - 3pcs)</h4>
+                                <p>Three-piece formal suit set (jacket, trousers, and vest waistcoat) meticulously pressed.</p>
                             </div>
-                            <div class="price-item-right">200,000 VND</div>
+                            <div class="price-item-right">289,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Advanced Specialty Cleaning (Vệ sinh Nâng cao)</h4>
-                                <p>Heavy mud, old oil stains, intense odor removal, or heavily moldy shoes needing multiple washes.</p>
+                                <h4>Short puffer / felt / wool coat (Áo khoác Phồng / Nỉ / Dạ - Ngắn)</h4>
+                                <p>Short winter coats, lightweight down-filled puffer jackets, or wool/felt jackets.</p>
                             </div>
-                            <div class="price-item-right">200,000 VND</div>
+                            <div class="price-item-right">179,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Luxury Spa (Giày hiệu cao cấp)</h4>
-                                <p>Exclusive care for luxury designers (Gucci, LV, Chanel, Dior) using Saphir and Tarrago premium care agents.</p>
+                                <h4>Long puffer / felt / wool coat (Áo khoác Phồng / Nỉ / Dạ dài)</h4>
+                                <p>Full-length heavy trench coats, down-filled parkas, or thick cashmere-blend wool overcoats.</p>
                             </div>
-                            <div class="price-item-right">300,000 VND</div>
+                            <div class="price-item-right">229,000đ</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Category 3: Specialty Footwear -->
+                <!-- Category 3: Formal Wear, Leather & Special Items -->
                 <div class="pricing-category-card">
-                    <h3>Specialty Footwear & Spa</h3>
+                    <h3>Formal Wear, Leather & Special Items (Lễ Phục, Đồ Da & Đặc Biệt)</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Leather Dress Shoes (Vệ sinh Giày Tây)</h4>
-                                <p>Deep cleaning, premium wax polishing, cream conditioning, and leather restoration.</p>
+                                <h4>Short / Long Dresses (Áo đầm ngắn - dài)</h4>
+                                <p>General designer dresses with complex fabrics (lace, rayon, satin, or light pleating).</p>
                             </div>
-                            <div class="price-item-right">150,000 - 200,000 VND</div>
+                            <div class="price-item-right">129,000đ - 179,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>High Heels (Vệ sinh Giày Cao Gót)</h4>
-                                <p>Standard cleaning (150K) to luxury spa treatments (300K) for fine fabric and designer heels.</p>
+                                <h4>Evening Gown / Wedding Dress - 1 layer (Đầm dạ hội / Váy cưới 1 lớp)</h4>
+                                <p>Delicate evening dresses, silk gowns, or simple single-layer slip wedding dresses.</p>
                             </div>
-                            <div class="price-item-right">150,000 - 300,000 VND</div>
+                            <div class="price-item-right">229,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>High-Cut Boots (Vệ sinh Boots Cổ Cao)</h4>
-                                <p>Price varies based on material height (ankle/knee), leather treatments, and custom shapes.</p>
+                                <h4>Wedding Dress - 2-3 layers (Váy cưới 2-3 lớp)</h4>
+                                <p>Multi-layered lace, tulle, organza, or satin wedding dresses handled with utmost care.</p>
                             </div>
-                            <div class="price-item-right">150,000 - 250,000 VND</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category 4: Bags & Accessories -->
-                <div class="pricing-category-card">
-                    <h3>Backpacks, Handbags & Leather Goods</h3>
-                    <div class="price-list-items">
-                        <div class="price-item-row">
-                            <div class="price-item-left">
-                                <h4>Sandals, Children's Shoes & Kid's Backpacks</h4>
-                                <p>Gentle cleaning for small sized footwear, flip-flops, or kid school bags.</p>
-                            </div>
-                            <div class="price-item-right">79,000 VND</div>
+                            <div class="price-item-right">279,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Standard Backpacks & Handbags (Ba lô - Túi xách)</h4>
-                                <p>External deep wash, deodorizing, lining dusting, and drying for fabric/canvas bags.</p>
+                                <h4>Large Wedding Dress (Váy cưới tùng lớn)</h4>
+                                <p>Ball-gown silhouette wedding dresses with massive layers, long trains, or intense beadings.</p>
                             </div>
-                            <div class="price-item-right">129,000 - 179,000 VND</div>
+                            <div class="price-item-right">379,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>In-depth Designer Handbags Spa (Vệ sinh túi hiệu)</h4>
-                                <p>Careful organic solvent rub, handle sanitizing, metal detailing polish, and designer lining spa.</p>
+                                <h4>Short Leather / Fur Coat (Áo khoác Da / Áo lông thú ngắn)</h4>
+                                <p>Premium leather/suede jackets or short faux-fur coats cleaned with custom protective oils.</p>
                             </div>
-                            <div class="price-item-right">229,000 VND</div>
+                            <div class="price-item-right">229,000đ</div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Leather Belts & Wallets (Thắt lưng / Ví da)</h4>
-                                <p>Mild stain cleaning, edge touch-up, Saphir leather conditioning, and protection seal.</p>
+                                <h4>Long Leather / Fur Coat (Áo khoác Da / Áo lông thú dài)</h4>
+                                <p>Full overcoats made of natural leather, suede, or heavy luxurious fur panels.</p>
                             </div>
-                            <div class="price-item-right">99,000 VND</div>
+                            <div class="price-item-right">279,000đ</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Fleece Blanket (Chăn len lông cừu)</h4>
+                                <p>Thick lamb wool, fleece, or heavy cashmere blankets dry cleaned to maintain fluffiness.</p>
+                            </div>
+                            <div class="price-item-right">329,000đ</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Extra Policies (Image 5) -->
-            <div class="policy-badges-grid">
-                <div class="policy-badge-card">
-                    <i class="fa-solid fa-bolt-lightning"></i>
-                    <p>
-                        Express 24h Service
-                        <span>+100,000 VND / pair (Bronze/Silver/Special)</span>
-                    </p>
-                </div>
-                <div class="policy-badge-card">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    <p>
-                        Polishing Only
-                        <span>West shoes leather wax & shine: 100,000 VND</span>
-                    </p>
-                </div>
-                <div class="policy-badge-card">
-                    <i class="fa-solid fa-receipt"></i>
-                    <p>
-                        VAT Included
-                        <span>All prices listed include 10% VAT</span>
-                    </p>
+            <!-- Standard Warning Banner (Image 1 Warnings) -->
+            <div class="dry-warning-banner">
+                <div class="warning-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div>
+                    <h4>Dry Clean Only Warning</h4>
+                    <p>Our standard weight-based laundry (giặt kg) utilizes cold-water wash and 60°C tumble drying. This is NOT suitable for delicate items. Suits, wool, cashmere, silk, down jackets, and leather garments MUST be dry cleaned to prevent permanent shrinkage, warping, or loss of natural sheen. Express turnaround is not available for dry cleaning due to the multi-stage solvent extraction process required (Standard 3-day turnaround).</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Shoes Process Section -->
+    <!-- Care Capabilities Process -->
     <section class="process-section" style="padding: 100px 0; background-color: #ffffff;">
         <div class="container">
             <div class="text-center header-spacing">
-                <span class="section-badge">CARE CAPABILITIES</span>
-                <h2 class="section-title">How We Care For Your Shoes</h2>
-                <p class="section-subtitle">A strict, standardized process executed manually by trained shoe technicians.</p>
+                <span class="section-badge">SERVICE FLOW</span>
+                <h2 class="section-title">The 3-Day Organic Dry Cleaning Process</h2>
+                <p class="section-subtitle">A slow, highly controlled process to guarantee maximum safety and restoration for premium garments.</p>
             </div>
             
             <div class="order-steps-grid" style="margin-top: 50px;">
                 <!-- Step 1 -->
                 <div class="step-card-v2">
-                    <div class="step-card-icon"><i class="fa-solid fa-hands-wash"></i></div>
-                    <h3>01. Individual Hand Wash</h3>
-                    <p>We do not use automatic washing machines. Every shoe is hand-brushed inside out using specialized soft boar/horsehair brushes to protect delicate fabrics.</p>
+                    <div class="step-card-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <h3>01. Detailed Inspection</h3>
+                    <p>Technicians inspect every garment, cover delicate buttons with protective foil, and pre-treat individual grease/ink stains by hand.</p>
                 </div>
                 
                 <!-- Step 2 -->
                 <div class="step-card-v2">
-                    <div class="step-card-icon"><i class="fa-solid fa-flask"></i></div>
+                    <div class="step-card-icon"><i class="fa-solid fa-vial-virus-solid"></i></div>
                     <h3>02. Organic Solvents</h3>
-                    <p>We clean with top-tier leather care chemicals (Saphir and Tarrago) which clean deep stains without stripping the leather's natural color or oils.</p>
+                    <p>Garments are washed in closed-loop dry cleaning machines using premium eco-solvents that dissolve oils without affecting natural wool, silk, or feathers.</p>
                 </div>
                 
                 <!-- Step 3 -->
                 <div class="step-card-v2">
-                    <div class="step-card-icon"><i class="fa-solid fa-wind"></i></div>
-                    <h3>03. Controlled Temperature Drying</h3>
-                    <p>Shoes are placed in dark dehumidifying rooms at standard temperatures. No high-heat is used, preventing fabric contraction and sole glue cracking.</p>
+                    <div class="step-card-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div>
+                    <h3>03. Controlled De-solvent</h3>
+                    <p>Drying is performed inside the chamber under slow temperature changes. No hot tumble drying is used, protecting shape lining structures from warping.</p>
                 </div>
                 
                 <!-- Step 4 -->
                 <div class="step-card-v2">
-                    <div class="step-card-icon"><i class="fa-solid fa-shield-virus"></i></div>
-                    <h3>04. UVC Ray Disinfection</h3>
-                    <p>Finally, we sanitize all shoes using UVC ultraviolet ray cabins to eliminate 99.9% of internal bacteria, fungal spores, and foot odors.</p>
+                    <div class="step-card-icon"><i class="fa-solid fa-shirt"></i></div>
+                    <h3>04. Meticulous Hand Press</h3>
+                    <p>Our experts use special form-finishers and vertical steam tables to restore fabric loft, iron collars/lapels sharp, and wrap garments in dust bags.</p>
                 </div>
             </div>
         </div>
@@ -1224,51 +875,51 @@
             <div class="text-center header-spacing">
                 <span class="section-badge">FAQ</span>
                 <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Got questions about shoe cleaning and care? Here are our answers.</p>
+                <p class="section-subtitle">Got questions about dry cleaning and luxury garments? Here are our answers.</p>
             </div>
             
             <div class="accordion-wrapper" style="max-width: 800px; margin: 40px auto 0 auto;">
                 <!-- FAQ 1 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>How long does the shoe cleaning process take?</span>
+                        <span>Why does dry cleaning require 3 days? Can I get express same-day?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="accordion-body">
-                        <p>Our standard cleaning turnaround is 3 to 4 days. This is because we dry all shoes in a natural, dehumidified room without using high heat to preserve sole glue. If you need them faster, we offer a 24-hour Express option for +100,000 VND / pair.</p>
+                        <p>No, express same-day service is not available for dry cleaning. Dry cleaning is a detailed process that involves pre-treating stains, slow washing with solvents, complete deodorization/extraction, air drying, and precision hand-pressing. Rushing this process can trap odors or warp delicate fibers.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 2 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>Do you clean genuine suede and nubuck materials?</span>
+                        <span>What solvents do you use for dry cleaning luxury items?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="accordion-body">
-                        <p>Yes, we have specialized suede and nubuck spa treatments. We brush them manually, apply conditioning oils to restore softness, and apply waterproof nano-coatings to protect colors from fading.</p>
+                        <p>We use premium, eco-friendly organic solvents. Unlike harsh traditional chemicals, our solvents are completely biodegradable, hypoallergenic, leave no chemical smell on your clothes, and are gentle enough for luxury designer labels (LV, Gucci, Dior, Chanel).</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 3 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>Can you repair or recolor scuffed leather?</span>
+                        <span>Are wedding dresses or traditional silk dresses ironed?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="accordion-body">
-                        <p>For minor scuffs, our premium leather conditioners and wax polishes can cover them effectively. For deep cuts or recoloring requests, please message us on WhatsApp with photos of the shoes so we can provide a custom quote.</p>
+                        <p>Yes, professional pressing and vertical steam ironing are fully included in our dry cleaning price. Your evening gown, traditional Ao Dai, or wedding dress will be delivered pristine, wrinkle-free, and hung on a hanger inside a custom protective garment bag.</p>
                     </div>
                 </div>
                 
                 <!-- FAQ 4 -->
                 <div class="accordion-item">
                     <button class="accordion-header">
-                        <span>How can I schedule a pickup for my shoes?</span>
+                        <span>What happens if my leather coat gets wet or dirty?</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="accordion-body">
-                        <p>The fastest way is to click any "Book Now" button to text us directly on WhatsApp at <strong>0866.137.043</strong>. We will arrange a driver to collect your shoes from your home or hotel reception lobby within 30 minutes.</p>
+                        <p>Water-washing leather will strip away its natural oils, leading to cracking, peeling, and hardening. Our dry cleaning process restores leather and suede by dissolving dirt with organic oils, keeping the skin soft and flexible. Saphir conditioning creams are applied for extra hydration.</p>
                     </div>
                 </div>
             </div>
@@ -1299,7 +950,6 @@
                     <div class="footer-links-revamped">
                         <a href="express-laundry.html">Express Laundry</a>
                         <a href="shoes-cleaning.html">Shoes Cleaning</a>
-                        <a href="index.html#shoes-cleaning">Shoes Cleaning</a>
                         <a href="steam-press.html">Steam Press</a>
                         <a href="dry-cleaning.html">Dry Cleaning</a>
                         <a href="index.html#carpet-cleaning">Carpet Cleaning</a>
