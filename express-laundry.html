@@ -17,11 +17,154 @@
     <style>
         /* Specific Styles for Express Page */
         /* Redesigned Premium Hero Section */
-        .express-hero-redesigned {
-            padding: 160px 0 100px 0;
-            background: #f8faff;
-            position: relative;
-            overflow: hidden;
+        }
+
+        /* Hero Trust Badge Styling */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(242, 106, 25, 0.08);
+            border: 1px solid rgba(242, 106, 25, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-trust-badge i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .hero-trust-badge span {
+            font-family: var(--font-headline);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Inline Specs Styling */
+        .hero-specs-row-new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item-new {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item-new i {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .spec-item-new span {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-item-divider {
+            width: 1px;
+            height: 14px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dual CTA Styling */
+        .hero-actions-new {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 24px;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-hero-cta-zalo {
+            background-color: #0068ff; /* Zalo Blue */
+        }
+
+        .btn-hero-cta-zalo:hover {
+            background-color: #0056d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 104, 255, 0.22);
+        }
+
+        .btn-hero-cta-wa {
+            background-color: #25D366; /* WhatsApp Green */
+        }
+
+        .btn-hero-cta-wa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+        }
+
+        .pricing-link-secondary {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-link-secondary:hover {
+            color: var(--color-accent);
+        }
+
+        /* Compact Section Spacing rules */
+        .pricing-section, .how-to-order-section, .some-info-section, .gallery-section, .faq-section, .benefits-section, .testimonials-section {
+            padding: 70px 0 !important;
+        }
+
+        .bottom-cta-section {
+            padding: 85px 0 !important;
+        }
+
+        /* Desktop grids for benefits and testimonials */
+        .benefits-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
         }
 
         /* Animated Background Blobs */
@@ -1260,9 +1403,57 @@
             }
         }
         
-        @media (max-width: 768px) {
-            .image-gallery-row {
-                grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 576px) {
+            /* Hero Section Mobile Refinements */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 20px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+            .pricing-link-secondary {
+                font-size: 13px !important;
+            }
+            .hero-specs-row-new {
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .spec-item-divider {
+                display: none !important;
+            }
+            .spec-item-new {
+                background-color: rgba(242, 106, 25, 0.04) !important;
+                border: 1px solid rgba(242, 106, 25, 0.08) !important;
+                padding: 6px 12px !important;
+                border-radius: 20px !important;
+            }
+
+            /* Compact Spacing on Mobile */
+            .pricing-section, .how-to-order-section, .some-info-section, .gallery-section, .faq-section, .benefits-section, .testimonials-section {
+                padding: 45px 0 !important;
+            }
+
+            .bottom-cta-section {
+                padding: 55px 0 !important;
+            }
+
+            /* Benefits & Testimonials Mobile Refinements */
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .benefit-card, .testimonial-card {
+                padding: 30px 20px !important;
             }
         }
     </style>
@@ -1306,39 +1497,48 @@
             <!-- Left Side: Custom Text & Details -->
             <div class="hero-content">
                 <span class="badge" id="hero-badge">FAST & PREMIUM LAUNDRY</span>
-                <h1 class="hero-title" id="hero-headline">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
+                
+                <!-- Trust Rating Badge -->
+                <div class="hero-trust-badge" style="margin-top: 15px;">
+                    <i class="fa-solid fa-star"></i>
+                    <span>4.9/5 Google Maps Rating (1,500+ Reviews)</span>
+                </div>
+
+                <h1 class="hero-title" id="hero-headline" style="margin-top: 15px;">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
                 <p class="hero-subtitle" id="hero-subtext">
                     1997 Premium Laundry delivers professional clothing care with standard cold-water washing and tumble drying at 60°C. Enjoy ultimate convenience with door-to-door pickup & delivery, quick scheduling, and easy payment options.
                 </p>
-                <div class="hero-stats">
-                    <div class="stat-item" id="stat-professional">
-                        <div class="stat-icon"><i class="fa-solid fa-shirt"></i></div>
-                        <div class="stat-info">
-                            <h4>Professional Care</h4>
-                            <p>Suits & Shirts Specialist</p>
-                        </div>
+                
+                <!-- Inline Space-Saving Specs -->
+                <div class="hero-specs-row-new">
+                    <div class="spec-item-new">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>4h & Same-Day Express</span>
                     </div>
-                    <div class="stat-item" id="stat-delivery">
-                        <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
-                        <div class="stat-info">
-                            <h4>24h Turnaround</h4>
-                            <p>Express Service Available</p>
-                        </div>
+                    <div class="spec-item-divider"></div>
+                    <div class="spec-item-new">
+                        <i class="fa-solid fa-shirt"></i>
+                        <span>Separate Wash Guarantee</span>
+                    </div>
+                    <div class="spec-item-divider"></div>
+                    <div class="spec-item-new">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Premium Care</span>
                     </div>
                 </div>
-                <div class="hero-actions">
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup"><i class="fa-solid fa-calendar-days"></i> Schedule Pickup</a>
-                    <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing"><i class="fa-solid fa-tags"></i> Check Pricing</a>
+                
+                <!-- High-Converting Dual Booking CTAs -->
+                <div class="hero-actions-new">
+                    <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo">
+                        <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book on Zalo
+                    </a>
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book on WhatsApp
+                    </a>
                 </div>
-                <div class="hero-rating" id="hero-trust-rating">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <span>Rated <strong>4.9/5</strong> by 1,500+ expats in Saigon.</span>
+
+                <div class="hero-secondary-links" style="margin-top: 15px; text-align: left;">
+                    <a href="#pricing" class="pricing-link-secondary"><i class="fa-solid fa-tags"></i> View Price List</a>
                 </div>
             </div>
 
@@ -1410,8 +1610,54 @@
         </div>
     </section>
 
+    <!-- Why Choose Us / Benefits Section -->
+    <section class="benefits-section" style="background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">WHY CHOOSE US</span>
+                <h2 class="section-title">The 1997 Express Care Standard</h2>
+                <p class="section-subtitle">We deliver fast, ultra-hygienic, and premium laundry care for your everyday wardrobe.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-spinner"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">100% Individual Machine Wash</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        We guarantee that your clothes are washed separately in their own designated machine. Absolutely no mixing with other customers' garments.
+                    </p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-flask"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Premium Imported Detergents</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        We use high-end, eco-friendly detergents imported from Germany and France. They are hypoallergenic, completely safe for baby clothes and sensitive skin.
+                    </p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-temperature-half"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Controlled 60°C Tumble Drying</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        Clothes are dried at a strictly controlled temperature of 60°C to guarantee perfect hygiene, dust-mite sterilization, and soft-to-touch fabrics without shrinking.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
-    <section class="pricing-section" id="pricing" style="padding: 100px 0; background-color: var(--color-bg-soft);">
+    <section class="pricing-section" id="pricing" style="background-color: var(--color-bg-soft);">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">PRICING PLANS</span>
@@ -1506,7 +1752,7 @@
     </section>
 
     <!-- How to Place Your Order Section -->
-    <section class="how-to-order-section" style="padding: 100px 0; background-color: var(--color-bg-light);">
+    <section class="how-to-order-section" style="background-color: var(--color-bg-light);">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">BOOKING FLOW</span>
@@ -1615,7 +1861,7 @@
     </section>
 
     <!-- Some Information Section -->
-    <section class="some-info-section" style="padding: 100px 0; background-color: var(--color-bg-soft);">
+    <section class="some-info-section" style="background-color: var(--color-bg-soft);">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">MUST-KNOW GUIDELINES</span>
@@ -1708,7 +1954,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery" style="padding: 80px 0; background-color: var(--color-bg-light);">
+    <section class="gallery-section" id="gallery" style="background-color: var(--color-bg-light);">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">GALLERY</span>
@@ -1736,8 +1982,78 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TESTIMONIALS</span>
+                <h2 class="section-title">Trusted by Busy Professionals</h2>
+                <p class="section-subtitle">Read what our busy clients say about their express laundry experience in Saigon.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Fastest turnaround in HCMC. The 4-hour wash and fold package saved me right before my business flight. Excellent customer service over Zalo!"
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">DL</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">David L.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Thao Dien, District 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Giặt sấy quần áo thơm mát, giao nhận tận nơi cực kỳ nhanh chóng. Đồ được sấy ở nhiệt độ 60 độ C nên rất yên tâm, không sợ vi khuẩn hay ẩm mốc mùa mưa."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">HN</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Hồng Ngọc</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Bình Thạnh, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Really appreciate that they wash my clothes in separate machines. Hygienic, folded neatly, and super responsive customer support team on WhatsApp."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">EW</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Emma Watson</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Phu My Hung, District 7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Accordion FAQ Section -->
-    <section class="faq-section" id="faq" style="padding: 100px 0; background-color: var(--color-bg-soft);">
+    <section class="faq-section" id="faq" style="background-color: var(--color-bg-soft);">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">FAQ</span>
@@ -1790,6 +2106,33 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="bottom-cta-section" style="background-color: var(--color-bg-dark); position: relative; overflow: hidden; text-align: center; color: #ffffff;">
+        <div class="hero-blob blob-1" style="background-color: rgba(242, 106, 25, 0.18); filter: blur(100px); top: -50px; left: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        <div class="hero-blob blob-2" style="background-color: rgba(242, 106, 25, 0.08); filter: blur(100px); bottom: -50px; right: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2; max-width: 750px;">
+            <span class="section-badge" style="background-color: rgba(255,255,255,0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2);">BOOK PICKUP TODAY</span>
+            <h2 style="font-family: var(--font-headline); font-size: 32px; font-weight: 700; color: #ffffff; margin: 20px 0 15px 0; line-height: 1.25;">Ready to Order Express Laundry?</h2>
+            <p style="font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: #94a3b8; margin: 0 auto 35px auto;">
+                Schedule a convenient home pickup in District 1, 2, 3, 7, Binh Thanh. Let our premium express laundry team handle your everyday clothes.
+            </p>
+            
+            <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
+                <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo" style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
+                    <i class="fa-solid fa-comments"></i> Book on Zalo
+                </a>
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa" style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
+                    <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
+                </a>
+            </div>
+            
+            <p style="font-family: var(--font-body); font-size: 13px; color: #64748b; margin-top: 25px; font-weight: 500; margin-bottom: 0;">
+                Or call us directly at <a href="tel:0866137043" style="color: var(--color-accent); font-weight: 700; text-decoration: none;">0866.137.043</a> (7:00 AM - 10:00 PM)
+            </p>
         </div>
     </section>
 
