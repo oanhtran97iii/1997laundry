@@ -394,38 +394,120 @@
             gap: 25px;
         }
 
+        /* Pricing Tabs Styling */
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            background-color: #f1f5f9;
+            padding: 6px;
+            border-radius: 40px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .pricing-tab-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .pricing-tab-btn i {
+            font-size: 13px;
+        }
+
+        .pricing-tab-btn.active {
+            background-color: #ffffff;
+            color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.04);
+        }
+
+        /* Hide non-active category cards with smooth transitions */
+        .pricing-category-card {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .pricing-category-card.active {
+            display: block;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pricing Card Redesigns */
         .pricing-category-card {
             background-color: #ffffff;
-            border-radius: 20px;
+            border-radius: 24px;
             border: 1px solid rgba(0, 0, 0, 0.04);
-            padding: 30px;
-            box-shadow: 0 6px 20px rgba(9, 0, 45, 0.01);
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.02);
         }
 
         .pricing-category-card h3 {
             font-family: var(--font-headline);
-            font-size: 16.5px;
+            font-size: 17px;
             font-weight: 700;
-            color: var(--color-accent);
-            margin: 0 0 20px 0;
+            color: var(--color-bg-dark);
+            margin: 0 0 25px 0;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px dashed rgba(0,0,0,0.06);
-            padding-bottom: 12px;
+            letter-spacing: 0.8px;
+            border-bottom: 2px solid rgba(242, 106, 25, 0.1);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-category-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
         }
 
         .price-list-items {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 0;
         }
 
         .price-item-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .price-item-row:last-child {
@@ -433,17 +515,35 @@
             padding-bottom: 0;
         }
 
+        .price-item-row:hover {
+            background-color: rgba(242, 106, 25, 0.015);
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 12px;
+            border-bottom-color: transparent;
+        }
+
+        .price-item-left {
+            max-width: 75%;
+        }
+
         .price-item-left h4 {
             font-family: var(--font-headline);
-            font-size: 14.5px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--color-bg-dark);
-            margin: 0 0 4px 0;
+            margin: 0 0 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .price-item-row:hover .price-item-left h4 {
+            color: var(--color-accent);
         }
 
         .price-item-left p {
             font-family: var(--font-body);
             font-size: 12.5px;
+            line-height: 1.5;
             color: var(--color-text-gray);
             margin: 0;
         }
@@ -454,8 +554,15 @@
             font-weight: 700;
             color: var(--color-bg-dark);
             white-space: nowrap;
-            margin-left: 20px;
+            padding-left: 20px;
+            transition: all 0.3s ease;
         }
+
+        .price-item-row:hover .price-item-right {
+            color: var(--color-accent);
+            transform: scale(1.03);
+        }
+
 
         /* Standard warning list style */
         .dry-warning-banner {
@@ -889,10 +996,23 @@
                 </div>
             </div>
 
+            <!-- Pricing Tabs -->
+            <div class="pricing-tabs">
+                <button class="pricing-tab-btn active" data-target="suits-coats-cat">
+                    <i class="fa-solid fa-user-tie"></i> Suits & Coats
+                </button>
+                <button class="pricing-tab-btn" data-target="basic-wear-cat">
+                    <i class="fa-solid fa-shirt"></i> Basic Wear
+                </button>
+                <button class="pricing-tab-btn" data-target="special-items-cat">
+                    <i class="fa-solid fa-gem"></i> Special & Leather
+                </button>
+            </div>
+
             <div class="pricing-list-container">
                 <!-- Category 1: Suits & Coats -->
-                <div class="pricing-category-card">
-                    <h3>Suits & Coats</h3>
+                <div class="pricing-category-card active" id="suits-coats-cat">
+                    <h3><i class="fa-solid fa-user-tie"></i> Suits & Coats</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
@@ -933,8 +1053,8 @@
                 </div>
 
                 <!-- Category 2: Basic Wear -->
-                <div class="pricing-category-card">
-                    <h3>Basic Wear</h3>
+                <div class="pricing-category-card" id="basic-wear-cat">
+                    <h3><i class="fa-solid fa-shirt"></i> Basic Wear</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
@@ -1010,8 +1130,8 @@
                 </div>
 
                 <!-- Category 3: Formal Wear, Leather & Special Items -->
-                <div class="pricing-category-card">
-                    <h3>Formal Wear, Leather & Special Items</h3>
+                <div class="pricing-category-card" id="special-items-cat">
+                    <h3><i class="fa-solid fa-gem"></i> Special & Leather</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
@@ -1286,6 +1406,33 @@
             </div>
         </div>
     </footer>
+
+    <!-- Pricing Tabs Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.pricing-tab-btn');
+            const cards = document.querySelectorAll('.pricing-category-card');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active to current tab
+                    tab.classList.add('active');
+
+                    // Target card
+                    const targetId = tab.getAttribute('data-target');
+                    
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.id === targetId) {
+                            card.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
     <!-- Main JS script -->
     <script src="index.js?v=1.1"></script>
