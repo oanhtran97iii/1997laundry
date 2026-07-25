@@ -589,6 +589,139 @@
                 height: 320px;
             }
         }
+
+        /* Featured Product Grid styling */
+        .featured-products-section {
+            padding: 90px 0;
+            background-color: #fafbfc;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .featured-products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .product-feature-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.08);
+            border-color: rgba(242, 106, 25, 0.15);
+        }
+
+        .product-img-wrapper {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-feature-card:hover .product-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            color: var(--color-accent);
+            font-family: var(--font-headline);
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .product-card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-card-body h3 {
+            font-family: var(--font-headline);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 10px 0;
+        }
+
+        .product-card-body p {
+            font-family: var(--font-body);
+            font-size: 13px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0 0 20px 0;
+            flex-grow: 1;
+        }
+
+        .product-card-body .btn-card-link {
+            font-family: var(--font-headline);
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .product-card-body .btn-card-link:hover {
+            color: var(--color-bg-dark);
+        }
+
+        .product-card-body .btn-card-link i {
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card-body .btn-card-link:hover i {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 991px) {
+            .featured-products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .featured-products-grid {
+                grid-template-columns: 1fr;
+            }
+            .featured-products-section {
+                padding: 60px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -674,6 +807,71 @@
                 <!-- Right column image of pressed suit -->
                 <div class="hero-right-gallery">
                     <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dry Cleaning Products Section -->
+    <section class="featured-products-section" id="featured-items">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">WHAT WE CARE FOR</span>
+                <h2 class="section-title">Premium Dry Cleaning Specialties</h2>
+                <p class="section-subtitle">We utilize specialized eco-friendly solvents and tailor-made restoration processes for luxury materials.</p>
+            </div>
+            
+            <div class="featured-products-grid">
+                <!-- Product 1: Suits & Blazers -->
+                <div class="product-feature-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/images/featured_suit.jpg" alt="Suits and Blazers Dry Cleaning">
+                        <span class="product-tag">Perfect Structure</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>Suits & Blazers</h3>
+                        <p>We protect original lining structures, prevent shoulder collapse, and restore the crisp tailored form of premium wool/blend suits.</p>
+                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 2: Silk & Gowns -->
+                <div class="product-feature-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/images/featured_silk_dress.jpg" alt="Silk and Gowns Dry Cleaning">
+                        <span class="product-tag">Delicate Fabric</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>Silk & Evening Gowns</h3>
+                        <p>Meticulous care for silk, chiffon, lace, and embellished gowns. Prevents color bleed and preserves delicate textures.</p>
+                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 3: Wool & Cashmere -->
+                <div class="product-feature-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/images/featured_wool_coat.jpg" alt="Wool and Cashmere Coats Dry Cleaning">
+                        <span class="product-tag">Zero Shrinkage</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>Wool & Cashmere</h3>
+                        <p>Gentle organic solvent wash prevents felting, fiber shrinking, or stretching, keeping coats fluffy, soft, and warm.</p>
+                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Product 4: Leather & Fur -->
+                <div class="product-feature-card">
+                    <div class="product-img-wrapper">
+                        <img src="assets/images/featured_leather_jacket.jpg" alt="Leather and Fur Jackets Dry Cleaning">
+                        <span class="product-tag">Premium Shine</span>
+                    </div>
+                    <div class="product-card-body">
+                        <h3>Leather & Fur</h3>
+                        <p>Specialized dry cleaning and leather conditioning to restore essential oils, prevent cracking, and maintain natural luster.</p>
+                        <a href="#pricing" class="btn-card-link">View Price <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
