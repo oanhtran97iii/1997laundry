@@ -80,211 +80,12 @@
             }
         }
 
-        .hero-redesigned-container {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 60px;
-            align-items: center;
-            max-width: 1140px;
-            margin-left: auto;
-            margin-right: auto;
+        /* Hero Section Page-Specific Overrides */
+        .hero-section {
+            background: #f8faff !important;
+            padding: 160px 0 100px 0 !important;
             position: relative;
-            z-index: 5;
-        }
-
-        .hero-left-content {
-            text-align: left;
-        }
-
-        .hero-left-content .hero-badge {
-            background-color: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            color: #475569;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02);
-            display: inline-block;
-            margin-bottom: 25px;
-        }
-
-        .hero-main-title {
-            font-family: var(--font-headline);
-            font-size: 48px;
-            line-height: 1.25;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            margin: 0 0 20px 0;
-            letter-spacing: -0.5px;
-        }
-
-        .hero-subtitle-desc {
-            font-family: var(--font-body);
-            font-size: 16px;
-            line-height: 1.6;
-            color: #64748b;
-            margin-bottom: 35px;
-            max-width: 580px;
-        }
-
-        /* Schedule Pickup Hero Button */
-        .hero-cta-wrapper {
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-schedule-btn {
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--color-accent);
-            color: #ffffff !important;
-            padding: 16px 36px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 16px;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 12px;
-            box-shadow: 0 8px 24px rgba(242, 106, 25, 0.25);
-            font-family: var(--font-body);
-        }
-
-        .hero-schedule-btn:hover {
-            background-color: var(--color-accent-dark);
-            box-shadow: 0 10px 28px rgba(242, 106, 25, 0.35);
-            transform: translateY(-2px);
-        }
-
-        .hero-schedule-btn i {
-            font-size: 18px;
-        }
-
-        /* Right Side Worker Card & Badges */
-        .hero-right-card {
-            display: flex;
-            justify-content: flex-end;
-            position: relative;
-        }
-
-        .worker-image-card {
-            width: 370px;
-            height: 480px;
-            border-radius: 32px;
             overflow: hidden;
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            position: relative;
-            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.08);
-            border: 4px solid #ffffff;
-        }
-
-        .worker-image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* Overlay Badges styling */
-        .overlay-badge {
-            position: absolute;
-            background-color: #ffffff;
-            border-radius: 16px;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 10px 25px rgba(9, 0, 45, 0.06);
-            border: 1px solid rgba(0, 0, 0, 0.02);
-            transition: transform 0.3s ease;
-            text-align: left;
-        }
-
-        .overlay-badge:hover {
-            transform: scale(1.03);
-        }
-
-        .overlay-badge .badge-icon-box {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            flex-shrink: 0;
-        }
-
-        .overlay-badge .badge-icon-box.orange-bg {
-            background-color: #ffebd8;
-            color: var(--color-accent);
-        }
-
-        .overlay-badge .badge-icon-box.dark-bg {
-            background-color: #e0e7ff;
-            color: #4f46e5;
-        }
-
-        .overlay-badge .badge-text-box {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .overlay-badge .badge-text-box .title {
-            font-family: var(--font-headline);
-            font-size: 13.5px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            line-height: 1.2;
-        }
-
-        .overlay-badge .badge-text-box .sub {
-            font-family: var(--font-body);
-            font-size: 10.5px;
-            color: #64748b;
-            margin-top: 2px;
-        }
-
-        .badge-top-left {
-            top: 40px;
-            left: -40px;
-            z-index: 10;
-        }
-
-        .badge-middle-right {
-            bottom: 120px;
-            right: -30px;
-            z-index: 10;
-        }
-
-        /* Bottom status indicator overlay */
-        .bottom-status-indicator {
-            position: absolute;
-            bottom: 25px;
-            left: 25px;
-            right: 25px;
-            background-color: #ffffff;
-            border-radius: 50px;
-            padding: 12px 24px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 8px 20px rgba(9, 0, 45, 0.05);
-            z-index: 10;
-            border: 1px solid rgba(0, 0, 0, 0.02);
-        }
-
-        .bottom-status-indicator i {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
-        .bottom-status-indicator span {
-            font-family: var(--font-body);
-            font-size: 12px;
-            color: #64748b;
         }
 
         /* Bottom Stats Banner styling */
@@ -1303,57 +1104,96 @@
             </button>
         </div>
     </header>    <!-- Express Laundry Redesigned Hero Section -->
-    <section class="express-hero-redesigned">
+    <section class="hero-section" id="hero">
         <!-- Floating Animated Background Blobs -->
         <div class="hero-blob blob-1"></div>
         <div class="hero-blob blob-2"></div>
         <div class="hero-blob blob-3"></div>
 
-        <div class="container hero-redesigned-container">
-            <!-- Left Side: Title, Desc, and Pill CTA Button -->
-            <div class="hero-left-content">
-                <span class="hero-badge">FAST & PREMIUM LAUNDRY</span>
-                <h1 class="hero-main-title">Get your laundry <span class="text-orange">cleaned & folded</span> in no time.</h1>
-                <p class="hero-subtitle-desc">1997 Premium Laundry delivers professional clothing care with standard cold-water washing and tumble drying at 60°C. Enjoy ultimate convenience with door-to-door pickup & delivery, quick scheduling, and easy payment options.</p>
-                <div class="hero-cta-wrapper">
-                    <a href="https://zalo.me/0978900615" target="_blank" class="hero-schedule-btn">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <span>Schedule Pickup</span>
-                    </a>
+        <div class="container hero-container" style="position: relative; z-index: 5;">
+            <!-- Left Side: Custom Text & Details -->
+            <div class="hero-content">
+                <span class="badge" id="hero-badge">FAST & PREMIUM LAUNDRY</span>
+                <h1 class="hero-title" id="hero-headline">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
+                <p class="hero-subtitle" id="hero-subtext">
+                    1997 Premium Laundry delivers professional clothing care with standard cold-water washing and tumble drying at 60°C. Enjoy ultimate convenience with door-to-door pickup & delivery, quick scheduling, and easy payment options.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item" id="stat-professional">
+                        <div class="stat-icon"><i class="fa-solid fa-shirt"></i></div>
+                        <div class="stat-info">
+                            <h4>Professional Care</h4>
+                            <p>Suits & Shirts Specialist</p>
+                        </div>
+                    </div>
+                    <div class="stat-item" id="stat-delivery">
+                        <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
+                        <div class="stat-info">
+                            <h4>24h Turnaround</h4>
+                            <p>Express Service Available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://zalo.me/0978900615" target="_blank" class="btn btn-primary" id="btn-hero-pickup"><i class="fa-solid fa-calendar-days"></i> Schedule Pickup</a>
+                    <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing"><i class="fa-solid fa-tags"></i> Check Pricing</a>
+                </div>
+                <div class="hero-rating" id="hero-trust-rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span>Rated <strong>4.9/5</strong> by 1,500+ expats in Saigon.</span>
                 </div>
             </div>
 
-            <!-- Right Side: Graphic Card with Overlay Badges -->
-            <div class="hero-right-card">
-                <div class="worker-image-card">
-                    <img src="assets/images/hero_worker.jpg" alt="1997 Laundry Professional Worker">
-                    <!-- Overlay Badge 1 -->
-                    <div class="overlay-badge badge-top-left">
-                        <div class="badge-icon-box orange-bg"><i class="fa-solid fa-bolt"></i></div>
-                        <div class="badge-text-box">
-                            <span class="title">4-Hour Super Express</span>
-                            <span class="sub">Fastest turnaround</span>
+            <!-- Right Side: Overlapping Cards layout matching homepage -->
+            <div class="hero-visual">
+                <div class="overlapping-hero-wrapper">
+                    <!-- Shop background card -->
+                    <div class="shop-bg-card">
+                        <img src="assets/images/dry_clean_bg.jpg" alt="1997 Premium Laundry Shop Interior" class="shop-bg-img">
+                        <!-- D1 Branch Badge -->
+                        <div class="branch-badge">
+                            <span class="branch-title">D1</span>
+                            <span class="branch-sub">DISTRICT 1 BRANCH</span>
                         </div>
                     </div>
-                    <!-- Overlay Badge 2 -->
-                    <div class="overlay-badge badge-middle-right">
-                        <div class="badge-icon-box dark-bg"><i class="fa-solid fa-hotel"></i></div>
-                        <div class="badge-text-box">
-                            <span class="title">Lobby Reception Pickup</span>
-                            <span class="sub">Available upon request</span>
+                    <!-- White menu card -->
+                    <div class="featured-menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-badge">HOT SERVICES</span>
+                            <h3>Featured Service Menu</h3>
                         </div>
-                    </div>
-                    <!-- Bottom status indicator box -->
-                    <div class="bottom-status-indicator">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <span>Track your laundry status here...</span>
+                        <ul class="menu-list">
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> 4 Hrs Express Wash & Fold</span>
+                                <span class="menu-item-badge badge-popular">MOST POPULAR</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Shoes Cleaning</span>
+                                <span class="menu-item-badge badge-recommended">RECOMMENDED</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Dry Cleaning</span>
+                                <span class="menu-item-badge badge-premium">PREMIUM</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Steam Press</span>
+                                <span class="menu-item-badge badge-new">NEW</span>
+                            </li>
+                        </ul>
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn btn-dark-blue w-100 text-center">BOOK SERVICE NOW</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Stats Banner -->
-        <div class="container stats-banner-container">
+        <div class="container stats-banner-container" style="margin-top: 60px; position: relative; z-index: 5;">
             <div class="stats-banner-card">
                 <!-- Highlight block left -->
                 <div class="stats-highlight-block">
