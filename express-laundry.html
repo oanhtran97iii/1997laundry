@@ -73,50 +73,36 @@
             max-width: 580px;
         }
 
-        /* Pill Get Started CTA Button */
+        /* Schedule Pickup Hero Button */
         .hero-cta-wrapper {
             display: flex;
             align-items: center;
         }
 
-        .hero-pill-cta {
+        .hero-schedule-btn {
             display: inline-flex;
             align-items: center;
             background-color: var(--color-accent);
             color: #ffffff !important;
-            padding: 8px 8px 8px 24px;
-            border-radius: 50px;
+            padding: 16px 36px;
+            border-radius: 16px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            gap: 15px;
-            box-shadow: 0 8px 20px rgba(243, 106, 25, 0.2);
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(242, 106, 25, 0.25);
+            font-family: var(--font-body);
         }
 
-        .hero-pill-cta:hover {
+        .hero-schedule-btn:hover {
             background-color: var(--color-accent-dark);
-            box-shadow: 0 10px 25px rgba(243, 106, 25, 0.3);
+            box-shadow: 0 10px 28px rgba(242, 106, 25, 0.35);
             transform: translateY(-2px);
         }
 
-        .hero-pill-cta .circle-arrow-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: #ffffff;
-            color: var(--color-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            transition: all 0.3s ease;
-        }
-
-        .hero-pill-cta:hover .circle-arrow-icon {
-            transform: rotate(-45deg);
-            background-color: var(--color-accent);
-            color: #ffffff;
+        .hero-schedule-btn i {
+            font-size: 18px;
         }
 
         /* Right Side Worker Card & Badges */
@@ -1268,9 +1254,9 @@
                 <h1 class="hero-main-title">Get your laundry cleaned & folded in under 4 hours.</h1>
                 <p class="hero-subtitle-desc">1997 Premium Laundry brings professional care closer to you with standard cold-water washing, tumble drying at 60°C, and express return options under 4 hours.</p>
                 <div class="hero-cta-wrapper">
-                    <a href="https://zalo.me/0978900615" target="_blank" class="hero-pill-cta">
-                        <span>Book Service</span>
-                        <div class="circle-arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                    <a href="https://zalo.me/0978900615" target="_blank" class="hero-schedule-btn">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span>Schedule Pickup</span>
                     </a>
                 </div>
             </div>
