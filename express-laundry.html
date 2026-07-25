@@ -1227,17 +1227,7 @@
                 <p class="section-subtitle">No hidden fees. Free roundtrip delivery within 3km for orders over 150k VND.</p>
             </div>
             
-            <!-- Toggle Pill Switch -->
-            <div class="pricing-toggle-wrapper">
-                <div class="pricing-toggle-pill">
-                    <button class="pricing-toggle-btn active" id="btn-toggle-weight">By Weight (KG)</button>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="toggle-input" style="display:none;">
-                        <label for="toggle-input" class="toggle-label"></label>
-                    </div>
-                    <button class="pricing-toggle-btn" id="btn-toggle-piece">By Item (Piece)</button>
-                </div>
-            </div>
+
 
             <!-- VIEW 1: By Weight (KG) Section -->
             <div class="pricing-weight-view" id="weight-pricing-view">
@@ -1392,47 +1382,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 2: By Item (Piece) Section -->
-            <div class="pricing-piece-view" id="piece-pricing-view">
-                <table class="pricing-piece-table">
-                    <thead>
-                        <tr>
-                            <th>Item Name</th>
-                            <th style="text-align: right;">Price (VND) / Piece</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="item-name">T-Shirt / Polo</td>
-                            <td class="item-price">30,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Shirt / Blouse</td>
-                            <td class="item-price">35,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Trousers / Jeans</td>
-                            <td class="item-price">40,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Dress (Standard)</td>
-                            <td class="item-price">60,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Suit Jacket / Blazer</td>
-                            <td class="item-price">100,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Coat / Heavy Jacket</td>
-                            <td class="item-price">150,000 VND</td>
-                        </tr>
-                        <tr>
-                            <td class="item-name">Sneakers / Leather Shoes</td>
-                            <td class="item-price">180,000 VND - 250,000 VND</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
             
             <p class="text-center" style="margin-top: 45px; font-size: 13.5px; color: var(--color-text-gray); font-family: var(--font-body);">
                 * Note: Minimum booking for regular per-kg laundry is 3 kg. Orders over 150k VND get free pickup & delivery within 3km.
@@ -1799,34 +1749,7 @@
             });
         });
 
-        // Pricing Weight vs Piece Toggle Controller
-        const btnToggleWeight = document.getElementById('btn-toggle-weight');
-        const btnTogglePiece = document.getElementById('btn-toggle-piece');
-        const toggleInput = document.getElementById('toggle-input');
-        const weightPricingView = document.getElementById('weight-pricing-view');
-        const piecePricingView = document.getElementById('piece-pricing-view');
 
-        function setToggleState(showPiece) {
-            if (showPiece) {
-                btnToggleWeight.classList.remove('active');
-                btnTogglePiece.classList.add('active');
-                toggleInput.checked = true;
-                weightPricingView.style.display = 'none';
-                piecePricingView.classList.add('active');
-            } else {
-                btnToggleWeight.classList.add('active');
-                btnTogglePiece.classList.remove('active');
-                toggleInput.checked = false;
-                weightPricingView.style.display = 'block';
-                piecePricingView.classList.remove('active');
-            }
-        }
-
-        if (btnToggleWeight && btnTogglePiece && toggleInput) {
-            btnToggleWeight.addEventListener('click', () => setToggleState(false));
-            btnTogglePiece.addEventListener('click', () => setToggleState(true));
-            toggleInput.addEventListener('change', (e) => setToggleState(e.target.checked));
-        }
     </script>
 </body>
 </html>
