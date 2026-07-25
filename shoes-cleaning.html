@@ -549,6 +549,49 @@
             box-shadow: 0 8px 20px rgba(255,255,255,0.1);
         }
 
+        .delivery-notice-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(242, 106, 25, 0.04);
+            border: 1px dashed rgba(242, 106, 25, 0.25);
+            padding: 16px 28px;
+            border-radius: 16px;
+            max-width: 760px;
+            margin: -10px auto 45px auto;
+            text-align: left;
+        }
+        
+        .delivery-notice-box i {
+            font-size: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+        
+        .delivery-notice-box p {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .delivery-notice-box strong {
+            color: var(--color-bg-dark);
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .delivery-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
+            }
+        }
+
         /* Detailed price list styling */
         .detailed-pricing-section {
             padding: 100px 0;
@@ -855,6 +898,12 @@
                 <span class="section-badge">PRICING PACKAGES</span>
                 <h2 class="section-title">Choose the Perfect Package for You</h2>
                 <p class="section-subtitle">Select from our standard care tiers tailored to your shoe material and turnaround needs.</p>
+            </div>
+
+            <!-- Beautiful Delivery Notice Box -->
+            <div class="delivery-notice-box">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <p><strong>Delivery Notice:</strong> Package prices do not include shipping. Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km.</p>
             </div>
 
             <div class="tiers-grid">
