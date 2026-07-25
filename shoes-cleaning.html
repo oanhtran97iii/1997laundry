@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoes Cleaning & Leather Care | 1997 Premium Laundry Saigon</title>
+    <meta name="description" content="Saigon's premier sneaker, leather shoes, heels, boots, and luxury handbag cleaning and restoration. Professional hand-wash, Saphir organic care, and UVC sanitization.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="index.css?v=1.1">
+    
+    <style>
+        /* Specific Styles for Shoes Cleaning Page */
+        .shoes-hero-redesigned {
+            padding: 160px 0 100px 0;
+            background: #f8faff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            animation: floatBlob 22s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(242, 106, 25, 0.2); /* Orange */
+            top: -100px;
+            left: -150px;
+            animation-duration: 26s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(9, 0, 45, 0.1); /* Dark Blue */
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(50px, -70px) scale(1.08); }
+            66% { transform: translate(-30px, 40px) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        /* Header Revamps styling reuse */
+        .revamped-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(9, 0, 45, 0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Layout Split Columns */
+        .shoes-hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left-details {
+            text-align: left;
+        }
+
+        .hero-left-details h1 {
+            font-family: var(--font-headline);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-left-details h1 span.orange-highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-left-details p.description {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-gray);
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        /* Specs badges container */
+        .hero-specs-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .spec-capsule {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .spec-capsule .icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background-color: rgba(242, 106, 25, 0.08);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .spec-capsule .text-box h5 {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0;
+        }
+
+        .spec-capsule .text-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        /* Right column floating menu card layout */
+        .hero-right-gallery {
+            position: relative;
+            height: 480px;
+            border-radius: 32px;
+            background-image: url('assets/images/dry_clean_shop_interior_1784907821621.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 40px rgba(9, 0, 45, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-menu-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+            width: 320px;
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: absolute;
+            left: -40px;
+            z-index: 5;
+            animation: floatCard 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-12px); }
+        }
+
+        .branch-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        .floating-menu-card span.hot-tag {
+            background-color: #fff1f2;
+            color: #ef4444;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .floating-menu-card h3 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 18px 0;
+        }
+
+        .floating-menu-card ul.menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .floating-menu-card ul.menu-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .floating-menu-card ul.menu-list li span.dot {
+            color: var(--color-accent);
+            margin-right: 8px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-recommended {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-popular {
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-premium {
+            background-color: #fef3c7;
+            color: #d97706;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-new {
+            background-color: #ecfdf5;
+            color: #059669;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-menu-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-menu-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Interactive Combo Grid section */
+        .combo-section-revamped {
+            padding: 100px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .combo-layout-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 40px;
+            margin-top: 50px;
+            align-items: stretch;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .combo-tabs-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .combo-tab-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0,0,0,0.06);
+            border-radius: 18px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+            position: relative;
+        }
+
+        .combo-tab-card:hover {
+            border-color: rgba(242, 106, 25, 0.3);
+            background-color: rgba(242, 106, 25, 0.01);
+        }
+
+        .combo-tab-card.active {
+            border-color: var(--color-accent);
+            box-shadow: 0 8px 25px rgba(242, 106, 25, 0.08);
+            background-color: rgba(242, 106, 25, 0.01);
+        }
+
+        .combo-tab-card.active::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 20%;
+            height: 60%;
+            width: 4px;
+            background-color: var(--color-accent);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .combo-tab-left h5 {
+            font-family: var(--font-headline);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            margin: 0 0 5px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .combo-tab-left h3 {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 6px 0;
+        }
+
+        .combo-tab-left p {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        .combo-tab-right {
+            text-align: right;
+        }
+
+        .combo-tab-right .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            font-family: var(--font-headline);
+        }
+
+        .combo-tab-right .unit {
+            font-size: 11px;
+            color: var(--color-text-gray);
+            display: block;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+
+        .combo-tab-card.active .combo-tab-left h5 {
+            color: var(--color-accent);
+        }
+
+        .combo-tab-card.active .combo-tab-right .price {
+            color: var(--color-accent);
+        }
+
+        /* Floating Badge for Recommended Combo */
+        .recommended-badge {
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            background-color: #a74602;
+            color: #ffffff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(167, 70, 2, 0.2);
+        }
+
+        /* Tech Specifications Card right side */
+        .combo-spec-card {
+            background-color: #f8fafc;
+            border-radius: 24px;
+            border: 1px solid rgba(0,0,0,0.03);
+            padding: 35px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .spec-card-header {
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .spec-header-left h5 {
+            font-family: var(--font-headline);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-header-left h3 {
+            font-family: var(--font-headline);
+            font-size: 21px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 8px 0;
+        }
+
+        .spec-header-left p.sub-desc {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            color: #b91c1c;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .spec-header-right {
+            text-align: right;
+        }
+
+        .spec-header-right span.lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-header-right span.time-val {
+            font-family: var(--font-headline);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+
+        .spec-features-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .spec-features-list li i {
+            color: #22c55e;
+            font-size: 14px;
+        }
+
+        .spec-suitable-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 15px 20px;
+            border: 1px solid rgba(0,0,0,0.03);
+            margin-bottom: 25px;
+        }
+
+        .spec-suitable-box span.lbl {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-suitable-box p {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--color-bg-dark);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .btn-spec-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 0;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-spec-cta:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Detailed price list styling */
+        .detailed-pricing-section {
+            padding: 100px 0;
+            background-color: var(--color-bg-soft);
+        }
+
+        .pricing-list-container {
+            max-width: 1000px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pricing-category-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(9, 0, 45, 0.01);
+        }
+
+        .pricing-category-card h3 {
+            font-family: var(--font-headline);
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dashed rgba(0,0,0,0.06);
+            padding-bottom: 12px;
+        }
+
+        .price-list-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .price-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            padding-bottom: 12px;
+        }
+
+        .price-item-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .price-item-left {
+            text-align: left;
+        }
+
+        .price-item-left h4 {
+            font-family: var(--font-headline);
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .price-item-left p {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        .price-item-right {
+            text-align: right;
+            font-family: var(--font-headline);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* Policy Badges layout */
+        .policy-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 30px auto 0 auto;
+        }
+
+        .policy-badge-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .policy-badge-card i {
+            font-size: 18px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .policy-badge-card p {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            color: var(--color-bg-dark);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .policy-badge-card p span {
+            color: var(--color-text-gray);
+            font-weight: 500;
+            display: block;
+            font-size: 11.5px;
+            margin-top: 2px;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 991px) {
+            .shoes-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-left-details {
+                text-align: center;
+            }
+
+            .hero-left-details p.description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-specs-row {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-right-gallery {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .floating-menu-card {
+                left: -20px;
+                width: 280px;
+                padding: 20px;
+            }
+
+            .combo-layout-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .policy-badges-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .shoes-hero-redesigned {
+                padding-top: 130px;
+            }
+
+            .hero-left-details h1 {
+                font-size: 32px;
+            }
+
+            .hero-specs-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .floating-menu-card {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 90%;
+                margin: -50px auto 0 auto;
+                animation: none;
+                box-shadow: 0 10px 30px rgba(9, 0, 45, 0.08);
+            }
+
+            .hero-right-gallery {
+                height: 320px;
+            }
+
+            .combo-spec-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Revamped Header -->
+    <header class="revamped-header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                <a href="shoes-cleaning.html" class="nav-item active">SHOES CLEANING</a>
+                <a href="index.html#steam-press" class="nav-item">STEAM PRESS</a>
+                <a href="index.html#dry-cleaning" class="nav-item">DRY CLEANING</a>
+                <a href="index.html#carpet-cleaning" class="nav-item">CARPET CLEANING</a>
+                <a href="#faq" class="nav-item">FAQs</a>
+            </nav>
+            <div class="header-ctas">
+                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
+                    <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                </a>
+                <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                    <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                </a>
+            </div>
+            <button class="hamburger-menu" id="menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Redesigned Hero Section -->
+    <section class="shoes-hero-redesigned" id="hero">
+        <!-- Background elements -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        
+        <div class="container">
+            <div class="shoes-hero-grid">
+                <!-- Left Details -->
+                <div class="hero-left-details">
+                    <span class="section-badge">SHOES & LEATHER SPA</span>
+                    <h1>Premium Shoes Cleaning & <span class="orange-highlight">Leather Spa</span></h1>
+                    <p class="description">
+                        Keep your sneakers, leather shoes, high heels, boots, and luxury handbags looking brand new. Our professional specialists wash every item completely by hand using eco-friendly organic cleaners, sanitized UVC rays, and controlled dehumidifying dry rooms.
+                    </p>
+                    
+                    <div class="hero-specs-row">
+                        <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-hands-wash"></i></div>
+                            <div class="text-box">
+                                <h5>100% Hand Wash</h5>
+                                <p>No machine damage</p>
+                            </div>
+                        </div>
+                        <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="text-box">
+                                <h5>Saphir & Tarrago</h5>
+                                <p>Premium chemicals</p>
+                            </div>
+                        </div>
+                        <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-shield-virus"></i></div>
+                            <div class="text-box">
+                                <h5>UVC Sanitized</h5>
+                                <p>Kills 99.9% odor/germs</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup">
+                            <i class="fa-solid fa-calendar-days"></i> Schedule Pickup
+                        </a>
+                        <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing">
+                            <i class="fa-solid fa-tags"></i> Check Pricing
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right floating card stack -->
+                <div class="hero-right-gallery">
+                    <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
+                    
+                    <div class="floating-menu-card">
+                        <span class="hot-tag">HOT SERVICES</span>
+                        <h3>Featured Care Menu</h3>
+                        <ul class="menu-list">
+                            <li><span><span class="dot">•</span> Premium Deep Cleaning</span> <span class="badge-popular">POPULAR</span></li>
+                            <li><span><span class="dot">•</span> Suede/Nubuck Spa</span> <span class="badge-recommended">RECOMMENDED</span></li>
+                            <li><span><span class="dot">•</span> Luxury Shoes Care</span> <span class="badge-premium">PREMIUM</span></li>
+                            <li><span><span class="dot">•</span> Designer Handbags</span> <span class="badge-new">NEW</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-menu-book">BOOK SERVICE NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Combo Packages Selector (Image 3) -->
+    <section class="combo-section-revamped" id="combos">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">SAVINGS COMBOS</span>
+                <h2 class="section-title">Select the Best Package for You</h2>
+                <p class="section-subtitle">Save up to 20% on shoe cleaning with our popular pre-paid value packages.</p>
+            </div>
+
+            <div class="combo-layout-grid">
+                <!-- Left: Interactive Tab Buttons -->
+                <div class="combo-tabs-column">
+                    <!-- Tab 1 -->
+                    <div class="combo-tab-card active" data-tier="1">
+                        <div class="combo-tab-left">
+                            <h5>TIER 01</h5>
+                            <h3>Standard Care (1 Pair)</h3>
+                            <p>Basic individual shoe cleaning service</p>
+                        </div>
+                        <div class="combo-tab-right">
+                            <span class="price">150,000đ</span>
+                            <span class="unit">per pair</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2 -->
+                    <div class="combo-tab-card" data-tier="2">
+                        <span class="recommended-badge">POPULAR</span>
+                        <div class="combo-tab-left">
+                            <h5>TIER 02</h5>
+                            <h3>Saving Combo (3 Pairs)</h3>
+                            <p>Great for small families or monthly rotations</p>
+                        </div>
+                        <div class="combo-tab-right">
+                            <span class="price">399,000đ</span>
+                            <span class="unit">combo price</span>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3 -->
+                    <div class="combo-tab-card" data-tier="3">
+                        <span class="recommended-badge" style="background-color: var(--color-accent); box-shadow: 0 4px 10px rgba(242, 106, 25, 0.2);">BEST VALUE</span>
+                        <div class="combo-tab-left">
+                            <h5>TIER 03</h5>
+                            <h3>Family Combo (5 Pairs)</h3>
+                            <p>Clean out your shoe cabinet for the lowest price</p>
+                        </div>
+                        <div class="combo-tab-right">
+                            <span class="price">590,000đ</span>
+                            <span class="unit">combo price</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Dynamic Tech Specs Card -->
+                <div class="combo-spec-card">
+                    <div id="dynamic-spec-content">
+                        <!-- Content rendered dynamically via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Detailed Price List Section (Image 2 & 4) -->
+    <section class="detailed-pricing-section" id="pricing">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">PRICE LIST</span>
+                <h2 class="section-title">Transparent Shoes & Leather Pricing</h2>
+                <p class="section-subtitle">No hidden fees. Professional premium treatments for every type of leather and fabric.</p>
+            </div>
+
+            <div class="pricing-list-container">
+                <!-- Category 1: Sneaker & Casual Cleaning -->
+                <div class="pricing-category-card">
+                    <h3>Sneaker & Casual Shoes Cleaning</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Basic Cleaning: Regular Shoes (Vệ sinh cơ bản)</h4>
+                                <p>Outside wipe, sole brush, and light deodorizing for canvas/knit everyday sneakers.</p>
+                            </div>
+                            <div class="price-item-right">109,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Deep Cleaning: Branded / Regular Sneakers (Vệ sinh chuyên sâu)</h4>
+                                <p>Deep hand-brush wash inside out, laces cleaning, midsole stain release, and UVC sanitizing.</p>
+                            </div>
+                            <div class="price-item-right">149,000 VND</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Suede, Leather & Luxury Spa -->
+                <div class="pricing-category-card">
+                    <h3>Suede, Leather & Luxury Spa</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Basic Cleaning: Leather, Suede & Nubuck</h4>
+                                <p>Careful wash tailored for natural fabrics, leather conditioning, and shape preservation.</p>
+                            </div>
+                            <div class="price-item-right">189,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Deep Cleaning: Leather, Suede & Nubuck</h4>
+                                <p>Deep stain treatment, lining sanitation, leather oil replenishment, and pile restoration.</p>
+                            </div>
+                            <div class="price-item-right">229,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Suede/Nubuck Spa (Spa Da Lộn)</h4>
+                                <p>Manual specialized restoration, deep pile brushing, conditioning, and color guard protection.</p>
+                            </div>
+                            <div class="price-item-right">200,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Advanced Specialty Cleaning (Vệ sinh Nâng cao)</h4>
+                                <p>Heavy mud, old oil stains, intense odor removal, or heavily moldy shoes needing multiple washes.</p>
+                            </div>
+                            <div class="price-item-right">200,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Luxury Spa (Giày hiệu cao cấp)</h4>
+                                <p>Exclusive care for luxury designers (Gucci, LV, Chanel, Dior) using Saphir and Tarrago premium care agents.</p>
+                            </div>
+                            <div class="price-item-right">300,000 VND</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Specialty Footwear -->
+                <div class="pricing-category-card">
+                    <h3>Specialty Footwear & Spa</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Leather Dress Shoes (Vệ sinh Giày Tây)</h4>
+                                <p>Deep cleaning, premium wax polishing, cream conditioning, and leather restoration.</p>
+                            </div>
+                            <div class="price-item-right">150,000 - 200,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>High Heels (Vệ sinh Giày Cao Gót)</h4>
+                                <p>Standard cleaning (150K) to luxury spa treatments (300K) for fine fabric and designer heels.</p>
+                            </div>
+                            <div class="price-item-right">150,000 - 300,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>High-Cut Boots (Vệ sinh Boots Cổ Cao)</h4>
+                                <p>Price varies based on material height (ankle/knee), leather treatments, and custom shapes.</p>
+                            </div>
+                            <div class="price-item-right">150,000 - 250,000 VND</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Bags & Accessories -->
+                <div class="pricing-category-card">
+                    <h3>Backpacks, Handbags & Leather Goods</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Sandals, Children's Shoes & Kid's Backpacks</h4>
+                                <p>Gentle cleaning for small sized footwear, flip-flops, or kid school bags.</p>
+                            </div>
+                            <div class="price-item-right">79,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Standard Backpacks & Handbags (Ba lô - Túi xách)</h4>
+                                <p>External deep wash, deodorizing, lining dusting, and drying for fabric/canvas bags.</p>
+                            </div>
+                            <div class="price-item-right">129,000 - 179,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>In-depth Designer Handbags Spa (Vệ sinh túi hiệu)</h4>
+                                <p>Careful organic solvent rub, handle sanitizing, metal detailing polish, and designer lining spa.</p>
+                            </div>
+                            <div class="price-item-right">229,000 VND</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Leather Belts & Wallets (Thắt lưng / Ví da)</h4>
+                                <p>Mild stain cleaning, edge touch-up, Saphir leather conditioning, and protection seal.</p>
+                            </div>
+                            <div class="price-item-right">99,000 VND</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra Policies (Image 5) -->
+            <div class="policy-badges-grid">
+                <div class="policy-badge-card">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                    <p>
+                        Express 24h Service
+                        <span>+100,000 VND / pair (Bronze/Silver/Special)</span>
+                    </p>
+                </div>
+                <div class="policy-badge-card">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <p>
+                        Polishing Only
+                        <span>West shoes leather wax & shine: 100,000 VND</span>
+                    </p>
+                </div>
+                <div class="policy-badge-card">
+                    <i class="fa-solid fa-receipt"></i>
+                    <p>
+                        VAT Included
+                        <span>All prices listed include 10% VAT</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shoes Process Section -->
+    <section class="process-section" style="padding: 100px 0; background-color: #ffffff;">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">CARE CAPABILITIES</span>
+                <h2 class="section-title">How We Care For Your Shoes</h2>
+                <p class="section-subtitle">A strict, standardized process executed manually by trained shoe technicians.</p>
+            </div>
+            
+            <div class="order-steps-grid" style="margin-top: 50px;">
+                <!-- Step 1 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-hands-wash"></i></div>
+                    <h3>01. Individual Hand Wash</h3>
+                    <p>We do not use automatic washing machines. Every shoe is hand-brushed inside out using specialized soft boar/horsehair brushes to protect delicate fabrics.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-flask"></i></div>
+                    <h3>02. Organic Solvents</h3>
+                    <p>We clean with top-tier leather care chemicals (Saphir and Tarrago) which clean deep stains without stripping the leather's natural color or oils.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-wind"></i></div>
+                    <h3>03. Controlled Temperature Drying</h3>
+                    <p>Shoes are placed in dark dehumidifying rooms at standard temperatures. No high-heat is used, preventing fabric contraction and sole glue cracking.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h3>04. UVC Ray Disinfection</h3>
+                    <p>Finally, we sanitize all shoes using UVC ultraviolet ray cabins to eliminate 99.9% of internal bacteria, fungal spores, and foot odors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section" id="faq" style="padding: 100px 0; background-color: var(--color-bg-soft);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Got questions about shoe cleaning and care? Here are our answers.</p>
+            </div>
+            
+            <div class="accordion-wrapper" style="max-width: 800px; margin: 40px auto 0 auto;">
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How long does the shoe cleaning process take?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Our standard cleaning turnaround is 3 to 4 days. This is because we dry all shoes in a natural, dehumidified room without using high heat to preserve sole glue. If you need them faster, we offer a 24-hour Express option for +100,000 VND / pair.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Do you clean genuine suede and nubuck materials?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Yes, we have specialized suede and nubuck spa treatments. We brush them manually, apply conditioning oils to restore softness, and apply waterproof nano-coatings to protect colors from fading.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can you repair or recolor scuffed leather?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>For minor scuffs, our premium leather conditioners and wax polishes can cover them effectively. For deep cuts or recoloring requests, please message us on WhatsApp with photos of the shoes so we can provide a custom quote.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How can I schedule a pickup for my shoes?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>The fastest way is to click any "Book Now" button to text us directly on WhatsApp at <strong>0866.137.043</strong>. We will arrange a driver to collect your shoes from your home or hotel reception lobby within 30 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revamped Footer Section -->
+    <footer class="revamped-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid-revamped">
+                <!-- Col 1 -->
+                <div class="footer-col-revamped">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-block;">
+                        <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img-footer" style="max-height: 50px;">
+                    </a>
+                    <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands of garments & designer shoes. Every item carries a story worthy of respect.</p>
+                    <div class="footer-social-circles">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/84866137043" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                    <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="footer-col-revamped">
+                    <h3>SERVICES</h3>
+                    <div class="footer-links-revamped">
+                        <a href="express-laundry.html">Express Laundry</a>
+                        <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                        <a href="index.html#shoes-cleaning">Shoes Cleaning</a>
+                        <a href="index.html#steam-press">Steam Press</a>
+                        <a href="index.html#dry-cleaning">Dry Cleaning</a>
+                        <a href="index.html#carpet-cleaning">Carpet Cleaning</a>
+                    </div>
+                </div>
+                
+                <!-- Col 3 -->
+                <div class="footer-col-revamped">
+                    <h3>SYSTEM</h3>
+                    <div class="footer-links-revamped">
+                        <a href="#">Track Order</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#">Care Pass Membership</a>
+                        <a href="#">News & Blog</a>
+                        <a href="#">About 1997 Laundry</a>
+                    </div>
+                </div>
+                
+                <!-- Col 4 -->
+                <div class="footer-col-revamped">
+                    <h3>CONTACT</h3>
+                    <div class="footer-contact-details">
+                        <div class="contact-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh City</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:0866137043" style="color: var(--color-accent); font-weight: bold; text-decoration: none;">0866.137.043</a>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:contact@1997laundry.vn" style="color: var(--color-text-muted); text-decoration: none;">contact@1997laundry.vn</a>
+                        </div>
+                        
+                        <a href="https://maps.app.goo.gl/y2PDRaH9U8iG6F4L8" target="_blank" class="footer-map-btn" style="text-decoration: none; display: inline-flex; align-items: center; margin-top: 15px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #ffffff; font-size: 13px; transition: all 0.3s ease;">
+                            <i class="fa-solid fa-map-location-dot" style="margin-right: 8px; color: var(--color-accent);"></i> View Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-bar-revamped">
+                <p>&copy; 2026 1997 Premium Laundry & Dry Cleaning. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS script -->
+    <script src="index.js?v=1.1"></script>
+    
+    <script>
+        // Interactive Combo Specifications Data (Image 3 & 5)
+        const comboData = {
+            1: {
+                title: "Standard Care (1 Pair)",
+                subDesc: "Dịch Vụ Lẻ Cơ Bản",
+                time: "3-4 DAYS",
+                suitable: "Giày đi hàng ngày, giày vải",
+                features: [
+                    "Individual manual hand-wash/brush",
+                    "UV disinfection & odor extraction",
+                    "Buy 2 pairs to get 20K Shipping support",
+                    "Suitable for everyday canvas/knit shoes"
+                ],
+                btnText: "Choose Standard Care (150k)"
+            },
+            2: {
+                title: "Saving Combo (3 Pairs)",
+                subDesc: "Combo Tiết Kiệm (3 Đôi) - 133k/pair",
+                time: "3-4 DAYS",
+                suitable: "Nhóm bạn, gia đình nhỏ cần giặt nhiều giày",
+                features: [
+                    "Full deep manual wash for 3 pairs",
+                    "UV light disinfection & drying for each pair",
+                    "Best value for standard sneaker rotation",
+                    "Save 50,000 VND compared to individual rates"
+                ],
+                btnText: "Choose Saving Combo (399k)"
+            },
+            3: {
+                title: "Family Combo (5 Pairs)",
+                subDesc: "Combo Gia Đình (5 Đôi) - 118k/pair",
+                time: "3-4 DAYS",
+                suitable: "Nhu cầu dọn tủ giày định kỳ hoặc nhóm đông",
+                features: [
+                    "Deep manual hand-washing for 5 pairs",
+                    "Intense UVC cabin sanitizing for all shoes",
+                    "Most popular discount package",
+                    "Save 160,000 VND compared to individual rates"
+                ],
+                btnText: "Choose Family Combo (590k)"
+            }
+        };
+
+        const comboCards = document.querySelectorAll('.combo-tab-card');
+        const specContent = document.getElementById('dynamic-spec-content');
+
+        function renderComboSpecs(tierId) {
+            const data = comboData[tierId];
+            if (!data) return;
+
+            const featuresHtml = data.features.map(f => `
+                <li><i class="fa-solid fa-circle-check"></i> <span>${f}</span></li>
+            `).join('');
+
+            specContent.innerHTML = `
+                <div class="spec-card-header">
+                    <div class="spec-header-left">
+                        <h5>TIER 0${tierId} — TECHNICAL SPECIFICATIONS</h5>
+                        <h3>${data.title}</h3>
+                        <p class="sub-desc">${data.subDesc}</p>
+                    </div>
+                    <div class="spec-header-right">
+                        <span class="lbl">PROCESSING TIME</span>
+                        <span class="time-val">${data.time}</span>
+                    </div>
+                </div>
+
+                <ul class="spec-features-list">
+                    ${featuresHtml}
+                </ul>
+                
+                <div class="spec-suitable-box">
+                    <span class="lbl">SUITABLE FOR</span>
+                    <p>${data.suitable}</p>
+                </div>
+                
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-spec-cta">
+                    ${data.btnText} <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            `;
+        }
+
+        // Initialize Tier 1 spec box
+        renderComboSpecs(1);
+
+        // Click handler
+        comboCards.forEach(card => {
+            card.addEventListener('click', () => {
+                comboCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                const tierId = card.getAttribute('data-tier');
+                renderComboSpecs(tierId);
+            });
+        });
+    </script>
+</body>
+</html>
