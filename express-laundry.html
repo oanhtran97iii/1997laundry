@@ -88,272 +88,6 @@
             overflow: hidden;
         }
 
-        /* Organic Hero Layout Styles (Russian Staggered Style) */
-        .hero-container-organic {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 5;
-            text-align: left;
-        }
-
-        .hero-top-info {
-            margin-bottom: 25px;
-        }
-
-        .hero-top-info #hero-badge {
-            background-color: #ffffff;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            color: #475569;
-            font-size: 11px;
-            font-weight: 700;
-            padding: 6px 14px;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02);
-            display: inline-block;
-            margin-bottom: 18px;
-        }
-
-        .hero-title-organic {
-            font-family: var(--font-headline);
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-            color: var(--color-bg-dark);
-            margin: 0;
-            letter-spacing: -1px;
-            max-width: 700px;
-        }
-
-        .hero-row-cta {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
-
-        .btn-organic-pickup {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #8c9dc3; /* Soft slate-blue like Russian mockup */
-            color: #ffffff !important;
-            padding: 16px 40px;
-            border-radius: 50px; /* Oval pill */
-            font-weight: 700;
-            font-size: 15px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(140, 157, 195, 0.25);
-            font-family: var(--font-body);
-            white-space: nowrap;
-        }
-
-        .btn-organic-pickup:hover {
-            background-color: var(--color-accent); /* Turns orange on hover! */
-            box-shadow: 0 8px 20px rgba(242, 106, 25, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .hero-desc-organic {
-            font-family: var(--font-body);
-            font-size: 14.5px;
-            line-height: 1.6;
-            color: #64748b;
-            margin: 0;
-            max-width: 600px;
-        }
-
-        /* Staggered organic gallery block */
-        .hero-gallery-container {
-            position: relative;
-            height: 520px;
-            width: 100%;
-            margin-top: 40px;
-            overflow: visible;
-        }
-
-        .winding-path-svg {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 1000px;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .gallery-card {
-            position: absolute;
-            overflow: hidden;
-            background-color: #ffffff;
-            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.08);
-            border: 4px solid #ffffff;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            top: 50%;
-            left: 50%;
-        }
-
-        .gallery-card:hover {
-            transform: translate(var(--tx), calc(var(--ty) - 12px)) scale(1.05) !important;
-            box-shadow: 0 30px 60px rgba(9, 0, 45, 0.15);
-            z-index: 15 !important;
-        }
-
-        .gallery-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Centered base position and translations to ensure they overlap and stay locked */
-        /* Center large (vertical focus) */
-        .card-center-large {
-            --tx: -50%;
-            --ty: -50%;
-            width: 290px;
-            height: 390px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 40px;
-            z-index: 6;
-        }
-
-        /* Middle left */
-        .card-mid-left {
-            --tx: calc(-50% - 190px);
-            --ty: calc(-50% - 40px);
-            width: 210px;
-            height: 210px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 32px;
-            z-index: 5;
-        }
-
-        /* Far left bottom */
-        .card-far-left-bottom {
-            --tx: calc(-50% - 300px);
-            --ty: calc(-50% + 90px);
-            width: 140px;
-            height: 140px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 24px;
-            z-index: 4;
-        }
-
-        /* Middle right top */
-        .card-mid-right-top {
-            --tx: calc(-50% + 180px);
-            --ty: calc(-50% - 100px);
-            width: 190px;
-            height: 190px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 28px;
-            z-index: 4;
-        }
-
-        /* Far right top */
-        .card-far-right-top {
-            --tx: calc(-50% + 290px);
-            --ty: calc(-50% - 20px);
-            width: 120px;
-            height: 120px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 20px;
-            z-index: 3;
-        }
-
-        /* Middle right bottom */
-        .card-mid-right-bottom {
-            --tx: calc(-50% + 170px);
-            --ty: calc(-50% + 75px);
-            width: 210px;
-            height: 210px;
-            transform: translate(var(--tx), var(--ty));
-            border-radius: 32px;
-            z-index: 5;
-        }
-
-        /* Responsive Organic Layout */
-        @media (max-width: 991px) {
-            .hero-row-cta {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 20px;
-            }
-            .hero-desc-organic {
-                max-width: 100%;
-            }
-            .hero-gallery-container {
-                height: 400px;
-            }
-            .card-center-large {
-                width: 220px;
-                height: 300px;
-            }
-            .card-mid-left {
-                --tx: calc(-50% - 130px);
-                --ty: calc(-50% - 30px);
-                width: 150px;
-                height: 150px;
-            }
-            .card-mid-right-bottom {
-                --tx: calc(-50% + 120px);
-                --ty: calc(-50% + 50px);
-                width: 150px;
-                height: 150px;
-            }
-            .card-mid-right-top {
-                --tx: calc(-50% + 120px);
-                --ty: calc(-50% - 70px);
-                width: 130px;
-                height: 130px;
-            }
-            .card-far-left-bottom, .card-far-right-top {
-                display: none; /* Hide very small items on tablet */
-            }
-            .winding-path-svg {
-                width: 700px;
-                viewBox: "0 0 700 400";
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-title-organic {
-                font-size: 34px;
-            }
-            .hero-gallery-container {
-                height: 300px;
-                margin-top: 20px;
-            }
-            .card-center-large {
-                width: 170px;
-                height: 230px;
-            }
-            .card-mid-left {
-                --tx: calc(-50% - 80px);
-                --ty: calc(-50% - 20px);
-                width: 100px;
-                height: 100px;
-            }
-            .card-mid-right-bottom {
-                --tx: calc(-50% + 80px);
-                --ty: calc(-50% + 30px);
-                width: 100px;
-                height: 100px;
-            }
-            .card-mid-right-top {
-                display: none;
-            }
-            .winding-path-svg {
-                display: none; /* Disable SVG path on mobile for clean look */
-            }
-        }
-
         /* Bottom Stats Banner styling */
         .stats-banner-container {
             margin-top: 60px;
@@ -1376,67 +1110,90 @@
         <div class="hero-blob blob-2"></div>
         <div class="hero-blob blob-3"></div>
 
-        <div class="container hero-container-organic">
-            <!-- Top Heading -->
-            <div class="hero-top-info">
+        <div class="container hero-container" style="position: relative; z-index: 5;">
+            <!-- Left Side: Custom Text & Details -->
+            <div class="hero-content">
                 <span class="badge" id="hero-badge">FAST & PREMIUM LAUNDRY</span>
-                <h1 class="hero-title-organic">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
-            </div>
-            
-            <!-- Button & Desc row -->
-            <div class="hero-row-cta">
-                <div class="cta-col-left">
-                    <a href="https://zalo.me/0978900615" target="_blank" class="btn-organic-pickup">
-                        Schedule Pickup
-                    </a>
+                <h1 class="hero-title" id="hero-headline">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
+                <p class="hero-subtitle" id="hero-subtext">
+                    1997 Premium Laundry delivers professional clothing care with standard cold-water washing and tumble drying at 60°C. Enjoy ultimate convenience with door-to-door pickup & delivery, quick scheduling, and easy payment options.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item" id="stat-professional">
+                        <div class="stat-icon"><i class="fa-solid fa-shirt"></i></div>
+                        <div class="stat-info">
+                            <h4>Professional Care</h4>
+                            <p>Suits & Shirts Specialist</p>
+                        </div>
+                    </div>
+                    <div class="stat-item" id="stat-delivery">
+                        <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
+                        <div class="stat-info">
+                            <h4>24h Turnaround</h4>
+                            <p>Express Service Available</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="cta-col-right">
-                    <p class="hero-desc-organic">
-                        1997 Premium Laundry delivers professional clothing care with standard cold-water washing and tumble drying at 60°C. Enjoy ultimate convenience with door-to-door pickup & delivery, quick scheduling, and easy payment options.
-                    </p>
+                <div class="hero-actions">
+                    <a href="https://zalo.me/0978900615" target="_blank" class="btn btn-primary" id="btn-hero-pickup"><i class="fa-solid fa-calendar-days"></i> Schedule Pickup</a>
+                    <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing"><i class="fa-solid fa-tags"></i> Check Pricing</a>
+                </div>
+                <div class="hero-rating" id="hero-trust-rating">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span>Rated <strong>4.9/5</strong> by 1,500+ expats in Saigon.</span>
                 </div>
             </div>
 
-            <!-- Staggered Organic Floating Gallery -->
-            <div class="hero-gallery-container">
-                <!-- Winding SVG Path -->
-                <svg class="winding-path-svg" viewBox="0 0 1000 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Base glow path -->
-                    <path d="M-50,230 C120,230 140,410 230,370 C310,330 280,180 390,200 C470,220 460,390 540,390 C580,390 610,330 580,290 C550,250 510,280 520,320 C530,370 620,430 700,370 C780,310 760,180 880,200 C950,210 1000,250 1050,250" stroke="#ffffff" stroke-width="12" stroke-linecap="round" />
-                    <!-- Core line path -->
-                    <path d="M-50,230 C120,230 140,410 230,370 C310,330 280,180 390,200 C470,220 460,390 540,390 C580,390 610,330 580,290 C550,250 510,280 520,320 C530,370 620,430 700,370 C780,310 760,180 880,200 C950,210 1000,250 1050,250" stroke="#f1f5f9" stroke-width="4" stroke-linecap="round" />
-                </svg>
-
-                <!-- Floating Cards -->
-                <!-- Card 1: Small Far Left Bottom -->
-                <div class="gallery-card card-far-left-bottom">
-                    <img src="assets/images/process_4.jpg" alt="1997 Laundry Process Close-up">
-                </div>
-                <!-- Card 2: Medium Left -->
-                <div class="gallery-card card-mid-left">
-                    <img src="assets/images/process_3.jpg" alt="Folded laundry ready">
-                </div>
-                <!-- Card 3: Center Large (Hero) -->
-                <div class="gallery-card card-center-large">
-                    <img src="assets/images/hero_worker.jpg" alt="Laundry specialist care">
-                </div>
-                <!-- Card 4: Medium Right Top -->
-                <div class="gallery-card card-mid-right-top">
-                    <img src="assets/images/shop_interior.jpg" alt="Shop interior dry clean">
-                </div>
-                <!-- Card 5: Small Far Right Top -->
-                <div class="gallery-card card-far-right-top">
-                    <img src="assets/images/process_1.jpg" alt="Clothes hangers care">
-                </div>
-                <!-- Card 6: Medium Right Bottom -->
-                <div class="gallery-card card-mid-right-bottom">
-                    <img src="assets/images/process_2.jpg" alt="Clean delivery package">
+            <!-- Right Side: Overlapping Cards layout matching homepage -->
+            <div class="hero-visual">
+                <div class="overlapping-hero-wrapper">
+                    <!-- Shop background card -->
+                    <div class="shop-bg-card">
+                        <img src="assets/images/dry_clean_bg.jpg" alt="1997 Premium Laundry Shop Interior" class="shop-bg-img">
+                        <!-- D1 Branch Badge -->
+                        <div class="branch-badge">
+                            <span class="branch-title">D1</span>
+                            <span class="branch-sub">DISTRICT 1 BRANCH</span>
+                        </div>
+                    </div>
+                    <!-- White menu card -->
+                    <div class="featured-menu-card">
+                        <div class="menu-card-header">
+                            <span class="menu-badge">HOT SERVICES</span>
+                            <h3>Featured Service Menu</h3>
+                        </div>
+                        <ul class="menu-list">
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> 4 Hrs Express Wash & Fold</span>
+                                <span class="menu-item-badge badge-popular">MOST POPULAR</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Shoes Cleaning</span>
+                                <span class="menu-item-badge badge-recommended">RECOMMENDED</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Dry Cleaning</span>
+                                <span class="menu-item-badge badge-premium">PREMIUM</span>
+                            </li>
+                            <li>
+                                <span class="menu-item-text"><span class="orange-bullet">•</span> Steam Press</span>
+                                <span class="menu-item-badge badge-new">NEW</span>
+                            </li>
+                        </ul>
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn btn-dark-blue w-100 text-center">BOOK SERVICE NOW</a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Bottom Stats Banner -->
-        <div class="container stats-banner-container" style="margin-top: 80px; position: relative; z-index: 5;">
+        <div class="container stats-banner-container" style="margin-top: 60px; position: relative; z-index: 5;">
             <div class="stats-banner-card">
                 <!-- Highlight block left -->
                 <div class="stats-highlight-block">
