@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Press & Laundry Per Item | 1997 Premium Laundry Saigon</title>
+    <meta name="description" content="Saigon's premium steam pressing and piece-based water wash. Gentle care for shirts, trousers, dresses, hoodies, and bedding with iron pressing included.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Project Stylesheet -->
+    <link rel="stylesheet" href="index.css?v=1.1">
+    
+    <style>
+        /* Specific Styles for Steam Press Page */
+        .press-hero-redesigned {
+            padding: 160px 0 100px 0;
+            background: #f8faff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated Background Blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            animation: floatBlob 22s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(242, 106, 25, 0.15); /* Orange */
+            top: -100px;
+            left: -150px;
+            animation-duration: 26s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(9, 0, 45, 0.08); /* Dark Blue */
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(50px, -70px) scale(1.08); }
+            66% { transform: translate(-30px, 40px) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        /* Header Revamps styling reuse */
+        .revamped-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(9, 0, 45, 0.03);
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Layout Split Columns */
+        .press-hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left-details {
+            text-align: left;
+        }
+
+        .hero-left-details h1 {
+            font-family: var(--font-headline);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-left-details h1 span.orange-highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-left-details p.description {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-gray);
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        /* Specs badges container */
+        .hero-specs-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .spec-capsule {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .spec-capsule .icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background-color: rgba(242, 106, 25, 0.08);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .spec-capsule .text-box h5 {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0;
+        }
+
+        .spec-capsule .text-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        /* Right column floating menu card layout */
+        .hero-right-gallery {
+            position: relative;
+            height: 480px;
+            border-radius: 32px;
+            background-image: url('assets/images/hero_worker_1784960664265.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 40px rgba(9, 0, 45, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-menu-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+            width: 385px;
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: absolute;
+            left: -40px;
+            z-index: 5;
+            animation: floatCard 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-12px); }
+        }
+
+        .branch-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        .floating-menu-card span.hot-tag {
+            background-color: #fff1f2;
+            color: #ef4444;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .floating-menu-card h3 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 18px 0;
+        }
+
+        .floating-menu-card ul.menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .floating-menu-card ul.menu-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .floating-menu-card ul.menu-list li span.dot {
+            color: var(--color-accent);
+            margin-right: 8px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-recommended {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-popular {
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-premium {
+            background-color: #fef3c7;
+            color: #d97706;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-new {
+            background-color: #ecfdf5;
+            color: #059669;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-menu-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-menu-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Delivery Notice Box */
+        .delivery-notice-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(242, 106, 25, 0.04);
+            border: 1px dashed rgba(242, 106, 25, 0.25);
+            padding: 16px 28px;
+            border-radius: 16px;
+            max-width: 760px;
+            margin: -10px auto 45px auto;
+            text-align: left;
+        }
+        
+        .delivery-notice-box i {
+            font-size: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+        
+        .delivery-notice-box p {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .delivery-notice-box strong {
+            color: var(--color-bg-dark);
+            font-weight: 700;
+        }
+
+        /* Pricing section styling */
+        .pricing-grid-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .pricing-list-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: stretch;
+        }
+
+        .pricing-item-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 5px 20px rgba(9, 0, 45, 0.01);
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.05);
+            border-color: rgba(242, 106, 25, 0.15);
+        }
+
+        .card-category-tag {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .pricing-item-card h4 {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .pricing-item-card span.sub-title-vn {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--color-text-gray);
+            display: block;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .card-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 25px;
+        }
+
+        .card-price-row .price {
+            font-family: var(--font-headline);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .card-price-row .unit {
+            font-size: 13px;
+            color: var(--color-text-gray);
+            font-weight: 500;
+        }
+
+        .card-specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            padding-top: 15px;
+        }
+
+        .card-specs-list li {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-specs-list li i {
+            color: #22c55e;
+            font-size: 12px;
+        }
+
+        .btn-card-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 10px 0;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-card-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Large Card for blanket set */
+        .pricing-item-card.blanket-card {
+            grid-column: span 3;
+            max-width: 700px;
+            margin: 10px auto 0 auto;
+            flex-direction: row;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .blanket-card-left {
+            flex: 1;
+        }
+
+        .blanket-card-right {
+            width: 240px;
+            flex-shrink: 0;
+            text-align: center;
+            border-left: 1px dashed rgba(0,0,0,0.08);
+            padding-left: 40px;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 991px) {
+            .press-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-left-details {
+                text-align: center;
+            }
+
+            .hero-left-details p.description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-specs-row {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-right-gallery {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .floating-menu-card {
+                left: -20px;
+                width: 360px;
+                padding: 20px;
+            }
+
+            .pricing-list-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .pricing-item-card.blanket-card {
+                grid-column: span 2;
+                flex-direction: column;
+                gap: 20px;
+                max-width: 100%;
+            }
+
+            .blanket-card-right {
+                width: 100%;
+                border-left: none;
+                border-top: 1px dashed rgba(0,0,0,0.08);
+                padding-left: 0;
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .delivery-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .press-hero-redesigned {
+                padding-top: 130px;
+            }
+
+            .hero-left-details h1 {
+                font-size: 32px;
+            }
+
+            .hero-specs-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .floating-menu-card {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 90%;
+                margin: -50px auto 0 auto;
+                animation: none;
+                box-shadow: 0 10px 30px rgba(9, 0, 45, 0.08);
+            }
+
+            .hero-right-gallery {
+                height: 320px;
+            }
+
+            .pricing-list-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                max-width: 380px;
+            }
+
+            .pricing-item-card.blanket-card {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Revamped Header -->
+    <header class="revamped-header" id="header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
+                <a href="steam-press.html" class="nav-item active">STEAM PRESS</a>
+                <a href="index.html#dry-cleaning" class="nav-item">DRY CLEANING</a>
+                <a href="index.html#carpet-cleaning" class="nav-item">CARPET CLEANING</a>
+                <a href="#faq" class="nav-item">FAQs</a>
+            </nav>
+            <div class="header-ctas">
+                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
+                    <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                </a>
+                <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                    <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                </a>
+            </div>
+            <button class="hamburger-menu" id="menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Redesigned Hero Section -->
+    <section class="press-hero-redesigned" id="hero">
+        <!-- Background elements -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        
+        <div class="container">
+            <div class="press-hero-grid">
+                <!-- Left Details -->
+                <div class="hero-left-details">
+                    <span class="section-badge">STEAM PRESSING & LAUNDRY PER PIECE</span>
+                    <h1>Professional Steam Pressing & <span class="orange-highlight">Laundry Per Item</span></h1>
+                    <p class="description">
+                        Premium piece-based cold-water washing combined with meticulous horizontal steam pressing. Every garment is carefully sanitized, hand-ironed to remove wrinkles, and returned neatly folded or hung on hangers to preserve its shape.
+                    </p>
+                    
+                    <div class="hero-specs-row">
+                        <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-shirt"></i></div>
+                            <div class="text-box">
+                                <h5>Pressing Included</h5>
+                                <p>Đã bao gồm là ủi</p>
+                            </div>
+                        </div>
+                        <div class="spec-capsule">
+                            <div class="icon-circle"><i class="fa-solid fa-circle-check"></i></div>
+                            <div class="text-box">
+                                <h5>Hanger Packaging</h5>
+                                <p>Ready-to-wear results</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup">
+                            <i class="fa-solid fa-calendar-days"></i> Schedule Pickup
+                        </a>
+                        <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing">
+                            <i class="fa-solid fa-tags"></i> Check Pricing
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right floating card stack -->
+                <div class="hero-right-gallery">
+                    <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
+                    
+                    <div class="floating-menu-card">
+                        <span class="hot-tag">HOT SERVICES</span>
+                        <h3>Featured Press Menu</h3>
+                        <ul class="menu-list">
+                            <li><span><span class="dot">•</span> Premium Shirt Ironing</span> <span class="badge-recommended">RECOMMENDED</span></li>
+                            <li><span><span class="dot">•</span> Trousers & Jeans Care</span> <span class="badge-popular">POPULAR</span></li>
+                            <li><span><span class="dot">•</span> Long Silk Dress Press</span> <span class="badge-premium">PREMIUM</span></li>
+                            <li><span><span class="dot">•</span> Bedding Set Laundry</span> <span class="badge-new">NEW</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-menu-book">BOOK SERVICE NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-grid-section" id="pricing">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">PRICE LIST</span>
+                <h2 class="section-title">Laundry Per Item & Pressing Included</h2>
+                <p class="section-subtitle">Every item is washed with cold water, dried, and professionally steam pressed. Price includes ironing.</p>
+            </div>
+
+            <!-- Beautiful Delivery Notice Box -->
+            <div class="delivery-notice-box">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <p><strong>Delivery Notice:</strong> Package prices do not include shipping. Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km.</p>
+            </div>
+
+            <div class="pricing-list-grid">
+                <!-- Card 1 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Tops & Shorts</span>
+                        <h4>T-Shirt / Vest Gile / Shorts</h4>
+                        <span class="sub-title-vn">Áo thun / Áo Ghi lê / Quần Ngố</span>
+                        <div class="card-price-row">
+                            <span class="price">49,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Cold-water wash</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Steam press included</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Gentle fabric detergents</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Formal Tops</span>
+                        <h4>Shirt / Blouse</h4>
+                        <span class="sub-title-vn">Áo sơ mi / Áo kiểu nữ</span>
+                        <div class="card-price-row">
+                            <span class="price">59,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Cold-water wash</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Collar & cuff detailing</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Vertical steam press</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Bottoms</span>
+                        <h4>Trousers / Short Skirt / Jeans</h4>
+                        <span class="sub-title-vn">Quần dài / Chân váy ngắn / Jeans</span>
+                        <div class="card-price-row">
+                            <span class="price">59,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Cold-water wash</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Preserve crease & structure</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Steam pressed & hung</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Mid-wear & Skirts</span>
+                        <h4>Sweater / Hoodie / Long Skirt</h4>
+                        <span class="sub-title-vn">Áo len / Áo nỉ có cổ / Chân váy dài</span>
+                        <div class="card-price-row">
+                            <span class="price">69,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Gentle wash & softeners</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Dehumidifier dry room</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Delicate steam press</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Dresses & Outfits</span>
+                        <h4>Short Dress / Uniform / Coveralls</h4>
+                        <span class="sub-title-vn">Váy liền thân ngắn / Đồng phục / Bộ áo kỹ thuật</span>
+                        <div class="card-price-row">
+                            <span class="price">79,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Detailing & stain pre-brush</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Cold water cleaning care</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Steam press & quality check</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="pricing-item-card">
+                    <div>
+                        <span class="card-category-tag">Dresses</span>
+                        <h4>Long Dress</h4>
+                        <span class="sub-title-vn">Váy liền thân dài</span>
+                        <div class="card-price-row">
+                            <span class="price">89,000đ</span>
+                            <span class="unit">/ item</span>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="card-specs-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Special delicate cleaning</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Vertical steam pressing</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Protective wrap & hanger</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
+                    </div>
+                </div>
+
+                <!-- Blanket Set Card (Blanket 3pcs) -->
+                <div class="pricing-item-card blanket-card">
+                    <div class="blanket-card-left">
+                        <span class="card-category-tag">Premium Bedding Set</span>
+                        <h4>Silk Blanket Set (3pcs)</h4>
+                        <span class="sub-title-vn">Bộ chăn ga cao cấp (Bộ 3 món)</span>
+                        <p style="font-family: var(--font-body); font-size: 12.5px; color: var(--color-text-gray); margin: 10px 0 0 0; line-height: 1.5;">
+                            Washed with specialized silk softeners, thoroughly sanitized, and steam pressed to bring luxurious comfort back to your bed.
+                        </p>
+                    </div>
+                    <div class="blanket-card-right">
+                        <div class="card-price-row" style="justify-content: center; margin-bottom: 15px;">
+                            <span class="price">219,000đ</span>
+                            <span class="unit">/ set</span>
+                        </div>
+                        <ul class="card-specs-list" style="border-top: none; padding-top: 0; text-align: left; display: inline-block; margin-bottom: 20px;">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Specialized silk cleaners</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>High volume steam pressed</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Antiseptic UVC deodorize</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book" style="max-width: 180px; margin: 0 auto;">BOOK SET SERVICE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Care Capabilities Process -->
+    <section class="process-section" style="padding: 100px 0; background-color: var(--color-bg-soft);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">SERVICE FLOW</span>
+                <h2 class="section-title">Standardized Cleaning & Pressing</h2>
+                <p class="section-subtitle">Every single item is individually cared for by hand to ensure pristine results.</p>
+            </div>
+            
+            <div class="order-steps-grid" style="margin-top: 50px;">
+                <!-- Step 1 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-circle-nodes"></i></div>
+                    <h3>01. Fabric Sorting</h3>
+                    <p>Clothes are separated by material and colors. Stains are pre-brushed manually using gentle eco-removers before clean cycle.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-soap"></i></div>
+                    <h3>02. Piece-Based Wash</h3>
+                    <p>We wash items using cold water and specialized fabric conditioners, protecting threads and colors from warp/stretch.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-fan"></i></div>
+                    <h3>03. Low-Temp Drying</h3>
+                    <p>Garments are dried at controlled, low temperatures in dehumidified chambers, preventing shrinkage and color bleeding.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-face-smile-wink"></i></div>
+                    <h3>04. Meticulous Steam Press</h3>
+                    <p>Using vertical steam irons, our experts iron out creases, preserve shapes, inspect details, and pack items on hangers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section" id="faq" style="padding: 100px 0; background-color: #ffffff;">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Got questions about our steam pressing and per-piece laundry? Here are our answers.</p>
+            </div>
+            
+            <div class="accordion-wrapper" style="max-width: 800px; margin: 40px auto 0 auto;">
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is the difference between Laundry per piece and Standard weight-based?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Standard weight-based laundry (giặt sấy theo kg) is machine-washed and machine-tumble dried together without ironing. Laundry per piece (giặt tính chiếc) is cared for individually, uses gentle cold-water washing, and includes professional vertical steam press ironing for each item.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How long does the piece-based washing & pressing service take?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Our standard turnaround for piece-based washing and steam pressing is 2 to 3 days. This ensures every garment is meticulously treated, completely air-dried under controlled temperature, and vertically steam ironed perfectly before delivery.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Do you offer express 24h service for Steam Pressing?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Yes, we can provide express steam pressing services upon request. If you are in a rush, please text us directly on WhatsApp so we can expedite your garments for next-day turnaround.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Are hangers included or do I need to bring mine?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>We provide hangers and protective plastic garment covers for free! Every pressed shirt, trousers, or dress will be delivered hung on hangers, ready to be placed directly in your hotel or apartment wardrobe.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Revamped Footer Section -->
+    <footer class="revamped-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid-revamped">
+                <!-- Col 1 -->
+                <div class="footer-col-revamped">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-block;">
+                        <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img-footer" style="max-height: 50px;">
+                    </a>
+                    <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands of garments & designer shoes. Every item carries a story worthy of respect.</p>
+                    <div class="footer-social-circles">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/84866137043" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                    <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="footer-col-revamped">
+                    <h3>SERVICES</h3>
+                    <div class="footer-links-revamped">
+                        <a href="express-laundry.html">Express Laundry</a>
+                        <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                        <a href="steam-press.html">Steam Press</a>
+                        <a href="index.html#steam-press">Steam Press</a>
+                        <a href="index.html#dry-cleaning">Dry Cleaning</a>
+                        <a href="index.html#carpet-cleaning">Carpet Cleaning</a>
+                    </div>
+                </div>
+                
+                <!-- Col 3 -->
+                <div class="footer-col-revamped">
+                    <h3>SYSTEM</h3>
+                    <div class="footer-links-revamped">
+                        <a href="#">Track Order</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#">Care Pass Membership</a>
+                        <a href="#">News & Blog</a>
+                        <a href="#">About 1997 Laundry</a>
+                    </div>
+                </div>
+                
+                <!-- Col 4 -->
+                <div class="footer-col-revamped">
+                    <h3>CONTACT</h3>
+                    <div class="footer-contact-details">
+                        <div class="contact-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh City</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:0866137043" style="color: var(--color-accent); font-weight: bold; text-decoration: none;">0866.137.043</a>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:contact@1997laundry.vn" style="color: var(--color-text-muted); text-decoration: none;">contact@1997laundry.vn</a>
+                        </div>
+                        
+                        <a href="https://maps.app.goo.gl/y2PDRaH9U8iG6F4L8" target="_blank" class="footer-map-btn" style="text-decoration: none; display: inline-flex; align-items: center; margin-top: 15px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #ffffff; font-size: 13px; transition: all 0.3s ease;">
+                            <i class="fa-solid fa-map-location-dot" style="margin-right: 8px; color: var(--color-accent);"></i> View Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-bar-revamped">
+                <p>&copy; 2026 1997 Premium Laundry & Dry Cleaning. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Main JS script -->
+    <script src="index.js?v=1.1"></script>
+</body>
+</html>
