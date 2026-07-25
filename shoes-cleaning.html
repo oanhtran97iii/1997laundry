@@ -304,207 +304,162 @@
             box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
         }
 
-        /* Interactive Combo Grid section */
-        .combo-section-revamped {
+        /* 4 Premium Shoes Pricing Tiers */
+        .tiers-section {
             padding: 100px 0;
             background-color: #ffffff;
             border-bottom: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
         }
 
-        .combo-layout-grid {
+        .tiers-grid {
             display: grid;
-            grid-template-columns: 0.95fr 1.05fr;
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
             margin-top: 50px;
-            align-items: stretch;
-            max-width: 1000px;
+            max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            align-items: stretch;
         }
 
-        .combo-tabs-column {
+        .tier-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 24px;
+            padding: 35px 25px 25px 25px;
+            position: relative;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            text-align: left;
         }
 
-        .combo-tab-card {
-            background-color: #ffffff;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 18px;
-            padding: 20px 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .tier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(9, 0, 45, 0.06);
+            border-color: rgba(242, 106, 25, 0.2);
+        }
+
+        /* Gold Card (Featured/Best Seller) styles */
+        .tier-card.featured-gold {
+            background-color: #09002d;
+            color: #ffffff;
+            border-color: var(--color-accent);
+            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.15);
+        }
+
+        .tier-card.featured-gold:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.25);
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #eab308, #d97706);
+            color: #ffffff;
+            font-family: var(--font-headline);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+            white-space: nowrap;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            text-align: left;
-            position: relative;
+            gap: 4px;
         }
 
-        .combo-tab-card:hover {
-            border-color: rgba(242, 106, 25, 0.3);
-            background-color: rgba(242, 106, 25, 0.01);
+        .tier-header h4 {
+            font-family: var(--font-headline);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
         }
 
-        .combo-tab-card.active {
-            border-color: var(--color-accent);
-            box-shadow: 0 8px 25px rgba(242, 106, 25, 0.08);
-            background-color: rgba(242, 106, 25, 0.01);
+        .tier-card.featured-gold .tier-header h4 {
+            color: #ffffff;
         }
 
-        .combo-tab-card.active::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 20%;
-            height: 60%;
-            width: 4px;
-            background-color: var(--color-accent);
-            border-radius: 0 4px 4px 0;
-        }
-
-        .combo-tab-left h5 {
+        .tier-header span.lbl-code {
             font-family: var(--font-headline);
             font-size: 11px;
             font-weight: 700;
             color: var(--color-text-gray);
-            margin: 0 0 5px 0;
             letter-spacing: 0.5px;
-        }
-
-        .combo-tab-left h3 {
-            font-family: var(--font-headline);
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            margin: 0 0 6px 0;
-        }
-
-        .combo-tab-left p {
-            font-family: var(--font-body);
-            font-size: 12px;
-            color: var(--color-text-gray);
-            margin: 0;
-        }
-
-        .combo-tab-right {
-            text-align: right;
-        }
-
-        .combo-tab-right .price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            font-family: var(--font-headline);
-        }
-
-        .combo-tab-right .unit {
-            font-size: 11px;
-            color: var(--color-text-gray);
+            text-transform: uppercase;
             display: block;
-            margin-top: 2px;
+            margin-bottom: 20px;
+        }
+
+        .tier-card.featured-gold .tier-header span.lbl-code {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tier-price-box {
+            font-family: var(--font-headline);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .tier-card.featured-gold .tier-price-box {
+            color: #eab308;
+        }
+
+        .tier-price-box span.unit {
+            font-size: 13px;
+            color: var(--color-text-gray);
             font-weight: 500;
         }
 
-        .combo-tab-card.active .combo-tab-left h5 {
-            color: var(--color-accent);
+        .tier-card.featured-gold .tier-price-box span.unit {
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .combo-tab-card.active .combo-tab-right .price {
-            color: var(--color-accent);
+        .tier-time-badge {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 25px;
+            width: fit-content;
         }
 
-        /* Floating Badge for Recommended Combo */
-        .recommended-badge {
-            position: absolute;
-            top: -10px;
-            left: 30px;
-            background-color: #a74602;
+        .tier-card.featured-gold .tier-time-badge {
+            background-color: rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 4px 12px;
-            border-radius: 20px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 10px rgba(167, 70, 2, 0.2);
         }
 
-        /* Tech Specifications Card right side */
-        .combo-spec-card {
-            background-color: #f8fafc;
-            border-radius: 24px;
-            border: 1px solid rgba(0,0,0,0.03);
-            padding: 35px;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .spec-card-header {
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-
-        .spec-header-left h5 {
-            font-family: var(--font-headline);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--color-accent);
-            margin: 0 0 6px 0;
-            letter-spacing: 0.5px;
-        }
-
-        .spec-header-left h3 {
-            font-family: var(--font-headline);
-            font-size: 21px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-            margin: 0 0 8px 0;
-        }
-
-        .spec-header-left p.sub-desc {
-            font-family: var(--font-body);
-            font-size: 12.5px;
-            color: #b91c1c;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .spec-header-right {
-            text-align: right;
-        }
-
-        .spec-header-right span.lbl {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--color-text-gray);
-            display: block;
-            margin-bottom: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        .spec-header-right span.time-val {
-            font-family: var(--font-headline);
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--color-bg-dark);
-        }
-
-        .spec-features-list {
+        .tier-features-list {
             list-style: none;
             padding: 0;
-            margin: 0 0 25px 0;
+            margin: 0 0 30px 0;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            padding-top: 20px;
         }
 
-        .spec-features-list li {
+        .tier-card.featured-gold .tier-features-list {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .tier-features-list li {
             font-family: var(--font-body);
-            font-size: 13.5px;
+            font-size: 13px;
             color: var(--color-text-gray);
             margin-bottom: 12px;
             display: flex;
@@ -513,21 +468,32 @@
             font-weight: 500;
         }
 
-        .spec-features-list li i {
+        .tier-card.featured-gold .tier-features-list li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .tier-features-list li i {
             color: #22c55e;
-            font-size: 14px;
+            font-size: 13px;
+            flex-shrink: 0;
         }
 
-        .spec-suitable-box {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 15px 20px;
-            border: 1px solid rgba(0,0,0,0.03);
-            margin-bottom: 25px;
+        .tier-card.featured-gold .tier-features-list li i {
+            color: #22c55e;
         }
 
-        .spec-suitable-box span.lbl {
-            font-size: 9.5px;
+        .tier-materials-box {
+            border-top: 1px solid rgba(0,0,0,0.04);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .tier-card.featured-gold .tier-materials-box {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tier-materials-box span.lbl {
+            font-size: 9px;
             font-weight: 700;
             color: var(--color-text-gray);
             display: block;
@@ -535,33 +501,52 @@
             letter-spacing: 0.5px;
         }
 
-        .spec-suitable-box p {
-            font-family: var(--font-body);
-            font-size: 13px;
-            color: var(--color-bg-dark);
-            font-weight: 600;
-            margin: 0;
+        .tier-card.featured-gold .tier-materials-box span.lbl {
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .btn-spec-cta {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .tier-materials-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .tier-card.featured-gold .tier-materials-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-tier-cta {
+            display: block;
             width: 100%;
-            padding: 14px 0;
+            text-align: center;
             background-color: var(--color-bg-dark);
             color: #ffffff !important;
-            border-radius: 12px;
+            padding: 12px 0;
+            border-radius: 10px;
             font-weight: 700;
-            font-size: 13.5px;
+            font-size: 12.5px;
             text-decoration: none;
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
+            margin-bottom: 20px;
         }
 
-        .btn-spec-cta:hover {
+        .btn-tier-cta:hover {
             background-color: var(--color-accent);
             box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        .tier-card.featured-gold .btn-tier-cta {
+            background-color: var(--color-accent);
+            color: #ffffff !important;
+        }
+
+        .tier-card.featured-gold .btn-tier-cta:hover {
+            background-color: #ffffff;
+            color: var(--color-bg-dark) !important;
+            box-shadow: 0 8px 20px rgba(255,255,255,0.1);
         }
 
         /* Detailed price list styling */
@@ -863,64 +848,115 @@
         </div>
     </section>
 
-    <!-- Interactive Combo Packages Selector (Image 3) -->
-    <section class="combo-section-revamped" id="combos">
+    <!-- Shoes Cleaning Pricing Tiers (Image Tiers) -->
+    <section class="tiers-section" id="combos">
         <div class="container">
             <div class="text-center header-spacing">
-                <span class="section-badge">SAVINGS COMBOS</span>
-                <h2 class="section-title">Select the Best Package for You</h2>
-                <p class="section-subtitle">Save up to 20% on shoe cleaning with our popular pre-paid value packages.</p>
+                <span class="section-badge">PRICING PACKAGES</span>
+                <h2 class="section-title">Choose the Perfect Package for You</h2>
+                <p class="section-subtitle">Select from our standard care tiers tailored to your shoe material and turnaround needs.</p>
             </div>
 
-            <div class="combo-layout-grid">
-                <!-- Left: Interactive Tab Buttons -->
-                <div class="combo-tabs-column">
-                    <!-- Tab 1 -->
-                    <div class="combo-tab-card active" data-tier="1">
-                        <div class="combo-tab-left">
-                            <h5>TIER 01</h5>
-                            <h3>Standard Care (1 Pair)</h3>
-                            <p>Basic individual shoe cleaning service</p>
-                        </div>
-                        <div class="combo-tab-right">
-                            <span class="price">150,000đ</span>
-                            <span class="unit">per pair</span>
-                        </div>
+            <div class="tiers-grid">
+                <!-- Bronze Card -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h4>Gói Đồng</h4>
+                        <span class="lbl-code">BRONZE</span>
                     </div>
-
-                    <!-- Tab 2 -->
-                    <div class="combo-tab-card" data-tier="2">
-                        <span class="recommended-badge">POPULAR</span>
-                        <div class="combo-tab-left">
-                            <h5>TIER 02</h5>
-                            <h3>Saving Combo (3 Pairs)</h3>
-                            <p>Great for small families or monthly rotations</p>
-                        </div>
-                        <div class="combo-tab-right">
-                            <span class="price">399,000đ</span>
-                            <span class="unit">combo price</span>
-                        </div>
+                    <div class="tier-price-box">
+                        148,500đ <span class="unit">/ đôi</span>
                     </div>
+                    <div class="tier-time-badge">3–4 ngày</div>
+                    
+                    <ul class="tier-features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Vệ sinh cơ bản toàn bộ giày</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Thân - đế giữa - mặt đế - lót - dây</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Khử mùi + khử khuẩn</span></li>
+                    </ul>
 
-                    <!-- Tab 3 -->
-                    <div class="combo-tab-card" data-tier="3">
-                        <span class="recommended-badge" style="background-color: var(--color-accent); box-shadow: 0 4px 10px rgba(242, 106, 25, 0.2);">BEST VALUE</span>
-                        <div class="combo-tab-left">
-                            <h5>TIER 03</h5>
-                            <h3>Family Combo (5 Pairs)</h3>
-                            <p>Clean out your shoe cabinet for the lowest price</p>
-                        </div>
-                        <div class="combo-tab-right">
-                            <span class="price">590,000đ</span>
-                            <span class="unit">combo price</span>
-                        </div>
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+                    
+                    <div class="tier-materials-box">
+                        <span class="lbl">SUITABLE MATERIALS</span>
+                        <p>Da · da nhân tạo · poly synthetic</p>
                     </div>
                 </div>
 
-                <!-- Right: Dynamic Tech Specs Card -->
-                <div class="combo-spec-card">
-                    <div id="dynamic-spec-content">
-                        <!-- Content rendered dynamically via JS -->
+                <!-- Silver Card -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h4>Gói Bạc</h4>
+                        <span class="lbl-code">SILVER</span>
+                    </div>
+                    <div class="tier-price-box">
+                        204,000đ <span class="unit">/ đôi</span>
+                    </div>
+                    <div class="tier-time-badge">3–4 ngày</div>
+                    
+                    <ul class="tier-features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Vệ sinh chuyên sâu 3–4 lần</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Khử mùi + khử khuẩn + hút ố</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Làm sạch sâu từng chi tiết</span></li>
+                    </ul>
+
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+
+                    <div class="tier-materials-box">
+                        <span class="lbl">SUITABLE MATERIALS</span>
+                        <p>Vải · da · da tổng hợp · da nhân tạo</p>
+                    </div>
+                </div>
+
+                <!-- Gold Card (Featured) -->
+                <div class="tier-card featured-gold">
+                    <div class="best-seller-badge"><i class="fa-solid fa-star"></i> BÁN CHẠY NHẤT</div>
+                    <div class="tier-header">
+                        <h4>Gói Vàng</h4>
+                        <span class="lbl-code">GOLD · 24H</span>
+                    </div>
+                    <div class="tier-price-box">
+                        352,000đ <span class="unit" style="color: rgba(255,255,255,0.7);">/ đôi</span>
+                    </div>
+                    <div class="tier-time-badge">Trả giày trong 24 giờ</div>
+                    
+                    <ul class="tier-features-list">
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Vệ sinh chuyên sâu 3–4 lần</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Khử mùi + khử khuẩn + hút ố</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>2 lớp phủ chống nước</span></li>
+                        <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span>Ưu tiên xử lý nhanh</span></li>
+                    </ul>
+
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+
+                    <div class="tier-materials-box">
+                        <span class="lbl" style="color: rgba(255,255,255,0.6);">SUITABLE MATERIALS</span>
+                        <p>Tất cả chất liệu</p>
+                    </div>
+                </div>
+
+                <!-- Special Card -->
+                <div class="tier-card">
+                    <div class="tier-header">
+                        <h4>Chất liệu đặc biệt</h4>
+                        <span class="lbl-code">SPECIAL</span>
+                    </div>
+                    <div class="tier-price-box">
+                        220,000đ <span class="unit">/ đôi</span>
+                    </div>
+                    <div class="tier-time-badge">3–4 ngày</div>
+                    
+                    <ul class="tier-features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Quy trình riêng cho chất liệu khó</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Giữ đúng kết cấu & màu gốc</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Khử mùi + khử khuẩn</span></li>
+                    </ul>
+
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+
+                    <div class="tier-materials-box">
+                        <span class="lbl">SUITABLE MATERIALS</span>
+                        <p>Da lộn · Nubuck · Giày tây da</p>
                     </div>
                 </div>
             </div>
@@ -1272,102 +1308,5 @@
 
     <!-- Main JS script -->
     <script src="index.js?v=1.1"></script>
-    
-    <script>
-        // Interactive Combo Specifications Data (Image 3 & 5)
-        const comboData = {
-            1: {
-                title: "Standard Care (1 Pair)",
-                subDesc: "Dịch Vụ Lẻ Cơ Bản",
-                time: "3-4 DAYS",
-                suitable: "Giày đi hàng ngày, giày vải",
-                features: [
-                    "Individual manual hand-wash/brush",
-                    "UV disinfection & odor extraction",
-                    "Buy 2 pairs to get 20K Shipping support",
-                    "Suitable for everyday canvas/knit shoes"
-                ],
-                btnText: "Choose Standard Care (150k)"
-            },
-            2: {
-                title: "Saving Combo (3 Pairs)",
-                subDesc: "Combo Tiết Kiệm (3 Đôi) - 133k/pair",
-                time: "3-4 DAYS",
-                suitable: "Nhóm bạn, gia đình nhỏ cần giặt nhiều giày",
-                features: [
-                    "Full deep manual wash for 3 pairs",
-                    "UV light disinfection & drying for each pair",
-                    "Best value for standard sneaker rotation",
-                    "Save 50,000 VND compared to individual rates"
-                ],
-                btnText: "Choose Saving Combo (399k)"
-            },
-            3: {
-                title: "Family Combo (5 Pairs)",
-                subDesc: "Combo Gia Đình (5 Đôi) - 118k/pair",
-                time: "3-4 DAYS",
-                suitable: "Nhu cầu dọn tủ giày định kỳ hoặc nhóm đông",
-                features: [
-                    "Deep manual hand-washing for 5 pairs",
-                    "Intense UVC cabin sanitizing for all shoes",
-                    "Most popular discount package",
-                    "Save 160,000 VND compared to individual rates"
-                ],
-                btnText: "Choose Family Combo (590k)"
-            }
-        };
-
-        const comboCards = document.querySelectorAll('.combo-tab-card');
-        const specContent = document.getElementById('dynamic-spec-content');
-
-        function renderComboSpecs(tierId) {
-            const data = comboData[tierId];
-            if (!data) return;
-
-            const featuresHtml = data.features.map(f => `
-                <li><i class="fa-solid fa-circle-check"></i> <span>${f}</span></li>
-            `).join('');
-
-            specContent.innerHTML = `
-                <div class="spec-card-header">
-                    <div class="spec-header-left">
-                        <h5>TIER 0${tierId} — TECHNICAL SPECIFICATIONS</h5>
-                        <h3>${data.title}</h3>
-                        <p class="sub-desc">${data.subDesc}</p>
-                    </div>
-                    <div class="spec-header-right">
-                        <span class="lbl">PROCESSING TIME</span>
-                        <span class="time-val">${data.time}</span>
-                    </div>
-                </div>
-
-                <ul class="spec-features-list">
-                    ${featuresHtml}
-                </ul>
-                
-                <div class="spec-suitable-box">
-                    <span class="lbl">SUITABLE FOR</span>
-                    <p>${data.suitable}</p>
-                </div>
-                
-                <a href="https://wa.me/84866137043" target="_blank" class="btn-spec-cta">
-                    ${data.btnText} <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
-                </a>
-            `;
-        }
-
-        // Initialize Tier 1 spec box
-        renderComboSpecs(1);
-
-        // Click handler
-        comboCards.forEach(card => {
-            card.addEventListener('click', () => {
-                comboCards.forEach(c => c.classList.remove('active'));
-                card.classList.add('active');
-                const tierId = card.getAttribute('data-tier');
-                renderComboSpecs(tierId);
-            });
-        });
-    </script>
 </body>
 </html>
