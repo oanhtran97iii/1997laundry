@@ -208,162 +208,476 @@
         .gallery-img-wrapper:hover img {
             transform: scale(1.08);
         }
-        
-        /* Pricing Cards Styles Override for standard layout */
-        .weight-pricing-grid {
+               /* Toggle Switch styling */
+        .pricing-toggle-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .pricing-toggle-pill {
+            display: inline-flex;
+            align-items: center;
+            background-color: #f1f5f9;
+            padding: 6px 12px;
+            border-radius: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            gap: 15px;
+        }
+
+        .pricing-toggle-btn {
+            background: none;
+            border: none;
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            padding: 8px 16px;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-toggle-btn.active {
+            color: var(--color-bg-dark);
+        }
+
+        /* Toggle switch control */
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+        }
+
+        .toggle-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--color-bg-dark);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .toggle-label::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            background-color: var(--color-accent);
+            top: 3px;
+            left: 3px;
+            transition: transform 0.3s ease;
+        }
+
+        #toggle-input:checked + .toggle-label::before {
+            transform: translateX(24px);
+        }
+
+        /* 3-Column Per-KG Weight Grid */
+        .pricing-weight-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-top: 40px;
+            margin-top: 20px;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
-        .weight-price-card {
+
+        .pricing-card-premium {
             background-color: #ffffff;
-            border-radius: 20px;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
             padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.02);
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
-            position: relative;
-            transition: var(--transition-smooth);
             text-align: left;
         }
-        
-        .weight-price-card.recommended {
-            border: 2px solid var(--color-accent);
-        }
-        
-        .weight-price-card:hover {
+
+        .pricing-card-premium:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.06);
+            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.05);
         }
-        
-        .card-price-badge {
+
+        .pricing-card-premium.popular-card {
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 15px 35px rgba(243, 106, 25, 0.08);
+        }
+
+        .pricing-card-premium .card-badge {
             position: absolute;
-            top: 24px;
-            right: 24px;
+            top: 25px;
+            right: 25px;
             background-color: #f1f5f9;
             color: #475569;
-            font-size: 11px;
+            font-size: 8.5px;
             font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
-        
-        .weight-price-card.recommended .card-price-badge {
-            background-color: #ffebd8;
-            color: var(--color-accent-dark);
+
+        .pricing-card-premium.popular-card .card-badge {
+            background-color: var(--color-accent-dark);
+            color: #ffffff;
         }
-        
-        .weight-price-card h3 {
+
+        .pricing-card-premium h3 {
             font-family: var(--font-headline);
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
             color: var(--color-bg-dark);
-            margin-bottom: 8px;
-            margin-top: 10px;
+            margin: 0 0 6px 0;
+            max-width: 70%;
         }
-        
-        .weight-price-card .price-desc {
+
+        .pricing-card-premium .card-subtitle {
             font-family: var(--font-body);
-            font-size: 13.5px;
-            color: var(--color-text-gray);
-            margin-bottom: 24px;
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 25px;
+            line-height: 1.4;
         }
-        
-        .weight-price-card .price-display {
-            margin-bottom: 24px;
+
+        .pricing-card-premium .price-wrapper {
+            margin-bottom: 20px;
         }
-        
-        .weight-price-card .price-num {
-            font-size: 42px;
-            font-weight: 700;
+
+        .pricing-card-premium .price-val {
+            font-size: 32px;
+            font-weight: 800;
             color: var(--color-bg-dark);
         }
-        
-        .weight-price-card .price-unit {
-            font-size: 14px;
-            color: var(--color-text-gray);
-            font-weight: 500;
+
+        .pricing-card-premium .price-unit {
+            font-size: 13px;
+            color: #64748b;
+            font-weight: 600;
         }
-        
-        .weight-price-card .price-usd {
-            display: block;
+
+        .pricing-card-premium .price-usd {
+            font-family: var(--font-body);
             font-size: 12px;
             color: #94a3b8;
             margin-top: 4px;
         }
-        
-        .weight-price-card ul {
+
+        .pricing-card-premium .features-list {
             list-style: none;
             padding: 0;
             margin: 0 0 35px 0;
+            flex-grow: 1;
         }
-        
-        .weight-price-card ul li {
+
+        .pricing-card-premium .features-list li {
             font-family: var(--font-body);
             font-size: 13.5px;
             color: var(--color-text-gray);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
-        
-        .weight-price-card ul li i {
-            font-size: 14px;
-            margin-right: 10px;
+
+        .pricing-card-premium .features-list li i.fa-check {
+            color: #10b981;
         }
-        
-        .weight-price-card ul li i.fa-check {
-            color: #22c55e;
+
+        .pricing-card-premium .features-list li i.fa-xmark {
+            color: #ef4444;
         }
-        
-        .weight-price-card ul li i.fa-xmark {
-            color: #cbd5e1;
-        }
-        
-        .weight-price-card ul li.disabled {
+
+        .pricing-card-premium .features-list li.disabled {
             color: #94a3b8;
-            text-decoration: line-through;
         }
-        
-        .weight-price-card .btn-select {
-            margin-top: auto;
+
+        .pricing-card-premium .btn-plan-select {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
-            padding: 14px 24px;
+            padding: 13px 24px;
             border-radius: 10px;
-            font-size: 14px;
             font-weight: 700;
-            text-align: center;
+            font-size: 13.5px;
             text-decoration: none;
-            transition: var(--transition-smooth);
+            transition: all 0.3s ease;
+            text-align: center;
         }
-        
-        .btn-select-outline {
-            border: 2px solid var(--color-border-light);
+
+        .pricing-card-premium .btn-plan-select.btn-outline {
+            border: 1px solid rgba(9, 0, 45, 0.15);
             color: var(--color-bg-dark);
             background-color: transparent;
         }
-        
-        .btn-select-outline:hover {
-            border-color: var(--color-bg-dark);
+
+        .pricing-card-premium .btn-plan-select.btn-outline:hover {
             background-color: var(--color-bg-dark);
-            color: #ffffff;
+            color: #ffffff !important;
+            border-color: var(--color-bg-dark);
         }
-        
-        .btn-select-fill {
+
+        .pricing-card-premium .btn-plan-select.btn-fill {
             background-color: var(--color-accent);
-            color: #ffffff;
-            border: 2px solid var(--color-accent);
+            color: #ffffff !important;
+            border: 1px solid var(--color-accent);
         }
-        
-        .btn-select-fill:hover {
+
+        .pricing-card-premium .btn-plan-select.btn-fill:hover {
             background-color: var(--color-accent-dark);
             border-color: var(--color-accent-dark);
             box-shadow: 0 4px 15px rgba(243, 106, 25, 0.3);
+        }
+
+        /* 2-Column Express Package Grid */
+        .pricing-express-section-title {
+            text-align: center;
+            font-family: var(--font-headline);
+            font-size: 24px;
+            font-weight: 750;
+            color: var(--color-bg-dark);
+            margin: 80px 0 10px 0;
+        }
+
+        .pricing-express-section-subtitle {
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 14.5px;
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .pricing-express-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .express-card-premium {
+            background-color: #ffffff;
+            border-radius: 28px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 40px;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 25px rgba(9, 0, 45, 0.01);
+            position: relative;
+        }
+
+        .express-card-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.05);
+        }
+
+        .express-card-graphic {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .express-card-graphic img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            z-index: 2;
+        }
+
+        .graphic-badge-4hrs {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            background-color: #09002d;
+            color: #ffffff;
+            border-radius: 50%;
+            width: 65px;
+            height: 65px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 3;
+            transform: rotate(-10deg);
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .graphic-badge-4hrs span.num {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--color-accent);
+            line-height: 1;
+        }
+
+        .graphic-badge-4hrs span.txt {
+            font-size: 8px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .express-card-premium h3 {
+            font-family: var(--font-headline);
+            font-size: 19px;
+            font-weight: 700;
+            color: #e25e14;
+            margin: 0 0 12px 0;
+        }
+
+        .express-card-premium .express-price {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--color-accent);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .express-card-premium .express-desc-info {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .express-card-premium .express-desc-time {
+            font-family: var(--font-body);
+            font-size: 13px;
+            font-weight: 500;
+            color: #475569;
+            margin-bottom: 25px;
+        }
+
+        .express-card-premium .btn-express-book {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 180px;
+            padding: 12px 24px;
+            background-color: var(--color-accent);
+            color: #ffffff !important;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-bottom: 25px;
+        }
+
+        .express-card-premium .btn-express-book:hover {
+            background-color: var(--color-accent-dark);
+            box-shadow: 0 4px 15px rgba(243, 106, 25, 0.3);
+        }
+
+        .express-card-premium .express-specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            width: 100%;
+            border-top: 1px dashed rgba(226, 232, 240, 0.8);
+            padding-top: 20px;
+        }
+
+        .express-card-premium .express-specs-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 10px;
+        }
+
+        .express-card-premium .express-specs-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Piece View styles */
+        .pricing-piece-view {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            background-color: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(9, 0, 45, 0.01);
+        }
+
+        .pricing-piece-view.active {
+            display: block;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .pricing-piece-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .pricing-piece-table th {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .pricing-piece-table td {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--color-text-gray);
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .pricing-piece-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .pricing-piece-table .item-name {
+            font-weight: 600;
+            color: var(--color-bg-dark);
+        }
+
+        .pricing-piece-table .item-price {
+            font-weight: 700;
+            color: var(--color-accent);
+            text-align: right;
+        }
+
+        @media (max-width: 1024px) {
+            .pricing-weight-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-weight-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-express-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
         /* 2-Column Booking Flow Layout */
@@ -634,20 +948,193 @@
                 <p class="section-subtitle">No hidden fees. Free roundtrip delivery within 3km for orders over 150k VND.</p>
             </div>
             
-            <div class="pricing-interactive-layout" style="margin-top: 40px;">
-                <!-- Left Column: Plans Tiers List -->
-                <div class="pricing-tiers-list" id="pricing-tiers-container">
-                    <!-- Dynamic rendering by JS -->
+            <!-- Toggle Pill Switch -->
+            <div class="pricing-toggle-wrapper">
+                <div class="pricing-toggle-pill">
+                    <button class="pricing-toggle-btn active" id="btn-toggle-weight">By Weight (KG)</button>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="toggle-input" style="display:none;">
+                        <label for="toggle-input" class="toggle-label"></label>
+                    </div>
+                    <button class="pricing-toggle-btn" id="btn-toggle-piece">By Item (Piece)</button>
+                </div>
+            </div>
+
+            <!-- VIEW 1: By Weight (KG) Section -->
+            <div class="pricing-weight-view" id="weight-pricing-view">
+                <div class="pricing-weight-grid">
+                    <!-- Card 1: Standard Wash & Fold -->
+                    <div class="pricing-card-premium">
+                        <span class="card-badge">BUDGET SAFE</span>
+                        <h3>Standard Wash & Fold</h3>
+                        <p class="card-subtitle">Everyday clothes, sheets, and activewear.</p>
+                        
+                        <div class="price-wrapper">
+                            <span class="price-val">30k</span>
+                            <span class="price-unit"> VND / kg</span>
+                            <p class="price-usd">~$1.20 USD</p>
+                        </div>
+                        
+                        <ul class="features-list">
+                            <li><i class="fa-solid fa-check"></i> Individual machine wash</li>
+                            <li><i class="fa-solid fa-check"></i> Standard scented softener</li>
+                            <li><i class="fa-solid fa-check"></i> Neatly folded & sorted</li>
+                            <li><i class="fa-solid fa-check"></i> 24h standard turnaround</li>
+                            <li class="disabled"><i class="fa-solid fa-xmark"></i> Hanger styling & pressing</li>
+                            <li class="disabled"><i class="fa-solid fa-xmark"></i> Stain pre-spotting treatment</li>
+                        </ul>
+                        
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-plan-select btn-outline">Select Plan</a>
+                    </div>
+                    
+                    <!-- Card 2: Premium Wash & Iron (Most Popular) -->
+                    <div class="pricing-card-premium popular-card">
+                        <span class="card-badge">MOST POPULAR</span>
+                        <h3>Premium Wash & Iron</h3>
+                        <p class="card-subtitle">Work shirts, trousers, dresses, and uniforms.</p>
+                        
+                        <div class="price-wrapper">
+                            <span class="price-val">45k</span>
+                            <span class="price-unit"> VND / kg</span>
+                            <p class="price-usd">~$1.80 USD</p>
+                        </div>
+                        
+                        <ul class="features-list">
+                            <li><i class="fa-solid fa-check"></i> Individual machine wash</li>
+                            <li><i class="fa-solid fa-check"></i> Premium hypoallergenic softener</li>
+                            <li><i class="fa-solid fa-check"></i> Neatly ironed & pressed</li>
+                            <li><i class="fa-solid fa-check"></i> Garments placed on hangers</li>
+                            <li><i class="fa-solid fa-check"></i> Light stain removal</li>
+                            <li><i class="fa-solid fa-check"></i> 24h standard turnaround</li>
+                        </ul>
+                        
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-plan-select btn-fill">Book Premium</a>
+                    </div>
+                    
+                    <!-- Card 3: Blanket & Comforter -->
+                    <div class="pricing-card-premium">
+                        <span class="card-badge">DELICATE CARE</span>
+                        <h3>Blanket & Comforter</h3>
+                        <p class="card-subtitle">Heavy comforters, duvets, blankets, and pillows.</p>
+                        
+                        <div class="price-wrapper">
+                            <span class="price-val">60k</span>
+                            <span class="price-unit"> VND / kg</span>
+                            <p class="price-usd">~$2.40 USD</p>
+                        </div>
+                        
+                        <ul class="features-list">
+                            <li><i class="fa-solid fa-check"></i> Heavy-duty industrial wash</li>
+                            <li><i class="fa-solid fa-check"></i> Sanitizing cycle to kill allergens</li>
+                            <li><i class="fa-solid fa-check"></i> Fluff-dry treatment</li>
+                            <li><i class="fa-solid fa-check"></i> Sealed hygienic packaging</li>
+                            <li><i class="fa-solid fa-check"></i> Extra stain inspection</li>
+                            <li><i class="fa-solid fa-check"></i> 24-48h turnaround</li>
+                        </ul>
+                        
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-plan-select btn-outline">Select Plan</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 2: By Item (Piece) Section -->
+            <div class="pricing-piece-view" id="piece-pricing-view">
+                <table class="pricing-piece-table">
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th style="text-align: right;">Price (VND) / Piece</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="item-name">T-Shirt / Polo</td>
+                            <td class="item-price">30,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Shirt / Blouse</td>
+                            <td class="item-price">35,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Trousers / Jeans</td>
+                            <td class="item-price">40,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Dress (Standard)</td>
+                            <td class="item-price">60,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Suit Jacket / Blazer</td>
+                            <td class="item-price">100,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Coat / Heavy Jacket</td>
+                            <td class="item-price">150,000 VND</td>
+                        </tr>
+                        <tr>
+                            <td class="item-name">Sneakers / Leather Shoes</td>
+                            <td class="item-price">180,000 VND - 250,000 VND</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Separation Header for Express Service Packages -->
+            <h3 class="pricing-express-section-title">Express Service Packages</h3>
+            <p class="pricing-express-section-subtitle">Please note that if you have multiple bags of laundry and request that each bag be washed separately, each bag will be charged independently based on the service you select.</p>
+
+            <div class="pricing-express-grid">
+                <!-- Card 1: 4-hour Turnaround -->
+                <div class="express-card-premium">
+                    <div class="express-card-graphic">
+                        <img src="assets/images/express_4hrs.jpg" alt="4-hour Turnaround">
+                        <div class="graphic-badge-4hrs">
+                            <span class="num">4HRS</span>
+                            <span class="txt">ONLY</span>
+                        </div>
+                    </div>
+                    <h3>4-hour Turnaround</h3>
+                    <div class="express-price">220.000</div>
+                    <p class="express-desc-info">For up to 5kg</p>
+                    <p class="express-desc-info">Available from 07:30 - 17:00</p>
+                    <p class="express-desc-time">After 17:00 → next morning delivery</p>
+                    
+                    <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
+                    
+                    <ul class="express-specs-list">
+                        <li>Extra weight + 35,000 per/kg</li>
+                        <li>Separate wash for white garments: <strong>Included</strong></li>
+                        <li>VAT 8%: <strong>Included</strong></li>
+                        <li>Pickup and delivery: <strong>+40.000</strong> (&lt; 3km, round trip)</li>
+                        <li>Steam press not available for express service</li>
+                    </ul>
                 </div>
                 
-                <!-- Right Column: Plans Specifications Card -->
-                <div class="pricing-spec-card" id="pricing-spec-container">
-                    <!-- Dynamic rendering by JS -->
+                <!-- Card 2: Same-Day Express -->
+                <div class="express-card-premium">
+                    <div class="express-card-graphic">
+                        <img src="assets/images/express_sameday.jpg" alt="Same-Day Express">
+                    </div>
+                    <h3>Same-Day Express</h3>
+                    <div class="express-price">180.000</div>
+                    <p class="express-desc-info">For up to 5kg</p>
+                    <p class="express-desc-info">Available from 07:30 - 15:00</p>
+                    <p class="express-desc-time">After 14:00 → next morning delivery</p>
+                    
+                    <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
+                    
+                    <ul class="express-specs-list">
+                        <li>Extra load + 30,000 per/kg</li>
+                        <li>Separate wash for white garments: <strong>Included</strong></li>
+                        <li>VAT 8%: <strong>Included</strong></li>
+                        <li>Pickup and delivery: <strong>+40.000</strong> (&lt; 3km, round trip)</li>
+                        <li>Steam press not available for express service</li>
+                    </ul>
                 </div>
             </div>
             
-            <p class="text-center" style="margin-top: 35px; font-size: 13.5px; color: var(--color-text-gray); font-family: var(--font-body);">
-                * Note: Minimum booking is 3 kg. Orders over 150k VND get free pickup & delivery within 3km.
+            <p class="text-center" style="margin-top: 45px; font-size: 13.5px; color: var(--color-text-gray); font-family: var(--font-body);">
+                * Note: Minimum booking for regular per-kg laundry is 3 kg. Orders over 150k VND get free pickup & delivery within 3km.
             </p>
         </div>
     </section>
@@ -1010,6 +1497,35 @@
                 }
             });
         });
+
+        // Pricing Weight vs Piece Toggle Controller
+        const btnToggleWeight = document.getElementById('btn-toggle-weight');
+        const btnTogglePiece = document.getElementById('btn-toggle-piece');
+        const toggleInput = document.getElementById('toggle-input');
+        const weightPricingView = document.getElementById('weight-pricing-view');
+        const piecePricingView = document.getElementById('piece-pricing-view');
+
+        function setToggleState(showPiece) {
+            if (showPiece) {
+                btnToggleWeight.classList.remove('active');
+                btnTogglePiece.classList.add('active');
+                toggleInput.checked = true;
+                weightPricingView.style.display = 'none';
+                piecePricingView.classList.add('active');
+            } else {
+                btnToggleWeight.classList.add('active');
+                btnTogglePiece.classList.remove('active');
+                toggleInput.checked = false;
+                weightPricingView.style.display = 'block';
+                piecePricingView.classList.remove('active');
+            }
+        }
+
+        if (btnToggleWeight && btnTogglePiece && toggleInput) {
+            btnToggleWeight.addEventListener('click', () => setToggleState(false));
+            btnTogglePiece.addEventListener('click', () => setToggleState(true));
+            toggleInput.addEventListener('change', (e) => setToggleState(e.target.checked));
+        }
     </script>
 </body>
 </html>
