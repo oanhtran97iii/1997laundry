@@ -38,330 +38,310 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-
     /* ==========================================
-       3. HERO SECTION PRICE ESTIMATOR
+       5. INTERACTIVE PRICING PLAN CONTROLLER
        ========================================== */
-    const estTabs = document.querySelectorAll('.est-tab');
-    const slider = document.getElementById('estimator-slider');
-    const unitTitle = document.getElementById('estimator-unit-title');
-    const qtyDisplay = document.getElementById('estimator-qty-display');
-    const priceVndDisplay = document.getElementById('estimator-price-vnd');
-    const priceUsdDisplay = document.getElementById('estimator-price-usd');
-    const tickMin = document.getElementById('tick-min');
-    const tickMax = document.getElementById('tick-max');
+    const tabs = document.querySelectorAll('.pricing-tab-btn');
+    const tiersContainer = document.getElementById('pricing-tiers-container');
+    const specContainer = document.getElementById('pricing-spec-container');
 
-    // Service Rates & Config
-    const servicesConfig = {
-        'wash-fold': {
-            unit: 'kg',
-            min: 3,
-            max: 30,
-            defaultVal: 5,
-            rate: 25000
-        },
-        'dry-clean': {
-            unit: 'pcs',
-            min: 1,
-            max: 15,
-            defaultVal: 3,
-            rate: 90000
-        },
-        'shoe-spa': {
-            unit: 'pairs',
-            min: 1,
-            max: 5,
-            defaultVal: 1,
-            rate: 120000
-        }
-    };
-
-    let activeService = 'wash-fold';
-
-    function updateEstimatorUI() {
-        const config = servicesConfig[activeService];
-        
-        // Update slider ranges
-        slider.min = config.min;
-        slider.max = config.max;
-        slider.value = config.defaultVal;
-
-        // Update tick labels
-        tickMin.textContent = `${config.min} ${config.unit}`;
-        tickMax.textContent = `${config.max} ${config.unit}`;
-
-        // Update titles
-        if (activeService === 'wash-fold') {
-            unitTitle.textContent = 'Laundry Weight';
-        } else if (activeService === 'dry-clean') {
-            unitTitle.textContent = 'Number of Items';
-        } else {
-            unitTitle.textContent = 'Pairs of Shoes';
-        }
-
-        calculateEstimatorPrice(config.defaultVal);
-    }
-
-    function calculateEstimatorPrice(quantity) {
-        const config = servicesConfig[activeService];
-        const totalPriceVnd = quantity * config.rate;
-        const usdRate = 25000; // Exchange rate approximation
-        const totalPriceUsd = totalPriceVnd / usdRate;
-
-        // Update displays
-        qtyDisplay.textContent = `${quantity} ${config.unit}`;
-        priceVndDisplay.textContent = totalPriceVnd.toLocaleString('en-US');
-        priceUsdDisplay.textContent = `~$${totalPriceUsd.toFixed(2)} USD`;
-
-        // Update steps animation logic based on slide value
-        animateEstimatorSteps(quantity);
-    }
-
-    function animateEstimatorSteps(value) {
-        const steps = ['proc-pickup', 'proc-wash', 'proc-dry', 'proc-deliver'];
-        const lines = ['line-1', 'line-2', 'line-3'];
-        
-        // Simple step simulation progression based on slider percentage
-        const min = parseInt(slider.min);
-        const max = parseInt(slider.max);
-        const percent = (value - min) / (max - min);
-
-        steps.forEach((stepId, index) => {
-            const stepEl = document.getElementById(stepId);
-            if (stepEl) {
-                if (percent >= (index / steps.length)) {
-                    stepEl.classList.add('active');
-                } else if (index > 0) {
-                    stepEl.classList.remove('active');
-                }
-            }
-        });
-
-        lines.forEach((lineId, index) => {
-            const lineEl = document.getElementById(lineId);
-            if (lineEl) {
-                if (percent > ((index + 1) / steps.length)) {
-                    lineEl.classList.add('active');
-                } else {
-                    lineEl.classList.remove('active');
-                }
-            }
-        });
-    }
-
-    // Tab clicks in estimator
-    estTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            estTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            activeService = tab.getAttribute('data-service');
-            updateEstimatorUI();
-        });
-    });
-
-    // Slider input change
-    if (slider) {
-        slider.addEventListener('input', (e) => {
-            calculateEstimatorPrice(parseInt(e.target.value));
-        });
-    }
-
-    // Initialize Estimator
-    if (slider) {
-        updateEstimatorUI();
-    }
-
-
-    /* ==========================================
-       4. SERVICE CAPABILITIES SLIDER
-       ========================================== */
-    const capTabs = document.querySelectorAll('.cap-tab');
-    const capPanels = document.querySelectorAll('.cap-content-panel');
-    const progressFill = document.getElementById('cap-progress-fill');
-
-    capTabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-            // Deactivate tabs
-            capTabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            // Deactivate panels
-            const targetId = tab.getAttribute('data-cap');
-            capPanels.forEach(panel => {
-                panel.classList.remove('active');
-                if (panel.id === targetId) {
-                    panel.classList.add('active');
-                }
-            });
-
-            // Update Progress Bar
-            if (progressFill) {
-                const percent = ((index + 1) / capTabs.length) * 100;
-                progressFill.style.width = `${percent}%`;
-            }
-        });
-    });
-
-
-    /* ==========================================
-       5. PRICING TOGGLE SWITCH (Per KG vs Per Item)
-       ========================================== */
-    const pricingToggle = document.getElementById('pricing-toggle');
-    const labelKg = document.getElementById('label-kg');
-    const labelItem = document.getElementById('label-item');
-
-    // Pricing Data
-    const pricingData = {
-        kg: [
+    // Complete Plans Database
+    const plansData = {
+        laundry: [
             {
+                tier: 'TIER 01',
                 title: 'Standard Wash & Fold',
-                desc: 'Everyday clothes, sheets, and activewear.',
-                amount: '25k',
-                unit: 'VND / kg',
-                usd: '~$1.00 USD',
+                desc: 'Daily laundry, towels, and bedding carefully folded.',
+                price: '30,000 VND',
+                unit: 'per kg',
+                turnaround: '24 HOURS',
+                tagline: 'Perfect for regular laundry needs',
                 features: [
+                    'Standard wash & tumble dry',
                     'Individual machine wash',
-                    'Standard scented softener',
                     'Neatly folded & sorted',
-                    '24h standard turnaround',
-                    '-Hanger styling & pressing',
-                    '-Stain pre-spotting treatment'
-                ]
+                    'Standard scented softener',
+                    'Garments checked for forgotten items'
+                ],
+                suitable: 'Regular daily clothes, sheets, towels and activewear',
+                btnText: 'CHOOSE STANDARD WASH & FOLD',
+                recommended: false
             },
             {
-                title: 'Premium Wash & Iron',
-                desc: 'Work shirts, trousers, dresses, and uniforms.',
-                amount: '40k',
-                unit: 'VND / kg',
-                usd: '~$1.60 USD',
+                tier: 'TIER 02',
+                title: 'Same-Day Express Combo',
+                desc: 'Pickup before 2:00 PM, delivery before 9:00 PM same day.',
+                price: '180,000 VND',
+                unit: '5kg pack',
+                turnaround: '6 HOURS',
+                tagline: 'Same day turnaround for busy people',
                 features: [
-                    'Individual machine wash',
-                    'Premium hypoallergenic softener',
-                    'Neatly ironed & pressed',
-                    'Garments placed on hangers',
-                    'Light stain removal',
-                    '24h standard turnaround'
-                ]
+                    'Express wash & dry combo',
+                    'Wash & delivery within 6 hours',
+                    'FREE white clothes separation',
+                    'Premium Organic fabric softener',
+                    'Hanger styling for shirts'
+                ],
+                suitable: 'Busy professionals, business shirts and quick turnaround clothing needs',
+                btnText: 'CHOOSE SAME-DAY EXPRESS COMBO',
+                recommended: false
             },
             {
+                tier: 'TIER 03',
+                title: '4-Hour Super Express Combo',
+                desc: 'Garments returned clean and smelling fresh in 4 hours.',
+                price: '220,000 VND',
+                unit: '5kg pack',
+                turnaround: '4 HOURS',
+                tagline: 'Best Value for Speed — Top Priority',
+                features: [
+                    'Super express wash for up to 5kg garments',
+                    'FREE white clothes separation to prevent fading',
+                    'FREE 1-WAY SHIPPING (Up to 35,000 VND)',
+                    '100% individual wash using premium Organic softener',
+                    'Top priority execution by lead technicians'
+                ],
+                suitable: 'Urgent laundry needs, travelers, and event preparation',
+                btnText: 'CHOOSE 4-HOUR SUPER EXPRESS COMBO',
+                recommended: true
+            },
+            {
+                tier: 'TIER 04',
                 title: 'Blanket & Comforter',
-                desc: 'Heavy comforters, duvets, blankets, and pillows.',
-                amount: '60k',
-                unit: 'VND / kg',
-                usd: '~$2.40 USD',
+                desc: 'Heavy comforters, duvets, blankets, and pillows fluffed & sanitized.',
+                price: '60,000 VND',
+                unit: 'per kg',
+                turnaround: '24-48 HOURS',
+                tagline: 'Deep sanitizing wash for bedding',
                 features: [
                     'Heavy-duty industrial wash',
                     'Sanitizing cycle to kill allergens',
-                    'Fluff-dry treatment',
-                    'Sealed hygienic packaging',
-                    'Extra stain inspection',
-                    '24-48h turnaround'
-                ]
+                    'Fluff-dry treatment at optimized heat',
+                    'Sealed hygienic water-resistant packaging',
+                    'Extra inspection for stains and lint'
+                ],
+                suitable: 'Heavy duvets, blankets, comforters, sleeping bags, and pillows',
+                btnText: 'CHOOSE BLANKET & COMFORTER',
+                recommended: false
             }
         ],
-        item: [
+        shoes: [
             {
-                title: 'Shirts & Everyday Wear',
-                desc: 'Individual T-shirts, shirts, shorts, skirts, etc.',
-                amount: '35k',
-                unit: 'VND / item',
-                usd: '~$1.40 USD',
+                tier: 'TIER 01',
+                title: 'Basic Sneaker Clean',
+                desc: 'External cleaning & deodorizing for canvas and mesh sneakers.',
+                price: '90,000 VND',
+                unit: 'per pair',
+                turnaround: '3 DAYS',
+                tagline: 'Essential refresh for daily sneakers',
                 features: [
-                    'Individual sorting & care',
-                    'Pre-treatment for collar sweat stains',
-                    'Ironing & styling included',
-                    'Returned on custom hangers',
-                    '24h standard turnaround',
-                    '-Dry cleaning solvent treatment'
-                ]
+                    'External midsole & upper cleaning',
+                    'Lace cleaning & deodorizing',
+                    'Hand-wash cleaning process',
+                    'UV sterilization to prevent odor',
+                    'Standard natural air dry'
+                ],
+                suitable: 'Standard canvas, mesh, and synthetic sneakers',
+                btnText: 'CHOOSE BASIC SNEAKER CLEAN',
+                recommended: false
             },
             {
-                title: 'Suits, Coats & Jackets',
-                desc: 'Formal suits, winter blazers, leather coats, dresses.',
-                amount: '110k',
-                unit: 'VND / item',
-                usd: '~$4.40 USD',
+                tier: 'TIER 02',
+                title: 'Premium Leather Spa',
+                desc: 'Deep conditioning & stain removal for leather and suede shoes.',
+                price: '180,000 VND',
+                unit: 'per pair',
+                turnaround: '4-5 DAYS',
+                tagline: 'Specialist care for high-value shoes',
                 features: [
-                    'Delicate solvent-based dry clean',
-                    'Fabric protection treatment',
-                    'Premium hand pressing',
-                    'Starch application options',
-                    'Garment breathable protective bag',
-                    '48h standard turnaround'
-                ]
+                    'Deep interior & exterior leather cleaning',
+                    'Leather conditioning & protection coating',
+                    'Suede brush & texture recovery',
+                    'Premium shoe tree shape retention',
+                    'UV anti-mold sterilization'
+                ],
+                suitable: 'Premium leather shoes, boots, and suede sneakers',
+                btnText: 'CHOOSE PREMIUM LEATHER SPA',
+                recommended: false
             },
             {
-                title: 'Premium Shoes Spa',
-                desc: 'Sneakers, high heels, boots, suede leather shoes.',
-                amount: '120k',
-                unit: 'VND / pair',
-                usd: '~$4.80 USD',
+                tier: 'TIER 03',
+                title: 'Luxury Shoe Restoration',
+                desc: 'Color restoration, midsole unyellowing & repaint spa.',
+                price: '350,000 VND',
+                unit: 'per pair',
+                turnaround: '7 DAYS',
+                tagline: 'Ultimate recovery for worn or yellowed shoes',
                 features: [
-                    '100% Manual detailing hand wash',
-                    'Midsole stain removal & whitening',
-                    'UV sterilization treatment',
-                    'Deodorizing spray application',
-                    'Safe climate-controlled drying',
-                    '3-4 Days deep spa turnaround'
-                ]
+                    'Midsole unyellowing & bleaching',
+                    'Leather repainting & color restoration',
+                    'Deep stain pre-treatment',
+                    'Waterproof nano protection spray',
+                    'Sole glue and stitching repair support'
+                ],
+                suitable: 'Yellowed soles, faded leather, and luxury brand shoes',
+                btnText: 'CHOOSE LUXURY SHOE RESTORATION',
+                recommended: true
+            }
+        ],
+        dryclean: [
+            {
+                tier: 'TIER 01',
+                title: 'Premium Pressing',
+                desc: 'Ironing and hanging service for pre-washed shirts and trousers.',
+                price: '15,000 VND',
+                unit: 'per piece',
+                turnaround: '24 HOURS',
+                tagline: 'Professional steam ironing and finishing',
+                features: [
+                    'Professional steam ironing',
+                    'Garments placed on premium hangers',
+                    'Collar support cards for shirts',
+                    'Dust cover protection bag',
+                    'Wrinkle-free transportation ready'
+                ],
+                suitable: 'Business shirts, trousers, suits, and uniforms',
+                btnText: 'CHOOSE PREMIUM PRESSING',
+                recommended: false
+            },
+            {
+                tier: 'TIER 02',
+                title: 'Suit Dry Cleaning',
+                desc: 'Gentle dry cleaning for suits, jackets, and formal wear.',
+                price: '120,000 VND',
+                unit: 'per set',
+                turnaround: '2 DAYS',
+                tagline: 'Delicate care for luxury formal wear',
+                features: [
+                    'Eco-friendly dry cleaning solvent',
+                    'Shape preservation treatment',
+                    'Stain pre-spotting inspection',
+                    'Steam ironing & collar styling',
+                    'Breathable garment cover bag'
+                ],
+                suitable: 'Suits, blazers, coats, and formal jackets',
+                btnText: 'CHOOSE SUIT DRY CLEANING',
+                recommended: false
+            },
+            {
+                tier: 'TIER 03',
+                title: 'Luxury Evening Wear',
+                desc: 'Gentle cleaning for evening gowns, silk dresses & wedding wear.',
+                price: '250,000 VND',
+                unit: 'per piece',
+                turnaround: '3 DAYS',
+                tagline: 'Ultimate care for high-fashion designer items',
+                features: [
+                    'Individual delicate fabric cleaning',
+                    'Protection of beadwork, sequins, and lace',
+                    'pH-balanced gentle fabric wash',
+                    'Hand-ironing under low heat',
+                    'Archival storage box or padded hanger packaging'
+                ],
+                suitable: 'Silk dresses, evening gowns, wedding dresses, and designer knitwear',
+                btnText: 'CHOOSE LUXURY EVENING WEAR',
+                recommended: true
             }
         ]
     };
 
-    function updatePricingCards(mode) {
-        const cardsData = pricingData[mode];
-        const cardIds = ['standard', 'premium', 'special'];
+    let activeCategory = 'laundry';
+    let activeTierIndex = 2; // Default to Tier 03 (super express)
 
-        cardIds.forEach((id, index) => {
-            const data = cardsData[index];
+    function renderPricingCategory(category) {
+        activeCategory = category;
+        const categoryPlans = plansData[category];
+        
+        // Render Left Column Tiers
+        tiersContainer.innerHTML = '';
+        categoryPlans.forEach((plan, index) => {
+            const card = document.createElement('div');
+            card.className = `tier-item-card ${index === activeTierIndex ? 'active' : ''}`;
+            card.setAttribute('data-index', index);
             
-            // Update Title, Desc, Amount, Unit, USD
-            document.getElementById(`${id}-title`).textContent = data.title;
-            document.getElementById(`${id}-desc`).textContent = data.desc;
-            document.getElementById(`price-val-${id}`).textContent = data.amount;
-            document.getElementById(`price-unit-${id}`).textContent = data.unit;
-            document.getElementById(`usd-val-${id}`).textContent = data.usd;
-
-            // Rebuild Features List
-            const listEl = document.getElementById(`${id}-features-list`);
-            if (listEl) {
-                listEl.innerHTML = '';
-                data.features.forEach(feat => {
-                    const li = document.createElement('li');
-                    if (feat.startsWith('-')) {
-                        li.className = 'disabled';
-                        li.innerHTML = `<i class="fa-solid fa-xmark"></i> ${feat.substring(1)}`;
-                    } else {
-                        li.innerHTML = `<i class="fa-solid fa-check"></i> ${feat}`;
-                    }
-                    listEl.appendChild(li);
-                });
+            // Add Recommended Badge if applicable
+            let recBadgeHtml = '';
+            if (plan.recommended) {
+                recBadgeHtml = `<span class="tier-rec-badge">RECOMMENDED</span>`;
             }
+            
+            card.innerHTML = `
+                ${recBadgeHtml}
+                <div class="tier-left-info">
+                    <span class="tier-label-name">${plan.tier}</span>
+                    <h3 class="tier-title-text">${plan.title}</h3>
+                    <p class="tier-desc-text">${plan.desc}</p>
+                </div>
+                <div class="tier-right-price">
+                    <span class="tier-price-amount">${plan.price}</span>
+                    <span class="tier-price-unit">${plan.unit}</span>
+                </div>
+            `;
+            
+            // Tier click handler
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.tier-item-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                activeTierIndex = index;
+                renderSpecCard(categoryPlans[index]);
+            });
+            
+            tiersContainer.appendChild(card);
         });
-
-        // Update Fineprint
-        const fineprint = document.getElementById('pricing-fineprint');
-        if (fineprint) {
-            if (mode === 'kg') {
-                fineprint.innerHTML = '* Note: Minimum weight booking is 3 kg. Orders over 150k VND get free pickup & delivery within 3km.';
-            } else {
-                fineprint.innerHTML = '* Note: No minimum order count for single items. Orders over 150k VND get free pickup & delivery within 3km.';
-            }
-        }
+        
+        // Render Right Column Spec Card
+        renderSpecCard(categoryPlans[activeTierIndex]);
     }
 
-    if (pricingToggle) {
-        pricingToggle.addEventListener('click', () => {
-            pricingToggle.classList.toggle('toggled');
-            if (pricingToggle.classList.contains('toggled')) {
-                labelKg.classList.remove('active');
-                labelItem.classList.add('active');
-                updatePricingCards('item');
-            } else {
-                labelItem.classList.remove('active');
-                labelKg.classList.add('active');
-                updatePricingCards('kg');
-            }
+    function renderSpecCard(plan) {
+        let featuresHtml = '';
+        plan.features.forEach(feat => {
+            featuresHtml += `<li><i class="fa-solid fa-circle-check"></i> ${feat}</li>`;
+        });
+        
+        specContainer.innerHTML = `
+            <div class="spec-header">
+                <div class="spec-header-left">
+                    <span class="spec-plan-specs">${plan.tier} — PLAN SPECS</span>
+                    <h3 class="spec-plan-title">${plan.title}</h3>
+                </div>
+                <div class="spec-header-right">
+                    <span class="spec-turnaround-label">TURNAROUND</span>
+                    <span class="spec-turnaround-val">${plan.turnaround}</span>
+                </div>
+            </div>
+            
+            <p class="spec-tagline">${plan.tagline}</p>
+            
+            <ul class="spec-features-list">
+                ${featuresHtml}
+            </ul>
+            
+            <div class="spec-suitable-box">
+                <span class="spec-suitable-label">SUITABLE FOR</span>
+                <p class="spec-suitable-val">${plan.suitable}</p>
+            </div>
+            
+            <a href="https://zalo.me/0978900615" target="_blank" class="spec-action-btn" style="text-decoration: none;">
+                ${plan.btnText} <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+        `;
+    }
+
+    // Initialize pricing
+    if (tiersContainer && specContainer) {
+        renderPricingCategory('laundry');
+
+        // Tab buttons click handler
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const category = tab.getAttribute('data-category');
+                activeTierIndex = 2; // Default to Tier 3 on tab change
+                renderPricingCategory(category);
+            });
         });
     }
 
@@ -508,6 +488,86 @@ document.addEventListener('DOMContentLoaded', () => {
                     const bgY = 35 + (scrollRatio * 30); // scale background Y pos from 35% to 65%
                     ph.style.backgroundPosition = `50% ${bgY}%`;
                 }
+            });
+        });
+    }
+
+    /* ==========================================
+       9. TEAM CARD SLIDESHOW CONTROLLER
+       ========================================== */
+    const slides = document.querySelectorAll('.team-slide');
+    const dots = document.querySelectorAll('.slide-dot');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    if (slides.length > 0) {
+        let currentSlideIdx = 0;
+        let slideInterval = setInterval(nextSlide, 4000); // Auto rotate every 4 seconds
+
+        function showSlide(index) {
+            // Handle wrap-around
+            if (index >= slides.length) {
+                currentSlideIdx = 0;
+            } else if (index < 0) {
+                currentSlideIdx = slides.length - 1;
+            } else {
+                currentSlideIdx = index;
+            }
+
+            // Update active classes on slides
+            slides.forEach((slide, idx) => {
+                if (idx === currentSlideIdx) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            // Update active classes on dots
+            dots.forEach((dot, idx) => {
+                if (idx === currentSlideIdx) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            showSlide(currentSlideIdx + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlideIdx - 1);
+        }
+
+        // Reset interval on manual control click
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent card hover triggers if any
+                nextSlide();
+                resetInterval();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+                resetInterval();
+            });
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showSlide(idx);
+                resetInterval();
             });
         });
     }
