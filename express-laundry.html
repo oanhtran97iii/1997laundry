@@ -19,9 +19,65 @@
         /* Redesigned Premium Hero Section */
         .express-hero-redesigned {
             padding: 160px 0 100px 0;
-            background: linear-gradient(135deg, #f8faff 0%, #f1f5f9 100%);
+            background: #f8faff;
             position: relative;
             overflow: hidden;
+        }
+
+        /* Animated Background Blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            animation: floatBlob 22s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(242, 106, 25, 0.25); /* Orange */
+            top: -100px;
+            left: -150px;
+            animation-duration: 26s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(147, 197, 253, 0.28); /* Light blue */
+            bottom: -150px;
+            right: -100px;
+            animation-duration: 32s;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 450px;
+            height: 450px;
+            background-color: rgba(244, 63, 94, 0.15); /* Soft pink */
+            top: 25%;
+            left: 40%;
+            animation-duration: 20s;
+            animation-delay: -10s;
+        }
+
+        @keyframes floatBlob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+            33% {
+                transform: translate(50px, -70px) scale(1.15);
+            }
+            66% {
+                transform: translate(-40px, 40px) scale(0.9);
+            }
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
         }
 
         .hero-redesigned-container {
@@ -1247,6 +1303,11 @@
         </div>
     </header>    <!-- Express Laundry Redesigned Hero Section -->
     <section class="express-hero-redesigned">
+        <!-- Floating Animated Background Blobs -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <div class="hero-blob blob-3"></div>
+
         <div class="container hero-redesigned-container">
             <!-- Left Side: Title, Desc, and Pill CTA Button -->
             <div class="hero-left-content">
