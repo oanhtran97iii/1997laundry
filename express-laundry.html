@@ -662,6 +662,26 @@
             box-shadow: 0 15px 40px rgba(9, 0, 45, 0.05);
         }
 
+        .express-card-premium.recommended-card {
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 15px 40px rgba(242, 106, 25, 0.08);
+        }
+        
+        .express-card-premium.recommended-card::before {
+            content: "RECOMMENDED";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-accent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
         .express-card-graphic {
             position: relative;
             width: 170px;
@@ -1310,51 +1330,7 @@
                 <p class="pricing-express-section-subtitle">Please note that if you have multiple bags of laundry and request that each bag be washed separately, each bag will be charged independently based on the service you select.</p>
 
                 <div class="pricing-express-grid">
-                    <!-- Card 1: 24-Hour Standard -->
-                    <div class="express-card-premium">
-                        <div class="express-card-graphic">
-                            <img src="assets/images/express_standard.jpg" alt="24-Hour Standard">
-                        </div>
-                        <h3>24-Hour Standard</h3>
-                        <div class="express-price">105.000</div>
-                        <p class="express-desc-info">For up to 3kg</p>
-                        <p class="express-desc-info">Available from 07:00 - 22:00</p>
-                        <p class="express-desc-time">Return within 24 hours</p>
-                        
-                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
-                        
-                        <ul class="express-specs-list">
-                            <li>Individual wash & tumble dry</li>
-                            <li>Separate wash for whites: <strong>Included</strong></li>
-                            <li>Extra weight: +30,000 VND/kg</li>
-                            <li>Pickup & delivery: +40,000 VND</li>
-                            <li>8% VAT: <strong>Included</strong></li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 2: Same-Day Express -->
-                    <div class="express-card-premium">
-                        <div class="express-card-graphic">
-                            <img src="assets/images/express_sameday.jpg" alt="Same-Day Express">
-                        </div>
-                        <h3>Same-Day Express</h3>
-                        <div class="express-price">180.000</div>
-                        <p class="express-desc-info">For up to 5kg</p>
-                        <p class="express-desc-info">Available from 07:30 - 15:00</p>
-                        <p class="express-desc-time">After 14:00 → next morning delivery</p>
-                        
-                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
-                        
-                        <ul class="express-specs-list">
-                            <li>Fast individual wash & dry</li>
-                            <li>Separate wash for whites: <strong>Included</strong></li>
-                            <li>Extra weight: +30,000 VND/kg</li>
-                            <li>Free pickup & delivery (&lt; 3km)</li>
-                            <li>8% VAT: <strong>Included</strong> (No iron)</li>
-                        </ul>
-                    </div>
-
-                    <!-- Card 3: 4-Hour Express -->
+                    <!-- Card 1: 4-Hour Express -->
                     <div class="express-card-premium">
                         <div class="express-card-graphic">
                             <img src="assets/images/express_4hrs.jpg" alt="4-Hour Express">
@@ -1377,6 +1353,50 @@
                             <li>Extra weight: +35,000 VND/kg</li>
                             <li>Free pickup & delivery (&lt; 3km)</li>
                             <li>8% VAT: <strong>Included</strong> (No iron)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Same-Day Express -->
+                    <div class="express-card-premium recommended-card">
+                        <div class="express-card-graphic">
+                            <img src="assets/images/express_sameday.jpg" alt="Same-Day Express">
+                        </div>
+                        <h3>Same-Day Express</h3>
+                        <div class="express-price">180.000</div>
+                        <p class="express-desc-info">For up to 5kg</p>
+                        <p class="express-desc-info">Available from 07:30 - 15:00</p>
+                        <p class="express-desc-time">After 14:00 → next morning delivery</p>
+                        
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
+                        
+                        <ul class="express-specs-list">
+                            <li>Fast individual wash & dry</li>
+                            <li>Separate wash for whites: <strong>Included</strong></li>
+                            <li>Extra weight: +30,000 VND/kg</li>
+                            <li>Free pickup & delivery (&lt; 3km)</li>
+                            <li>8% VAT: <strong>Included</strong> (No iron)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: 24-Hour Standard -->
+                    <div class="express-card-premium">
+                        <div class="express-card-graphic">
+                            <img src="assets/images/express_standard.jpg" alt="24-Hour Standard">
+                        </div>
+                        <h3>24-Hour Standard</h3>
+                        <div class="express-price">105.000</div>
+                        <p class="express-desc-info">For up to 3kg</p>
+                        <p class="express-desc-info">Available from 07:00 - 22:00</p>
+                        <p class="express-desc-time">Return within 24 hours</p>
+                        
+                        <a href="https://zalo.me/0978900615" target="_blank" class="btn-express-book">Book Now</a>
+                        
+                        <ul class="express-specs-list">
+                            <li>Individual wash & tumble dry</li>
+                            <li>Separate wash for whites: <strong>Included</strong></li>
+                            <li>Extra weight: +30,000 VND/kg</li>
+                            <li>Pickup & delivery: +40,000 VND</li>
+                            <li>8% VAT: <strong>Included</strong></li>
                         </ul>
                     </div>
                 </div>
