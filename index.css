@@ -797,8 +797,8 @@ img {
    PROCESS / HOW IT WORKS SECTION
    ========================================== */
 .steps-section {
-    padding: 55px 0;
-    background-color: var(--color-bg-light); /* White background */
+    padding: 70px 0;
+    background-color: #fdfbf7;
 }
 
 .steps-section .section-badge {
@@ -886,8 +886,8 @@ img {
 }
 
 .services-section {
-    padding: 55px 0;
-    background-color: var(--color-bg-soft);
+    padding: 70px 0;
+    background: linear-gradient(180deg, var(--color-bg-soft) 0%, #ffffff 100%);
 }
 
 .featured-services-grid {
@@ -1094,8 +1094,8 @@ img {
    SHOP GALLERY SECTION
    ========================================== */
 .shop-gallery-section {
-    padding: 60px 0;
-    background-color: #ffffff;
+    padding: 70px 0;
+    background: linear-gradient(180deg, #fdfbf7 0%, var(--color-bg-soft) 100%);
 }
 
 .shop-gallery-grid {
@@ -1519,8 +1519,8 @@ img {
    VALUE PROPOSITION & ACCORDION
    ========================================== */
 .value-prop-section {
-    padding: 55px 0;
-    background-color: var(--color-bg-light);
+    padding: 70px 0;
+    background-color: #f7faf9;
 }
 
 .val-container {
@@ -1730,8 +1730,8 @@ img {
    BENEFITS SECTION
    ========================================== */
 .benefits-section {
-    padding: 55px 0;
-    background-color: var(--color-bg-light);
+    padding: 70px 0;
+    background-color: #fcfbf9;
 }
 
 .benefits-grid {
@@ -2417,8 +2417,8 @@ img {
    GOOGLE REVIEWS SECTION
    ========================================== */
 .google-reviews-section {
-    padding: 55px 0;
-    background-color: var(--color-bg-soft);
+    padding: 70px 0;
+    background: linear-gradient(180deg, #fcfbf9 0%, var(--color-bg-soft) 100%);
 }
 
 .reviews-photo-grid {
