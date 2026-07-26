@@ -887,8 +887,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('chatbot-send-btn');
     const floatBtn = document.querySelector('.floating-chatbot-widget');
 
-    // Intercept floating button click
+    // Dynamically build and group floating contact buttons (Zalo, WA, Chatbot)
     if (floatBtn) {
+        const contactGroup = document.createElement('div');
+        contactGroup.className = 'floating-contact-group';
+        
+        // Insert container right before floatBtn in DOM
+        floatBtn.parentNode.insertBefore(contactGroup, floatBtn);
+        
+        // Create Zalo button
+        const zaloBtn = document.createElement('a');
+        zaloBtn.href = 'https://zalo.me/0866137043';
+        zaloBtn.target = '_blank';
+        zaloBtn.className = 'floating-contact-btn floating-btn-zalo';
+        zaloBtn.innerHTML = `
+            <div class="floating-contact-label">Zalo</div>
+            <div class="floating-contact-circle"><i class="fa-solid fa-comments"></i></div>
+        `;
+        
+        // Create WhatsApp button
+        const waBtn = document.createElement('a');
+        waBtn.href = 'https://wa.me/84866137043';
+        waBtn.target = '_blank';
+        waBtn.className = 'floating-contact-btn floating-btn-wa';
+        waBtn.innerHTML = `
+            <div class="floating-contact-label">WhatsApp</div>
+            <div class="floating-contact-circle"><i class="fa-brands fa-whatsapp"></i></div>
+        `;
+        
+        // Convert old floatBtn into the group chatbot button format
+        floatBtn.className = 'floating-contact-btn floating-btn-chatbot';
+        floatBtn.innerHTML = `
+            <div class="floating-contact-label">Chatbot</div>
+            <div class="floating-contact-circle"><i class="fa-solid fa-robot"></i></div>
+        `;
+        
+        // Append all three in the vertical stack
+        contactGroup.appendChild(zaloBtn);
+        contactGroup.appendChild(waBtn);
+        contactGroup.appendChild(floatBtn);
+
+        // Intercept chatbot button click
         floatBtn.addEventListener('click', (e) => {
             e.preventDefault();
             toggleChatbot();

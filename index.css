@@ -3585,56 +3585,114 @@ img {
     }
 }
 
-/* Floating Chatbot Widget */
-.floating-chatbot-widget {
+/* Floating Contact Group (Zalo, WA, Chatbot) */
+.floating-contact-group {
     position: fixed;
-    bottom: 95px;
-    right: 20px;
-    display: none;
-    align-items: center;
-    gap: 8px;
+    bottom: 30px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     z-index: 9998;
-    text-decoration: none;
 }
 
-.floating-chatbot-label {
+.floating-contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-contact-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+}
+
+.floating-contact-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.floating-btn-zalo .floating-contact-circle {
+    background-color: #0068ff;
+    box-shadow: 0 4px 15px rgba(0, 104, 255, 0.25);
+}
+
+.floating-btn-wa .floating-contact-circle {
+    background-color: #25d366;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+}
+
+.floating-btn-chatbot .floating-contact-circle {
     background-color: var(--color-accent);
+    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.25);
+    animation: pulseChat 2s infinite;
+}
+
+.floating-contact-label {
+    background-color: var(--color-bg-dark);
     color: #ffffff;
     font-family: var(--font-headline);
     font-size: 10px;
     font-weight: 750;
     padding: 6px 14px;
     border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(242, 106, 25, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
     white-space: nowrap;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
 }
 
-.floating-chatbot-label::after {
+.floating-contact-btn:hover .floating-contact-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.floating-contact-label::after {
     content: '';
     position: absolute;
-    right: -5px;
+    right: -4px;
     top: 50%;
     transform: translateY(-50%);
-    border-width: 5px 0 5px 5px;
+    border-width: 4px 0 4px 4px;
     border-style: solid;
-    border-color: transparent transparent transparent var(--color-accent);
+    border-color: transparent transparent transparent var(--color-bg-dark);
 }
 
-.floating-chatbot-circle {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
+/* Label colors matching buttons */
+.floating-btn-zalo .floating-contact-label {
+    background-color: #0068ff;
+}
+.floating-btn-zalo .floating-contact-label::after {
+    border-color: transparent transparent transparent #0068ff;
+}
+
+.floating-btn-wa .floating-contact-label {
+    background-color: #25d366;
+}
+.floating-btn-wa .floating-contact-label::after {
+    border-color: transparent transparent transparent #25d366;
+}
+
+.floating-btn-chatbot .floating-contact-label {
     background-color: var(--color-accent);
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
-    animation: pulseChat 2s infinite;
+}
+.floating-btn-chatbot .floating-contact-label::after {
+    border-color: transparent transparent transparent var(--color-accent);
 }
 
 @keyframes pulseChat {
@@ -3653,8 +3711,14 @@ img {
     .sticky-mobile-cta {
         display: flex;
     }
-    .floating-chatbot-widget {
-        display: flex;
+    .floating-contact-group {
+        bottom: 95px !important;
+        right: 15px !important;
+        gap: 8px !important;
+    }
+    /* Hide Zalo and WhatsApp floating buttons on mobile to avoid cluttering */
+    .floating-btn-zalo, .floating-btn-wa {
+        display: none !important;
     }
     body {
         padding-bottom: 100px !important;
