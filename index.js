@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnText: 'CHOOSE LUXURY EVENING WEAR',
                 recommended: true
             }
+        ]
     };
 
     // Parallel Vietnamese Plans Database
