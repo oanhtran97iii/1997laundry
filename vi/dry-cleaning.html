@@ -972,10 +972,35 @@
 
             /* Pricing Tabs Mobile Refinements */
             .pricing-tabs {
-                gap: 6px;
-                padding: 4px;
-                border-radius: 30px;
-                margin-bottom: 30px;
+                display: flex !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+                padding: 6px 15px 12px 15px;
+                margin-left: -15px;
+                margin-right: -15px;
+                gap: 10px;
+                border-radius: 0;
+                background: transparent;
+                box-shadow: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .pricing-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            .pricing-tab-btn {
+                flex-shrink: 0;
+                padding: 10px 18px;
+                font-size: 12px;
+                border-radius: 20px;
+                background-color: #ffffff;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            }
+            .pricing-tab-btn.active {
+                background-color: var(--color-accent);
+                color: #ffffff;
+                border-color: var(--color-accent);
             }
             .pricing-tab-btn {
                 padding: 8px 12px;
@@ -1108,6 +1133,69 @@
             .hero-secondary-links {
                 text-align: center !important;
                 margin-top: 15px !important;
+            }
+        }
+    
+        /* Tiered Price Layout & Mobile Adjustments */
+        .price-item-right-tiers {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .price-tier {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fcfbf9;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            padding: 6px 12px;
+            min-width: 100px;
+        }
+
+        .price-tier.premium {
+            border-color: rgba(242, 106, 25, 0.15);
+            background: rgba(242, 106, 25, 0.02);
+        }
+
+        .price-tier .tier-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+
+        .price-tier.premium .tier-label {
+            color: var(--color-accent);
+        }
+
+        .price-tier .tier-price {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .price-tier.premium .tier-price {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 576px) {
+            .price-item-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .price-item-right-tiers {
+                justify-content: flex-start;
+                gap: 10px;
+            }
+            .price-tier {
+                flex: 1;
+                padding: 6px 10px;
+                min-width: 0;
             }
         }
     </style>
@@ -1362,35 +1450,80 @@
                                 <h4>Áo Vest / Áo Dài (1 Món)</h4>
                                 <p>Bảo vệ đệm vai bên trong, lớp lót cấu trúc, hoặc các chi tiết thêu lụa tinh tế của trang phục truyền thống.</p>
                             </div>
-                            <div class="price-item-right">180,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">180.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">280.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Bộ Vest / Bộ Áo Dài (2 Món)</h4>
                                 <p>Giặt khô trọn bộ vest (áo khoác + quần) hoặc bộ áo dài 2 món tiêu chuẩn.</p>
                             </div>
-                            <div class="price-item-right">230,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">230.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">350.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Bộ Vest 3 Món (Vest + Áo Gile)</h4>
                                 <p>Bộ vest trang trọng 3 món (áo khoác, quần và áo gile) được ủi tỉ mỉ.</p>
                             </div>
-                            <div class="price-item-right">290,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">290.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">420.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Áo Phao / Dạ / Len Dáng Ngắn</h4>
                                 <p>Áo khoác mùa đông dáng ngắn, áo phao lông vũ siêu nhẹ, hoặc áo khoác len/dạ.</p>
                             </div>
-                            <div class="price-item-right">180,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">180.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">280.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Áo Phao / Dạ / Len Dáng Dài</h4>
                                 <p>Áo măng tô dáng dài, áo phao dáng dài, hoặc áo khoác dạ len pha cashmere dày.</p>
                             </div>
-                            <div class="price-item-right">230,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">230.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">350.000đ</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1404,132 +1537,283 @@
                                 <h4>Cà Vạt Lụa</h4>
                                 <p>Cà vạt lụa/polyester tinh tế được giặt khô để tránh vặn xoắn và giữ nguyên hình dáng.</p>
                             </div>
-                            <div class="price-item-right">60,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">60.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">120.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Áo Thun / Áo Ba Lỗ / Quần Short</h4>
                                 <p>Đồ mặc hàng ngày tiêu chuẩn được xử lý với dung môi hữu cơ nhẹ để bảo vệ sợi vải mềm mại.</p>
                             </div>
-                            <div class="price-item-right">70,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">70.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">140.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
                                 <h4>Áo Sơ Mi / Áo Kiểu</h4>
                                 <p>Áo cotton, linen, hoặc lụa được giặt khô nhẹ nhàng và ủi tay tỉ mỉ.</p>
                             </div>
-                            <div class="price-item-right">80,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">80.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">160.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Quần Tây / Váy Ngắn / Quần Jeans</h4>
-                                <p>Giữ nguyên form vải, đường nếp ly, và chi tiết mà không bị co rút do giặt nóng.</p>
+                                <h4>Quần Tây / Quần Jean / Kaki / Chân Váy</h4>
+                                <p>Giúp giữ nguyên form dáng, ly quần và các chi tiết mà không lo bị co rút do giặt nước nóng.</p>
                             </div>
-                            <div class="price-item-right">80,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">80.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">160.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Áo Len / Áo Hoodie / Váy Dài & Váy Xếp Ly</h4>
-                                <p>Ngăn chặn tình trạng giãn hoặc co rút sợi vải. Giữ cho các nếp ly sắc nét và chuẩn xác.</p>
+                                <h4>Áo Len / Hoodie / Chân Váy Xếp Ly</h4>
+                                <p>Ngăn ngừa co rút hay giãn sợi vải. Giữ các nếp xếp ly sắc nét và chuẩn dáng.</p>
                             </div>
-                            <div class="price-item-right">90,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">90.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">180.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Khăn Choàng (Mỏng)</h4>
-                                <p>Khăn choàng mỏng bằng lụa mềm, voan hoặc linen được xử lý cực kỳ cẩn thận.</p>
+                                <h4>Khăn Choàng Cổ (Mỏng)</h4>
+                                <p>Khăn choàng bằng lụa, voan, hoặc linen mỏng nhẹ được xử lý cực kỳ nhẹ nhàng.</p>
                             </div>
-                            <div class="price-item-right">90,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">90.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">180.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Dáng Ngắn / Nón Dạ & Nón Panama</h4>
-                                <p>Váy dạo phố dáng ngắn hoặc nón dạ/nón cói được giặt khô để giữ nguyên form dáng thiết kế.</p>
+                                <h4>Đầm Ngắn / Mũ Dạ & Panama</h4>
+                                <p>Đầm ngắn thường ngày hoặc mũ dạ len/mũ cói cấu trúc được giặt khô để giữ dáng mũ.</p>
                             </div>
-                            <div class="price-item-right">100,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">100.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">200.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Áo Len Dày</h4>
-                                <p>Hàng dệt kim dày, len dày, hoặc áo len cashmere được làm sạch mà không bị xù lông do ma sát.</p>
+                                <h4>Áo Len Dệt Dày</h4>
+                                <p>Đồ dệt kim nặng hơn, len dày, hoặc áo len cashmere được làm sạch không ma sát gây xù lông.</p>
                             </div>
-                            <div class="price-item-right">110,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">110.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">210.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Dáng Dài</h4>
-                                <p>Giữ nguyên độ rũ, đường may tinh xảo và lai váy của các chiếc đầm dài cao cấp.</p>
+                                <h4>Đầm Dài</h4>
+                                <p>Giữ được độ rủ mềm mại, đường may tinh tế và đường gấu váy của đầm dài cao cấp.</p>
                             </div>
-                            <div class="price-item-right">120,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">120.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">220.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Quần Len Dài / Khăn Choàng (Dày)</h4>
-                                <p>Các sợi len dày được dưỡng để luôn mềm mại, ấm áp và giữ form.</p>
+                                <h4>Quần Len Dài / Khăn Choàng Cổ (Dày)</h4>
+                                <p>Các sợi len nặng được dưỡng để duy trì độ mềm mại, ấm áp và chuẩn form dáng.</p>
                             </div>
-                            <div class="price-item-right">140,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">140.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">240.000đ</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Category 3: Formal Wear, Leather & Special Items -->
+                <!-- Category 3: Special & Leather -->
                 <div class="pricing-category-card" id="special-items-cat">
                     <h3><i class="fa-solid fa-gem"></i> Đồ Đặc Biệt & Đồ Da</h3>
                     <div class="price-list-items">
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Thiết Kế (Ngắn / Dài)</h4>
-                                <p>Các loại váy thiết kế nói chung với chất liệu vải phức tạp (ren, tơ nhân tạo, satin, hoặc xếp ly nhẹ).</p>
+                                <h4>Đầm Thiết Kế (Dáng Ngắn / Dài)</h4>
+                                <p>Đầm thiết kế nói chung với các chi tiết phức tạp (ren, voan, lụa, xếp ly nhẹ).</p>
                             </div>
-                            <div class="price-item-right">130,000 - 180,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">150.000đ - 200.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">280.000đ - 350.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Dạ Hội / Váy Cưới (1 Lớp)</h4>
-                                <p>Đầm dạ hội tinh tế, đầm lụa, hoặc váy cưới dáng trơn 1 lớp đơn giản.</p>
+                                <h4>Đầm Dạ Hội / Áo Cưới (1 Lớp)</h4>
+                                <p>Đầm dạ hội cao cấp, đầm lụa dài, hoặc áo cưới dáng suông 1 lớp đơn giản.</p>
                             </div>
-                            <div class="price-item-right">230,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">230.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">380.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Cưới (2-3 Lớp)</h4>
-                                <p>Váy cưới nhiều lớp bằng ren, voan lướt, organza, hoặc satin được xử lý với sự cẩn trọng tối đa.</p>
+                                <h4>Áo Cưới (2-3 Lớp)</h4>
+                                <p>Áo cưới nhiều lớp phối ren, voan, lưới, satin,... được xử lý vô cùng cẩn thận.</p>
                             </div>
-                            <div class="price-item-right">280,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">280.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">450.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Váy Cưới Lộng Lẫy (Tùng To)</h4>
-                                <p>Váy cưới dáng xòe tùng to với nhiều lớp dày, đuôi dài, hoặc đính đá/cườm dày đặc.</p>
+                                <h4>Áo Cưới Hoàng Gia (Đầm Xòe Rộng)</h4>
+                                <p>Áo cưới dáng công chúa xòe phồng bồng bềnh với nhiều lớp đuôi dài hoặc đính đá lấp lánh.</p>
                             </div>
-                            <div class="price-item-right">380,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">380.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">600.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Áo Khoác Da / Lông (Ngắn)</h4>
-                                <p>Áo khoác da/da lộn cao cấp hoặc áo khoác lông nhân tạo dáng ngắn được làm sạch với các loại dầu bảo dưỡng chuyên dụng.</p>
+                                <h4>Áo Khoác Da / Áo Lông Dáng Ngắn</h4>
+                                <p>Áo khoác da thật, da lộn hoặc áo lông thú nhân tạo dáng ngắn được dưỡng mềm với dầu dưỡng chuyên dụng.</p>
                             </div>
-                            <div class="price-item-right">230,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">230.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">380.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Áo Khoác Da / Lông (Dài)</h4>
-                                <p>Áo măng tô dáng dài làm từ da thật, da lộn, hoặc các lớp lông thú sang trọng, dày dặn.</p>
+                                <h4>Áo Khoác Da / Áo Lông Dáng Dài</h4>
+                                <p>Áo khoác măng tô dáng dài bằng da thật, da lộn, hoặc áo choàng lông dày sang trọng.</p>
                             </div>
-                            <div class="price-item-right">280,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">280.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">450.000đ</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="price-item-row">
                             <div class="price-item-left">
-                                <h4>Chăn Lông (Lông Cừu)</h4>
-                                <p>Chăn lông cừu dày, chăn nỉ lông, hoặc chăn cashmere nặng được giặt khô để duy trì độ phồng xốp.</p>
+                                <h4>Chăn Lông (Lông Cừu / Cashmere)</h4>
+                                <p>Chăn lông cừu dày, mền mịn, hoặc chăn cashmere nặng được giặt khô để giữ độ tơi xốp, mềm mại.</p>
                             </div>
-                            <div class="price-item-right">330,000 VND</div>
+                            <div class="price-item-right-tiers">
+                                <div class="price-tier">
+                                    <span class="tier-label">Tiêu Chuẩn</span>
+                                    <span class="tier-price">330.000đ</span>
+                                </div>
+                                <div class="price-tier premium">
+                                    <span class="tier-label">Chuyên Sâu <i class="fa-solid fa-crown" style="color: #FFBB00;"></i></span>
+                                    <span class="tier-price">500.000đ</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </section>
 
