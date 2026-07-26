@@ -3769,3 +3769,24 @@ img {
     }
 }
 
+/* ==========================================
+   VIETNAMESE NAVIGATION OPTIMIZATIONS
+   ========================================== */
+html[lang="vi"] .nav-item {
+    font-size: 10.5px !important;
+    letter-spacing: 0.4px !important;
+}
+
+html[lang="vi"] .nav-menu {
+    gap: 9px !important;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    html[lang="vi"] .nav-item {
+        font-size: 10px !important;
+    }
+    html[lang="vi"] .nav-menu {
+        gap: 6px !important;
+    }
+}
+
