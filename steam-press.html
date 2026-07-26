@@ -668,6 +668,13 @@
             }
         }
 
+        .add-service-row:hover {
+            transform: translateY(-2px);
+            border-color: rgba(242, 106, 25, 0.2) !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 10px 25px rgba(242, 106, 25, 0.05);
+        }
+
         @media (max-width: 768px) {
             .delivery-notice-box {
                 flex-direction: column;
@@ -1078,56 +1085,84 @@
             </div>
 
             <!-- Additional Services (Dịch vụ khác) Section -->
-            <div class="additional-services-box" style="margin-top: 50px; max-width: 800px; margin-left: auto; margin-right: auto; background-color: #ffffff; border-radius: 24px; padding: 40px 35px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.02); border: 1px solid rgba(0, 0, 0, 0.03);">
-                <div class="text-center" style="margin-bottom: 30px;">
-                    <h3 style="font-family: var(--font-headline); font-size: 24px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 5px 0; letter-spacing: 1px; text-transform: uppercase;">Dịch Vụ Khác</h3>
-                    <p style="font-family: var(--font-body); font-style: italic; font-size: 14.5px; color: var(--color-accent); margin: 0;">Additional Services</p>
+            <div class="additional-services-box" style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto; background: #ffffff; border-radius: 30px; padding: 45px 40px; box-shadow: 0 20px 50px rgba(9, 0, 45, 0.05); border: 1px solid rgba(242, 106, 25, 0.08); position: relative; overflow: hidden;">
+                <!-- Decorative Top Gradient Line -->
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--color-accent) 0%, #ff8a3d 100%);"></div>
+                
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 12px;">Extra Care Services</span>
+                    <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-bg-dark); margin: 0; letter-spacing: -0.5px;">Specialized Add-On Services</h3>
                 </div>
                 
-                <div class="additional-services-list" style="display: flex; flex-direction: column;">
-                    <!-- Row 1 -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.06); gap: 15px;">
-                        <div class="add-service-left" style="text-align: left;">
-                            <h4 style="font-size: 14.5px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 3px 0;">Tẩy vết bẩn nhỏ (Cấp độ 1)</h4>
-                            <span style="font-size: 12px; color: var(--color-text-gray); font-style: italic;">Light Stain Removal / Stain Spotting - little</span>
+                <div class="additional-services-list" style="display: flex; flex-direction: column; gap: 8px;">
+                    <!-- Row 1: Light Stain Removal -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Light Stain Spotting (Level 1)</h4>
+                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Pre-treatment for minor spills, collar oil, or light makeup stains.</p>
+                            </div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap;">79,000đ</div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ</div>
                     </div>
                     
-                    <!-- Row 2 -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.06); gap: 15px;">
-                        <div class="add-service-left" style="text-align: left;">
-                            <h4 style="font-size: 14.5px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 3px 0;">Tẩy vết bẩn nhiều (Cấp độ 2)</h4>
-                            <span style="font-size: 12px; color: var(--color-text-gray); font-style: italic;">Heavy Stain Removal / Stain Spotting - more</span>
+                    <!-- Row 2: Heavy Stain Removal -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-soap"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Heavy Stain Removal (Level 2)</h4>
+                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Intense pre-treatment for heavy stains like ink, wine, blood, or stubborn grease.</p>
+                            </div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap;">129,000đ</div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">130,000đ</div>
                     </div>
                     
-                    <!-- Row 3 -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.06); gap: 15px;">
-                        <div class="add-service-left" style="text-align: left;">
-                            <h4 style="font-size: 14.5px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 3px 0;">Ủi đồ trơn</h4>
-                            <span style="font-size: 12px; color: var(--color-text-gray); font-style: italic;">Iron normal</span>
+                    <!-- Row 3: Iron Normal -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Standard Garment Pressing</h4>
+                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Steam pressing for standard items like shirts, t-shirts, trousers, or shorts.</p>
+                            </div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap;">49,000đ</div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">50,000đ</div>
                     </div>
                     
-                    <!-- Row 4 -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(0,0,0,0.06); gap: 15px;">
-                        <div class="add-service-left" style="text-align: left;">
-                            <h4 style="font-size: 14.5px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 3px 0;">Ủi váy xếp ly</h4>
-                            <span style="font-size: 12px; color: var(--color-text-gray); font-style: italic;">Iron pleated skirt</span>
+                    <!-- Row 4: Iron Pleated Skirt -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-scissors"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Pleated Garment Pressing</h4>
+                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Meticulous line pressing for pleated skirts, formal trousers, or pleated dresses.</p>
+                            </div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap;">69,000đ</div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">70,000đ</div>
                     </div>
                     
-                    <!-- Row 5 -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; gap: 15px;">
-                        <div class="add-service-left" style="text-align: left;">
-                            <h4 style="font-size: 14.5px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 3px 0;">Ủi Vest</h4>
-                            <span style="font-size: 12px; color: var(--color-text-gray); font-style: italic;">Iron vest</span>
+                    <!-- Row 5: Iron Vest -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Formal Suit Pressing</h4>
+                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Tailored pressing for suit jackets, blazers, vests, or traditional formal outerwear.</p>
+                            </div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap;">79,000đ</div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ</div>
                     </div>
                 </div>
             </div>
