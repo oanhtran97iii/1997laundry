@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         express: {
-            text: "<strong>Express Laundry (Giặt Sấy Lấy Liền):</strong><br>• Standard 24h: 15k/kg (whites separate wash +30k/load).<br>• Same-Day (6-8h): 25k/kg.<br>• 4H Super Express: 35k/kg.<br><br>All loads are washed 100% individually in cold water and dried at 60°C.",
+            text: "<strong>Express Laundry (Giặt Sấy Lấy Liền):</strong><br>• 24-Hour Standard: 105,000 VND (up to 3kg) (whites separate wash +30k/load)<br>• Same-Day Express (6-8h): 180,000 VND (up to 5kg)<br>• 4-Hour Super Express: 220,000 VND (up to 5kg)<br><br>* Extra weight: +30k/kg (+35k/kg for 4h express). All loads washed individually.",
             options: [
                 { text: "📅 Book Express Laundry", action: "book_wa" },
                 { text: "🔙 Main Menu", next: "start" }
@@ -603,21 +603,21 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         shoes: {
-            text: "<strong>Shoes & Bag Spa:</strong><br>Every shoe and luxury handbag is cleaned 100% by hand using premium organic conditioners (Saphir care), sterilized with UVC rays, and dried in controlled rooms.<br><br>• Basic Sneaker Clean: 90,000 VND<br>• Premium Leather Spa: 180,000 VND<br>• Luxury Shoe Restoration: 350,000 VND",
+            text: "<strong>Shoes & Bag Spa (Vệ Sinh Giày & Đồ Da):</strong><br>Cleaned 100% by hand using premium organic conditioners (Saphir care), UVC sanitized, and low-temp dried.<br><br>• Basic Clean: 150,000 VND<br>• Special Material (Suede, Nubuck, Silk): 220,000 VND<br>• Express Deep Clean (24h): 250,000 VND",
             options: [
                 { text: "📅 Book Shoe Spa", action: "book_zalo" },
                 { text: "🔙 Main Menu", next: "start" }
             ]
         },
         press: {
-            text: "<strong>Steam Pressing (Ủi Hơi Nước):</strong><br>• Casual Wear Pressing: 15,000 VND/piece.<br>• Professional Hand & Vertical Steam Pressing (Suits, gowns): starts from 40,000 VND/piece.<br><br>We use high-pressure vertical steam tables to restore fabric drape and structure without causing shine or fiber damage.",
+            text: "<strong>Steam Pressing (Ủi Hơi Nước):</strong><br>• Steam Press & Laundry (Từng món): from 50,000 VND/piece.<br>• Pressing Only (Ủi hơi nước đồ thường): 50,000 VND/piece.<br>• Formal Suit Pressing (Ủi Suit/Blazer): 80,000 VND/piece.<br><br>Done on vertical steam tables to restore shape without heat marks.",
             options: [
                 { text: "📅 Book Pressing", action: "book_wa" },
                 { text: "🔙 Main Menu", next: "start" }
             ]
         },
         bedding: {
-            text: "<strong>Bedding & Curtain Cleaning:</strong><br>• Bedsheets, duvets, comforters: 60,000 VND/kg.<br>• Curtain package: includes home removal/dismantling, deep wash, steam folding, and re-hanging. Starts from 150,000 VND/panel.",
+            text: "<strong>Bedding & Curtain Care (Chăn Ga Gối & Rèm):</strong><br>• Bedsheets & Linens: 60,000 VND/kg (under 2kg: 120k flat rate).<br>• Mattress Topper: from 230,000 VND.<br><br>✨ Free Curtain Removal & Installation! (Tháo lắp rèm miễn phí).",
             options: [
                 { text: "📅 Book Bedding/Curtain", action: "book_wa" },
                 { text: "🔙 Main Menu", next: "start" }
