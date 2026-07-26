@@ -316,6 +316,50 @@
             margin-top: 4px;
         }
 
+        /* Compact Hero Overrides */
+        .hero-section {
+            padding: 110px 0 45px 0 !important;
+        }
+        .hero-title {
+            font-size: 40px !important;
+            margin-top: 10px !important;
+            margin-bottom: 10px !important;
+        }
+        .hero-subtitle {
+            font-size: 13.5px !important;
+            margin-bottom: 15px !important;
+        }
+        .hero-specs-row-new {
+            margin-top: 12px !important;
+            margin-bottom: 5px !important;
+            gap: 12px !important;
+        }
+        .spec-item-new span {
+            font-size: 12px !important;
+        }
+        .hero-actions-new {
+            margin-top: 20px !important;
+            margin-bottom: 10px !important;
+        }
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            padding: 11px 20px !important;
+            font-size: 13px !important;
+        }
+        .overlapping-hero-wrapper {
+            height: 350px !important;
+            max-width: 520px !important;
+        }
+        .shop-bg-card {
+            width: 360px !important;
+            height: 350px !important;
+        }
+        .featured-menu-card {
+            width: 320px !important;
+            height: 315px !important;
+            padding: 18px 20px !important;
+            top: 18px !important;
+        }
+
         /* Responsive Breakpoints for Redesigned Hero */
         @media (max-width: 1024px) {
             .hero-redesigned-container {
@@ -346,17 +390,25 @@
 
         @media (max-width: 768px) {
             .hero-section {
-                padding: 95px 0 40px 0 !important;
+                padding: 85px 0 20px 0 !important;
             }
             .stats-banner-container {
-                margin-top: 25px !important;
+                margin-top: 20px !important;
             }
             .hero-main-title {
-                font-size: 36px;
+                font-size: 30px !important;
             }
-            .worker-image-card {
-                width: 320px;
-                height: 420px;
+            .hero-title {
+                font-size: 32px !important;
+            }
+            .shop-bg-card {
+                height: 180px !important;
+            }
+            .overlapping-hero-wrapper {
+                gap: 15px !important;
+            }
+            .featured-menu-card {
+                padding: 16px 18px !important;
             }
             .stats-metrics-wrapper {
                 flex-direction: row;
@@ -1535,12 +1587,12 @@
         <div class="container hero-container" style="position: relative; z-index: 5;">
             <!-- Left Side: Custom Text & Details -->
             <div class="hero-content">
-                <span class="badge" id="hero-badge">FAST & PREMIUM LAUNDRY</span>
-                
-                <!-- Trust Rating Badge -->
-                <div class="hero-trust-badge" style="margin-top: 15px;">
-                    <i class="fa-solid fa-star"></i>
-                    <span>4.9/5 Google Maps Rating (1,500+ Reviews)</span>
+                <div class="hero-badges-wrapper" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <span class="badge" id="hero-badge" style="margin: 0;">FAST & PREMIUM LAUNDRY</span>
+                    <div class="hero-trust-badge" style="margin: 0;">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9/5 Google Maps Rating (1,500+ Reviews)</span>
+                    </div>
                 </div>
 
                 <h1 class="hero-title" id="hero-headline" style="margin-top: 15px;">Get your laundry <span class="text-orange">cleaned & folded</span><br>in no time.</h1>
@@ -2116,6 +2168,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Read More on Google Maps link -->
+            <div class="text-center" style="margin-top: 35px;">
+                <a href="https://maps.app.goo.gl/oMupfgykWjCDoFRy7" target="_blank" class="google-maps-link" style="font-family: var(--font-headline); font-size: 13.5px; font-weight: 700; color: var(--color-accent); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: color 0.3s ease;">
+                    <i class="fa-brands fa-google" style="font-size: 14px;"></i>
+                    <span>Read more reviews on our Google Maps page</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
+                </a>
+            </div>
+            
+            <style>
+                .google-maps-link:hover {
+                    color: var(--color-bg-dark) !important;
+                }
+            </style>
         </div>
     </section>
 
