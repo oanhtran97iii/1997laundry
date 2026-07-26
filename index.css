@@ -797,7 +797,7 @@ img {
    PROCESS / HOW IT WORKS SECTION
    ========================================== */
 .steps-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-light); /* White background */
 }
 
@@ -886,7 +886,7 @@ img {
 }
 
 .services-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-soft);
 }
 
@@ -1172,7 +1172,7 @@ img {
    PRICING SECTION WITH TOGGLE
    ========================================== */
 .pricing-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-soft);
 }
 
@@ -1519,7 +1519,7 @@ img {
    VALUE PROPOSITION & ACCORDION
    ========================================== */
 .value-prop-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-light);
 }
 
@@ -1730,7 +1730,7 @@ img {
    BENEFITS SECTION
    ========================================== */
 .benefits-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-light);
 }
 
@@ -1775,7 +1775,7 @@ img {
    TESTIMONIALS SECTION
    ========================================== */
 .testimonials-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-light);
 }
 
@@ -2126,7 +2126,7 @@ img {
    TEAM SECTION
    ========================================== */
 .team-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-light);
 }
 
@@ -2417,7 +2417,7 @@ img {
    GOOGLE REVIEWS SECTION
    ========================================== */
 .google-reviews-section {
-    padding: 100px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-soft);
 }
 
@@ -2817,7 +2817,7 @@ img {
    FAQ & NEW SECTIONS ADDITIONS
    ========================================== */
 .faq-section {
-    padding: 80px 0;
+    padding: 50px 0;
     background-color: var(--color-bg-light);
 }
 
@@ -2915,7 +2915,7 @@ img {
 
 /* Delivery Coverage Section */
 .delivery-coverage-section {
-    padding: 90px 0;
+    padding: 55px 0;
     background-color: var(--color-bg-soft); /* Light gray background */
     border-top: 1px solid var(--color-border-light);
     border-bottom: 1px solid var(--color-border-light);
@@ -3466,4 +3466,19 @@ img {
     color: #ffffff !important;
     box-shadow: 0 8px 25px rgba(242, 106, 25, 0.18);
     transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .steps-section,
+    .services-section,
+    .pricing-section,
+    .value-prop-section,
+    .benefits-section,
+    .testimonials-section,
+    .team-section,
+    .google-reviews-section,
+    .faq-section,
+    .delivery-coverage-section {
+        padding: 30px 0 !important;
+    }
 }
