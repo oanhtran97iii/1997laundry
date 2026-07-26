@@ -497,13 +497,12 @@
             background-color: #ffffff;
             border: 1px solid rgba(0, 0, 0, 0.05);
             border-radius: 20px;
-            padding: 30px 25px;
-            box-shadow: 0 5px 20px rgba(9, 0, 45, 0.01);
+            padding: 24px;
+            box-shadow: 0 5px 20px rgba(9, 0, 45, 0.012);
             transition: all 0.3s ease;
             text-align: left;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .pricing-item-card:hover {
@@ -519,87 +518,75 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .pricing-item-card h4 {
             font-family: var(--font-headline);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: var(--color-bg-dark);
             margin: 0 0 4px 0;
+            line-height: 1.4;
         }
 
         .pricing-item-card span.sub-title-vn {
             font-family: var(--font-body);
-            font-size: 13px;
+            font-size: 12.5px;
             color: var(--color-text-gray);
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 0;
             font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .card-footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 16px;
+            margin-top: 16px;
+            width: 100%;
         }
 
         .card-price-row {
             display: flex;
             align-items: baseline;
-            gap: 4px;
-            margin-bottom: 25px;
+            gap: 3px;
+            margin-bottom: 0;
         }
 
         .card-price-row .price {
             font-family: var(--font-headline);
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--color-bg-dark);
         }
 
         .card-price-row .unit {
-            font-size: 13px;
+            font-size: 11.5px;
             color: var(--color-text-gray);
             font-weight: 500;
         }
 
-        .card-specs-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-            border-top: 1px dashed rgba(0,0,0,0.06);
-            padding-top: 15px;
-        }
-
-        .card-specs-list li {
-            font-family: var(--font-body);
-            font-size: 12.5px;
-            color: var(--color-text-gray);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .card-specs-list li i {
-            color: #22c55e;
-            font-size: 12px;
-        }
-
         .btn-card-book {
-            display: block;
-            width: 100%;
-            text-align: center;
+            display: inline-block;
             background-color: var(--color-bg-dark);
             color: #ffffff !important;
-            padding: 10px 0;
+            padding: 8px 16px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 11.5px;
             text-decoration: none;
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
+            text-align: center;
         }
 
         .btn-card-book:hover {
             background-color: var(--color-accent);
-            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+            box-shadow: 0 4px 12px rgba(242, 106, 25, 0.25);
         }
 
         /* Large Card for blanket set */
@@ -771,6 +758,17 @@
             }
             .benefit-card, .testimonial-card {
                 padding: 30px 20px !important;
+            }
+
+            @media (max-width: 480px) {
+                .card-footer-row {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                    gap: 12px !important;
+                }
+                .btn-card-book {
+                    width: 100% !important;
+                }
             }
         }
     </style>
@@ -949,12 +947,12 @@
                         <span class="card-category-tag">Tops & Shorts</span>
                         <h4>T-Shirt / Vest Gile / Shorts</h4>
                         <span class="sub-title-vn">Áo thun / Áo Ghi lê / Quần Ngố</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">50,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
@@ -965,12 +963,12 @@
                         <span class="card-category-tag">Formal Tops</span>
                         <h4>Shirt / Blouse</h4>
                         <span class="sub-title-vn">Áo sơ mi / Áo kiểu nữ</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">60,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
@@ -981,12 +979,12 @@
                         <span class="card-category-tag">Bottoms</span>
                         <h4>Trousers / Short Skirt / Jeans</h4>
                         <span class="sub-title-vn">Quần dài / Chân váy ngắn / Jeans</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">60,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
@@ -997,12 +995,12 @@
                         <span class="card-category-tag">Mid-wear & Skirts</span>
                         <h4>Sweater / Hoodie / Long Skirt</h4>
                         <span class="sub-title-vn">Áo len / Áo nỉ có cổ / Chân váy dài</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">70,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
@@ -1013,12 +1011,12 @@
                         <span class="card-category-tag">Dresses & Outfits</span>
                         <h4>Short Dress / Uniform / Coveralls</h4>
                         <span class="sub-title-vn">Váy liền thân ngắn / Đồng phục / Bộ áo kỹ thuật</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">80,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
@@ -1029,12 +1027,12 @@
                         <span class="card-category-tag">Dresses</span>
                         <h4>Long Dress</h4>
                         <span class="sub-title-vn">Váy liền thân dài</span>
+                    </div>
+                    <div class="card-footer-row">
                         <div class="card-price-row">
                             <span class="price">90,000đ</span>
                             <span class="unit">/ item</span>
                         </div>
-                    </div>
-                    <div>
                         <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
                     </div>
                 </div>
