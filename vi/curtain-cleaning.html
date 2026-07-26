@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bedding, Linens & Curtain Care | 1997 Premium Laundry Saigon</title>
+    <meta name="description" content="Saigon's premium bedding, linens, and curtain care. Hassle-free door-to-door pickup, deep sanitizing wash, UVC sterilization, and professional steam press.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.0">
+    
+    <style>
+        .curtain-hero-redesigned {
+            padding: 160px 0 100px 0;
+            background: #fbfdfc;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hero Trust Badge Styling */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(242, 106, 25, 0.08);
+            border: 1px solid rgba(242, 106, 25, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-trust-badge i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .hero-trust-badge span {
+            font-family: var(--font-headline);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Inline Specs Styling */
+        .hero-specs-row-new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item-new {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item-new i {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .spec-item-new span {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-item-divider {
+            width: 1px;
+            height: 14px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dual CTA Styling */
+        .hero-actions-new {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 24px;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-hero-cta-zalo {
+            background-color: #0068ff; /* Zalo Blue */
+        }
+
+        .btn-hero-cta-zalo:hover {
+            background-color: #0056d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 104, 255, 0.22);
+        }
+
+        .btn-hero-cta-wa {
+            background-color: #25D366; /* WhatsApp Green */
+        }
+
+        .btn-hero-cta-wa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+        }
+
+        .pricing-link-secondary {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-link-secondary:hover {
+            color: var(--color-accent);
+        }
+
+        /* Compact Section Spacing rules */
+        .pricing-grid-section, .install-flow-section, .faq-section, .benefits-section, .testimonials-section {
+            padding: 70px 0 !important;
+        }
+
+        .bottom-cta-section {
+            padding: 85px 0 !important;
+        }
+
+        /* Desktop grids for benefits and testimonials */
+        .benefits-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            /* Stack hero CTA buttons vertically on tablet & mobile */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+                width: 100% !important;
+                max-width: 480px;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 24px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+        }
+
+        /* Animated Background Blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            animation: floatBlob 22s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(12, 166, 120, 0.08); /* Mint/Green */
+            top: -100px;
+            left: -150px;
+            animation-duration: 26s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(242, 106, 25, 0.08); /* Orange */
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(50px, -70px) scale(1.08); }
+            66% { transform: translate(-30px, 40px) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+
+
+        /* Hero Layout Split Columns */
+        .curtain-hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left-details {
+            text-align: left;
+        }
+
+        .hero-left-details h1 {
+            font-family: var(--font-headline);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-left-details h1 span.orange-highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-left-details p.description {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-gray);
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        /* Specs badges container */
+        .hero-specs-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .spec-capsule {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .spec-capsule .icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background-color: rgba(242, 106, 25, 0.08);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .spec-capsule .text-box h5 {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0;
+        }
+
+        .spec-capsule .text-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        /* Right column floating menu card layout */
+        .hero-right-gallery {
+            position: relative;
+            height: 480px;
+            border-radius: 32px;
+            background-image: url('assets/images/curtain_cleaning_featured.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 40px rgba(9, 0, 45, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-menu-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+            width: 385px;
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: absolute;
+            left: -15px;
+            z-index: 5;
+            animation: floatCard 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-12px); }
+        }
+
+        .branch-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        .floating-menu-card span.hot-tag {
+            background-color: #ecfdf5;
+            color: #10b981;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .floating-menu-card h3 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 18px 0;
+        }
+
+        .floating-menu-card ul.menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .floating-menu-card ul.menu-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .floating-menu-card ul.menu-list li span.dot {
+            color: var(--color-accent);
+            margin-right: 8px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-recommended {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-popular {
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-premium {
+            background-color: #fef3c7;
+            color: #d97706;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-menu-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-menu-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Delivery Notice Box */
+        .delivery-notice-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(242, 106, 25, 0.04);
+            border: 1px dashed rgba(242, 106, 25, 0.25);
+            padding: 16px 28px;
+            border-radius: 16px;
+            max-width: 760px;
+            margin: -10px auto 45px auto;
+            text-align: left;
+        }
+        
+        .delivery-notice-box i {
+            font-size: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+        
+        .delivery-notice-box p {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .delivery-notice-box strong {
+            color: var(--color-bg-dark);
+            font-weight: 700;
+        }
+
+        /* Pricing section styling */
+        .pricing-grid-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .pricing-list-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: stretch;
+        }
+
+        .pricing-item-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 35px 30px;
+            box-shadow: 0 5px 20px rgba(9, 0, 45, 0.01);
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.05);
+            border-color: rgba(242, 106, 25, 0.15);
+        }
+
+        .card-category-tag {
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .pricing-item-card h4 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .pricing-item-card span.sub-title-vn {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            display: block;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .card-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            margin-bottom: 25px;
+        }
+
+        .card-price-row .price {
+            font-family: var(--font-headline);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .card-price-row .unit {
+            font-size: 14px;
+            color: var(--color-text-gray);
+            font-weight: 500;
+        }
+
+        .card-specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            padding-top: 20px;
+        }
+
+        .card-specs-list li {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--color-text-gray);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-specs-list li i {
+            color: #22c55e;
+            font-size: 13px;
+        }
+
+        .btn-card-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-card-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* Step-by-Step Installation Flow styling */
+        .install-flow-section {
+            padding: 100px 0;
+            background-color: var(--color-bg-soft);
+        }
+
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .flow-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 25px;
+            box-shadow: 0 5px 20px rgba(9, 0, 45, 0.02);
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: left;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .flow-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(9, 0, 45, 0.05);
+        }
+
+        .flow-num-badge {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-family: var(--font-headline);
+            font-size: 40px;
+            font-weight: 700;
+            color: rgba(242, 106, 25, 0.08);
+            line-height: 1;
+        }
+
+        .flow-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(242, 106, 25, 0.06);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .flow-card h3 {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 10px 0;
+        }
+
+        .flow-card p {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            color: var(--color-text-gray);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .price-card-premium {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .price-card-premium:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(9, 0, 45, 0.06) !important;
+        }
+        .btn-grid-select.primary-btn:hover {
+            background-color: #d95810 !important;
+            box-shadow: 0 8px 25px rgba(242, 106, 25, 0.3) !important;
+            transform: translateY(-1px);
+        }
+        .btn-grid-select.secondary-btn:hover {
+            background-color: var(--color-accent) !important;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 991px) {
+            .curtain-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-left-details {
+                text-align: center;
+            }
+
+            .hero-left-details .section-badge {
+                display: block !important;
+                width: max-content !important;
+                margin: 0 auto 10px auto !important;
+            }
+
+            .hero-left-details .hero-trust-badge {
+                display: inline-flex !important;
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+            }
+
+            .hero-left-details p.description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-specs-row {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-right-gallery {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .floating-menu-card {
+                left: -20px;
+                width: 360px;
+                padding: 20px;
+            }
+
+            .flow-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pricing-list-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .pricing-grid-3col {
+                grid-template-columns: 1fr !important;
+                gap: 25px !important;
+                max-width: 420px !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .delivery-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .curtain-hero-redesigned {
+                padding-top: 130px;
+            }
+
+            .hero-left-details h1 {
+                font-size: 32px;
+            }
+
+            .floating-menu-card {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 90%;
+                margin: -50px auto 0 auto;
+                animation: none;
+                box-shadow: 0 10px 30px rgba(9, 0, 45, 0.08);
+            }
+
+            .hero-right-gallery {
+                height: 320px;
+            }
+
+            .flow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Hero Section Mobile Refinements */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 20px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+            .pricing-link-secondary {
+                font-size: 13px !important;
+            }
+            .hero-specs-row-new {
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .spec-item-divider {
+                display: none !important;
+            }
+            .spec-item-new {
+                background-color: rgba(242, 106, 25, 0.04) !important;
+                border: 1px solid rgba(242, 106, 25, 0.08) !important;
+                padding: 6px 12px !important;
+                border-radius: 20px !important;
+            }
+
+            /* Compact Spacing on Mobile */
+            .pricing-grid-section, .install-flow-section, .faq-section, .benefits-section, .testimonials-section {
+                padding: 45px 0 !important;
+            }
+
+            .bottom-cta-section {
+                padding: 55px 0 !important;
+            }
+
+            /* Benefits & Testimonials Mobile Refinements */
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .benefit-card, .testimonial-card {
+                padding: 30px 20px !important;
+            }
+        }
+        
+        @keyframes gentle-wrench-shake {
+            0%, 100% { transform: rotate(0deg); }
+            8%, 24% { transform: rotate(-10deg); }
+            16%, 32% { transform: rotate(10deg); }
+            40% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Revamped Header -->
+    <header class="main-header" id="navbar">
+        <div class="container header-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
+                <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
+                <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
+                <a href="curtain-cleaning.html" class="nav-item active">BEDDING & LINENS</a>
+                <a href="index.html#faq" class="nav-item">FAQs</a>
+            </nav>
+            <div class="header-ctas">
+                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
+                    <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                </a>
+                <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                    <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Redesigned Hero Section -->
+    <section class="curtain-hero-redesigned" id="hero">
+        <!-- Background elements -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <!-- Elegant Floating Laundry Bubbles (Soapy / Water effect) -->
+        <div class="laundry-bubble" style="width: 24px; height: 24px; left: 8%; animation-delay: 0s; animation-duration: 9s;"></div>
+        <div class="laundry-bubble" style="width: 14px; height: 14px; left: 24%; animation-delay: 2.5s; animation-duration: 7s;"></div>
+        <div class="laundry-bubble" style="width: 32px; height: 32px; left: 78%; animation-delay: 1.2s; animation-duration: 11s;"></div>
+        <div class="laundry-bubble" style="width: 18px; height: 18px; left: 87%; animation-delay: 4s; animation-duration: 8s;"></div>
+        <div class="laundry-bubble" style="width: 28px; height: 28px; left: 44%; animation-delay: 5.5s; animation-duration: 10s;"></div>
+        <div class="laundry-bubble" style="width: 16px; height: 16px; left: 61%; animation-delay: 7s; animation-duration: 9s;"></div>
+        
+        <div class="container">
+            <div class="curtain-hero-grid">
+                <!-- Left Details -->
+                <div class="hero-left-details">
+                    <span class="section-badge">PREMIUM BEDDING & LINENS CARE</span>
+                    
+                    <!-- Trust Rating Badge -->
+                    <div class="hero-trust-badge">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9/5 Google Maps Rating (1,200+ Reviews)</span>
+                    </div>
+
+                    <h1>Premium Bedding, Linens & <span class="orange-highlight">Curtain Care</span></h1>
+                    <p class="description">
+                        Complete premium door-to-door care for your home fabrics. We wash, sanitize, and steam press your bedsheets, blankets, duvet covers, pillowcases, and heavy curtains to restore ultimate freshness to your home.
+                    </p>
+                    
+                    <!-- Inline Space-Saving Specs -->
+                    <div class="hero-specs-row-new">
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-truck-pickup"></i>
+                            <span>Free Delivery &gt; 1M VND</span>
+                        </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-soap"></i>
+                            <span>Sanitizing UVC Wash</span>
+                        </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-ban"></i>
+                            <span>No fabric shrinkage</span>
+                        </div>
+                    </div>
+                    
+                    <!-- High-Converting Dual Booking CTAs -->
+                    <div class="hero-actions-new">
+                        <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo">
+                            <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book on Zalo
+                        </a>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book on WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="hero-secondary-links" style="margin-top: 15px; text-align: left;">
+                        <a href="#pricing" class="pricing-link-secondary"><i class="fa-solid fa-tags"></i> View Price List</a>
+                    </div>
+                </div>
+
+                <!-- Right floating card stack -->
+                <div class="hero-right-gallery">
+                    <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-grid-section" id="pricing">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TRANSPARENT PRICING</span>
+                <h2 class="section-title">Bedding & Linens Service Packages</h2>
+                
+                <!-- Highlight Box: Free Curtain Installation & Removal -->
+                <div class="curtain-highlight-box" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, rgba(242, 106, 25, 0.08) 0%, rgba(242, 106, 25, 0.03) 100%); border: 1.5px solid rgba(242, 106, 25, 0.2); padding: 10px 22px; border-radius: 30px; margin: 15px auto 5px auto; box-shadow: 0 6px 20px rgba(242, 106, 25, 0.03); max-width: 90%; text-align: left;">
+                    <i class="fa-solid fa-screwdriver-wrench" style="font-size: 14px; color: var(--color-accent); animation: gentle-wrench-shake 2.5s infinite ease-in-out; flex-shrink: 0;"></i>
+                    <span style="font-family: var(--font-headline); font-size: 12.5px; font-weight: 750; color: var(--color-bg-dark); letter-spacing: 0.1px;">
+                        FREE CURTAIN REMOVAL & INSTALLATION 
+                        <span style="color: #ffffff; font-weight: 800; font-size: 11px; margin-left: 6px; background: var(--color-accent); padding: 3px 8px; border-radius: 20px; text-transform: uppercase;">Tháo lắp miễn phí</span>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Beautiful Delivery Notice Box -->
+            <div class="delivery-notice-box">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <p><strong>Delivery Notice:</strong> Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km. <strong>Free pickup & delivery for orders over 1,000,000 VND.</strong></p>
+            </div>
+            <!-- 3-Column Pricing Grid -->
+            <div class="pricing-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; align-items: stretch; max-width: 1140px; margin-left: auto; margin-right: auto;">
+                <!-- Column 1: Bedsheets, Linens & Curtains -->
+                <div class="price-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(9, 0, 45, 0.04); border: 1px solid rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
+                    <div>
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Bedsheets, Linens & Curtains</span>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; border-bottom: 1px dashed rgba(0,0,0,0.06); padding-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Under 2kg</span>
+                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent);">120.000 VND</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Over 2kg</span>
+                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark);">60.000 VND <small style="font-size: 12px; color: var(--color-text-gray); font-weight: 500;">/ kg</small></span>
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 12.5px; color: var(--color-accent); font-weight: 600; margin: 0 0 15px 0;">* Minimum weight is 2kg</p>
+                        
+                        <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0 0 30px 0;">
+                            Best for bedsheets, pillow covers, duvet covers, bath towels, window curtains, and area carpets (thin/standard fabric under weight). Washed, dried, and neatly folded.
+                        </p>
+                    </div>
+                    
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select secondary-btn" style="border: 1.5px solid var(--color-accent); color: var(--color-accent); background: transparent; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 13px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; transition: all 0.3s ease;">Select Service</a>
+                </div>
+
+                <!-- Column 2: Mattress Toppers By Size (Highlighted) -->
+                <div class="price-card-premium featured-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 20px 45px rgba(242, 106, 25, 0.08); border: 2px solid var(--color-accent); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
+                    <div>
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Mattress Toppers (By Size)</span>
+                        </div>
+                        
+                        <div style="margin-bottom: 12px;">
+                            <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-accent); margin: 0 0 5px 0;">By Size <span style="font-size: 14px; font-weight: 500; color: var(--color-text-gray); margin-left: 5px;">From 230k VND</span></h3>
+                            <p style="font-family: var(--font-body); font-size: 12.5px; color: var(--color-accent); font-weight: 500; margin: 0 0 15px 0;">Thickness 6cm (60mm) and under</p>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; border-top: 1px dashed rgba(0,0,0,0.06); padding-top: 18px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m2 - 1m4:</span>
+                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">230.000 VND</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m6 - 1m8:</span>
+                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">280.000 VND</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m8 - 2m2:</span>
+                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">300.000 VND</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select primary-btn" style="background-color: var(--color-accent); color: #ffffff; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 14px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; box-shadow: 0 6px 20px rgba(242, 106, 25, 0.2); transition: all 0.3s ease;">Book Topper Cleaning</a>
+                </div>
+
+                <!-- Column 3: Mattress Toppers By Weight -->
+                <div class="price-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(9, 0, 45, 0.04); border: 1px solid rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
+                    <div>
+                        <div style="text-align: center; margin-bottom: 25px;">
+                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Mattress Toppers (By Weight)</span>
+                        </div>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; border-bottom: 1px dashed rgba(0,0,0,0.06); padding-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Over 6cm thick</span>
+                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent);">70.000 VND <small style="font-size: 12px; color: var(--color-text-gray); font-weight: 500;">/ kg</small></span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <span style="font-size: 14px; color: var(--color-text-gray);">Thickness over 6cm</span>
+                                <span style="font-size: 13px; color: var(--color-text-gray); font-weight: 500;">By actual weight</span>
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: 12.5px; color: var(--color-accent); font-weight: 600; margin: 0 0 15px 0;">* Charged by actual weight (kg)</p>
+                        
+                        <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0 0 30px 0;">
+                            Best for thick, heavy comforters, mattresses, and toppers thicker than 6cm (60mm). Specialized deep extraction sanitizing to extract all dust-mites, sweat & allergens.
+                        </p>
+                    </div>
+                    
+                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select secondary-btn" style="border: 1.5px solid var(--color-accent); color: var(--color-accent); background: transparent; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 13px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; transition: all 0.3s ease;">Select Service</a>
+                </div>
+            </div>
+
+            <!-- Additional Services (Add-on Items) -->
+            <div class="additional-services-box" style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto; background: #ffffff; border-radius: 30px; padding: 45px 40px; box-shadow: 0 20px 50px rgba(9, 0, 45, 0.05); border: 1px solid rgba(242, 106, 25, 0.08); position: relative; overflow: hidden;">
+                <!-- Decorative Top Gradient Line -->
+                <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--color-accent) 0%, #ff8a3d 100%);"></div>
+                
+                <div class="text-center" style="margin-bottom: 40px;">
+                    <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 12px;">Extra Care Services</span>
+                    <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 8px 0; letter-spacing: -0.5px;">Specialized Add-On Services</h3>
+                    <p style="font-family: var(--font-body); font-size: 13px; color: var(--color-text-gray); margin: 0; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5;">Specialized spot cleaning and professional hand-pressing additions. (Those processes would need 24-36 hours)</p>
+                </div>
+                
+                <div class="additional-services-list" style="display: flex; flex-direction: column; gap: 8px;">
+
+                    <!-- Row 2: Double-layered curtains -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-scroll"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Double-Layered Curtains</h4>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">70,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ kg</span></div>
+                    </div>
+                    
+                    <!-- Row 3: Rug / Fur -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-rug"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Standard Rugs & Carpets</h4>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ kg</span></div>
+                    </div>
+                    
+                    <!-- Row 4: Fur rug -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-cloud"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Premium Fur Rug</h4>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">280,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
+                    </div>
+                    
+                    <!-- Row 5: Head pillows - Feather pillows -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-circle"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Sleeping Pillows & Down Pillows</h4>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">90,000đ - 160,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
+                    </div>
+                    
+                    <!-- Row 6: Body pillows -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-capsules"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Body Pillows</h4>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">180,000đ - 230,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
+                    </div>
+                    
+                    <!-- Row 7: Teddy bear -->
+                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
+                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
+                                <i class="fa-solid fa-face-smile"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 8px 0;">Stuffed Animals / Teddy Bears</h4>
+                                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 11.5px; font-family: var(--font-headline); font-weight: 700;">
+                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">Mini: <span style="color: var(--color-accent);">30,000đ</span></span>
+                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">&lt;50cm: <span style="color: var(--color-accent);">80,000đ</span></span>
+                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">50-80cm: <span style="color: var(--color-accent);">130,000đ</span></span>
+                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">&gt;80cm: <span style="color: var(--color-accent);">180,000đ</span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">From 30,000đ</div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Step-by-Step Installation Flow (Dismantle & Re-hang Focus) -->
+    <section class="install-flow-section" id="process">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">SERVICE FLOW</span>
+                <h2 class="section-title">Hassle-Free 4-Step Home Service</h2>
+                <p class="section-subtitle">You don't have to climb ladders. Our team handles every step from removal to re-installation.</p>
+            </div>
+
+            <div class="flow-grid">
+                <!-- Step 1 -->
+                <div class="flow-card">
+                    <div class="flow-num-badge">01</div>
+                    <div class="flow-card-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                    <h3>01. Home Dismantling</h3>
+                    <p>Our technicians arrive at your home, safely take down heavy curtains, and catalog all hooks/rings to prevent loss.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flow-card">
+                    <div class="flow-num-badge">02</div>
+                    <div class="flow-card-icon"><i class="fa-solid fa-soap"></i></div>
+                    <h3>02. Deep Organic Wash</h3>
+                    <p>Washed in our facility using fabric-specific organic detergents to extract dust mites, pollen, odors, and stains.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flow-card">
+                    <div class="flow-num-badge">03</div>
+                    <div class="flow-card-icon"><i class="fa-solid fa-wind"></i></div>
+                    <h3>03. Steam Ironing</h3>
+                    <p>Vertical steam pressed at controlled temperatures to remove all wrinkles and recover original pleats & folds.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flow-card">
+                    <div class="flow-num-badge">04</div>
+                    <div class="flow-card-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+                    <h3>04. Home Re-installation</h3>
+                    <p>We return to your home, hang the fresh curtains back properly, check the rod alignment, and clean the work area.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Why Choose Us / Benefits Section -->
+    <section class="benefits-section" style="background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">WHY CHOOSE US</span>
+                <h2 class="section-title">The 1997 Curtain Care Standard</h2>
+                <p class="section-subtitle">We provide a hassle-free, complete solution to restore your curtains' beauty and clean your home air.</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Dismantling & Installation</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        No need to climb ladders. Our specialized team handles everything: safe removal, marking, and complete re-hanging with correct alignment.
+                    </p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-lungs"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Dust & Allergen Sanitizing</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        Curtains act as HCMC dust filters. Our deep wash dissolves embedded grime, dust mites, pet dander, and odors, making your air clean and healthy.
+                    </p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
+                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
+                        <i class="fa-solid fa-expand"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Steam Press & Shape Recovery</h3>
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
+                        After washing, curtains are steam ironed using vertical form-finishers. Restores original drape lines and crisp folding structure without co co rút.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TESTIMONIALS</span>
+                <h2 class="section-title">Trusted by Busy Homeowners</h2>
+                <p class="section-subtitle">Read what our clients say about our complete curtain cleaning and installation service in Saigon.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Amazing service! The team came, dismantled the heavy curtains in my duplex apartment, cleaned them perfectly, and re-installed them. Zero stress."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">LN</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Liam N.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Thao Dien, District 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Rất ưng ý với dịch vụ giặt rèm của 1997. Rèm được tháo lắp chuyên nghiệp, giặt sạch bụi bẩn và là phẳng lỳ, treo lại thẳng hàng rất đẹp."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">MT</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Minh Thư</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">District 7, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Sophia -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Great communication on WhatsApp. They handled everything from removal to re-installation. The curtains smell wonderful and look brand new!"
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">SG</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Sophia G.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Binh Thanh, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section" id="faq" style="background-color: #ffffff;">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Got questions about our home-based curtain dismantling and cleaning? Here are our answers.</p>
+            </div>
+            
+            <div class="accordion-wrapper" style="max-width: 800px; margin: 40px auto 0 auto;">
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Are the home dismantling and re-installation services included in the price?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Yes, absolutely! Our package prices include the complete service: taking down the curtains from your walls, packaging, transporting, deep cleaning, vertical steam pressing, returning, and re-installing them back on your rods properly.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How long does the curtain cleaning service take?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Standard turnaround is 3 to 4 days. Because curtain fabrics are extremely heavy and absorb a lot of moisture, they must be slowly dried in our temperature-controlled rooms to prevent fabric shrinkage or color fading. We schedule the re-installation visit at your most convenient hour.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What if my curtains are extremely tall (e.g. double-height ceiling)?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>No problem! We have high-reach A-ladders and safety scaffolding systems to handle double-height ceiling curtains (commonly found in modern apartments or villas). Please let us know in advance when booking so our technician team can bring the correct equipment.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can you clean delicate velvet or silk curtains?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Yes, we dry clean delicate velvet, silk, or embroidered satin curtains using custom organic solvents. We inspect the fabrics on-site first to ensure the safest cleaning method is used, protecting hooks, rings, and backing textures from damage.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="bottom-cta-section" style="background-color: #fbfaf7; border-top: 1px solid rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; text-align: center; color: var(--color-bg-dark); padding: 75px 0;">
+        <div class="hero-blob blob-1" style="background-color: rgba(242, 106, 25, 0.06); filter: blur(100px); top: -50px; left: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        <div class="hero-blob blob-2" style="background-color: rgba(242, 106, 25, 0.03); filter: blur(100px); bottom: -50px; right: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2; max-width: 750px;">
+            <span class="section-badge" style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); border: 1px solid rgba(242, 106, 25, 0.15);">BOOK PICKUP TODAY</span>
+            <h2 style="font-family: var(--font-headline); font-size: 32px; font-weight: 700; color: var(--color-bg-dark); margin: 20px 0 15px 0; line-height: 1.25;">Ready to Clean Your Curtains?</h2>
+            <p style="font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: #475569; margin: 0 auto 35px auto;">
+                Schedule a convenient home visit in District 1, 2, 3, 7, Binh Thanh. Let our specialized team dismantle, wash, press and re-hang them beautifully.
+            </p>
+            
+            <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
+                <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo" style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
+                    <i class="fa-solid fa-comments"></i> Book on Zalo
+                </a>
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa" style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
+                    <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
+                </a>
+            </div>
+            
+            <p style="font-family: var(--font-body); font-size: 13px; color: #64748b; margin-top: 25px; font-weight: 500; margin-bottom: 0;">
+                Or call us directly at <a href="tel:0866137043" style="color: var(--color-accent); font-weight: 700; text-decoration: none;">0866.137.043</a> (7:00 AM - 10:00 PM)
+            </p>
+        </div>
+    </section>
+
+    <!-- Revamped Footer Section -->
+    <footer class="revamped-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid-revamped">
+                <!-- Col 1 -->
+                <div class="footer-col-revamped">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-block;">
+                        <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img-footer" style="max-height: 50px;">
+                    </a>
+                    <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands of garments & designer shoes. Every item carries a story worthy of respect.</p>
+                    <div class="footer-social-circles">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/84866137043" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                    <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="footer-col-revamped">
+                    <h3>SERVICES</h3>
+                    <div class="footer-links-revamped">
+                        <a href="express-laundry.html">Express Laundry</a>
+                        <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                        <a href="steam-press.html">Steam Press</a>
+                        <a href="dry-cleaning.html">Dry Cleaning</a>
+                        <a href="curtain-cleaning.html">Curtain Cleaning</a>
+                    </div>
+                </div>
+                
+                <!-- Col 3 -->
+                <div class="footer-col-revamped">
+                    <h3>SYSTEM</h3>
+                    <div class="footer-links-revamped">
+                        <a href="#">Track Order</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#">Care Pass Membership</a>
+                        <a href="#">News & Blog</a>
+                        <a href="#">About 1997 Laundry</a>
+                    </div>
+                </div>
+                
+                <!-- Col 4 -->
+                <div class="footer-col-revamped">
+                    <h3>CONTACT</h3>
+                    <div class="footer-contact-details">
+                        <div class="contact-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh City</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:0866137043" style="color: var(--color-accent); font-weight: bold; text-decoration: none;">0866.137.043</a>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:contact@1997laundry.vn" style="color: var(--color-text-muted); text-decoration: none;">contact@1997laundry.vn</a>
+                        </div>
+                        
+                        <a href="https://maps.app.goo.gl/y2PDRaH9U8iG6F4L8" target="_blank" class="footer-map-btn" style="text-decoration: none; display: inline-flex; align-items: center; margin-top: 15px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #ffffff; font-size: 13px; transition: all 0.3s ease;">
+                            <i class="fa-solid fa-map-location-dot" style="margin-right: 8px; color: var(--color-accent);"></i> View Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-bar-revamped">
+                <p>&copy; 2026 1997 Premium Laundry & Dry Cleaning. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile CTA Bar -->
+    <div class="sticky-mobile-cta">
+        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-book">
+            <i class="fa-solid fa-calendar-days"></i> Book Online
+        </a>
+        <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
+            <i class="fa-solid fa-comments"></i> Zalo
+        </a>
+    </div>
+
+    <!-- Floating Chatbot Widget -->
+    <a href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
+        <span class="floating-chatbot-label">Chatbot</span>
+        <div class="floating-chatbot-circle">
+            <i class="fa-solid fa-comment-dots"></i>
+        </div>
+    </a>
+
+    <!-- Main JS script -->
+    <script src="index.js?v=2.0"></script>
+</body>
+</html>

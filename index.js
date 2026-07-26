@@ -242,15 +242,217 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnText: 'CHOOSE LUXURY EVENING WEAR',
                 recommended: true
             }
+    };
+
+    // Parallel Vietnamese Plans Database
+    const plansDataVi = {
+        laundry: [
+            {
+                tier: 'GÓI 01',
+                title: 'Giặt Sấy Tiêu Chuẩn (Wash & Fold)',
+                desc: 'Giặt sấy quần áo hàng ngày, khăn tắm, chăn ga được xếp gọn gàng.',
+                price: '30,000đ',
+                unit: 'mỗi kg',
+                turnaround: '24 GIỜ',
+                tagline: 'Hoàn hảo cho nhu cầu giặt giũ hàng ngày',
+                features: [
+                    'Giặt sạch & sấy khô tiêu chuẩn',
+                    'Giặt máy riêng biệt từng khách',
+                    'Xếp nếp & phân loại gọn gàng',
+                    'Nước xả thơm tiêu chuẩn',
+                    'Kiểm tra dị vật trong túi áo quần'
+                ],
+                suitable: 'Quần áo mặc hàng ngày, chăn ga, khăn tắm và đồ thể thao',
+                btnText: 'CHỌN GIẶT SẤY TIÊU CHUẨN',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 02',
+                title: 'Combo Cấp Tốc Trong Ngày',
+                desc: 'Nhận đồ trước 14:00, giao trả trước 21:00 cùng ngày.',
+                price: '180,000đ',
+                unit: 'gói 5kg',
+                turnaround: '6 GIỜ',
+                tagline: 'Giao nhận ngay trong ngày cho người bận rộn',
+                features: [
+                    'Combo giặt & sấy lấy nhanh',
+                    'Giặt và giao trả trong vòng 6 giờ',
+                    'MIỄN PHÍ phân loại quần áo trắng',
+                    'Nước xả vải hữu cơ (Organic) cao cấp',
+                    'Treo móc phẳng phiu cho áo sơ mi'
+                ],
+                suitable: 'Chuyên viên bận rộn, áo sơ mi công sở và nhu cầu lấy đồ gấp',
+                btnText: 'CHỌN COMBO CẤP TỐC TRONG NGÀY',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 03',
+                title: 'Combo Siêu Tốc 4 Giờ',
+                desc: 'Quần áo được giao trả sạch sẽ, thơm tho chỉ trong 4 giờ.',
+                price: '220,000đ',
+                unit: 'gói 5kg',
+                turnaround: '4 GIỜ',
+                tagline: 'Tối ưu tốc độ — Ưu tiên hàng đầu',
+                features: [
+                    'Giặt siêu tốc cho gói quần áo tối đa 5kg',
+                    'MIỄN PHÍ phân loại đồ trắng tránh phai màu',
+                    'MIỄN PHÍ GIAO HÀNG 1 CHIỀU (Tối đa 35,000đ)',
+                    'Giặt riêng 100% bằng nước xả Organic cao cấp',
+                    'Kỹ thuật viên trưởng trực tiếp xử lý ưu tiên'
+                ],
+                suitable: 'Nhu cầu giặt gấp, khách du lịch, chuẩn bị sự kiện',
+                btnText: 'CHỌN COMBO SIÊU TỐC 4 GIỜ',
+                recommended: true
+            },
+            {
+                tier: 'GÓI 04',
+                title: 'Chăn Ga & Mền Lớn',
+                desc: 'Chăn bông dày, ruột mền, chăn len, gối được làm phồng & khử trùng.',
+                price: '60,000đ',
+                unit: 'mỗi kg',
+                turnaround: '24-48 GIỜ',
+                tagline: 'Giặt sạch chuyên sâu & khử trùng chăn ga gối nệm',
+                features: [
+                    'Giặt máy công nghiệp công suất lớn',
+                    'Chu kỳ khử trùng tiêu diệt tác nhân gây dị ứng',
+                    'Sấy phồng bằng nhiệt độ tối ưu',
+                    'Đóng gói màng kiếng kháng nước vệ sinh',
+                    'Kiểm tra kỹ vết ố và xơ vải'
+                ],
+                suitable: 'Mền bông dày, chăn len, ruột gối, túi ngủ',
+                btnText: 'CHỌN GIẶT CHĂN GA & MỀN LỚN',
+                recommended: false
+            }
+        ],
+        shoes: [
+            {
+                tier: 'GÓI 01',
+                title: 'Vệ Sinh Giày Cơ Bản (Basic Sneaker)',
+                desc: 'Làm sạch bên ngoài & khử mùi cho giày vải canvas và lưới mesh.',
+                price: '90,000đ',
+                unit: 'mỗi đôi',
+                turnaround: '3 NGÀY',
+                tagline: 'Làm sạch nhanh chóng cho giày sneaker hàng ngày',
+                features: [
+                    'Vệ sinh đế giữa (midsole) & thân trên (upper)',
+                    'Giặt dây giày & khử mùi hôi',
+                    'Quy trình giặt tay tỉ mỉ',
+                    'Khử trùng bằng tia UV ngăn mùi',
+                    'Sấy khô tự nhiên bằng gió tiêu chuẩn'
+                ],
+                suitable: 'Giày sneaker thông thường bằng vải canvas, lưới mesh và da tổng hợp',
+                btnText: 'CHỌN VỆ SINH GIÀY CƠ BẢN',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 02',
+                title: 'Chăm Sóc Giày Da Cao Cấp (Premium Leather Spa)',
+                desc: 'Dưỡng da chuyên sâu & tẩy ố cho giày da thật và da lộn.',
+                price: '180,000đ',
+                unit: 'mỗi đôi',
+                turnaround: '4-5 NGÀY',
+                tagline: 'Chăm sóc chuyên biệt cho giày có giá trị cao',
+                features: [
+                    'Vệ sinh sâu bên trong & ngoài giày da',
+                    'Dưỡng ẩm da & phủ lớp bảo vệ chống thấm',
+                    'Chải phục hồi sợi da lộn (suede brush)',
+                    'Sử dụng shoe tree giữ form dáng cao cấp',
+                    'Khử trùng tia UV chống ẩm mốc'
+                ],
+                suitable: 'Giày da cao cấp, giày boots và sneaker da lộn',
+                btnText: 'CHỌN CHĂM SÓC GIÀY DA CAO CẤP',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 03',
+                title: 'Phục Hồi Giày Luxury',
+                desc: 'Phục hồi màu sắc, tẩy ố đế vàng & sơn lại da giày.',
+                price: '350,000đ',
+                unit: 'mỗi đôi',
+                turnaround: '7 NGÀY',
+                tagline: 'Phục hồi tối đa cho giày cũ hoặc bị ố vàng nặng',
+                features: [
+                    'Tẩy ố vàng đế & tẩy trắng',
+                    'Sơn lại da & phục hồi màu sắc nguyên bản',
+                    'Xử lý vết bẩn cứng đầu chuyên sâu',
+                    'Xịt phủ nano chống thấm nước bảo vệ',
+                    'Hỗ trợ dán keo đế và khâu sửa cơ bản'
+                ],
+                suitable: 'Giày bị ố đế, phai màu da, giày hiệu luxury',
+                btnText: 'CHỌN PHỤC HỒI GIÀY LUXURY',
+                recommended: true
+            }
+        ],
+        dryclean: [
+            {
+                tier: 'GÓI 01',
+                title: 'Là Ủi Cao Cấp (Premium Pressing)',
+                desc: 'Là ủi hơi nước chuyên nghiệp & treo móc cho áo quần đã giặt sẵn.',
+                price: '15,000đ',
+                unit: 'mỗi cái',
+                turnaround: '24 GIỜ',
+                tagline: 'Là ủi hơi nước chuyên nghiệp & tạo phom',
+                features: [
+                    'Là ủi hơi nước công nghiệp chuyên nghiệp',
+                    'Sử dụng móc treo cao cấp của tiệm',
+                    'Đệm giữ nếp cổ áo cho sơ mi',
+                    'Bọc túi bảo vệ chống bụi bẩn',
+                    'Sẵn sàng vận chuyển không lo nhăn nhúm'
+                ],
+                suitable: 'Áo sơ mi công sở, quần âu, suit và đồng phục',
+                btnText: 'CHỌN LÀ ỦI CAO CẤP',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 02',
+                title: 'Giặt Khô Suit / Vest',
+                desc: 'Giặt khô dịu nhẹ cho suit bộ, blazer và trang phục trang trọng.',
+                price: '120,000đ',
+                unit: 'mỗi bộ',
+                turnaround: '2 NGÀY',
+                tagline: 'Chăm sóc tỉ mỉ cho trang phục formal sang trọng',
+                features: [
+                    'Dung môi giặt khô thân thiện với môi trường',
+                    'Quy trình giữ phom dáng nguyên bản',
+                    'Kiểm tra & xử lý điểm vết ố trước khi giặt',
+                    'Là ủi hơi nước & định hình cổ áo',
+                    'Bọc túi bảo vệ vải thoáng khí chuyên dụng'
+                ],
+                suitable: 'Suit bộ, blazer, áo măng tô và áo khoác dạ',
+                btnText: 'CHỌN GIẶT KHÔ SUIT / VEST',
+                recommended: false
+            },
+            {
+                tier: 'GÓI 03',
+                title: 'Đầm Dạ Hội & Đồ Hiệu Luxury',
+                desc: 'Giặt hấp dịu nhẹ cho váy cưới, đầm dạ hội, đồ lụa & đồ hiệu thiết kế.',
+                price: '250,000đ',
+                unit: 'mỗi cái',
+                turnaround: '3 NGÀY',
+                tagline: 'Chăm sóc tối thượng cho trang phục thiết kế đắt tiền',
+                features: [
+                    'Giặt riêng biệt thủ công cực kỳ nhẹ nhàng',
+                    'Bảo vệ hạt đính, kim sa và ren cao cấp',
+                    'Dầu giặt dịu nhẹ cân bằng độ pH',
+                    'Ủi tay thủ công bằng nhiệt độ thấp chuyên dụng',
+                    'Đóng gói hộp lưu trữ hoặc móc treo đệm cotton'
+                ],
+                suitable: 'Váy lụa tơ tằm, đầm dạ hội, váy cưới, đồ len hiệu',
+                btnText: 'CHỌN ĐỒ HIỆU LUXURY',
+                recommended: true
+            }
         ]
     };
+
+    const isVi = window.location.pathname.includes('/vi/');
+    const activePlans = isVi ? plansDataVi : plansData;
 
     let activeCategory = 'laundry';
     let activeTierIndex = 2; // Default to Tier 03 (super express)
 
     function renderPricingCategory(category) {
         activeCategory = category;
-        const categoryPlans = plansData[category];
+        const categoryPlans = activePlans[category];
         
         // Render Left Column Tiers
         tiersContainer.innerHTML = '';
@@ -262,7 +464,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add Recommended Badge if applicable
             let recBadgeHtml = '';
             if (plan.recommended) {
-                recBadgeHtml = `<span class="tier-rec-badge">RECOMMENDED</span>`;
+                const recText = isVi ? 'KHUYÊN DÙNG' : 'RECOMMENDED';
+                recBadgeHtml = `<span class="tier-rec-badge">${recText}</span>`;
             }
             
             card.innerHTML = `
@@ -299,14 +502,18 @@ document.addEventListener('DOMContentLoaded', () => {
             featuresHtml += `<li><i class="fa-solid fa-circle-check"></i> ${feat}</li>`;
         });
         
+        const specLabel = isVi ? 'CHI TIẾT GÓI' : 'PLAN SPECS';
+        const turnaroundLabel = isVi ? 'THỜI GIAN GIAO' : 'TURNAROUND';
+        const suitableLabel = isVi ? 'PHÙ HỢP CHO' : 'SUITABLE FOR';
+
         specContainer.innerHTML = `
             <div class="spec-header">
                 <div class="spec-header-left">
-                    <span class="spec-plan-specs">${plan.tier} — PLAN SPECS</span>
+                    <span class="spec-plan-specs">${plan.tier} — ${specLabel}</span>
                     <h3 class="spec-plan-title">${plan.title}</h3>
                 </div>
                 <div class="spec-header-right">
-                    <span class="spec-turnaround-label">TURNAROUND</span>
+                    <span class="spec-turnaround-label">${turnaroundLabel}</span>
                     <span class="spec-turnaround-val">${plan.turnaround}</span>
                 </div>
             </div>
@@ -318,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </ul>
             
             <div class="spec-suitable-box">
-                <span class="spec-suitable-label">SUITABLE FOR</span>
+                <span class="spec-suitable-label">${suitableLabel}</span>
                 <p class="spec-suitable-val">${plan.suitable}</p>
             </div>
             

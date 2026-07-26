@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoes Cleaning & Leather Care | 1997 Premium Laundry Saigon</title>
+    <meta name="description" content="Saigon's premier sneaker, leather shoes, heels, boots, and luxury handbag cleaning and restoration. Professional hand-wash, Saphir organic care, and UVC sanitization.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css?v=2.0">
+    
+    <style>
+        .shoes-hero-redesigned {
+            padding: 160px 0 100px 0;
+            background: #f8faff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hero Trust Badge Styling */
+        .hero-trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(242, 106, 25, 0.08);
+            border: 1px solid rgba(242, 106, 25, 0.15);
+            padding: 6px 14px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .hero-trust-badge i {
+            color: #f59e0b;
+            font-size: 11px;
+        }
+
+        .hero-trust-badge span {
+            font-family: var(--font-headline);
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            letter-spacing: 0.2px;
+        }
+
+        /* Inline Specs Styling */
+        .hero-specs-row-new {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 16px;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .spec-item-new {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-item-new i {
+            color: var(--color-accent);
+            font-size: 14px;
+        }
+
+        .spec-item-new span {
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+        }
+
+        .spec-item-divider {
+            width: 1px;
+            height: 14px;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Dual CTA Styling */
+        .hero-actions-new {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .btn-hero-cta-zalo, .btn-hero-cta-wa {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 24px;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #ffffff !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+
+        .btn-hero-cta-zalo {
+            background-color: #0068ff; /* Zalo Blue */
+        }
+
+        .btn-hero-cta-zalo:hover {
+            background-color: #0056d6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 104, 255, 0.22);
+        }
+
+        .btn-hero-cta-wa {
+            background-color: #25D366; /* WhatsApp Green */
+        }
+
+        .btn-hero-cta-wa:hover {
+            background-color: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.22);
+        }
+
+        .pricing-link-secondary {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .pricing-link-secondary:hover {
+            color: var(--color-accent);
+        }
+
+        /* Compact Section Spacing rules */
+        .tiers-section, .detailed-pricing-section, .process-section, .faq-section, .benefits-section, .testimonials-section {
+            padding: 70px 0 !important;
+        }
+
+        .bottom-cta-section {
+            padding: 85px 0 !important;
+        }
+
+        /* Desktop grids for benefits and testimonials */
+        .benefits-grid, .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 991px) {
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            /* Stack hero CTA buttons vertically on tablet & mobile */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+                width: 100% !important;
+                max-width: 480px;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 24px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+        }
+
+        /* Animated Background Blobs */
+        .hero-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            z-index: 1;
+            mix-blend-mode: multiply;
+            animation: floatBlob 22s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background-color: rgba(242, 106, 25, 0.2); /* Orange */
+            top: -100px;
+            left: -150px;
+            animation-duration: 26s;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background-color: rgba(9, 0, 45, 0.1); /* Dark Blue */
+            bottom: -150px;
+            right: -100px;
+            animation-delay: -5s;
+        }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(50px, -70px) scale(1.08); }
+            66% { transform: translate(-30px, 40px) scale(0.95); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+
+
+        /* Hero Layout Split Columns */
+        .shoes-hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-left-details {
+            text-align: left;
+        }
+
+        .hero-left-details h1 {
+            font-family: var(--font-headline);
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-left-details h1 span.orange-highlight {
+            color: var(--color-accent);
+        }
+
+        .hero-left-details p.description {
+            font-family: var(--font-body);
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--color-text-gray);
+            margin-bottom: 30px;
+            max-width: 580px;
+        }
+
+        /* Specs badges container */
+        .hero-specs-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .spec-capsule {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .spec-capsule .icon-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background-color: rgba(242, 106, 25, 0.08);
+            color: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .spec-capsule .text-box h5 {
+            font-family: var(--font-headline);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0;
+        }
+
+        .spec-capsule .text-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        /* Right column floating menu card layout */
+        .hero-right-gallery {
+            position: relative;
+            height: 480px;
+            border-radius: 32px;
+            background-image: url('assets/images/shoes_cleaning_featured.jpg');
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 20px 40px rgba(9, 0, 45, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-menu-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            padding: 28px;
+            width: 385px;
+            box-shadow: 0 15px 40px rgba(9, 0, 45, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: absolute;
+            left: -15px;
+            z-index: 5;
+            animation: floatCard 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatCard {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-12px); }
+        }
+
+        .branch-badge {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        .floating-menu-card span.hot-tag {
+            background-color: #fff1f2;
+            color: #ef4444;
+            font-size: 9.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .floating-menu-card h3 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 18px 0;
+        }
+
+        .floating-menu-card ul.menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            text-align: left;
+        }
+
+        .floating-menu-card ul.menu-list li {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+
+        .floating-menu-card ul.menu-list li span.dot {
+            color: var(--color-accent);
+            margin-right: 8px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-recommended {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-popular {
+            background-color: #fee2e2;
+            color: #ef4444;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-premium {
+            background-color: #fef3c7;
+            color: #d97706;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .floating-menu-card ul.menu-list li span.badge-new {
+            background-color: #ecfdf5;
+            color: #059669;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .btn-menu-book {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-menu-book:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        /* 4 Premium Shoes Pricing Tiers */
+        .tiers-section {
+            padding: 100px 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            text-align: center;
+        }
+
+        .tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+            max-width: 1140px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: stretch;
+        }
+
+        .tier-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 24px;
+            padding: 35px 25px 25px 25px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(9, 0, 45, 0.06);
+            border-color: rgba(242, 106, 25, 0.2);
+        }
+
+        /* Gold Card (Featured/Best Seller) styles */
+        .tier-card.featured-gold {
+            background-color: #09002d;
+            color: #ffffff;
+            border-color: var(--color-accent);
+            box-shadow: 0 15px 35px rgba(9, 0, 45, 0.15);
+        }
+
+        .tier-card.featured-gold:hover {
+            border-color: var(--color-accent);
+            box-shadow: 0 20px 45px rgba(9, 0, 45, 0.25);
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #eab308, #d97706);
+            color: #ffffff;
+            font-family: var(--font-headline);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .tier-header h4 {
+            font-family: var(--font-headline);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .tier-card.featured-gold .tier-header h4 {
+            color: #ffffff;
+        }
+
+        .tier-header span.lbl-code {
+            font-family: var(--font-headline);
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .tier-card.featured-gold .tier-header span.lbl-code {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .tier-price-box {
+            font-family: var(--font-headline);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .tier-card.featured-gold .tier-price-box {
+            color: #eab308;
+        }
+
+        .tier-price-box span.unit {
+            font-size: 13px;
+            color: var(--color-text-gray);
+            font-weight: 500;
+        }
+
+        .tier-card.featured-gold .tier-price-box span.unit {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tier-time-badge {
+            background-color: #f1f5f9;
+            color: #475569;
+            font-family: var(--font-headline);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 25px;
+            width: fit-content;
+        }
+
+        .tier-card.featured-gold .tier-time-badge {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .tier-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            border-top: 1px dashed rgba(0,0,0,0.06);
+            padding-top: 20px;
+        }
+
+        .tier-card.featured-gold .tier-features-list {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .tier-features-list li {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--color-text-gray);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .tier-card.featured-gold .tier-features-list li {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .tier-features-list li i {
+            color: #22c55e;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .tier-card.featured-gold .tier-features-list li i {
+            color: #22c55e;
+        }
+
+        .tier-materials-box {
+            border-top: 1px solid rgba(0,0,0,0.04);
+            padding-top: 15px;
+            margin-top: auto;
+        }
+
+        .tier-card.featured-gold .tier-materials-box {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tier-materials-box span.lbl {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .tier-card.featured-gold .tier-materials-box span.lbl {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .tier-materials-box p {
+            font-family: var(--font-body);
+            font-size: 11.5px;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .tier-card.featured-gold .tier-materials-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-tier-cta {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--color-bg-dark);
+            color: #ffffff !important;
+            padding: 12px 0;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 12.5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .btn-tier-cta:hover {
+            background-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+        }
+
+        .tier-card.featured-gold .btn-tier-cta {
+            background-color: var(--color-accent);
+            color: #ffffff !important;
+        }
+
+        .tier-card.featured-gold .btn-tier-cta:hover {
+            background-color: #ffffff;
+            color: var(--color-bg-dark) !important;
+            box-shadow: 0 8px 20px rgba(255,255,255,0.1);
+        }
+
+        .delivery-notice-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: rgba(242, 106, 25, 0.04);
+            border: 1px dashed rgba(242, 106, 25, 0.25);
+            padding: 16px 28px;
+            border-radius: 16px;
+            max-width: 760px;
+            margin: -10px auto 45px auto;
+            text-align: left;
+        }
+        
+        .delivery-notice-box i {
+            font-size: 20px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+        
+        .delivery-notice-box p {
+            font-family: var(--font-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .delivery-notice-box strong {
+            color: var(--color-bg-dark);
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .delivery-notice-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 18px 20px;
+                gap: 10px;
+            }
+        }
+
+        /* Detailed price list styling */
+        .detailed-pricing-section {
+            padding: 100px 0;
+            background-color: var(--color-bg-soft);
+        }
+
+        .pricing-list-container {
+            max-width: 1000px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .pricing-category-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(9, 0, 45, 0.01);
+        }
+
+        .pricing-category-card h3 {
+            font-family: var(--font-headline);
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin: 0 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px dashed rgba(0,0,0,0.06);
+            padding-bottom: 12px;
+        }
+
+        .price-list-items {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .price-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            padding-bottom: 12px;
+        }
+
+        .price-item-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .price-item-left {
+            text-align: left;
+        }
+
+        .price-item-left h4 {
+            font-family: var(--font-headline);
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--color-bg-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .price-item-left p {
+            font-family: var(--font-body);
+            font-size: 12px;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        .price-item-right {
+            text-align: right;
+            font-family: var(--font-headline);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        /* Policy Badges layout */
+        .policy-badges-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 30px auto 0 auto;
+        }
+
+        .policy-badge-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(0,0,0,0.04);
+            border-radius: 14px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .policy-badge-card i {
+            font-size: 18px;
+            color: var(--color-accent);
+            flex-shrink: 0;
+        }
+
+        .policy-badge-card p {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            color: var(--color-bg-dark);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .policy-badge-card p span {
+            color: var(--color-text-gray);
+            font-weight: 500;
+            display: block;
+            font-size: 11.5px;
+            margin-top: 2px;
+        }
+
+        /* Responsive Layouts */
+        @media (max-width: 991px) {
+            .shoes-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-left-details {
+                text-align: center;
+            }
+
+            .hero-left-details .section-badge {
+                display: block !important;
+                width: max-content !important;
+                margin: 0 auto 10px auto !important;
+            }
+
+            .hero-left-details .hero-trust-badge {
+                display: inline-flex !important;
+                margin-top: 0 !important;
+                margin-bottom: 20px !important;
+            }
+
+            .hero-left-details p.description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-specs-row {
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-right-gallery {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .floating-menu-card {
+                left: -20px;
+                width: 360px;
+                padding: 20px;
+            }
+
+            .tiers-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .policy-badges-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .shoes-hero-redesigned {
+                padding-top: 130px;
+            }
+
+            .hero-left-details h1 {
+                font-size: 32px;
+            }
+
+            .floating-menu-card {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 90%;
+                margin: -50px auto 0 auto;
+                animation: none;
+                box-shadow: 0 10px 30px rgba(9, 0, 45, 0.08);
+            }
+
+            .hero-right-gallery {
+                height: 320px;
+            }
+
+            .combo-spec-card {
+                padding: 24px;
+            }
+
+            /* Hero Section Mobile Refinements */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 20px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
+            .pricing-link-secondary {
+                font-size: 13px !important;
+            }
+            .hero-specs-row-new {
+                justify-content: center !important;
+                gap: 8px !important;
+            }
+            .spec-item-divider {
+                display: none !important;
+            }
+            .spec-item-new {
+                background-color: rgba(242, 106, 25, 0.04) !important;
+                border: 1px solid rgba(242, 106, 25, 0.08) !important;
+                padding: 6px 12px !important;
+                border-radius: 20px !important;
+            }
+
+            .tiers-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+
+            /* Compact Spacing on Mobile */
+            .tiers-section, .detailed-pricing-section, .process-section, .faq-section, .benefits-section, .testimonials-section {
+                padding: 45px 0 !important;
+            }
+
+            .bottom-cta-section {
+                padding: 55px 0 !important;
+            }
+
+            /* Benefits & Testimonials Mobile Refinements */
+            .benefits-grid, .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            .benefit-card, .testimonial-card {
+                padding: 30px 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Revamped Header -->
+    <header class="main-header" id="navbar">
+        <div class="container header-container">
+            <a href="index.html" class="logo" id="header-logo">
+                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+            </a>
+            <nav class="nav-menu" id="nav-links">
+                <a href="index.html" class="nav-item">HOME</a>
+                <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
+                <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
+                <a href="shoes-cleaning.html" class="nav-item active">SHOES CLEANING</a>
+                <a href="curtain-cleaning.html" class="nav-item">BEDDING & LINENS</a>
+                <a href="index.html#faq" class="nav-item">FAQs</a>
+            </nav>
+            <div class="header-ctas">
+                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
+                    <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                </a>
+                <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                    <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Redesigned Hero Section -->
+    <section class="shoes-hero-redesigned" id="hero">
+        <!-- Background elements -->
+        <div class="hero-blob blob-1"></div>
+        <div class="hero-blob blob-2"></div>
+        <!-- Elegant Floating Laundry Bubbles (Soapy / Water effect) -->
+        <div class="laundry-bubble" style="width: 24px; height: 24px; left: 8%; animation-delay: 0s; animation-duration: 9s;"></div>
+        <div class="laundry-bubble" style="width: 14px; height: 14px; left: 24%; animation-delay: 2.5s; animation-duration: 7s;"></div>
+        <div class="laundry-bubble" style="width: 32px; height: 32px; left: 78%; animation-delay: 1.2s; animation-duration: 11s;"></div>
+        <div class="laundry-bubble" style="width: 18px; height: 18px; left: 87%; animation-delay: 4s; animation-duration: 8s;"></div>
+        <div class="laundry-bubble" style="width: 28px; height: 28px; left: 44%; animation-delay: 5.5s; animation-duration: 10s;"></div>
+        <div class="laundry-bubble" style="width: 16px; height: 16px; left: 61%; animation-delay: 7s; animation-duration: 9s;"></div>
+        
+        <div class="container">
+            <div class="shoes-hero-grid">
+                <!-- Left Details -->
+                <div class="hero-left-details">
+                    <span class="section-badge">SHOES & LEATHER SPA</span>
+                    
+                    <!-- Trust Rating Badge -->
+                    <div class="hero-trust-badge">
+                        <i class="fa-solid fa-star"></i>
+                        <span>4.9/5 Google Maps Rating (1,200+ Reviews)</span>
+                    </div>
+
+                    <h1>Premium Shoes Cleaning & <span class="orange-highlight">Leather Spa</span></h1>
+                    <p class="description">
+                        Keep your sneakers, leather shoes, high heels, boots, and luxury handbags looking brand new. Our professional specialists wash every item completely by hand using eco-friendly organic cleaners, sanitized UVC rays, and controlled dehumidifying dry rooms.
+                    </p>
+                    
+                    <!-- Inline Space-Saving Specs -->
+                    <div class="hero-specs-row-new">
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-hand-holding-hand"></i>
+                            <span>100% Manual Hand Wash</span>
+                        </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-droplet"></i>
+                            <span>Premium Saphir Care</span>
+                        </div>
+                        <div class="spec-item-divider"></div>
+                        <div class="spec-item-new">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <span>Antiseptic UVC Deodorize</span>
+                        </div>
+                    </div>
+                    
+                    <!-- High-Converting Dual Booking CTAs -->
+                    <div class="hero-actions-new">
+                        <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo">
+                            <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book on Zalo
+                        </a>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa">
+                            <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book on WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="hero-secondary-links" style="margin-top: 15px; text-align: left;">
+                        <a href="#pricing" class="pricing-link-secondary"><i class="fa-solid fa-tags"></i> View Price List</a>
+                    </div>
+                </div>
+
+                <!-- Right floating card stack -->
+                <div class="hero-right-gallery">
+                    <div class="branch-badge">D1<br><span style="font-size: 8px; font-weight: 500; color: #475569;">DISTRICT 1</span></div>
+                    
+                    <div class="floating-menu-card">
+                        <span class="hot-tag">HOT SERVICES</span>
+                        <h3>Featured Care Menu</h3>
+                        <ul class="menu-list">
+                            <li><span><span class="dot">•</span> Express Shoes Cleaning (24h)</span> <span class="badge-popular">FASTEST</span></li>
+                            <li><span><span class="dot">•</span> Sneaker Cleaning</span> <span class="badge-recommended">RECOMMENDED</span></li>
+                            <li><span><span class="dot">•</span> Suede/Nubuck Shoe Cleaning</span> <span class="badge-premium">PREMIUM</span></li>
+                            <li><span><span class="dot">•</span> Designer Handbags Cleaning</span> <span class="badge-new">NEW</span></li>
+                        </ul>
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-menu-book">BOOK SERVICE NOW</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shoes Cleaning Pricing Tiers (Image Tiers) -->
+    <section class="tiers-section" id="combos">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">PRICING PACKAGES</span>
+                <h2 class="section-title">Choose the Perfect Package for You</h2>
+                <p class="section-subtitle">Select from our standard care tiers tailored to your shoe material and turnaround needs.</p>
+            </div>
+
+            <!-- Beautiful Delivery Notice Box -->
+            <div class="delivery-notice-box">
+                <i class="fa-solid fa-truck-ramp-box"></i>
+                <p><strong>Delivery Notice:</strong> Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km. <strong>Free pickup & delivery for orders over 1,000,000 VND.</strong></p>
+            </div>
+
+            <div class="tiers-grid">
+                <!-- Basic Clean Card -->
+                <div class="tier-card">
+                    <div class="tier-card-top">
+                        <div class="tier-header">
+                            <h4>Basic Clean</h4>
+                            <span class="lbl-code">BASIC</span>
+                        </div>
+                        <div class="tier-price-box">
+                            150,000đ <span class="unit">/ pair</span>
+                        </div>
+                        <div class="tier-time-badge">3 Days</div>
+                        
+                        <ul class="tier-features-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Basic cleaning of the entire shoe</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Upper · midsole · outsole · insole · laces</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Deodorization + Sanitization</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tier-card-bottom">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+                        
+                        <div class="tier-materials-box" style="margin-top: 15px;">
+                            <span class="lbl">SUITABLE MATERIALS</span>
+                            <p>Leather · synthetic leather · canvas · mesh</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Express Deep Clean Card (Featured / Best Seller) -->
+                <div class="tier-card featured-gold">
+                    <div class="best-seller-badge"><i class="fa-solid fa-bolt"></i> 24H EXPRESS</div>
+                    <div class="tier-card-top">
+                        <div class="tier-header">
+                            <h4>Express Deep Clean</h4>
+                            <span class="lbl-code" style="background: rgba(255, 255, 255, 0.2); color: #ffffff;">EXPRESS · 24H</span>
+                        </div>
+                        <div class="tier-price-box">
+                            250,000đ <span class="unit" style="color: rgba(255,255,255,0.7);">/ pair</span>
+                        </div>
+                        <div class="tier-time-badge" style="background: rgba(255, 255, 255, 0.15); color: #ffffff;">24-Hour Express Return</div>
+                        
+                        <ul class="tier-features-list">
+                            <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #ffffff;">Basic cleaning of the entire shoe</span></li>
+                            <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #ffffff;">Upper · midsole · outsole · insole · laces</span></li>
+                            <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #ffffff;">Deodorization + Sanitization</span></li>
+                            <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #ffffff;">Midsole unyellowing & stain removal</span></li>
+                            <li><i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> <span style="color: #fb923c; font-weight: 600;">Basic clean + 100k express surcharge</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tier-card-bottom">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta" style="background: var(--color-accent); color: #ffffff; border-color: var(--color-accent);">BOOK SERVICE NOW</a>
+
+                        <div class="tier-materials-box" style="margin-top: 15px;">
+                            <span class="lbl" style="color: rgba(255,255,255,0.6);">SUITABLE MATERIALS</span>
+                            <p style="color: rgba(255,255,255,0.85);">Urgent turnaround for all standard shoe types</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Special Material Card -->
+                <div class="tier-card">
+                    <div class="tier-card-top">
+                        <div class="tier-header">
+                            <h4>Special Material</h4>
+                            <span class="lbl-code">SPECIAL</span>
+                        </div>
+                        <div class="tier-price-box">
+                            220,000đ <span class="unit">/ pair</span>
+                        </div>
+                        <div class="tier-time-badge">3 Days</div>
+                        
+                        <ul class="tier-features-list">
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Custom process for delicate & hard materials</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Preserve structure & original color</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span>Deodorization + Sanitization</span></li>
+                            <li><i class="fa-solid fa-circle-check"></i> <span style="color: var(--color-accent); font-weight: 600;">Optional 24H Express: +100,000đ</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tier-card-bottom">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn-tier-cta">BOOK SERVICE NOW</a>
+
+                        <div class="tier-materials-box" style="margin-top: 15px;">
+                            <span class="lbl">SUITABLE MATERIALS</span>
+                            <p>Suede · Nubuck · Leather dress shoes · Silk · Satin</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Shoes Process Section -->
+    <section class="process-section" style="background-color: #ffffff;">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">CARE CAPABILITIES</span>
+                <h2 class="section-title">How We Care For Your Shoes</h2>
+                <p class="section-subtitle">A strict, standardized process executed manually by trained shoe technicians.</p>
+            </div>
+            
+            <div class="order-steps-grid" style="margin-top: 50px;">
+                <!-- Step 1 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-hands-wash"></i></div>
+                    <h3>01. Individual Hand Wash</h3>
+                    <p>We do not use automatic washing machines. Every shoe is hand-brushed inside out using specialized soft boar/horsehair brushes to protect delicate fabrics.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-flask"></i></div>
+                    <h3>02. Organic Solvents</h3>
+                    <p>We clean with top-tier leather care chemicals (Saphir and Tarrago) which clean deep stains without stripping the leather's natural color or oils.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-wind"></i></div>
+                    <h3>03. Controlled Temperature Drying</h3>
+                    <p>Shoes are placed in dark dehumidifying rooms at standard temperatures. No high-heat is used, preventing fabric contraction and sole glue cracking.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="step-card-v2">
+                    <div class="step-card-icon"><i class="fa-solid fa-shield-virus"></i></div>
+                    <h3>04. UVC Ray Disinfection</h3>
+                    <p>Finally, we sanitize all shoes using UVC ultraviolet ray cabins to eliminate 99.9% of internal bacteria, fungal spores, and foot odors.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" style="background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">TESTIMONIALS</span>
+                <h2 class="section-title">Trusted by Sneakerheads & Professionals</h2>
+                <p class="section-subtitle">Read what our clients say about their shoes cleaning and restoration experience in Saigon.</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Sent my Jordan 1s and Yeezys here after a muddy rainy week. They came back looking and smelling like brand new. The hand-wash quality is amazing!"
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">MS</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Michael S.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">Thao Dien, District 2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Giặt giày thể thao và giày cao gót rất sạch sẽ. Giày da được dưỡng mềm mại, không bị khô da hay mất màu, đóng gói hộp giấy rất chuyên nghiệp."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">QA</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">Quỳnh Anh</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">District 1, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Review Sophia -->
+                <div class="testimonial-card" style="background-color: #ffffff; padding: 35px; border-radius: 24px; box-shadow: 0 10px 30px rgba(9, 0, 45, 0.015); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="stars-row" style="color: #f59e0b; font-size: 14px; margin-bottom: 15px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p style="font-family: var(--font-body); font-size: 14px; line-height: 1.6; color: #475569; font-style: italic; margin: 0 0 20px 0;">
+                            "Great sneaker spa! The UVC ray disinfection works wonders for gym shoes. High-end Crep protect products used. Very reliable."
+                        </p>
+                    </div>
+                    <div class="client-info" style="display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.1); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-family: var(--font-headline); font-weight: 700; font-size: 15px;">JF</div>
+                        <div>
+                            <h5 style="font-family: var(--font-headline); font-size: 14px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 2px 0;">James F.</h5>
+                            <span style="font-family: var(--font-body); font-size: 11.5px; color: var(--color-text-gray);">District 7, HCMC</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="faq-section" id="faq" style="background-color: var(--color-bg-soft);">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">Got questions about shoe cleaning and care? Here are our answers.</p>
+            </div>
+            
+            <div class="accordion-wrapper" style="max-width: 800px; margin: 40px auto 0 auto;">
+                <!-- FAQ 1 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How long does the shoe cleaning process take?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Our standard cleaning turnaround is 3 to 4 days. This is because we dry all shoes in a natural, dehumidified room without using high heat to preserve sole glue. If you need them faster, we offer a 24-hour Express option for +100,000 VND / pair.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 2 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Do you clean genuine suede and nubuck materials?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>Yes, we have specialized suede and nubuck spa treatments. We brush them manually, apply conditioning oils to restore softness, and apply waterproof nano-coatings to protect colors from fading.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 3 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>Can you repair or recolor scuffed leather?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>For minor scuffs, our premium leather conditioners and wax polishes can cover them effectively. For deep cuts or recoloring requests, please message us on WhatsApp with photos of the shoes so we can provide a custom quote.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ 4 -->
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How can I schedule a pickup for my shoes?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-body">
+                        <p>The fastest way is to click any "Book Now" button to text us directly on WhatsApp at <strong>0866.137.043</strong>. We will arrange a driver to collect your shoes from your home or hotel reception lobby within 30 minutes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Call to Action Section -->
+    <section class="bottom-cta-section" style="background-color: #fbfaf7; border-top: 1px solid rgba(0, 0, 0, 0.03); position: relative; overflow: hidden; text-align: center; color: var(--color-bg-dark); padding: 75px 0;">
+        <div class="hero-blob blob-1" style="background-color: rgba(242, 106, 25, 0.06); filter: blur(100px); top: -50px; left: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        <div class="hero-blob blob-2" style="background-color: rgba(242, 106, 25, 0.03); filter: blur(100px); bottom: -50px; right: -50px; position: absolute; border-radius: 50%; width: 300px; height: 300px;"></div>
+        
+        <div class="container" style="position: relative; z-index: 2; max-width: 750px;">
+            <span class="section-badge" style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); border: 1px solid rgba(242, 106, 25, 0.15);">BOOK PICKUP TODAY</span>
+            <h2 style="font-family: var(--font-headline); font-size: 32px; font-weight: 700; color: var(--color-bg-dark); margin: 20px 0 15px 0; line-height: 1.25;">Ready to Refresh Your Shoes?</h2>
+            <p style="font-family: var(--font-body); font-size: 14.5px; line-height: 1.6; color: #475569; margin: 0 auto 35px auto;">
+                Schedule a convenient home pickup in District 1, 2, 3, 7, Binh Thanh. Let our premium shoe care specialists handle your sneakers, leather shoes, or designer heels.
+            </p>
+            
+            <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
+                <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo" style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
+                    <i class="fa-solid fa-comments"></i> Book on Zalo
+                </a>
+                <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa" style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
+                    <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
+                </a>
+            </div>
+            
+            <p style="font-family: var(--font-body); font-size: 13px; color: #64748b; margin-top: 25px; font-weight: 500; margin-bottom: 0;">
+                Or call us directly at <a href="tel:0866137043" style="color: var(--color-accent); font-weight: 700; text-decoration: none;">0866.137.043</a> (7:00 AM - 10:00 PM)
+            </p>
+        </div>
+    </section>
+
+    <!-- Revamped Footer Section -->
+    <footer class="revamped-footer" id="contact">
+        <div class="container">
+            <div class="footer-grid-revamped">
+                <!-- Col 1 -->
+                <div class="footer-col-revamped">
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-block;">
+                        <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img-footer" style="max-height: 50px;">
+                    </a>
+                    <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands of garments & designer shoes. Every item carries a story worthy of respect.</p>
+                    <div class="footer-social-circles">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/84866137043" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                    <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                </div>
+                
+                <!-- Col 2 -->
+                <div class="footer-col-revamped">
+                    <h3>SERVICES</h3>
+                    <div class="footer-links-revamped">
+                        <a href="express-laundry.html">Express Laundry</a>
+                        <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                        <a href="steam-press.html">Steam Press</a>
+                        <a href="dry-cleaning.html">Dry Cleaning</a>
+                        <a href="curtain-cleaning.html">Curtain Cleaning</a>
+                    </div>
+                </div>
+                
+                <!-- Col 3 -->
+                <div class="footer-col-revamped">
+                    <h3>SYSTEM</h3>
+                    <div class="footer-links-revamped">
+                        <a href="#">Track Order</a>
+                        <a href="#gallery">Gallery</a>
+                        <a href="#">Care Pass Membership</a>
+                        <a href="#">News & Blog</a>
+                        <a href="#">About 1997 Laundry</a>
+                    </div>
+                </div>
+                
+                <!-- Col 4 -->
+                <div class="footer-col-revamped">
+                    <h3>CONTACT</h3>
+                    <div class="footer-contact-details">
+                        <div class="contact-line">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh City</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:0866137043" style="color: var(--color-accent); font-weight: bold; text-decoration: none;">0866.137.043</a>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-clock"></i>
+                            <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="contact-line">
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:contact@1997laundry.vn" style="color: var(--color-text-muted); text-decoration: none;">contact@1997laundry.vn</a>
+                        </div>
+                        
+                        <a href="https://maps.app.goo.gl/y2PDRaH9U8iG6F4L8" target="_blank" class="footer-map-btn" style="text-decoration: none; display: inline-flex; align-items: center; margin-top: 15px; padding: 10px 16px; border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #ffffff; font-size: 13px; transition: all 0.3s ease;">
+                            <i class="fa-solid fa-map-location-dot" style="margin-right: 8px; color: var(--color-accent);"></i> View Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-bar-revamped">
+                <p>&copy; 2026 1997 Premium Laundry & Dry Cleaning. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky Mobile CTA Bar -->
+    <div class="sticky-mobile-cta">
+        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-book">
+            <i class="fa-solid fa-calendar-days"></i> Book Online
+        </a>
+        <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
+            <i class="fa-solid fa-comments"></i> Zalo
+        </a>
+    </div>
+
+    <!-- Floating Chatbot Widget -->
+    <a href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
+        <span class="floating-chatbot-label">Chatbot</span>
+        <div class="floating-chatbot-circle">
+            <i class="fa-solid fa-comment-dots"></i>
+        </div>
+    </a>
+
+    <!-- Main JS script -->
+    <script src="index.js?v=2.0"></script>
+</body>
+</html>
