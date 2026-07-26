@@ -572,4 +572,414 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================
+       10. STATIC INTERACTIVE CHATBOT (AGENT BE BE NE)
+       ========================================== */
+    const botResponses = {
+        start: {
+            text: "Hello! I am your 1997 Premium Laundry Assistant. How can I help you today?",
+            options: [
+                { text: "👕 Express Laundry", next: "express" },
+                { text: "🧥 Dry Cleaning", next: "dryclean" },
+                { text: "👟 Shoes & Bag Spa", next: "shoes" },
+                { text: "💨 Steam Pressing", next: "press" },
+                { text: "🧺 Bedding & Curtain", next: "bedding" },
+                { text: "🚚 Delivery Policy", next: "delivery" },
+                { text: "📞 Talk to Human", next: "human" }
+            ]
+        },
+        express: {
+            text: "<strong>Express Laundry (Giặt Sấy Lấy Liền):</strong><br>• Standard 24h: 15k/kg (whites separate wash +30k/load).<br>• Same-Day (6-8h): 25k/kg.<br>• 4H Super Express: 35k/kg.<br><br>All loads are washed 100% individually in cold water and dried at 60°C.",
+            options: [
+                { text: "📅 Book Express Laundry", action: "book_wa" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        dryclean: {
+            text: "<strong>Premium Dry Cleaning (Giặt Khô Cao Cấp):</strong><br>We use safe, eco-friendly Hydrocarbon solvents to protect luxury suits, wool, cashmere, silk, down jackets, and leather.<br><br>• 2-Piece Suit: 230,000 VND<br>• Silk/Evening Gown: 190,000 VND<br>• Leather Jacket: 490,000 VND<br><br>Includes stain pre-treatment, hydrocarbon wash, vertical steam pressing, and hanger packaging with no extra fees!",
+            options: [
+                { text: "📅 Book Dry Cleaning", action: "book_wa" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        shoes: {
+            text: "<strong>Shoes & Bag Spa:</strong><br>Every shoe and luxury handbag is cleaned 100% by hand using premium organic conditioners (Saphir care), sterilized with UVC rays, and dried in controlled rooms.<br><br>• Basic Sneaker Clean: 90,000 VND<br>• Premium Leather Spa: 180,000 VND<br>• Luxury Shoe Restoration: 350,000 VND",
+            options: [
+                { text: "📅 Book Shoe Spa", action: "book_zalo" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        press: {
+            text: "<strong>Steam Pressing (Ủi Hơi Nước):</strong><br>• Casual Wear Pressing: 15,000 VND/piece.<br>• Professional Hand & Vertical Steam Pressing (Suits, gowns): starts from 40,000 VND/piece.<br><br>We use high-pressure vertical steam tables to restore fabric drape and structure without causing shine or fiber damage.",
+            options: [
+                { text: "📅 Book Pressing", action: "book_wa" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        bedding: {
+            text: "<strong>Bedding & Curtain Cleaning:</strong><br>• Bedsheets, duvets, comforters: 60,000 VND/kg.<br>• Curtain package: includes home removal/dismantling, deep wash, steam folding, and re-hanging. Starts from 150,000 VND/panel.",
+            options: [
+                { text: "📅 Book Bedding/Curtain", action: "book_wa" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        delivery: {
+            text: "<strong>Delivery Policy:</strong><br>• <strong>FREE roundtrip shipping</strong> for orders over 1,000,000 VND across HCMC inner districts.<br>• For orders under 1,000,000 VND: 20,000 VND/way under 3km, and +8,000 VND/km for distances over 3km.",
+            options: [
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        },
+        human: {
+            text: "Would you like to chat directly with our team? Click Zalo or WhatsApp below to talk to a human operator:",
+            options: [
+                { text: "💬 Chat on Zalo", action: "chat_zalo" },
+                { text: "🟢 Chat on WhatsApp", action: "chat_wa" },
+                { text: "🔙 Main Menu", next: "start" }
+            ]
+        }
+    };
+
+    // 1. Inject Stylesheet
+    const botStyle = document.createElement('style');
+    botStyle.innerHTML = `
+        .chatbot-window {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            width: 350px;
+            height: 480px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(9, 0, 45, 0.15);
+            border: 1px solid rgba(9, 0, 45, 0.08);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 10000;
+            font-family: var(--font-body);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+        }
+
+        .chatbot-window.open {
+            display: flex;
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .chatbot-header {
+            background: var(--color-bg-dark);
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .chatbot-title-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 14px;
+        }
+
+        .chatbot-info h4 {
+            margin: 0;
+            font-family: var(--font-headline);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+        }
+
+        .chatbot-info span {
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: #94a3b8;
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .chatbot-close:hover {
+            color: #ffffff;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background: #fafafa;
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 13px;
+            line-height: 1.5;
+            box-sizing: border-box;
+        }
+
+        .chat-bubble.bot {
+            background: #ffffff;
+            color: var(--color-bg-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .chat-bubble.user {
+            background: var(--color-accent);
+            color: #ffffff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 12px rgba(242, 106, 25, 0.15);
+        }
+
+        .chatbot-options {
+            padding: 12px 20px;
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+
+        .chatbot-option-btn {
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: var(--color-bg-dark);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chatbot-option-btn:hover {
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #ffffff;
+        }
+
+        .chatbot-input-area {
+            padding: 12px 20px;
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            border: 1px solid #e2e8f0;
+            padding: 10px 16px;
+            border-radius: 24px;
+            font-size: 13px;
+            outline: none;
+            transition: border-color 0.2s ease;
+            height: 38px;
+            box-sizing: border-box;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--color-accent);
+        }
+
+        .chatbot-send {
+            background: var(--color-accent);
+            color: #ffffff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+            padding: 0;
+        }
+
+        .chatbot-send:hover {
+            background-color: var(--color-accent-dark);
+        }
+
+        @media (max-width: 576px) {
+            .chatbot-window {
+                bottom: 0 !important;
+                right: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                border-radius: 0 !important;
+                z-index: 100000 !important;
+            }
+        }
+    `;
+    document.head.appendChild(botStyle);
+
+    // 2. Inject Chatbot HTML Markup
+    const chatContainer = document.createElement('div');
+    chatContainer.id = 'chatbot-widget-container';
+    chatContainer.innerHTML = `
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-title-container">
+                    <div class="chatbot-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="chatbot-info">
+                        <h4>1997 Assistant</h4>
+                        <span>Online • Automated</span>
+                    </div>
+                </div>
+                <button class="chatbot-close" id="chatbot-close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages-container"></div>
+            <div class="chatbot-options" id="chatbot-options-container"></div>
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbot-input-el" placeholder="Type a message...">
+                <button class="chatbot-send" id="chatbot-send-btn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(chatContainer);
+
+    // 3. Chatbot Logic
+    const chatbotWindow = document.getElementById('chatbot-window');
+    const closeBtn = document.getElementById('chatbot-close-btn');
+    const messagesContainer = document.getElementById('chatbot-messages-container');
+    const optionsContainer = document.getElementById('chatbot-options-container');
+    const inputEl = document.getElementById('chatbot-input-el');
+    const sendBtn = document.getElementById('chatbot-send-btn');
+    const floatBtn = document.querySelector('.floating-chatbot-widget');
+
+    // Intercept floating button click
+    if (floatBtn) {
+        floatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggleChatbot();
+        });
+    }
+
+    function toggleChatbot() {
+        if (chatbotWindow.classList.contains('open')) {
+            chatbotWindow.classList.remove('open');
+            setTimeout(() => { chatbotWindow.style.display = 'none'; }, 300);
+        } else {
+            chatbotWindow.style.display = 'flex';
+            chatbotWindow.offsetHeight; // trigger reflow
+            chatbotWindow.classList.add('open');
+            if (messagesContainer.children.length === 0) {
+                showBotResponse('start');
+            }
+        }
+    }
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', toggleChatbot);
+    }
+
+    function addMessage(text, sender) {
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${sender}`;
+        bubble.innerHTML = text;
+        messagesContainer.appendChild(bubble);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function showBotResponse(key) {
+        const state = botResponses[key];
+        if (!state) return;
+
+        addMessage(state.text, 'bot');
+
+        optionsContainer.innerHTML = '';
+        state.options.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'chatbot-option-btn';
+            btn.textContent = opt.text;
+            btn.addEventListener('click', () => {
+                addMessage(opt.text, 'user');
+                if (opt.next) {
+                    setTimeout(() => { showBotResponse(opt.next); }, 400);
+                } else if (opt.action) {
+                    handleAction(opt.action);
+                }
+            });
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function handleAction(action) {
+        let url = "";
+        if (action === "chat_zalo" || action === "book_zalo") {
+            url = "https://zalo.me/0866137043";
+        } else if (action === "chat_wa" || action === "book_wa") {
+            url = "https://wa.me/84866137043";
+        }
+        if (url) {
+            addMessage(`Opening Zalo/WhatsApp to complete your booking... <a href="${url}" target="_blank" style="color: var(--color-accent); font-weight:700; text-decoration:underline;">Click here</a> if it didn't open.`, 'bot');
+            window.open(url, '_blank');
+        }
+        setTimeout(() => { showBotResponse('start'); }, 1500);
+    }
+
+    function handleInput() {
+        const val = inputEl.value.trim();
+        if (!val) return;
+
+        addMessage(val, 'user');
+        inputEl.value = '';
+
+        setTimeout(() => {
+            addMessage("I am currently in automated assistant mode. To ask about specific services, please use the quick buttons below or select 'Talk to Human' to chat directly on Zalo/WhatsApp!", 'bot');
+            showBotResponse('start');
+        }, 500);
+    }
+
+    if (sendBtn) {
+        sendBtn.addEventListener('click', handleInput);
+    }
+    if (inputEl) {
+        inputEl.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleInput();
+            }
+        });
+    }
+
 });
