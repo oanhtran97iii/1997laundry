@@ -3775,6 +3775,7 @@ img {
 html[lang="vi"] .nav-item {
     font-size: 10.5px !important;
     letter-spacing: 0.4px !important;
+    white-space: nowrap !important;
 }
 
 html[lang="vi"] .nav-menu {
@@ -3783,10 +3784,10 @@ html[lang="vi"] .nav-menu {
 
 @media (min-width: 992px) and (max-width: 1200px) {
     html[lang="vi"] .nav-item {
-        font-size: 10px !important;
+        font-size: 9.8px !important;
     }
     html[lang="vi"] .nav-menu {
-        gap: 6px !important;
+        gap: 5px !important;
     }
 }
 
