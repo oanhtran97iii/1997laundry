@@ -3791,3 +3791,215 @@ html[lang="vi"] .nav-menu {
     }
 }
 
+
+/* ==========================================
+   EXPRESS PRICING DESIGN (IMAGE-BASED CARDS)
+   ========================================== */
+.pricing-express-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 991px) {
+    .pricing-express-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 0 15px;
+    }
+}
+
+.express-card-premium {
+    background-color: #ffffff;
+    border-radius: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 40px;
+    text-align: center;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(9, 0, 45, 0.01);
+    position: relative;
+    overflow: visible !important;
+}
+
+.express-card-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(9, 0, 45, 0.05);
+}
+
+.express-card-premium.recommended-card {
+    border: 2px solid var(--color-accent);
+    box-shadow: 0 15px 40px rgba(242, 106, 25, 0.08);
+}
+
+.express-card-premium.recommended-card::before {
+    content: "RECOMMENDED";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 750;
+    padding: 5px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(242, 106, 25, 0.2);
+}
+
+/* Also support custom label for recommended-card in other pages via attribute or class */
+.express-card-premium.recommended-card[data-label]::before {
+    content: attr(data-label);
+}
+
+.express-card-graphic {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.express-card-graphic img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    z-index: 2;
+}
+
+.graphic-badge-4hrs {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background-color: #09002d;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    transform: rotate(-10deg);
+    border: 2px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.graphic-badge-4hrs span.num {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1;
+}
+
+.graphic-badge-4hrs span.txt {
+    font-size: 8px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.express-card-premium h3 {
+    font-family: var(--font-headline);
+    font-size: 19px;
+    font-weight: 700;
+    color: #e25e14;
+    margin: 0 0 12px 0;
+}
+
+.express-card-premium .express-price {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--color-accent);
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+
+.express-card-premium .express-price::after {
+    content: "đ";
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.express-card-premium .express-desc-info {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.express-card-premium .express-desc-time {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 25px;
+}
+
+.express-card-premium .btn-express-book {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    padding: 12px 24px;
+    background-color: var(--color-accent);
+    color: #ffffff !important;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 13.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+}
+
+.express-card-premium .btn-express-book:hover {
+    background-color: var(--color-accent-dark);
+    box-shadow: 0 4px 15px rgba(243, 106, 25, 0.3);
+}
+
+.express-card-premium .express-specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    border-top: 1px dashed rgba(226, 232, 240, 0.8);
+    padding-top: 22px;
+    text-align: left;
+    max-width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.express-card-premium .express-specs-list li {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--color-text-gray);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.express-card-premium .express-specs-list li i {
+    margin-top: 3px;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.express-card-premium .express-specs-list li:last-child {
+    margin-bottom: 0;
+}
