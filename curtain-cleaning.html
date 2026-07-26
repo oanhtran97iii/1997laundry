@@ -850,6 +850,13 @@
                 padding: 30px 20px !important;
             }
         }
+        
+        @keyframes gentle-wrench-shake {
+            0%, 100% { transform: rotate(0deg); }
+            8%, 24% { transform: rotate(-10deg); }
+            16%, 32% { transform: rotate(10deg); }
+            40% { transform: rotate(0deg); }
+        }
     </style>
 </head>
 <body>
@@ -959,6 +966,15 @@
             <div class="text-center header-spacing">
                 <span class="section-badge">TRANSPARENT PRICING</span>
                 <h2 class="section-title">Bedding & Linens Service Packages</h2>
+                
+                <!-- Highlight Box: Free Curtain Installation & Removal -->
+                <div class="curtain-highlight-box" style="display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, rgba(242, 106, 25, 0.08) 0%, rgba(242, 106, 25, 0.03) 100%); border: 1.5px solid rgba(242, 106, 25, 0.2); padding: 10px 22px; border-radius: 30px; margin: 15px auto 5px auto; box-shadow: 0 6px 20px rgba(242, 106, 25, 0.03); max-width: 90%; text-align: left;">
+                    <i class="fa-solid fa-screwdriver-wrench" style="font-size: 14px; color: var(--color-accent); animation: gentle-wrench-shake 2.5s infinite ease-in-out; flex-shrink: 0;"></i>
+                    <span style="font-family: var(--font-headline); font-size: 12.5px; font-weight: 750; color: var(--color-bg-dark); letter-spacing: 0.1px;">
+                        FREE CURTAIN REMOVAL & INSTALLATION 
+                        <span style="color: #ffffff; font-weight: 800; font-size: 11px; margin-left: 6px; background: var(--color-accent); padding: 3px 8px; border-radius: 20px; text-transform: uppercase;">Tháo lắp miễn phí</span>
+                    </span>
+                </div>
             </div>
 
             <!-- Beautiful Delivery Notice Box -->
