@@ -1079,6 +1079,25 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 20px;
             }
+            /* Stack hero CTA buttons vertically on tablet & mobile */
+            .hero-actions-new {
+                flex-direction: column !important;
+                gap: 10px !important;
+                margin-top: 25px !important;
+                width: 100% !important;
+                max-width: 480px;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .btn-hero-cta-zalo, .btn-hero-cta-wa {
+                width: 100% !important;
+                padding: 14px 24px !important;
+                font-size: 13.5px !important;
+            }
+            .hero-secondary-links {
+                text-align: center !important;
+                margin-top: 15px !important;
+            }
         }
     </style>
 </head>
@@ -1186,10 +1205,33 @@
     <!-- Featured Dry Cleaning Products Section -->
     <section class="featured-products-section" id="featured-items">
         <div class="container">
-            <div class="text-center header-spacing">
+            <div class="text-center header-spacing" style="margin-bottom: 40px;">
                 <span class="section-badge">MOST POPULAR SERVICES</span>
                 <h2 class="section-title">Premium Dry Cleaning Specialties</h2>
-                <p class="section-subtitle">Stain treatment - Hydrocarbon dry cleaning - Steam pressing</p>
+                
+                <!-- Highlighted Specialties & Pricing Model Callout -->
+                <div class="specialty-highlight-box" style="max-width: 820px; margin: 25px auto 0 auto; background: rgba(242, 106, 25, 0.03); border: 1px solid rgba(242, 106, 25, 0.15); border-radius: 18px; padding: 22px 28px; text-align: center; box-shadow: 0 4px 20px rgba(242, 106, 25, 0.02);">
+                    <!-- Specialty Tags Row -->
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+                        <span style="font-family: var(--font-headline); font-size: 14.5px; font-weight: 750; color: var(--color-bg-dark); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--color-accent);"></i> Stain Treatment
+                        </span>
+                        <span style="color: rgba(9, 0, 45, 0.2); font-weight: 300;">|</span>
+                        <span style="font-family: var(--font-headline); font-size: 14.5px; font-weight: 750; color: var(--color-bg-dark); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--color-accent);"></i> Hydrocarbon Dry Cleaning
+                        </span>
+                        <span style="color: rgba(9, 0, 45, 0.2); font-weight: 300;">|</span>
+                        <span style="font-family: var(--font-headline); font-size: 14.5px; font-weight: 750; color: var(--color-bg-dark); display: inline-flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--color-accent);"></i> Steam Pressing
+                        </span>
+                    </div>
+                    <!-- All-inclusive Prominent Statement -->
+                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.5; color: var(--color-text-gray); margin: 0; font-weight: 600;">
+                        <i class="fa-solid fa-circle-dollar-to-slot" style="color: var(--color-accent); margin-right: 4px; font-size: 14.5px;"></i>
+                        <span style="color: var(--color-bg-dark); font-weight: 750;">ALL-INCLUSIVE 1 PRICE:</span> 
+                        Stain removal, premium hydrocarbon cleaning, and professional pressing are completely included in the listed price. No additional service fees or hidden charges!
+                    </p>
+                </div>
             </div>
             
             <div class="featured-products-grid">
