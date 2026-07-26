@@ -4003,3 +4003,79 @@ html[lang="vi"] .nav-menu {
 .express-card-premium .express-specs-list li:last-child {
     margin-bottom: 0;
 }
+
+
+/* ==========================================================================
+   MOBILE VIEWPORT & COLLAPSE / TIGHTENING LAYOUT RULES (PREVENT HORIZONTAL OVERFLOW)
+   ========================================================================== */
+html, body {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    /* Hide top header CTA button to declutter header */
+    .header-ctas .btn-cta {
+        display: none !important;
+    }
+    
+    /* Center logo and toggle */
+    .header-container {
+        padding: 0 15px !important;
+    }
+
+    /* Prevent layout container overflow */
+    .detailed-pricing-section, 
+    .services-section, 
+    .gallery-section, 
+    .testimonials-section, 
+    .process-section,
+    .shop-gallery-section,
+    .steps-section {
+        overflow: hidden !important;
+    }
+
+    /* Force all benefits and testimonials to stack */
+    .benefits-grid, .testimonials-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+
+    /* Force hero stats and action buttons to stack vertically and center */
+    .hero-stats {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 20px auto !important;
+    }
+    .stat-item {
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto !important;
+    }
+    .hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 20px auto 0 auto !important;
+        gap: 10px !important;
+    }
+    .hero-actions .btn, .hero-actions a {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+
+    /* Responsive gallery grid on mobile */
+    .image-gallery-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    .gallery-img-wrapper {
+        height: 160px !important;
+    }
+}
