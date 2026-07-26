@@ -3482,3 +3482,133 @@ img {
         padding: 30px 0 !important;
     }
 }
+
+/* Sticky Mobile CTA Bar Styles */
+.sticky-mobile-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 12px 14px 28px 14px;
+    z-index: 9999;
+    display: none;
+    justify-content: space-between;
+    gap: 8px;
+    box-shadow: 0 -8px 25px rgba(9, 0, 45, 0.06);
+}
+
+.sticky-mobile-cta .cta-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 46px;
+    border-radius: 12px;
+    font-family: var(--font-headline);
+    font-size: 13.5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.sticky-mobile-cta .cta-wa {
+    background-color: #25d366;
+    color: #ffffff !important;
+}
+
+.sticky-mobile-cta .cta-book {
+    background-color: var(--color-accent);
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.2);
+}
+
+.sticky-mobile-cta .cta-zalo {
+    background-color: #0068ff;
+    color: #ffffff !important;
+}
+
+.sticky-mobile-cta .cta-btn:active {
+    transform: scale(0.96);
+}
+
+/* Floating Hotline Widget */
+.floating-hotline-widget {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    z-index: 9998;
+    text-decoration: none;
+}
+
+.floating-hotline-label {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-headline);
+    font-size: 10px;
+    font-weight: 750;
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(242, 106, 25, 0.15);
+    position: relative;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.floating-hotline-label::after {
+    content: '';
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px 0 5px 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--color-accent);
+}
+
+.floating-hotline-circle {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.3);
+    animation: pulseCall 2s infinite;
+}
+
+@keyframes pulseCall {
+    0% {
+        box-shadow: 0 0 0 0 rgba(242, 106, 25, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(242, 106, 25, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(242, 106, 25, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .sticky-mobile-cta {
+        display: flex;
+    }
+    .floating-hotline-widget {
+        display: flex;
+    }
+    body {
+        padding-bottom: 100px !important;
+    }
+}
