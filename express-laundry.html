@@ -352,10 +352,21 @@
                 height: 420px;
             }
             .stats-metrics-wrapper {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: flex-start;
+                gap: 12px;
                 text-align: center;
+            }
+            .metric-item {
+                flex: 1;
+            }
+            .metric-item .val {
+                font-size: 20px !important;
+            }
+            .metric-item .lbl {
+                font-size: 10px !important;
+                line-height: 1.3 !important;
             }
         }
         
@@ -1596,23 +1607,23 @@
                 <div class="stats-highlight-block">
                     <h2>#1</h2>
                     <div class="highlight-text">
-                        <h3>Premium Laundry Service</h3>
-                        <p>Saigon's top choice for clothing care</p>
+                        <h3>Premium Laundry</h3>
+                        <p>Saigon's Top Choice</p>
                     </div>
                 </div>
                 <!-- Stats right side -->
                 <div class="stats-metrics-wrapper">
                     <div class="metric-item">
                         <span class="val">4 Hours</span>
-                        <span class="lbl">Super express turnaround option</span>
+                        <span class="lbl">Express Service</span>
                     </div>
                     <div class="metric-item">
                         <span class="val">100%</span>
-                        <span class="lbl">Individual machine wash cycles</span>
+                        <span class="lbl">Separate Wash</span>
                     </div>
                     <div class="metric-item">
                         <span class="val">10k+</span>
-                        <span class="lbl">Garments cleaned & pressed annually</span>
+                        <span class="lbl">Items Cleaned</span>
                     </div>
                 </div>
             </div>
