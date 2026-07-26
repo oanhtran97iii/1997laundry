@@ -3520,21 +3520,69 @@ img {
 .sticky-mobile-cta .cta-wa {
     background-color: #25d366;
     color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Primary Conversion Button - Pulse & Shimmer */
 .sticky-mobile-cta .cta-book {
     background-color: var(--color-accent);
     color: #ffffff !important;
-    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.2);
+    box-shadow: 0 4px 15px rgba(242, 106, 25, 0.25);
+    position: relative;
+    overflow: hidden;
+    animation: gentle-pulse-button 2.5s infinite ease-in-out;
+}
+
+.sticky-mobile-cta .cta-book::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: rotate(30deg);
+    animation: shimmer-sweep 3.5s infinite ease-in-out;
+    filter: blur(4px);
+    pointer-events: none;
 }
 
 .sticky-mobile-cta .cta-zalo {
     background-color: #0068ff;
     color: #ffffff !important;
+    position: relative;
+    overflow: hidden;
 }
 
 .sticky-mobile-cta .cta-btn:active {
-    transform: scale(0.96);
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Keyframes for Mobile CTA Animations */
+@keyframes shimmer-sweep {
+    0% {
+        left: -150%;
+    }
+    30%, 100% {
+        left: 150%;
+    }
+}
+
+@keyframes gentle-pulse-button {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(242, 106, 25, 0.25);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 6px 20px rgba(242, 106, 25, 0.45);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(242, 106, 25, 0.25);
+    }
 }
 
 /* Floating Chatbot Widget */

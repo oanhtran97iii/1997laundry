@@ -786,28 +786,92 @@
                 padding: 30px 20px !important;
             }
 
-            .card-footer-row {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 12px !important;
+            /* Compact Pricing List Styles */
+            .pricing-list-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                max-width: 1000px;
+                margin: 35px auto 0 auto;
             }
-            .btn-card-book {
-                width: 100% !important;
-                text-align: center !important;
+            
+            .pricing-list-col {
+                background: #ffffff;
+                border-radius: 20px;
+                padding: 28px;
+                border: 1px solid rgba(242, 106, 25, 0.08);
+                box-shadow: 0 8px 30px rgba(9, 0, 45, 0.015);
             }
-            .additional-services-box {
-                padding: 24px 20px !important;
-                margin-top: 30px !important;
-                border-radius: 20px !important;
+            
+            .pricing-col-title {
+                font-family: var(--font-headline);
+                font-size: 15.5px;
+                font-weight: 750;
+                color: var(--color-bg-dark);
+                margin: 0 0 18px 0;
+                padding-bottom: 10px;
+                border-bottom: 2px solid rgba(242, 106, 25, 0.12);
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
-            .add-service-row {
-                flex-direction: column !important;
-                align-items: flex-start !important;
-                gap: 8px !important;
+            
+            .pricing-col-title i {
+                color: var(--color-accent);
             }
-            .add-service-right {
-                align-self: flex-end !important;
-                margin-top: 2px !important;
+            
+            .pricing-row-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+                border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
+                gap: 12px;
+            }
+            
+            .pricing-row-item:last-child {
+                border-bottom: none;
+            }
+            
+            .pricing-item-info {
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+            }
+            
+            .pricing-item-info .item-name {
+                font-family: var(--font-headline);
+                font-size: 13px;
+                font-weight: 700;
+                color: var(--color-bg-dark);
+            }
+            
+            .pricing-item-info .item-sub {
+                font-size: 11px;
+                color: var(--color-text-gray);
+                margin-top: 1px;
+            }
+            
+            .pricing-item-price {
+                font-family: var(--font-headline);
+                font-size: 14px;
+                font-weight: 750;
+                color: var(--color-accent);
+                background: rgba(242, 106, 25, 0.05);
+                padding: 4px 10px;
+                border-radius: 10px;
+                white-space: nowrap;
+            }
+            
+            @media (max-width: 768px) {
+                .pricing-list-container {
+                    grid-template-columns: 1fr;
+                    gap: 20px;
+                    padding: 0 10px;
+                }
+                .pricing-list-col {
+                    padding: 20px;
+                }
             }
         }
     </style>
@@ -869,7 +933,7 @@
 
                     <h1>Professional Steam Pressing & <span class="orange-highlight">Laundry Per Item</span></h1>
                     <p class="description">
-                        Premium piece-based cold-water washing combined with meticulous horizontal steam pressing. Every garment is carefully sanitized, hand-ironed to remove wrinkles, and returned neatly folded or hung on hangers to preserve its shape.
+                        Premium piece-based cold-water washing combined with meticulous vertical steam pressing. Every garment is carefully sanitized, hand-ironed to remove wrinkles, and returned neatly folded or hung on hangers to preserve its shape.
                     </p>
                     
                     <!-- Inline Space-Saving Specs -->
@@ -925,8 +989,143 @@
         </div>
     </section>
 
-    <!-- Why Choose Us / Benefits Section -->
-    <section class="benefits-section" style="background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03);">
+    <!-- Pricing Section (Moved to Section 2) -->
+    <section class="pricing-grid-section" id="pricing" style="background-color: #fafbfc; border-bottom: 1px solid rgba(0, 0, 0, 0.03); padding: 70px 0;">
+        <div class="container">
+            <div class="text-center header-spacing">
+                <span class="section-badge">PRICE LIST</span>
+                <h2 class="section-title">Steam Press (per item)</h2>
+                <p class="section-subtitle">Meticulous cold-water washing, optimized tumble drying, and professional vertical steam pressing included in one simple rate.</p>
+            </div>
+
+            <!-- Beautiful Delivery Notice Box -->
+            <div class="delivery-notice-box" style="display: flex; align-items: center; justify-content: center; gap: 15px; background: rgba(242, 106, 25, 0.04); border: 1px dashed rgba(242, 106, 25, 0.25); padding: 16px 28px; border-radius: 16px; max-width: 760px; margin: -10px auto 45px auto; text-align: left;">
+                <i class="fa-solid fa-truck-ramp-box" style="font-size: 20px; color: var(--color-accent); flex-shrink: 0;"></i>
+                <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.5; color: var(--color-text-gray); margin: 0; font-weight: 500;">
+                    <strong>Delivery Notice:</strong> Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km. <strong>Free pickup & delivery for orders over 1,000,000 VND.</strong>
+                </p>
+            </div>
+
+            <!-- Compact Pricing List Row-Layout -->
+            <div class="pricing-list-container">
+                <!-- Col 1: Standard items -->
+                <div class="pricing-list-col">
+                    <h3 class="pricing-col-title"><i class="fa-solid fa-shirt"></i> Steam Press & Laundry (Từng Món)</h3>
+                    
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">T-Shirt / Vest Gile / Shorts</span>
+                            <span class="item-sub">Áo thun / Áo Ghi lê / Quần Ngố</span>
+                        </div>
+                        <div class="pricing-item-price">50,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Shirt / Blouse</span>
+                            <span class="item-sub">Áo sơ mi / Áo kiểu nữ</span>
+                        </div>
+                        <div class="pricing-item-price">60,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Trousers / Short Skirt / Jeans</span>
+                            <span class="item-sub">Quần dài / Chân váy ngắn / Jeans</span>
+                        </div>
+                        <div class="pricing-item-price">60,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Sweater / Hoodie / Long Skirt</span>
+                            <span class="item-sub">Áo len / Áo nỉ có cổ / Chân váy dài</span>
+                        </div>
+                        <div class="pricing-item-price">70,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Short Dress / Uniform / Coveralls</span>
+                            <span class="item-sub">Váy liền thân ngắn / Đồng phục / Bộ kỹ thuật</span>
+                        </div>
+                        <div class="pricing-item-price">80,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Long Dress</span>
+                            <span class="item-sub">Váy liền thân dài</span>
+                        </div>
+                        <div class="pricing-item-price">90,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Silk Blanket Set (3pcs)</span>
+                            <span class="item-sub">Bộ chăn ga lụa cao cấp (Bộ 3 món)</span>
+                        </div>
+                        <div class="pricing-item-price">220,000đ</div>
+                    </div>
+                </div>
+
+                <!-- Col 2: Add-On Services -->
+                <div class="pricing-list-col">
+                    <h3 class="pricing-col-title"><i class="fa-solid fa-sparkles"></i> Extra Care & Pressing (Dịch Vụ Khác)</h3>
+                    
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Light Stain Spotting (Level 1)</span>
+                            <span class="item-sub">Xử lý vết bẩn nhẹ / dầu cổ áo / makeup</span>
+                        </div>
+                        <div class="pricing-item-price">80,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Heavy Stain Removal (Level 2)</span>
+                            <span class="item-sub">Tẩy vết bẩn cứng đầu / mực / vang / máu</span>
+                        </div>
+                        <div class="pricing-item-price">130,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Casual Wear Pressing</span>
+                            <span class="item-sub">Ủi hơi nước đồ thường (sơ mi, quần...)</span>
+                        </div>
+                        <div class="pricing-item-price">50,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Pleated Garment Pressing</span>
+                            <span class="item-sub">Ủi tạo ly / xếp ly (váy xếp ly, quần âu...)</span>
+                        </div>
+                        <div class="pricing-item-price">70,000đ</div>
+                    </div>
+
+                    <div class="pricing-row-item">
+                        <div class="pricing-item-info">
+                            <span class="item-name">Formal Suit Pressing</span>
+                            <span class="item-sub">Ủi Vest / Blazer / Măng tô cao cấp</span>
+                        </div>
+                        <div class="pricing-item-price">80,000đ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Call To Action -->
+            <div style="text-align: center; margin-top: 45px;">
+                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-orange btn-large" style="text-decoration: none; box-shadow: 0 8px 25px rgba(242, 106, 25, 0.2); font-family: var(--font-headline); font-weight: 700; font-size: 14px; padding: 14px 36px; border-radius: 30px;">
+                    BOOK STEAM PRESS NOW <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us / Benefits Section (Moved to Section 3) -->
+    <section class="benefits-section" style="background-color: #ffffff; border-bottom: 1px solid rgba(0, 0, 0, 0.03); padding: 70px 0;">
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">WHY CHOOSE US</span>
@@ -966,223 +1165,6 @@
                     <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
                         Dry steam heat at 120°C penetrates deep into fibers, neutralizing 99.9% of bacteria, dust mites, and removing deep food or cigarette odors.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing-grid-section" id="pricing">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge">PRICE LIST</span>
-                <h2 class="section-title">Laundry Per Item & Pressing Included</h2>
-                <p class="section-subtitle">Every item is washed with cold water, dried, and professionally steam pressed. Price includes ironing.</p>
-            </div>
-
-            <!-- Beautiful Delivery Notice Box -->
-            <div class="delivery-notice-box">
-                <i class="fa-solid fa-truck-ramp-box"></i>
-                <p><strong>Delivery Notice:</strong> Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km. <strong>Free pickup & delivery for orders over 1,000,000 VND.</strong></p>
-            </div>
-
-            <div class="pricing-list-grid">
-                <!-- Card 1 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Tops & Shorts</span>
-                        <h4>T-Shirt / Vest Gile / Shorts</h4>
-                        <span class="sub-title-vn">Áo thun / Áo Ghi lê / Quần Ngố</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">50,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Formal Tops</span>
-                        <h4>Shirt / Blouse</h4>
-                        <span class="sub-title-vn">Áo sơ mi / Áo kiểu nữ</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">60,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Bottoms</span>
-                        <h4>Trousers / Short Skirt / Jeans</h4>
-                        <span class="sub-title-vn">Quần dài / Chân váy ngắn / Jeans</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">60,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Mid-wear & Skirts</span>
-                        <h4>Sweater / Hoodie / Long Skirt</h4>
-                        <span class="sub-title-vn">Áo len / Áo nỉ có cổ / Chân váy dài</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">70,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Dresses & Outfits</span>
-                        <h4>Short Dress / Uniform / Coveralls</h4>
-                        <span class="sub-title-vn">Váy liền thân ngắn / Đồng phục / Bộ áo kỹ thuật</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">80,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="pricing-item-card">
-                    <div>
-                        <span class="card-category-tag">Dresses</span>
-                        <h4>Long Dress</h4>
-                        <span class="sub-title-vn">Váy liền thân dài</span>
-                    </div>
-                    <div class="card-footer-row">
-                        <div class="card-price-row">
-                            <span class="price">90,000đ</span>
-                            <span class="unit">/ item</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book">BOOK SERVICE</a>
-                    </div>
-                </div>
-
-                <!-- Blanket Set Card (Blanket 3pcs) -->
-                <div class="pricing-item-card blanket-card">
-                    <div class="blanket-card-left">
-                        <span class="card-category-tag">Premium Bedding Set</span>
-                        <h4>Silk Blanket Set (3pcs)</h4>
-                        <span class="sub-title-vn">Bộ chăn ga cao cấp (Bộ 3 món)</span>
-                        <p style="font-family: var(--font-body); font-size: 12.5px; color: var(--color-text-gray); margin: 10px 0 0 0; line-height: 1.5;">
-                            Washed with specialized silk softeners, thoroughly sanitized, and steam pressed to bring luxurious comfort back to your bed.
-                        </p>
-                    </div>
-                    <div class="blanket-card-right">
-                        <div class="card-price-row" style="justify-content: center; margin-bottom: 15px;">
-                            <span class="price">220,000đ</span>
-                            <span class="unit">/ set</span>
-                        </div>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn-card-book" style="max-width: 180px; margin: 0 auto;">BOOK SET SERVICE</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Additional Services (Dịch vụ khác) Section -->
-            <div class="additional-services-box" style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto; background: #ffffff; border-radius: 30px; padding: 45px 40px; box-shadow: 0 20px 50px rgba(9, 0, 45, 0.05); border: 1px solid rgba(242, 106, 25, 0.08); position: relative; overflow: hidden;">
-                <!-- Decorative Top Gradient Line -->
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--color-accent) 0%, #ff8a3d 100%);"></div>
-                
-                <div class="text-center" style="margin-bottom: 40px;">
-                    <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 12px;">Extra Care Services</span>
-                    <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-bg-dark); margin: 0; letter-spacing: -0.5px;">Specialized Add-On Services</h3>
-                </div>
-                
-                <div class="additional-services-list" style="display: flex; flex-direction: column; gap: 8px;">
-                    <!-- Row 1: Light Stain Removal -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                            </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Light Stain Spotting (Level 1)</h4>
-                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Pre-treatment for minor spills, collar oil, or light makeup stains.</p>
-                            </div>
-                        </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ</div>
-                    </div>
-                    
-                    <!-- Row 2: Heavy Stain Removal -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-soap"></i>
-                            </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Heavy Stain Removal (Level 2)</h4>
-                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Intense pre-treatment for heavy stains like ink, wine, blood, or stubborn grease.</p>
-                            </div>
-                        </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">130,000đ</div>
-                    </div>
-                    
-                    <!-- Row 3: Iron Normal -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-shirt"></i>
-                            </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Casual Wear Pressing</h4>
-                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Steam pressing for casual wear items like shirts, t-shirts, trousers, or shorts.</p>
-                            </div>
-                        </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">50,000đ</div>
-                    </div>
-                    
-                    <!-- Row 4: Iron Pleated Skirt -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-scissors"></i>
-                            </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Pleated Garment Pressing</h4>
-                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Meticulous line pressing for pleated skirts, formal trousers, or pleated dresses.</p>
-                            </div>
-                        </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">70,000đ</div>
-                    </div>
-                    
-                    <!-- Row 5: Iron Vest -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 4px 0;">Formal Suit Pressing</h4>
-                                <p style="font-size: 12px; color: var(--color-text-gray); margin: 0; line-height: 1.4;">Tailored pressing for suit jackets, blazers, vests, or traditional formal outerwear.</p>
-                            </div>
-                        </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ</div>
-                    </div>
                 </div>
             </div>
         </div>
