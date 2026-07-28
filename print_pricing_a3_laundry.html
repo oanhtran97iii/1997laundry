@@ -398,6 +398,26 @@
             background-color: rgba(15, 41, 74, 0.05);
         }
 
+        /* Highlighted row treatment */
+        .menu-item-row.highlight-row {
+            background-color: rgba(242, 106, 25, 0.04);
+            border: 1.5px dashed rgba(242, 106, 25, 0.35);
+            border-radius: 10px;
+            padding: 8px 12px;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+
+        .menu-item-row.highlight-row .menu-item-leader {
+            border-bottom-color: rgba(242, 106, 25, 0.35);
+        }
+
+        .menu-item-row.highlight-row .menu-item-price {
+            background-color: var(--color-accent);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(242, 106, 25, 0.2);
+        }
+
         /* Callout Box for Service Notes */
         .features-notes-box {
             background-color: #f7f9fc;
@@ -580,7 +600,7 @@
                             <span class="menu-item-price">75,000đ</span>
                         </div>
 
-                        <div class="menu-item-row">
+                        <div class="menu-item-row highlight-row">
                             <div class="menu-item-name">
                                 LOAD UNDER 3.5KG / ĐƠN DƯỚI 3.5KG
                                 <small>Pickup & delivery orders only / Chỉ áp dụng cho đơn giao nhận tận nơi</small>
