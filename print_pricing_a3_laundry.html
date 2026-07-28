@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A3 Portrait Wash & Fold Price List - 1997 Premium Laundry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary-navy: #0f294a;
+            --color-accent: #f26a19;
+            --color-accent-dark: #d44d00;
+            --color-gray: #4b5563;
+            --color-bg-warm: #ffffff;
+            --border-light: rgba(15, 41, 74, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-primary-navy);
+            background-color: #f3f4f6;
+            line-height: 1.4;
+            padding: 40px 0;
+        }
+
+        /* Floating bar visible in browser */
+        .no-print-bar {
+            background-color: #0f294a;
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 600;
+            width: 297mm;
+            margin: 0 auto 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-print {
+            background-color: #f26a19;
+            color: #ffffff;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+        }
+
+        .btn-print:hover {
+            background-color: #d44d00;
+        }
+
+        .print-page {
+            width: 297mm;
+            height: 420mm;
+            padding: 10mm 12mm;
+            margin: 0 auto;
+            background: var(--color-bg-warm);
+            position: relative;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .page-border {
+            position: absolute;
+            top: 4mm;
+            bottom: 4mm;
+            left: 4mm;
+            right: 4mm;
+            border: 2px solid var(--color-primary-navy);
+            pointer-events: none;
+        }
+
+        @media print {
+            .no-print-bar {
+                display: none !important;
+            }
+            body {
+                background-color: var(--color-bg-warm);
+                padding: 0;
+                margin: 0;
+            }
+            .print-page {
+                width: 297mm;
+                height: 420mm;
+                box-shadow: none;
+                margin: 0;
+                overflow: hidden;
+                padding: 10mm 12mm;
+            }
+            @page {
+                size: A3 portrait;
+                margin: 0;
+            }
+        }
+
+        /* Header Layout */
+        .catalog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px double var(--color-primary-navy);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .logo-area img {
+            height: 50px;
+            display: block;
+            width: auto;
+        }
+
+        .contact-area {
+            text-align: right;
+            font-size: 12px;
+            color: var(--color-primary-navy);
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .contact-area strong {
+            color: var(--color-accent-dark);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        /* Title Area */
+        .catalog-title-wrapper {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .catalog-title {
+            font-size: 30px;
+            font-weight: 900;
+            color: var(--color-primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .catalog-title span {
+            color: var(--color-accent);
+        }
+
+        .catalog-subtitle {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-gray);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Two-Column Layout for Packages vs Per-Kg */
+        .laundry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            flex-grow: 1;
+            margin-bottom: 12px;
+        }
+
+        .laundry-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Card Container (hộp chứa như mẫu thiết kế) */
+        .laundry-card {
+            border: 2px solid var(--color-accent);
+            border-radius: 12px;
+            padding: 16px 20px;
+            background-color: var(--color-bg-warm);
+            position: relative;
+        }
+
+        .card-header-badge {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background-color: var(--color-bg-warm);
+            padding: 0 8px;
+            font-weight: 900;
+            font-size: 14.5px;
+            color: var(--color-primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 8px;
+        }
+
+        .card-price-title {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--color-accent);
+        }
+
+        .card-price-amount {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--color-primary-navy);
+        }
+
+        .card-subtext {
+            font-size: 11px;
+            color: var(--color-gray);
+            font-style: italic;
+            margin-bottom: 10px;
+            line-height: 1.35;
+        }
+
+        .card-features-title {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--color-primary-navy);
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .card-features-list {
+            list-style: none;
+            margin-bottom: 12px;
+        }
+
+        .card-features-list li {
+            font-size: 11.5px;
+            color: var(--color-gray);
+            margin-bottom: 3px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        .card-features-list li::before {
+            content: "•";
+            color: var(--color-accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .card-footer-weight {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-primary-navy);
+            background: rgba(15, 41, 74, 0.03);
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .card-footer-weight span:last-child {
+            color: var(--color-accent-dark);
+            font-size: 13.5px;
+            font-weight: 800;
+        }
+
+        /* Per Kg List (Next Day) */
+        .per-kg-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+
+        .per-kg-item:last-child {
+            border-bottom: none;
+        }
+
+        .per-kg-details {
+            display: flex;
+            flex-direction: column;
+            max-width: 70%;
+        }
+
+        .per-kg-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-primary-navy);
+            text-transform: uppercase;
+        }
+
+        .per-kg-sub {
+            font-size: 11.5px;
+            color: var(--color-gray);
+            margin-top: 1px;
+        }
+
+        .per-kg-note {
+            font-size: 10px;
+            color: var(--color-gray);
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .per-kg-dots {
+            flex-grow: 1;
+            border-bottom: 1px dotted rgba(15, 41, 74, 0.25);
+            margin: 0 8px;
+            position: relative;
+            top: -4px;
+        }
+
+        .per-kg-price {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: var(--color-accent-dark);
+            white-space: nowrap;
+        }
+
+        /* Bottom Policies */
+        .laundry-footer-policies {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            border-top: 2px solid var(--color-primary-navy);
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+
+        .laundry-policy-col {
+            font-size: 10.5px;
+            line-height: 1.35;
+            color: var(--color-gray);
+        }
+
+        .laundry-policy-col strong {
+            color: var(--color-primary-navy);
+            display: block;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        /* Simple Footer Styling */
+        .catalog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 9.5px;
+            color: var(--color-gray);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-logo {
+            font-weight: 900;
+            color: var(--color-primary-navy);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating bar visible in browser -->
+    <div class="no-print-bar">
+        <span>A3 Portrait Poster Layout - Bilingual Wash & Fold (Ký). Use <strong>A3 Paper</strong> layout. </span>
+        <button class="btn-print" onclick="window.print()">PRINT POSTER (A3)</button>
+    </div>
+
+    <div class="print-page">
+        <div class="page-border"></div>
+
+        <!-- CATALOG HEADER -->
+        <header class="catalog-header">
+            <div class="logo-area">
+                <img src="assets/img/logo.png" alt="1997 Premium Laundry Logo">
+            </div>
+            <div class="contact-area">
+                Hotline/Zalo: <strong>093 1997 828</strong><br>
+                Address: 25/25 Sơn Kỳ, Tân Phú, HCMC
+            </div>
+        </header>
+
+        <!-- CATALOG TITLE -->
+        <div class="catalog-title-wrapper">
+            <h1 class="catalog-title">WASH & FOLD <span>PRICE LIST</span></h1>
+            <div class="catalog-subtitle">Bảng Giá Dịch Vụ Giặt Sấy Lấy Liền Tính Ký (Song Ngữ)</div>
+        </div>
+
+        <!-- LAUNDRY GRID -->
+        <div class="laundry-grid">
+            
+            <!-- LEFT COLUMN: EXPRESS PACKAGES -->
+            <div class="laundry-column">
+                
+                <!-- SAME-DAY EXPRESS -->
+                <div class="laundry-card" style="border-color: var(--color-accent);">
+                    <div class="card-header-badge" style="color: var(--color-accent);">Same-Day Express</div>
+                    <div class="card-price-row">
+                        <div class="card-price-title">5KG Combo</div>
+                        <div class="card-price-amount">180,000 VND</div>
+                    </div>
+                    <div class="card-subtext">
+                        • Giặt nhanh trong ngày (Nhận trước 15:00, giao từ 19:00 - 21:00 cùng ngày)<br>
+                        • Same-day turnaround (Drop-off before 03:00 PM, ready 07:00 PM - 09:00 PM)
+                    </div>
+                    <div class="card-features-title">Package Includes / Gói bao gồm:</div>
+                    <ul class="card-features-list">
+                        <li>Maximum load up to 5kg / Giặt tối đa 5kg</li>
+                        <li>Whites & light colors washed separately / Giặt riêng đồ trắng & đồ sáng màu</li>
+                        <li>Premium scented softener / Nước xả vải thơm cao cấp</li>
+                        <li>Garments checked & sorted / Kiểm tra phân loại đồ cẩn thận</li>
+                    </ul>
+                    <div class="card-footer-weight">
+                        <span>EXTRA WEIGHT / MỖI KÝ THÊM:</span>
+                        <span>30,000 VND / kg</span>
+                    </div>
+                </div>
+
+                <!-- 4-HOURS SUPER EXPRESS -->
+                <div class="laundry-card" style="border-color: var(--color-accent-dark);">
+                    <div class="card-header-badge" style="color: var(--color-accent-dark);">4-Hours Express</div>
+                    <div class="card-price-row">
+                        <div class="card-price-title">5KG Combo</div>
+                        <div class="card-price-amount">220,000 VND</div>
+                    </div>
+                    <div class="card-subtext">
+                        • Giặt nhanh hỏa tốc 4 giờ (Nhận cuối lúc 17:00 hàng ngày, giao sau 4 tiếng)<br>
+                        • 4-Hour super turnaround (Available until 05:00 PM daily, ready in 4 hours)
+                    </div>
+                    <div class="card-features-title">Package Includes / Gói bao gồm:</div>
+                    <ul class="card-features-list">
+                        <li>Maximum load up to 5kg / Giặt tối đa 5kg</li>
+                        <li>Whites & light colors washed separately / Giặt riêng đồ trắng & đồ sáng màu</li>
+                        <li>FREE 1-way delivery within 3km / Miễn phí ship 1 chiều dưới 3km</li>
+                        <li>Priority machine queue / Được ưu tiên xử lý trước</li>
+                    </ul>
+                    <div class="card-footer-weight">
+                        <span>EXTRA WEIGHT / MỖI KÝ THÊM:</span>
+                        <span>35,000 VND / kg</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: NEXT-DAY & SHIPPING -->
+            <div class="laundry-column">
+                
+                <!-- NEXT-DAY LAUNDRY CARD -->
+                <div class="laundry-card" style="border-color: var(--color-primary-navy); flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="card-header-badge" style="color: var(--color-primary-navy);">Next-Day Standard</div>
+                    
+                    <div style="margin-top: 8px;">
+                        <div class="card-subtext" style="margin-bottom: 10px;">
+                            • Giặt tiêu chuẩn nhận ngày hôm sau (Sẵn sàng từ 09:00 - 21:00 ngày tiếp theo)<br>
+                            • Next-day pickup/delivery (Ready from 09:00 AM - 09:00 PM next day)
+                        </div>
+                        
+                        <div class="menu-list" style="margin-top: 15px;">
+                            <div class="per-kg-item">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title">Per KG / Giặt Mỗi Ký</span>
+                                    <span class="per-kg-sub">Walk-in or pickup orders</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price">30,000đ / kg</span>
+                            </div>
+
+                            <div class="per-kg-item">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title">Load under 2.5kg / Đơn dưới 2.5kg</span>
+                                    <span class="per-kg-note">Only applicable for walk-in customers / Chỉ áp dụng khách mang đến trực tiếp</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price">75,000đ</span>
+                            </div>
+
+                            <div class="per-kg-item">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title">Load under 3.5kg / Đơn dưới 3.5kg</span>
+                                    <span class="per-kg-note">Applicable for pickup & delivery / Áp dụng cho đơn giao nhận tận nơi</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price">105,000đ</span>
+                            </div>
+
+                            <div class="per-kg-item">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title">Separate Whites / Tách đồ sáng màu</span>
+                                    <span class="per-kg-sub">Optional separation for mixed load / Giặt riêng đồ sáng màu (tùy chọn thêm)</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price">30,000đ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="border-top: 1px dashed var(--border-light); padding-top: 12px; margin-top: 15px;">
+                        <div class="card-features-title" style="color: var(--color-primary-navy);">Pickup & Delivery Fees / Phí Giao Nhận:</div>
+                        <div class="menu-list">
+                            <div class="per-kg-item" style="padding: 6px 0;">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title" style="font-size: 12px;">1-Way delivery / Giao nhận 1 chiều (&lt; 3km)</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price" style="font-size: 14px;">20,000đ</span>
+                            </div>
+                            <div class="per-kg-item" style="padding: 6px 0;">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title" style="font-size: 12px;">2-Ways delivery / Giao nhận 2 chiều (&lt; 3km)</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price" style="font-size: 14px;">40,000đ</span>
+                            </div>
+                            <div class="per-kg-item" style="padding: 6px 0;">
+                                <div class="per-kg-details">
+                                    <span class="per-kg-title" style="font-size: 12px;">Extra distance / Mỗi km tiếp theo</span>
+                                </div>
+                                <div class="per-kg-dots"></div>
+                                <span class="per-kg-price" style="font-size: 14px;">8,000đ / km</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FOOTER POLICIES -->
+        <div class="laundry-footer-policies">
+            <div class="laundry-policy-col">
+                <strong>SERVICE NOTES / GHI CHÚ DỊCH VỤ</strong>
+                Tất cả các gói dịch vụ tính theo ký không áp dụng cho chăn ga rèm cửa, thú bông hoặc giày hiệu. Khách hàng vui lòng tự phân loại đồ hoặc nhân viên sẽ hỗ trợ phân loại trước khi cho vào máy. Đồ sáng màu và đồ tối màu được tách máy riêng để hạn chế tối đa nguy cơ phai màu.
+                (Weight-based laundry does not cover bedding, curtains, stuffed toys or luxury shoes. Scent options are adjustable upon request.)
+            </div>
+            <div class="laundry-policy-col">
+                <strong>FREE DELIVERY / MIỄN PHÍ SHIP</strong>
+                Miễn phí giao nhận 2 chiều cho mọi hóa đơn giặt sấy / giặt khô từ <strong>1.000.000đ</strong> trở lên (bán kính dưới 5km).
+                (FREE 2-way delivery for orders over 1,000,000 VND within 5km radius).
+            </div>
+        </div>
+
+        <!-- CATALOG FOOTER -->
+        <footer class="catalog-footer">
+            <span>PRINT DATE: JULY 2026</span>
+            <span class="footer-logo">1997 PREMIUM LAUNDRY</span>
+            <span>A3 PORTRAIT POSTER</span>
+        </footer>
+
+    </div>
+
+</body>
+</html>
