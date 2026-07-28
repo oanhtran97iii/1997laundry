@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Price List - 1997 Premium Laundry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary-navy: #0f294a; /* Deep Navy Blue */
+            --color-accent: #f26a19;      /* Brand Vibrant Orange */
+            --color-accent-dark: #d44d00; /* Darker orange for text contrast */
+            --color-gray: #4b5563;        /* Muted Gray for subtext */
+            --color-bg-warm: #ffffff;     /* White page background */
+            --border-light: rgba(15, 41, 74, 0.12); /* Subtle navy divider */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--color-primary-navy);
+            background-color: #f3f4f6;
+            line-height: 1.45;
+            padding: 40px 0;
+        }
+
+        /* A4 Page Formatting */
+        .print-page {
+            width: 210mm;
+            height: 297mm;
+            padding: 12mm 18mm;
+            margin: 0 auto 30px auto;
+            background: var(--color-bg-warm);
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        /* Inner Page Border */
+        .page-border {
+            position: absolute;
+            top: 6mm;
+            left: 6mm;
+            right: 6mm;
+            bottom: 6mm;
+            border: 1px solid rgba(15, 41, 74, 0.1);
+            pointer-events: none;
+        }
+
+        /* Header */
+        .print-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .logo-area {
+            display: block;
+        }
+
+        .logo-area img {
+            height: 48px;
+            display: block;
+            width: auto;
+        }
+
+        .contact-area {
+            text-align: right;
+            font-size: 11.5px;
+            color: var(--color-primary-navy);
+            font-weight: 500;
+            line-height: 1.45;
+        }
+
+        .contact-area strong {
+            color: var(--color-accent-dark);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* Title Area */
+        .catalog-title-wrapper {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .catalog-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+        }
+
+        .catalog-subtitle {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: var(--color-primary-navy);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Double Border Offset Banner Image */
+        .banner-wrapper {
+            position: relative;
+            width: 100%;
+            height: 105px;
+            border: 1px solid var(--color-primary-navy);
+            margin-bottom: 15px;
+        }
+
+        .banner-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid var(--color-accent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Section Styling */
+        .section-header {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .section-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-icon {
+            color: var(--color-accent);
+            font-size: 15px;
+        }
+
+        .section-title {
+            font-size: 15.5px;
+            font-weight: 900;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--color-primary-navy);
+            margin-left: 23px;
+            margin-top: 2px;
+        }
+
+        /* Banner Note Badge */
+        .note-badge {
+            margin-left: 23px;
+            margin-bottom: 10px;
+            padding: 4px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--color-accent);
+            letter-spacing: 0.5px;
+        }
+
+        .note-badge span {
+            font-weight: 600;
+            color: var(--color-primary-navy);
+            margin-left: 5px;
+        }
+
+        /* Sub-category Header inside sections */
+        .menu-sub-title {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-top: 12px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 3px;
+        }
+
+        /* Menu Item List Design */
+        .menu-list {
+            margin-bottom: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            max-width: 75%;
+        }
+
+        .item-name {
+            font-weight: 700;
+            font-size: 13.5px;
+            color: var(--color-primary-navy);
+        }
+
+        .item-subtext {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--color-gray);
+            margin-top: 2px;
+        }
+
+        .item-price {
+            font-weight: 800;
+            font-size: 14.5px;
+            color: var(--color-accent-dark);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        /* Dry Cleaning 2 Column Layout */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .col-headers {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--color-primary-navy);
+        }
+
+        .hdr-name {
+            font-size: 10.5px;
+            font-weight: 800;
+            color: var(--color-primary-navy);
+            text-transform: uppercase;
+        }
+
+        .hdr-prices {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hdr-price {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--color-primary-navy);
+            text-transform: uppercase;
+            text-align: right;
+            width: 55px;
+        }
+
+        .item-prices {
+            display: flex;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .price-std {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--color-primary-navy);
+            text-align: right;
+            width: 55px;
+        }
+
+        .price-pre {
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--color-accent-dark);
+            text-align: right;
+            width: 55px;
+        }
+
+        .item-desc {
+            font-size: 11px;
+            color: var(--color-gray);
+            margin-top: 3px;
+            line-height: 1.3;
+        }
+
+        /* Footer policies */
+        .print-footer-policies {
+            border-top: 2px solid var(--color-accent);
+            margin-top: 15px;
+            padding-top: 10px;
+            font-size: 10px;
+            color: var(--color-gray);
+            line-height: 1.5;
+        }
+
+        .policy-row {
+            display: flex;
+            margin-bottom: 5px;
+        }
+
+        .policy-row strong {
+            color: var(--color-primary-navy);
+            min-width: 130px;
+            display: inline-block;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Page Numbering */
+        .page-number {
+            position: absolute;
+            bottom: 10mm;
+            right: 12mm;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-gray);
+            letter-spacing: 0.5px;
+        }
+
+        /* Page Control Buttons (Hidden on Print) */
+        .no-print-bar {
+            background-color: var(--color-primary-navy);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            font-family: sans-serif;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-print {
+            background-color: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 8px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-print:hover {
+            opacity: 0.9;
+        }
+
+        @media print {
+            .no-print-bar {
+                display: none;
+            }
+            body {
+                padding: 0;
+                background-color: var(--color-bg-warm);
+            }
+            .print-page {
+                width: 210mm;
+                height: 297mm;
+                max-height: 297mm;
+                padding: 12mm 18mm;
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+                overflow: hidden;
+            }
+            .print-page:last-child {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top floating bar visible only in browser -->
+    <div class="no-print-bar">
+        <span>Print version of 1997 English Pricing Sheet. Use <strong>A4 Paper</strong> layout. </span>
+        <button class="btn-print" onclick="window.print()"><i class="fa-solid fa-print"></i> PRINT NOW</button>
+    </div>
+
+    <!-- PAGE 1 -->
+    <div class="print-page">
+        <div class="page-border"></div>
+        <!-- Header -->
+        <div class="print-header">
+            <div class="logo-area">
+                <img src="/assets/images/logo.png" alt="1997 Logo">
+            </div>
+            <div class="contact-area">
+                <strong>0866.137.043</strong><br>
+                15b/63 Le Thanh Ton, Dist 1, HCMC<br>
+                www.1997laundry.com
+            </div>
+        </div>
+
+        <div class="catalog-title-wrapper">
+            <h2 class="catalog-title">Laundry & Wash/Fold Services</h2>
+            <div class="catalog-subtitle">Giặt Nước & Giặt Sấy</div>
+        </div>
+
+        <div class="banner-wrapper">
+            <img class="banner-img" src="/assets/images/clean_folded_laundry_stack.jpg" alt="1997 Laundry">
+        </div>
+
+        <!-- 1. Express Laundry -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">1. Express Laundry (Wash & Fold)</h3>
+            </div>
+            <div class="section-subtitle">Giặt sấy lấy liền (Tính theo kg)</div>
+        </div>
+        <div class="note-badge">
+            SEPARATE WASH & DRY INCLUDED<span>/ Đã bao gồm giặt riêng biệt & sấy khô</span>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">24-Hour Standard <small style="color: var(--color-gray); font-weight: normal;">(Up to 3kg)</small></span>
+                    <span class="item-subtext">Gói Tiêu Chuẩn 24h (Tối đa 3kg)</span>
+                    <div class="item-desc">Cold wash, tumble dry. Separate whites: +30k/load. Extra weight: +30k/kg.</div>
+                </div>
+                <span class="item-price">105,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Same-Day Express <small style="color: var(--color-gray); font-weight: normal;">(Up to 5kg)</small></span>
+                    <span class="item-subtext">Gói Lấy Trong Ngày (Tối đa 5kg)</span>
+                    <div class="item-desc">In before 15:00, return same-day. Separate whites included. Extra weight: +30k/kg.</div>
+                </div>
+                <span class="item-price">180,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">4-Hour Super Express <small style="color: var(--color-gray); font-weight: normal;">(Up to 5kg)</small></span>
+                    <span class="item-subtext">Gói Siêu Tốc 4 Giờ (Tối đa 5kg)</span>
+                    <div class="item-desc">In before 17:00, return in 4h. Separate whites included. Extra weight: +35k/kg.</div>
+                </div>
+                <span class="item-price">220,000 VND</span>
+            </div>
+        </div>
+
+        <!-- 2. Laundry & Pressing -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">2. Laundry & Pressing (Per Item)</h3>
+            </div>
+            <div class="section-subtitle">Giặt ủi tính cái (Có bao gồm là ủi)</div>
+        </div>
+        <div class="note-badge">
+            STEAM PRESSING & HANGER INCLUDED<span>/ Đã bao gồm là ủi hơi nước & móc treo</span>
+        </div>
+        <div class="menu-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px;">
+            <div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">T-Shirt / Vest Gile / Shorts</span>
+                        <span class="item-subtext">Áo thun / Áo gile / Quần short</span>
+                    </div>
+                    <span class="item-price">50,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Shirt / Blouse</span>
+                        <span class="item-subtext">Áo sơ mi / Áo kiểu</span>
+                    </div>
+                    <span class="item-price">60,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Trousers / Skirt / Jeans</span>
+                        <span class="item-subtext">Quần tây / Chân váy / Jeans</span>
+                    </div>
+                    <span class="item-price">60,000 VND</span>
+                </div>
+            </div>
+            <div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Sweater / Hoodie</span>
+                        <span class="item-subtext">Áo len / Áo Hoodie</span>
+                    </div>
+                    <span class="item-price">70,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Short Dress / Uniform</span>
+                        <span class="item-subtext">Đầm ngắn / Đồng phục</span>
+                    </div>
+                    <span class="item-price">80,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Long Dress</span>
+                        <span class="item-subtext">Đầm dài thường</span>
+                    </div>
+                    <span class="item-price">90,000 VND</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item" style="border-top: none; padding-bottom: 0; border-bottom: none;">
+            <div class="item-details">
+                <span class="item-name">Silk Blanket Set (3pcs)</span>
+                <span class="item-subtext">Bộ drap mền lụa (3 món)</span>
+            </div>
+            <span class="item-price">220,000 VND</span>
+        </div>
+        <div class="page-number">Page 1 / 4</div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="print-page">
+        <div class="page-border"></div>
+        <!-- Header -->
+        <div class="print-header">
+            <div class="logo-area">
+                <img src="/assets/images/logo.png" alt="1997 Logo">
+            </div>
+            <div class="contact-area">
+                <strong>0866.137.043</strong><br>
+                15b/63 Le Thanh Ton, Dist 1, HCMC<br>
+                www.1997laundry.com
+            </div>
+        </div>
+
+        <div class="catalog-title-wrapper">
+            <h2 class="catalog-title">Dry Cleaning & Pressing</h2>
+            <div class="catalog-subtitle">Giặt Khô - Ủi Hơi Nước</div>
+        </div>
+
+        <div class="banner-wrapper">
+            <img class="banner-img" src="/assets/images/pressed_suit.jpg" alt="1997 Dry Cleaning">
+        </div>
+
+        <!-- 5. Dry Cleaning -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">5. Dry Cleaning (Standard vs Premium)</h3>
+            </div>
+            <div class="section-subtitle">Dịch vụ giặt khô hữu cơ cao cấp</div>
+        </div>
+
+        <div class="grid-2col" style="margin-bottom: 0;">
+            <!-- Column 1: Suits & Leather -->
+            <div>
+                <div class="col-headers" style="padding-bottom: 2px; margin-bottom: 3px;">
+                    <span class="hdr-name">Suits & Designer Wear</span>
+                    <div class="hdr-prices">
+                        <span class="hdr-price" style="width: 55px;">STD</span>
+                        <span class="hdr-price" style="width: 55px; color: var(--color-accent-dark);">PREM</span>
+                    </div>
+                </div>
+                
+                <div class="menu-sub-title" style="margin-top: 6px; margin-bottom: 2px;">SUITS & COATS</div>
+                <div class="menu-list">
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Suit Jacket / Ao Dai (1pc)</span>
+                            <span class="item-subtext">Áo Vest lẻ / Áo Dài lẻ</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">180k</span>
+                            <span class="price-pre">280k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Suit / Ao Dai Set (2pcs)</span>
+                            <span class="item-subtext">Bộ Suit / Bộ Áo Dài</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">230k</span>
+                            <span class="price-pre">330k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">3-Piece Suit (Set)</span>
+                            <span class="item-subtext">Bộ Suit 3 món</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">290k</span>
+                            <span class="price-pre">390k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Short Puffer / Wool Coat</span>
+                            <span class="item-subtext">Short Puffer / Áo dạ ngắn</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">180k</span>
+                            <span class="price-pre">280k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Long Puffer / Wool Coat</span>
+                            <span class="item-subtext">Long Puffer / Áo dạ dài</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">230k</span>
+                            <span class="price-pre">330k</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-sub-title" style="margin-top: 6px; margin-bottom: 2px;">SPECIALS & LEATHER</div>
+                <div class="menu-list">
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Short Designer Dress</span>
+                            <span class="item-subtext">Đầm thiết kế ngắn</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">150k</span>
+                            <span class="price-pre">250k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Long Designer / Gown</span>
+                            <span class="item-subtext">Đầm thiết kế dài / Dạ hội</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">200k</span>
+                            <span class="price-pre">300k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Evening Gown (1-Layer)</span>
+                            <span class="item-subtext">Váy dạ hội / Áo cưới 1 lớp</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">230k</span>
+                            <span class="price-pre">330k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Wedding Dress (2-3 Lyr)</span>
+                            <span class="item-subtext">Áo cưới (2-3 lớp)</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">280k</span>
+                            <span class="price-pre">380k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Grand Royal Wedding Dress</span>
+                            <span class="item-subtext">Áo cưới Hoàng Gia rộng phồng</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">380k</span>
+                            <span class="price-pre">480k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Short Leather / Fur Jkt</span>
+                            <span class="item-subtext">Short Leather / Áo lông ngắn</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">230k</span>
+                            <span class="price-pre">330k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Long Leather / Fur Coat</span>
+                            <span class="item-subtext">Long Leather / Áo lông dài</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">280k</span>
+                            <span class="price-pre">380k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0; border-bottom: none;">
+                        <div class="item-details">
+                            <span class="item-name">Fleece Blanket (Lamb)</span>
+                            <span class="item-subtext">Chăn lông cừu / Cashmere</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">330k</span>
+                            <span class="price-pre">430k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Column 2: Basic Wear -->
+            <div>
+                <div class="col-headers" style="padding-bottom: 2px; margin-bottom: 3px;">
+                    <span class="hdr-name">Daily Garments</span>
+                    <div class="hdr-prices">
+                        <span class="hdr-price" style="width: 55px;">STD</span>
+                        <span class="hdr-price" style="width: 55px; color: var(--color-accent-dark);">PREM</span>
+                    </div>
+                </div>
+                
+                <div class="menu-sub-title" style="margin-top: 6px; margin-bottom: 2px;">QUẦN ÁO THƯỜNG NGÀY</div>
+                <div class="menu-list">
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Silk Tie</span>
+                            <span class="item-subtext">Cà vạt lụa</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">60k</span>
+                            <span class="price-pre">160k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Áo thun / Áo gile / Shorts</span>
+                            <span class="item-subtext">T-Shirt / Gile / Shorts</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">70k</span>
+                            <span class="price-pre">170k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Shirt / Blouse</span>
+                            <span class="item-subtext">Shirt / Blouse</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">80k</span>
+                            <span class="price-pre">180k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Quần tây / Chân váy / Jeans</span>
+                            <span class="item-subtext">Trousers / Skirt / Jeans</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">80k</span>
+                            <span class="price-pre">180k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Sweater / Hoodie / Skirt</span>
+                            <span class="item-subtext">Sweater / Hoodie / Skirt</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">90k</span>
+                            <span class="price-pre">190k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Khăn choàng cổ mỏng</span>
+                            <span class="item-subtext">Scarf (Thin)</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">90k</span>
+                            <span class="price-pre">190k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Short Dress / Panama Hat</span>
+                            <span class="item-subtext">Short Dress / Panama Hat</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">100k</span>
+                            <span class="price-pre">200k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Thick Woolen Sweater</span>
+                            <span class="item-subtext">Thick Woolen Sweater</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">110k</span>
+                            <span class="price-pre">210k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0;">
+                        <div class="item-details">
+                            <span class="item-name">Long Dress</span>
+                            <span class="item-subtext">Long Dress</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">120k</span>
+                            <span class="price-pre">220k</span>
+                        </div>
+                    </div>
+                    <div class="menu-item" style="padding: 4px 0; border-bottom: none;">
+                        <div class="item-details">
+                            <span class="item-name">Long Woolen Pants / Scarf</span>
+                            <span class="item-subtext">Long Woolen Pants / Thick Scarf</span>
+                        </div>
+                        <div class="item-prices">
+                            <span class="price-std">140k</span>
+                            <span class="price-pre">240k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page-number">Page 2 / 4</div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="print-page">
+        <div class="page-border"></div>
+        <!-- Header -->
+        <div class="print-header">
+            <div class="logo-area">
+                <img src="/assets/images/logo.png" alt="1997 Logo">
+            </div>
+            <div class="contact-area">
+                <strong>0866.137.043</strong><br>
+                15b/63 Le Thanh Ton, Dist 1, HCMC<br>
+                www.1997laundry.com
+            </div>
+        </div>
+
+        <div class="catalog-title-wrapper">
+            <h2 class="catalog-title">Shoes & Sneaker Care</h2>
+            <div class="catalog-subtitle">Vệ Sinh Giày & Dịch Vụ Phụ Trợ</div>
+        </div>
+
+        <div class="banner-wrapper">
+            <img class="banner-img" src="/assets/images/shoes_cleaning_featured.jpg" alt="1997 Shoes Care">
+        </div>
+
+        <!-- 3. Shoe Care -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">3. Shoes & Sneaker Care</h3>
+            </div>
+            <div class="section-subtitle">Vệ sinh giày sneaker & giày hiệu (Giặt tay tỉ mỉ 100%)</div>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Deep Clean <small style="color: var(--color-gray); font-weight: normal;">(Mesh, Rubber, Canvas)</small></span>
+                    <span class="item-subtext">Vệ sinh chuyên sâu (vải lưới, cao su, canvas)</span>
+                    <div class="item-desc">Laces wash & sanitization. 3-day turnaround.</div>
+                </div>
+                <span class="item-price">150,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Express Deep Clean <small style="color: var(--color-gray); font-weight: normal;">(Midsole Unyellowing + 24h)</small></span>
+                    <span class="item-subtext">Sạch sâu hỏa tốc (Tẩy ố đế + Giao nhanh 24h)</span>
+                    <div class="item-desc">Midsole unyellowing & stain removal. 24-hour turnaround.</div>
+                </div>
+                <span class="item-price">250,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Special Material <small style="color: var(--color-gray); font-weight: normal;">(Suede, Nubuck, Luxury)</small></span>
+                    <span class="item-subtext">Chất liệu đặc biệt (Da lộn, Nubuck, Giày hiệu)</span>
+                    <div class="item-desc">Organic solvents protection. 3-day turnaround.</div>
+                </div>
+                <span class="item-price">220,000 VND</span>
+            </div>
+        </div>
+
+        <!-- 4. Specialized Add-ons -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">4. Specialized Add-on Services</h3>
+            </div>
+            <div class="section-subtitle">Dịch vụ phụ trợ & Tẩy vết bẩn</div>
+        </div>
+        <div class="menu-list">
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Light Stain Spotting (Lv1)</span>
+                    <span class="item-subtext">Tẩy điểm vết bẩn nhẹ (Cấp 1)</span>
+                </div>
+                <span class="item-price">80,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Heavy Stain Removal (Lv2)</span>
+                    <span class="item-subtext">Tẩy điểm vết bẩn nặng (Cấp 2)</span>
+                </div>
+                <span class="item-price">130,000 VND</span>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <span class="item-name">Casual Wear Pressing</span>
+                    <span class="item-subtext">Chỉ ủi quần áo thường ngày</span>
+                </div>
+                <span class="item-price">50,000 VND</span>
+            </div>
+            <div class="menu-item" style="border-bottom: none; padding-bottom: 0;">
+                <div class="item-details">
+                    <span class="item-name">Formal Suit Pressing</span>
+                    <span class="item-subtext">Ủi tạo phom Áo Vest / Suit</span>
+                </div>
+                <span class="item-price">80,000 VND</span>
+            </div>
+        </div>
+        <div class="page-number">Page 3 / 4</div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="print-page">
+        <div class="page-border"></div>
+        <!-- Header -->
+        <div class="print-header">
+            <div class="logo-area">
+                <img src="/assets/images/logo.png" alt="1997 Logo">
+            </div>
+            <div class="contact-area">
+                <strong>0866.137.043</strong><br>
+                15b/63 Le Thanh Ton, Dist 1, HCMC<br>
+                www.1997laundry.com
+            </div>
+        </div>
+
+        <div class="catalog-title-wrapper">
+            <h2 class="catalog-title">Bedding & Curtain Care</h2>
+            <div class="catalog-subtitle">Chăn Ga & Rèm Cửa</div>
+        </div>
+
+        <div class="banner-wrapper">
+            <img class="banner-img" src="/assets/images/curtain_cleaning_featured.jpg" alt="1997 Bedding Care">
+        </div>
+
+        <!-- 6. Bedding & Curtain Care -->
+        <div class="section-header">
+            <div class="section-title-row">
+                <span class="section-icon">◆</span>
+                <h3 class="section-title">6. Bedding & Curtain Care</h3>
+            </div>
+            <div class="section-subtitle">Chăn ga, thảm & rèm cửa chuyên sâu</div>
+        </div>
+        
+        <div class="menu-list" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; margin-bottom: 5px;">
+            <div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Bedsheets & Curtains (&lt; 3kg)</span>
+                        <span class="item-subtext">Drap mền & rèm cửa (&lt; 3kg)</span>
+                    </div>
+                    <span class="item-price">105,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Bedsheets & Curtains (&gt; 3kg)</span>
+                        <span class="item-subtext">Drap mền & rèm cửa (&gt; 3kg)</span>
+                    </div>
+                    <span class="item-price">35,000 / kg</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Standard Rugs & Carpets</span>
+                        <span class="item-subtext">Giặt thảm sàn tiêu chuẩn</span>
+                    </div>
+                    <span class="item-price">80,000 / kg</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Premium Fur Rug</span>
+                        <span class="item-subtext">Giặt thảm lông thú cao cấp</span>
+                    </div>
+                    <span class="item-price">280,000 / pc</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Topper (1m2 - 1m4)</span>
+                        <span class="item-subtext">Mattress Topper (1m2 - 1m4)</span>
+                    </div>
+                    <span class="item-price">230,000 VND</span>
+                </div>
+            </div>
+            <div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Topper (1m6 - 1m8)</span>
+                        <span class="item-subtext">Mattress Topper (1m6 - 1m8)</span>
+                    </div>
+                    <span class="item-price">280,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Topper (1m8 - 2m2)</span>
+                        <span class="item-subtext">Mattress Topper (1m8 - 2m2)</span>
+                    </div>
+                    <span class="item-price">300,000 VND</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Thick Comforter (&gt;6cm)</span>
+                        <span class="item-subtext">Topper / Mền bông dày</span>
+                    </div>
+                    <span class="item-price">70,000 / kg</span>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <span class="item-name">Sleeping Pillows</span>
+                        <span class="item-subtext">Giặt ruột gối nằm</span>
+                    </div>
+                    <span class="item-price">From 30k</span>
+                </div>
+                <div class="menu-item" style="border-bottom: none;">
+                    <div class="item-details">
+                        <span class="item-name">Teddy Bears / Plush Toys</span>
+                        <span class="item-subtext">Thú bông / Gấu bông</span>
+                        <div class="item-desc" style="font-size: 9.5px; margin-top: 1px;">Mini: 30k · &lt;50cm: 80k · 50-80cm: 130k · &gt;80cm: 180k</div>
+                    </div>
+                    <span class="item-price">From 30k</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Policies Footer -->
+        <div class="print-footer-policies">
+            <div class="policy-row">
+                <strong>Delivery / Giao nhận</strong>
+                <span>Under 3km: 20k/way · Over 3km: +8k/km. <strong>FREE pickup & delivery for orders over 1,000,000 VND.</strong> (Dưới 3km: 20k/lượt · Trên 3km: +8k/km. Free ship từ 1M)</span>
+            </div>
+            <div class="policy-row">
+                <strong>Curtains / Rèm cửa</strong>
+                <span>All curtain services include <strong>FREE dismantling (tháo dỡ) & installation (lắp đặt)</strong> at home. (Hỗ trợ tháo dỡ và lắp đặt MIỄN PHÍ tại nhà)</span>
+            </div>
+            <div class="policy-row">
+                <strong>Premium / Đồ hiệu</strong>
+                <span>Recommended for luxury designer garments (>10M VND), genuine silk, real leather, cashmere, or delicate stains. (Khuyên dùng cho quần áo hiệu >10 triệu, lụa, da thật, cashmere)</span>
+            </div>
+        </div>
+        <div class="page-number">Page 4 / 4</div>
+    </div>
+
+</body>
+</html>
