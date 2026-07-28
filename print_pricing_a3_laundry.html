@@ -224,9 +224,16 @@
         .card-price-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            margin-top: 6px;
-            margin-bottom: 8px;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background-color: rgba(242, 106, 25, 0.05);
+        }
+
+        .card-navy .card-price-row {
+            background-color: rgba(15, 41, 74, 0.04);
         }
 
         .card-price-title {
@@ -236,33 +243,51 @@
             text-transform: uppercase;
         }
 
-        .card-price-amount {
-            font-size: 25px;
-            font-weight: 900;
+        .card-navy .card-price-title {
             color: var(--color-primary-navy);
         }
 
-        /* Clock / Service Availability row */
+        .card-price-amount {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--color-accent-dark);
+        }
+
+        .card-navy .card-price-amount {
+            color: var(--color-primary-navy);
+        }
+
+        /* Clock / Service Availability row (Callout design) */
         .card-time-info {
-            font-size: 13px;
+            font-size: 13.5px;
             color: var(--color-gray);
-            font-style: italic;
-            margin-bottom: 14px;
+            margin-bottom: 18px;
             line-height: 1.45;
             display: flex;
             flex-direction: column;
-            gap: 2px;
-            padding-bottom: 12px;
-            border-bottom: 1.5px dashed var(--border-light);
+            gap: 4px;
+            padding: 12px 15px;
+            background-color: #fff9f5;
+            border-left: 3px solid var(--color-accent);
+            border-radius: 4px;
+        }
+
+        .card-navy .card-time-info {
+            background-color: #f3f6f9;
+            border-left: 3px solid var(--color-primary-navy);
         }
 
         .card-time-info span strong {
             color: var(--color-primary-navy);
         }
 
+        .card-orange .card-time-info span strong {
+            color: var(--color-accent-dark);
+        }
+
         /* Features Box */
         .features-container {
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
         .features-title {
@@ -270,7 +295,7 @@
             font-weight: 800;
             text-transform: uppercase;
             color: var(--color-primary-navy);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             letter-spacing: 0.3px;
         }
 
@@ -294,6 +319,10 @@
             position: absolute;
             left: 0;
             font-size: 12px;
+        }
+
+        .card-navy .features-list li::before {
+            color: var(--color-primary-navy);
         }
 
         /* Surcharge footer for Combo Cards */
@@ -321,7 +350,7 @@
         .menu-item-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
+            align-items: center;
             margin-bottom: 12px;
         }
 
@@ -347,21 +376,35 @@
 
         .menu-item-leader {
             flex-grow: 1;
-            border-bottom: 1.5px dotted rgba(15, 41, 74, 0.25);
+            border-bottom: 1.5px dotted rgba(15, 41, 74, 0.2);
             margin: 0 8px;
             position: relative;
-            top: -4px;
+            top: 4px;
         }
 
+        /* Price badges / highlight containers */
         .menu-item-price {
             font-weight: 800;
             font-size: 16px;
             color: var(--color-accent-dark);
             white-space: nowrap;
+            background-color: rgba(242, 106, 25, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
         }
 
         .card-navy .menu-item-price {
             color: var(--color-primary-navy);
+            background-color: rgba(15, 41, 74, 0.05);
+        }
+
+        /* Callout Box for Service Notes */
+        .features-notes-box {
+            background-color: #f7f9fc;
+            border-left: 3px solid var(--color-primary-navy);
+            padding: 12px 14px;
+            border-radius: 4px;
+            margin-top: auto;
         }
 
         /* Bottom Policies */
@@ -421,11 +464,11 @@
         <!-- CATALOG HEADER -->
         <header class="catalog-header">
             <div class="logo-area">
-                <img src="assets/img/logo.png" alt="1997 Premium Laundry Logo">
+                <img src="/assets/images/logo.png" alt="1997 Premium Laundry Logo">
             </div>
             <div class="contact-area">
-                Hotline/Zalo: <strong>093 1997 828</strong><br>
-                Address: 25/25 Sơn Kỳ, Tân Phú, HCMC
+                Hotline/Zalo: <strong>0866.137.043</strong><br>
+                Address: 15b/63 Le Thanh Ton, Dist 1, HCMC
             </div>
         </header>
 
@@ -451,8 +494,8 @@
                     </div>
                     
                     <div class="card-time-info">
-                        <span>• Service available until <strong>03:00 PM</strong> daily. Ready for Pickup/Delivery: <strong>07:00 PM – 09:00 PM</strong></span>
-                        <span>• Nhận đơn cuối vào lúc <strong>15:00</strong> hằng ngày. Hoàn thành giao đồ: <strong>19:00 – 21:00 cùng ngày</strong></span>
+                        <span>Service available until <strong>03:00 PM</strong> daily. Ready: <strong>07:00 PM – 09:00 PM</strong></span>
+                        <span>Nhận đơn cuối lúc <strong>15:00</strong> hằng ngày. Hoàn thành: <strong>19:00 – 21:00 cùng ngày</strong></span>
                     </div>
 
                     <div class="features-container">
@@ -481,8 +524,8 @@
                     </div>
                     
                     <div class="card-time-info">
-                        <span>• Service available until <strong>05:00 PM</strong> daily. Ready for pickup/delivery: <strong>4 hours after order is received</strong></span>
-                        <span>• Nhận đơn cuối vào lúc <strong>17:00</strong> hằng ngày. Hoàn thành giao đồ: <strong>sau 4 giờ kể từ khi nhận đơn</strong></span>
+                        <span>Service available until <strong>05:00 PM</strong> daily. Ready: <strong>4 hours after receipt</strong></span>
+                        <span>Nhận đơn cuối lúc <strong>17:00</strong> hằng ngày. Hoàn thành: <strong>sau 4 giờ kể từ khi nhận</strong></span>
                     </div>
 
                     <div class="features-container">
@@ -511,8 +554,8 @@
                     <div class="card-header-badge">Next-Day Standard</div>
                     
                     <div class="card-time-info" style="margin-top: 10px; margin-bottom: 16px;">
-                        <span>• Ready for pickup/delivery: <strong>07:00 PM – 09:00 PM (next day)</strong></span>
-                        <span>• Sẵn sàng nhận/giao đồ: <strong>19:00 – 21:00 (ngày hôm sau)</strong></span>
+                        <span>Ready for pickup/delivery: <strong>07:00 PM – 09:00 PM (next day)</strong></span>
+                        <span>Sẵn sàng nhận/giao đồ: <strong>19:00 – 21:00 (ngày hôm sau)</strong></span>
                     </div>
                     
                     <div class="menu-list">
@@ -556,7 +599,7 @@
 
                     </div>
 
-                    <div style="border-top: 1.5px dashed var(--border-light); padding-top: 12px; margin-top: 14px;">
+                    <div class="features-notes-box">
                         <div class="features-title" style="color: var(--color-primary-navy);">Service Notes / Ghi chú dịch vụ:</div>
                         <ul class="features-list" style="margin-bottom: 0;">
                             <li style="font-size: 11px;">All listed prices are inclusive of VAT. / Tất cả mức giá trên đều đã bao gồm VAT.</li>
