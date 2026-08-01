@@ -856,6 +856,200 @@
             16%, 32% { transform: rotate(10deg); }
             40% { transform: rotate(0deg); }
         }
+
+        /* Unified Pricing Table Styles */
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            background-color: #f1f5f9;
+            padding: 6px;
+            border-radius: 40px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+
+        .pricing-tab-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            font-family: var(--font-headline);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+        }
+
+        .pricing-tab-btn i {
+            font-size: 13px;
+        }
+
+        .pricing-tab-btn.active {
+            background-color: #ffffff;
+            color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(9, 0, 45, 0.04);
+        }
+
+        .pricing-category-card {
+            display: none;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .pricing-category-card.active {
+            display: block;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-category-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            padding: 35px 40px;
+            box-shadow: 0 10px 30px rgba(9, 0, 45, 0.02);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .pricing-category-card h3 {
+            font-family: var(--font-headline);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 2px solid rgba(242, 106, 25, 0.1);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-category-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: var(--color-accent);
+            border-radius: 2px;
+        }
+
+        .price-list-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .price-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .price-item-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .price-item-row:hover {
+            background-color: rgba(242, 106, 25, 0.015);
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 12px;
+            border-bottom-color: transparent;
+        }
+
+        .price-item-left {
+            max-width: 75%;
+            text-align: left;
+        }
+
+        .price-item-left h4 {
+            font-family: var(--font-headline);
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--color-bg-dark);
+            margin: 0 0 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .price-item-row:hover .price-item-left h4 {
+            color: var(--color-accent);
+        }
+
+        .price-item-left p {
+            font-family: var(--font-body);
+            font-size: 12.5px;
+            line-height: 1.5;
+            color: var(--color-text-gray);
+            margin: 0;
+        }
+
+        .price-item-right {
+            font-family: var(--font-headline);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--color-accent);
+            white-space: nowrap;
+            padding-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .price-item-row:hover .price-item-right {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 991px) {
+            .pricing-tabs {
+                display: flex !important;
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+                padding: 6px 15px 12px 15px;
+                margin-left: -15px;
+                margin-right: -15px;
+                gap: 10px;
+                border-radius: 0;
+                background: transparent;
+                box-shadow: none;
+                -webkit-overflow-scrolling: touch;
+            }
+            .pricing-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            .pricing-tab-btn {
+                flex-shrink: 0;
+                padding: 10px 18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -986,192 +1180,143 @@
                 <i class="fa-solid fa-truck-ramp-box"></i>
                 <p><strong>Delivery Notice:</strong> Pickup & delivery is <strong>20,000 VND/way</strong> under 3km, and <strong>+8,000 VND/km</strong> for distances over 3km. <strong>Free pickup & delivery for orders over 1,000,000 VND.</strong></p>
             </div>
-            <!-- 3-Column Pricing Grid -->
-            <div class="pricing-grid-3col" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; align-items: stretch; max-width: 1140px; margin-left: auto; margin-right: auto;">
-                <!-- Column 1: Bedsheets, Linens & Curtains -->
-                <div class="price-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(9, 0, 45, 0.04); border: 1px solid rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
-                    <div>
-                        <div style="text-align: center; margin-bottom: 25px;">
-                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Bedsheets, Linens & Curtains</span>
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; border-bottom: 1px dashed rgba(0,0,0,0.06); padding-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Under 2kg</span>
-                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent);">120.000 VND</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Over 2kg</span>
-                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark);">60.000 VND <small style="font-size: 12px; color: var(--color-text-gray); font-weight: 500;">/ kg</small></span>
-                            </div>
-                        </div>
-                        
-                        <p style="font-size: 12.5px; color: var(--color-accent); font-weight: 600; margin: 0 0 15px 0;">* Minimum weight is 2kg</p>
-                        
-                        <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0 0 30px 0;">
-                            Best for bedsheets, pillow covers, duvet covers, bath towels, window curtains, and area carpets (thin/standard fabric under weight). Washed, dried, and neatly folded.
-                        </p>
-                    </div>
-                    
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select secondary-btn" style="border: 1.5px solid var(--color-accent); color: var(--color-accent); background: transparent; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 13px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; transition: all 0.3s ease;">Select Service</a>
-                </div>
-
-                <!-- Column 2: Mattress Toppers By Size (Highlighted) -->
-                <div class="price-card-premium featured-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 20px 45px rgba(242, 106, 25, 0.08); border: 2px solid var(--color-accent); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
-                    <div>
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Mattress Toppers (By Size)</span>
-                        </div>
-                        
-                        <div style="margin-bottom: 12px;">
-                            <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-accent); margin: 0 0 5px 0;">By Size <span style="font-size: 14px; font-weight: 500; color: var(--color-text-gray); margin-left: 5px;">From 230k VND</span></h3>
-                            <p style="font-family: var(--font-body); font-size: 12.5px; color: var(--color-accent); font-weight: 500; margin: 0 0 15px 0;">Thickness 6cm (60mm) and under</p>
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; border-top: 1px dashed rgba(0,0,0,0.06); padding-top: 18px;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m2 - 1m4:</span>
-                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">230.000 VND</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m6 - 1m8:</span>
-                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">280.000 VND</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 14px; font-weight: 600; color: var(--color-bg-dark);">Size 1m8 - 2m2:</span>
-                                <span style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent);">300.000 VND</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select primary-btn" style="background-color: var(--color-accent); color: #ffffff; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 14px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; box-shadow: 0 6px 20px rgba(242, 106, 25, 0.2); transition: all 0.3s ease;">Book Topper Cleaning</a>
-                </div>
-
-                <!-- Column 3: Mattress Toppers By Weight -->
-                <div class="price-card-premium" style="background: #ffffff; border-radius: 28px; padding: 40px 30px; box-shadow: 0 15px 40px rgba(9, 0, 45, 0.04); border: 1px solid rgba(0, 0, 0, 0.02); display: flex; flex-direction: column; justify-content: space-between; text-align: left; position: relative;">
-                    <div>
-                        <div style="text-align: center; margin-bottom: 25px;">
-                            <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11.5px; font-weight: 700; padding: 8px 20px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; display: inline-block;">Mattress Toppers (By Weight)</span>
-                        </div>
-                        
-                        <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; border-bottom: 1px dashed rgba(0,0,0,0.06); padding-bottom: 20px;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 16px; font-weight: 700; color: var(--color-bg-dark);">Over 6cm thick</span>
-                                <span style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-accent);">70.000 VND <small style="font-size: 12px; color: var(--color-text-gray); font-weight: 500;">/ kg</small></span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <span style="font-size: 14px; color: var(--color-text-gray);">Thickness over 6cm</span>
-                                <span style="font-size: 13px; color: var(--color-text-gray); font-weight: 500;">By actual weight</span>
-                            </div>
-                        </div>
-                        
-                        <p style="font-size: 12.5px; color: var(--color-accent); font-weight: 600; margin: 0 0 15px 0;">* Charged by actual weight (kg)</p>
-                        
-                        <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0 0 30px 0;">
-                            Best for thick, heavy comforters, mattresses, and toppers thicker than 6cm (60mm). Specialized deep extraction sanitizing to extract all dust-mites, sweat & allergens.
-                        </p>
-                    </div>
-                    
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-grid-select secondary-btn" style="border: 1.5px solid var(--color-accent); color: var(--color-accent); background: transparent; font-family: var(--font-headline); font-size: 14.5px; font-weight: 700; padding: 13px 28px; border-radius: 30px; text-decoration: none; display: block; text-align: center; transition: all 0.3s ease;">Select Service</a>
-                </div>
+                        <!-- Pricing Tabs -->
+            <div class="pricing-tabs">
+                <button class="pricing-tab-btn active" data-target="bedding-toppers-cat">
+                    <i class="fa-solid fa-bed"></i> Bedding & Toppers
+                </button>
+                <button class="pricing-tab-btn" data-target="curtains-rugs-cat">
+                    <i class="fa-solid fa-scroll"></i> Curtains & Rugs
+                </button>
+                <button class="pricing-tab-btn" data-target="pillows-plushies-cat">
+                    <i class="fa-solid fa-circle"></i> Pillows & Plushies
+                </button>
             </div>
 
-            <!-- Additional Services (Add-on Items) -->
-            <div class="additional-services-box" style="margin-top: 60px; max-width: 800px; margin-left: auto; margin-right: auto; background: #ffffff; border-radius: 30px; padding: 45px 40px; box-shadow: 0 20px 50px rgba(9, 0, 45, 0.05); border: 1px solid rgba(242, 106, 25, 0.08); position: relative; overflow: hidden;">
-                <!-- Decorative Top Gradient Line -->
-                <div style="position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, var(--color-accent) 0%, #ff8a3d 100%);"></div>
-                
-                <div class="text-center" style="margin-bottom: 40px;">
-                    <span style="background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); font-family: var(--font-headline); font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; display: inline-block; margin-bottom: 12px;">Extra Care Services</span>
-                    <h3 style="font-family: var(--font-headline); font-size: 26px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 8px 0; letter-spacing: -0.5px;">Specialized Add-On Services</h3>
-                    <p style="font-family: var(--font-body); font-size: 13px; color: var(--color-text-gray); margin: 0; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.5;">Specialized spot cleaning and professional hand-pressing additions. (Those processes would need 24-36 hours)</p>
+            <div class="pricing-list-container">
+                <!-- Bedding & Toppers -->
+                <div class="pricing-category-card active" id="bedding-toppers-cat">
+                    <h3><i class="fa-solid fa-bed"></i> Bedding & Toppers</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Bedsheets, Linens & Curtains (Under 2kg)</h4>
+                                <p>Best for standard sheets, pillowcases, and duvet covers.</p>
+                            </div>
+                            <div class="price-item-right">120.000 VND / order</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Bedsheets, Linens & Curtains (Over 2kg)</h4>
+                                <p>Minimum weight 2kg. Weighed in front of you.</p>
+                            </div>
+                            <div class="price-item-right">60.000 VND / kg</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Mattress Topper (Size 1m2 - 1m4)</h4>
+                                <p>Thickness 6cm (60mm) and under.</p>
+                            </div>
+                            <div class="price-item-right">230.000 VND / piece</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Mattress Topper (Size 1m6 - 1m8)</h4>
+                                <p>Thickness 6cm (60mm) and under.</p>
+                            </div>
+                            <div class="price-item-right">280.000 VND / piece</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Mattress Topper (Size 1m8 - 2m2)</h4>
+                                <p>Thickness 6cm (60mm) and under.</p>
+                            </div>
+                            <div class="price-item-right">300.000 VND / piece</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Mattress Topper (Thick >6cm)</h4>
+                                <p>Thickness over 6cm, charged by actual weight.</p>
+                            </div>
+                            <div class="price-item-right">70.000 VND / kg</div>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="additional-services-list" style="display: flex; flex-direction: column; gap: 8px;">
-
-                    <!-- Row 2: Double-layered curtains -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-scroll"></i>
+                <!-- Curtains & Rugs -->
+                <div class="pricing-category-card" id="curtains-rugs-cat">
+                    <h3><i class="fa-solid fa-scroll"></i> Curtains & Rugs</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Double-Layered Curtains</h4>
+                                <p>Includes professional removal & re-hanging service.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Double-Layered Curtains</h4>
-                            </div>
+                            <div class="price-item-right">70.000 VND / kg</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">70,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ kg</span></div>
-                    </div>
-                    
-                    <!-- Row 3: Rug / Fur -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-rug"></i>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Standard Rugs & Carpets</h4>
+                                <p>Deep cleaning and sterilization for area carpets.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Standard Rugs & Carpets</h4>
-                            </div>
+                            <div class="price-item-right">80.000 VND / kg</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">80,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ kg</span></div>
-                    </div>
-                    
-                    <!-- Row 4: Fur rug -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-cloud"></i>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Premium Fur Rug</h4>
+                                <p>Gentle manual hand-wash to preserve fibers.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Premium Fur Rug</h4>
-                            </div>
+                            <div class="price-item-right">280.000 VND / piece</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">280,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
                     </div>
-                    
-                    <!-- Row 5: Head pillows - Feather pillows -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-circle"></i>
+                </div>
+                <!-- Pillows & Plushies -->
+                <div class="pricing-category-card" id="pillows-plushies-cat">
+                    <h3><i class="fa-solid fa-circle"></i> Pillows & Plushies</h3>
+                    <div class="price-list-items">
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Sleeping Pillows & Down Pillows</h4>
+                                <p>Includes thorough sanitization and UVC sterilization.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Sleeping Pillows & Down Pillows</h4>
-                            </div>
+                            <div class="price-item-right">90.000 - 160.000 VND / piece</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">90,000đ - 160,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
-                    </div>
-                    
-                    <!-- Row 6: Body pillows -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-capsules"></i>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Body Pillows</h4>
+                                <p>Standard and long body pillow refresh.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0;">Body Pillows</h4>
-                            </div>
+                            <div class="price-item-right">180.000 - 230.000 VND / piece</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 15px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">180,000đ - 230,000đ <span style="font-size: 11.5px; color: var(--color-text-gray); font-weight: 500;">/ piece</span></div>
-                    </div>
-                    
-                    <!-- Row 7: Teddy bear -->
-                    <div class="add-service-row" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-radius: 16px; background-color: var(--color-bg-soft); border: 1px solid transparent; transition: all 0.3s ease; gap: 20px;">
-                        <div class="add-service-left" style="display: flex; align-items: center; gap: 18px; text-align: left;">
-                            <div style="width: 44px; height: 44px; border-radius: 50%; background-color: rgba(242, 106, 25, 0.08); display: flex; align-items: center; justify-content: center; color: var(--color-accent); font-size: 16px; flex-shrink: 0;">
-                                <i class="fa-solid fa-face-smile"></i>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Stuffed Animals (Mini)</h4>
+                                <p>Small pocket-sized plush toys.</p>
                             </div>
-                            <div>
-                                <h4 style="font-size: 15px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 8px 0;">Stuffed Animals / Teddy Bears</h4>
-                                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 11.5px; font-family: var(--font-headline); font-weight: 700;">
-                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">Mini: <span style="color: var(--color-accent);">30,000đ</span></span>
-                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">&lt;50cm: <span style="color: var(--color-accent);">80,000đ</span></span>
-                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">50-80cm: <span style="color: var(--color-accent);">130,000đ</span></span>
-                                    <span style="background: #ffffff; padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.04); color: var(--color-bg-dark);">&gt;80cm: <span style="color: var(--color-accent);">180,000đ</span></span>
-                                </div>
-                            </div>
+                            <div class="price-item-right">30.000 VND / piece</div>
                         </div>
-                        <div class="add-service-right" style="font-family: var(--font-headline); font-size: 16px; font-weight: 700; color: var(--color-accent); white-space: nowrap; background: #ffffff; padding: 8px 18px; border-radius: 30px; box-shadow: 0 4px 10px rgba(9, 0, 45, 0.02); border: 1px solid rgba(242, 106, 25, 0.05);">From 30,000đ</div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Stuffed Animals (Medium <50cm)</h4>
+                                <p>Medium-sized plushies.</p>
+                            </div>
+                            <div class="price-item-right">80.000 VND / piece</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Stuffed Animals (Large 50-80cm)</h4>
+                                <p>Large teddy bears and stuffed animals.</p>
+                            </div>
+                            <div class="price-item-right">130.000 VND / piece</div>
+                        </div>
+                        <div class="price-item-row">
+                            <div class="price-item-left">
+                                <h4>Stuffed Animals (Jumbo >80cm)</h4>
+                                <p>Extra-large teddy bears.</p>
+                            </div>
+                            <div class="price-item-right">180.000 VND / piece</div>
+                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1524,5 +1669,32 @@
 
     <!-- Main JS script -->
     <script src="index.js?v=2.0"></script>
+
+    <!-- Pricing Tabs Toggle Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.pricing-tab-btn');
+            const cards = document.querySelectorAll('.pricing-category-card');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active to current tab
+                    tab.classList.add('active');
+
+                    // Target card
+                    const targetId = tab.getAttribute('data-target');
+                    
+                    cards.forEach(card => {
+                        card.classList.remove('active');
+                        if (card.id === targetId) {
+                            card.classList.add('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
