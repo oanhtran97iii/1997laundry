@@ -156,7 +156,16 @@
         }
 
         /* Desktop grids for benefits and testimonials */
-        .benefits-grid, .testimonials-grid {
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
@@ -1326,7 +1335,7 @@
         <div class="container">
             <div class="text-center header-spacing">
                 <span class="section-badge">SERVICE FLOW</span>
-                <h2 class="section-title">Hassle-Free 4-Step Home Service</h2>
+                <h2 class="section-title">Hassle-Free 3-Step Home Service</h2>
                 <p class="section-subtitle">You don't have to climb ladders. Our team handles every step from removal to re-installation.</p>
             </div>
 
@@ -1350,16 +1359,8 @@
                 <!-- Step 3 -->
                 <div class="flow-card">
                     <div class="flow-num-badge">03</div>
-                    <div class="flow-card-icon"><i class="fa-solid fa-wind"></i></div>
-                    <h3>03. Steam Ironing</h3>
-                    <p>Vertical steam pressed at controlled temperatures to remove all wrinkles and recover original pleats & folds.</p>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="flow-card">
-                    <div class="flow-num-badge">04</div>
                     <div class="flow-card-icon"><i class="fa-solid fa-house-circle-check"></i></div>
-                    <h3>04. Home Re-installation</h3>
+                    <h3>03. Home Re-installation</h3>
                     <p>We return to your home, hang the fresh curtains back properly, check the rod alignment, and clean the work area.</p>
                 </div>
             </div>
@@ -1395,17 +1396,6 @@
                     <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Dust & Allergen Sanitizing</h3>
                     <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
                         Curtains act as HCMC dust filters. Our deep wash dissolves embedded grime, dust mites, pet dander, and odors, making your air clean and healthy.
-                    </p>
-                </div>
-                
-                <!-- Benefit 3 -->
-                <div class="benefit-card" style="background-color: #fcfbf9; padding: 40px 30px; border-radius: 20px; border: 1px solid rgba(0,0,0,0.03); transition: all 0.3s ease;">
-                    <div class="benefit-icon" style="width: 54px; height: 54px; border-radius: 12px; background-color: rgba(242, 106, 25, 0.08); color: var(--color-accent); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;">
-                        <i class="fa-solid fa-expand"></i>
-                    </div>
-                    <h3 style="font-family: var(--font-headline); font-size: 18px; font-weight: 700; color: var(--color-bg-dark); margin: 0 0 12px 0;">Steam Press & Shape Recovery</h3>
-                    <p style="font-family: var(--font-body); font-size: 13.5px; line-height: 1.6; color: var(--color-text-gray); margin: 0;">
-                        After washing, curtains are steam ironed using vertical form-finishers. Restores original drape lines and crisp folding structure without co co rút.
                     </p>
                 </div>
             </div>
