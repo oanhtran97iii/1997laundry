@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
             total += (weight - pricing.per) * pricing.extra;
         }
         if (addonWhite.checked) {
-            total += 45000;
+            total += 30000;
         }
         return total;
     }
