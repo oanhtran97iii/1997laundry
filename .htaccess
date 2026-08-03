@@ -1,23 +1,27 @@
-# 0. URL Rewriting for Clean URLs and Ad Tracking redirects
+# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Browser Redirects)
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    # Redirect specific old ad campaign route
-    RewriteRule ^laundy-service/?$ express-laundry.html [L,QSA]
+    # Redirect specific old ad campaign routes
+    RewriteRule ^laundy-service/?$ /express-laundry.html [R=302,L,QSA]
+    RewriteRule ^laundry-service/?$ /express-laundry.html [R=302,L,QSA]
 
-    # Don't rewrite actual files or directories
-    RewriteCond %{REQUEST_FILENAME} -f [OR]
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteRule ^ - [L]
+    # Redirect clean URLs to actual .html files (prevents broken assets)
+    RewriteRule ^dry-cleaning/?$ /dry-cleaning.html [R=302,L,QSA]
+    RewriteRule ^express-laundry/?$ /express-laundry.html [R=302,L,QSA]
+    RewriteRule ^shoes-cleaning/?$ /shoes-cleaning.html [R=302,L,QSA]
+    RewriteRule ^steam-press/?$ /steam-press.html [R=302,L,QSA]
+    RewriteRule ^curtain-cleaning/?$ /curtain-cleaning.html [R=302,L,QSA]
+    RewriteRule ^order/?$ /order.html [R=302,L,QSA]
 
-    # Rewrite /vi/service-name to /vi/service-name.html
-    RewriteCond %{DOCUMENT_ROOT}/vi/$1.html -f
-    RewriteRule ^vi/([^/]+)/?$ vi/$1.html [L,QSA]
-
-    # Rewrite /service-name to /service-name.html
-    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-    RewriteRule ^([^/]+)/?$ $1.html [L,QSA]
+    # Redirect for /vi/ subfolder clean URLs
+    RewriteRule ^vi/dry-cleaning/?$ /vi/dry-cleaning.html [R=302,L,QSA]
+    RewriteRule ^vi/express-laundry/?$ /vi/express-laundry.html [R=302,L,QSA]
+    RewriteRule ^vi/shoes-cleaning/?$ /vi/shoes-cleaning.html [R=302,L,QSA]
+    RewriteRule ^vi/steam-press/?$ /vi/steam-press.html [R=302,L,QSA]
+    RewriteRule ^vi/curtain-cleaning/?$ /vi/curtain-cleaning.html [R=302,L,QSA]
+    RewriteRule ^vi/order/?$ /vi/order.html [R=302,L,QSA]
 </IfModule>
 
 # 1. Enable Gzip Compression
