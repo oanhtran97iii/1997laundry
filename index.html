@@ -1,912 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1997 Laundry | Premium Laundry & Dry Cleaning in Saigon</title>
-    <meta name="description" content="Saigon's premium laundry, dry cleaning, and shoe spa services tailored for expats and travelers. 24h turnaround, eco-friendly detergents, and free delivery within 3km.">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css?v=2.0">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>1997 Laundry | Premium Laundry & Dry Cleaning in Saigon</title>
+        <meta name="description"
+            content="Saigon's premium laundry, dry cleaning, and shoe spa services tailored for expats and travelers. 24h turnaround, eco-friendly detergents, and free delivery within 3km.">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <!-- FontAwesome for icons -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="index.css?v=2.0">
+    </head>
+    <body>
 
-    <!-- Header Section -->
-    <header class="main-header" id="navbar">
-        <div class="container header-container">
-            <a href="#" class="logo" id="header-logo">
-                <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
-            </a>
-            <nav class="nav-menu" id="nav-links">
-                <a href="#hero" class="nav-item active">HOME</a>
-                <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
-                <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
-                <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
-                <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
-                <a href="curtain-cleaning.html" class="nav-item">BEDDING & LINENS</a>
-                <a href="#faq" class="nav-item">FAQs</a>
-            </nav>
-            <div class="header-ctas">
-                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
+        <!-- Header Section -->
+        <header class="main-header" id="navbar">
+            <div class="container header-container">
+                <a href="#" class="logo" id="header-logo">
+                    <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+                </a>
+                <nav class="nav-menu" id="nav-links">
+                    <a href="#hero" class="nav-item active">HOME</a>
+                    <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                    <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
+                    <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
+                    <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
+                    <a href="curtain-cleaning.html" class="nav-item">BEDDING & LINENS</a>
+                    <a href="#faq" class="nav-item">FAQs</a>
+                </nav>
+                <div class="header-ctas">
+                    <!-- <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary btn-cta" id="btn-header-cta">
                     <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
-                </a>
-                <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
-                    <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
-                </a>
-                <div class="lang-switcher">
-                    <span class="active">EN</span>
-                    <span class="divider">|</span>
-                    <a href="vi/index.html">VI</a>
+                </a> -->
+                    <a href="order.html" class="btn btn-primary btn-cta" id="btn-header-cta">
+                        <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                    </a>
+                    <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                        <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <span class="active">EN</span>
+                        <span class="divider">|</span>
+                        <a href="vi/index.html">VI</a>
+                    </div>
                 </div>
+                <button class="mobile-menu-toggle" id="menu-toggle"
+                    aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            <button class="mobile-menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </header>
+        </header>
 
-    <section class="hero-section" id="hero">
-        <!-- Floating Soap Bubbles for Lively Effect -->
-        <div class="laundry-bubble" style="width: 28px; height: 28px; left: 6%; animation-delay: 0s; animation-duration: 9s;"></div>
-        <div class="laundry-bubble" style="width: 16px; height: 16px; left: 15%; animation-delay: 3s; animation-duration: 8s;"></div>
-        <div class="laundry-bubble" style="width: 34px; height: 34px; left: 82%; animation-delay: 1.5s; animation-duration: 11s;"></div>
-        <div class="laundry-bubble" style="width: 20px; height: 20px; left: 91%; animation-delay: 5s; animation-duration: 7s;"></div>
-        <div class="laundry-bubble" style="width: 24px; height: 24px; left: 45%; animation-delay: 2s; animation-duration: 10s;"></div>
-        
-        <div class="container hero-container">
-            <div class="hero-content">
-                <span class="badge" id="hero-badge">PREMIUM SERVICE</span>
-                <h1 class="hero-title" id="hero-headline"><span class="text-orange">1997 Premium Laundry</span><br>& Dry Cleaner in<br>HCMC</h1>
-                <p class="hero-subtitle" id="hero-subtext">
-                    Hotel pickup and delivery — Dry cleaning and gentle care for suits, shirts, and evening wear, alongside daily and express laundry services.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item" id="stat-professional">
-                        <div class="stat-icon"><i class="fa-solid fa-shirt"></i></div>
-                        <div class="stat-info">
-                            <h4>Professional Care</h4>
-                            <p>Suits & Shirts Specialist</p>
-                        </div>
-                    </div>
-                    <div class="stat-item" id="stat-delivery">
-                        <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
-                        <div class="stat-info">
-                            <h4>24h Turnaround</h4>
-                            <p>Express Service Available</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-actions">
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary" id="btn-hero-pickup"><i class="fa-solid fa-calendar-days"></i> Schedule Pickup</a>
-                    <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing"><i class="fa-solid fa-tags"></i> Check Pricing</a>
-                </div>
-                <div class="hero-rating" id="hero-trust-rating">
-                    <div class="stars">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <span>Rated <strong>4.9/5</strong> by 1,500+ expats in Saigon.</span>
-                </div>
-            </div>
+        <section class="hero-section" id="hero">
+            <!-- Floating Soap Bubbles for Lively Effect -->
+            <div class="laundry-bubble"
+                style="width: 28px; height: 28px; left: 6%; animation-delay: 0s; animation-duration: 9s;"></div>
+            <div class="laundry-bubble"
+                style="width: 16px; height: 16px; left: 15%; animation-delay: 3s; animation-duration: 8s;"></div>
+            <div class="laundry-bubble"
+                style="width: 34px; height: 34px; left: 82%; animation-delay: 1.5s; animation-duration: 11s;"></div>
+            <div class="laundry-bubble"
+                style="width: 20px; height: 20px; left: 91%; animation-delay: 5s; animation-duration: 7s;"></div>
+            <div class="laundry-bubble"
+                style="width: 24px; height: 24px; left: 45%; animation-delay: 2s; animation-duration: 10s;"></div>
 
-            <!-- Featured Service Menu Card (Replaces Price Estimator Slider) -->
-            <div class="hero-visual">
-                <div class="overlapping-hero-wrapper">
-                    <!-- Shop background card -->
-                    <div class="shop-bg-card">
-                        <img loading="lazy" src="assets/images/dry_clean_bg.jpg" alt="1997 Premium Laundry Shop Interior" class="shop-bg-img">
-                        <!-- D1 Branch Badge -->
-                        <div class="branch-badge">
-                            <span class="branch-title">D1</span>
-                            <span class="branch-sub">DISTRICT 1 BRANCH</span>
-                        </div>
-                    </div>
-                    <!-- White menu card -->
-                    <div class="featured-menu-card">
-                        <div class="menu-card-header">
-                            <span class="menu-badge">HOT SERVICES</span>
-                            <h3>Featured Service Menu</h3>
-                        </div>
-                        <ul class="menu-list">
-                            <li>
-                                <span class="menu-item-text"><span class="orange-bullet">•</span> 4 Hrs Express Wash & Fold</span>
-                                <span class="menu-item-badge badge-popular">MOST POPULAR</span>
-                            </li>
-                            <li>
-                                <span class="menu-item-text"><span class="orange-bullet">•</span> Shoes Cleaning</span>
-                                <span class="menu-item-badge badge-recommended">RECOMMENDED</span>
-                            </li>
-                            <li>
-                                <span class="menu-item-text"><span class="orange-bullet">•</span> Dry Cleaning</span>
-                                <span class="menu-item-badge badge-premium">PREMIUM</span>
-                            </li>
-                            <li>
-                                <span class="menu-item-text"><span class="orange-bullet">•</span> Steam Press</span>
-                                <span class="menu-item-badge badge-new">NEW</span>
-                            </li>
-                        </ul>
-                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-dark-blue w-100 text-center">BOOK SERVICE NOW</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge">SERVICES</span>
-                <h2 class="section-title">Our Featured Services</h2>
-                <p class="section-subtitle">Professional fabric & shoe care for every need — from express wash to specialty dry cleaning</p>
-            </div>
-            
-            <div class="featured-services-grid">
-                <!-- 1. Express Laundry -->
-                <div class="service-capsule-card" id="express-laundry">
-                    <div class="capsule-img-wrapper">
-                        <img loading="lazy" src="assets/images/laundry_packaging_new.jpg" alt="Express Laundry Service">
-                        <span class="capsule-tag">4h Turnaround</span>
-                        <button class="capsule-wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    <div class="capsule-card-body">
-                        <h3>Express Laundry</h3>
-                        <p>Individual wash, machine dry, and fold. Options: Standard, Same-Day, or 4h Super Express.</p>
-                    </div>
-                    <div class="capsule-card-footer">
-                        <a href="express-laundry.html" class="capsule-detail-btn">Pricing Details</a>
-                    </div>
-                </div>
-
-                <!-- 2. Dry Cleaning -->
-                <div class="service-capsule-card" id="dry-cleaning">
-                    <div class="capsule-img-wrapper">
-                        <img loading="lazy" src="assets/images/featured_suit.jpg" alt="Dry Cleaning Service">
-                        <span class="capsule-tag">Delicate Solvent Care</span>
-                        <button class="capsule-wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    <div class="capsule-card-body">
-                        <h3>Dry Cleaning</h3>
-                        <p>Meticulous organic solvent care for suits, shirts, silks, cashmere, and delicate attire.</p>
-                    </div>
-                    <div class="capsule-card-footer">
-                        <a href="dry-cleaning.html" class="capsule-detail-btn">Pricing Details</a>
-                    </div>
-                </div>
-
-                <!-- 3. Steam Press -->
-                <div class="service-capsule-card" id="steam-press">
-                    <div class="capsule-img-wrapper">
-                        <img loading="lazy" src="assets/images/pressed_suit.jpg" alt="Steam Pressing Service">
-                        <span class="capsule-tag">Perfect Pressing</span>
-                        <button class="capsule-wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    <div class="capsule-card-body">
-                        <h3>Steam Press</h3>
-                        <p>Professional vertical steam pressing to remove wrinkles and preserve garment shape.</p>
-                    </div>
-                    <div class="capsule-card-footer">
-                        <a href="steam-press.html" class="capsule-detail-btn">Pricing Details</a>
-                    </div>
-                </div>
-
-                <!-- 4. Shoes Cleaning -->
-                <div class="service-capsule-card" id="shoes-cleaning">
-                    <div class="capsule-img-wrapper">
-                        <img loading="lazy" src="assets/images/shoes_cleaning_featured.jpg" alt="Shoes Cleaning Service">
-                        <span class="capsule-tag">Deep Clean & Sanitized</span>
-                        <button class="capsule-wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    <div class="capsule-card-body">
-                        <h3>Shoes Cleaning</h3>
-                        <p>Sneakers, leather, and suede shoes deep cleaned, deodorized, and UVC sanitized.</p>
-                    </div>
-                    <div class="capsule-card-footer">
-                        <a href="shoes-cleaning.html" class="capsule-detail-btn">Pricing Details</a>
-                    </div>
-                </div>
-                
-                <!-- 5. Bedding & Linens -->
-                <div class="service-capsule-card" id="curtain-cleaning">
-                    <div class="capsule-img-wrapper">
-                        <img loading="lazy" src="assets/images/curtain_cleaning_featured.jpg" alt="Bedding & Linens Service">
-                        <span class="capsule-tag">Premium Sheet & Curtain Care</span>
-                        <button class="capsule-wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    </div>
-                    <div class="capsule-card-body">
-                        <h3>Bedding & Linens</h3>
-                        <p>Specialized sanitizing wash for duvet covers, bedsheets, blankets, pillowcases, and heavy window curtains.</p>
-                    </div>
-                    <div class="capsule-card-footer">
-                        <a href="curtain-cleaning.html" class="capsule-detail-btn">Pricing Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- How 1997 Laundry Works Section -->
-    <section class="steps-section" id="how-it-works">
-        <div class="container text-center">
-            <span class="section-badge">PROCESS</span>
-            <h2 class="section-title">How 1997 Laundry Works</h2>
-            <p class="section-subtitle">Professional clothing care in 3 simple steps.</p>
-            
-            <div class="process-capsule-bar">
-                <!-- Step 1 -->
-                <div class="capsule-step">
-                    <div class="capsule-icon-wrapper">
-                        <i class="fa-solid fa-calendar-days"></i>
-                    </div>
-                    <div class="capsule-text-block">
-                        <h3>Book Online</h3>
-                        <p>Schedule pickup in 2 mins</p>
-                    </div>
-                </div>
-                
-                <div class="capsule-separator">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                
-                <!-- Step 2 -->
-                <div class="capsule-step active">
-                    <div class="capsule-icon-wrapper">
-                        <i class="fa-solid fa-hand-holding-heart"></i>
-                    </div>
-                    <div class="capsule-text-block">
-                        <h3>Expert Care</h3>
-                        <p>Individual organic wash</p>
-                    </div>
-                </div>
-                
-                <div class="capsule-separator">
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                
-                <!-- Step 3 -->
-                <div class="capsule-step">
-                    <div class="capsule-icon-wrapper">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
-                    <div class="capsule-text-block">
-                        <h3>Fresh Delivery</h3>
-                        <p>Returned clean in 24 hrs</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Inside Our Shop Section -->
-    <section class="shop-gallery-section" id="gallery">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge">GALLERY</span>
-                <h2 class="section-title">Inside Our Shop</h2>
-                <p class="section-subtitle">Clean, modern facility in District 1 — visit us or let us come to you</p>
-            </div>
-            
-            <div class="shop-gallery-grid">
-                <!-- Our Shop Image Card -->
-                <div class="shop-gallery-card">
-                    <img loading="lazy" src="assets/images/dry_clean_bg.jpg" alt="1997 Premium Laundry Shop Interior" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag shop-tag">OUR SHOP</span>
-                        <span class="gallery-desc">Modern industrial machines, daylight folding counter, garment rack with pressed clothes</span>
-                    </div>
-                </div>
-                
-                <!-- Packaging Image Card -->
-                <div class="shop-gallery-card">
-                    <img loading="lazy" src="assets/images/laundry_packaging_new.jpg" alt="1997 Premium Laundry Packaging" class="gallery-image">
-                    <div class="gallery-overlay">
-                        <span class="gallery-tag packaging-tag">PACKAGING</span>
-                        <span class="gallery-desc">Every order is neatly folded and packed in our premium bag</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Team Section -->
-    <section class="team-section" id="team">
-        <div class="container">
-            <div class="text-center">
-                <span class="section-badge">OUR EXPERTS</span>
-                <h2 class="section-title">Meet Our Fabric Care Team</h2>
-                <p class="section-subtitle">Professional cleaners dedicated to restoring and protecting your garments.</p>
-            </div>
-
-            <div class="team-grid">
-                <!-- Card 1: Left -->
-                <div class="team-card team-left reveal-card" id="team-member-1">
-                    <div class="team-visual-wrapper">
-                        <img loading="lazy" src="assets/images/team_laundry_bag.jpg?v=2.0" alt="Fabric Specialists 1997 Laundry" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="team-info">
-                        <h3>Fabric Specialists</h3>
-                        <p>Our sorting experts identify fabric compositions and apply specialized eco-friendly washing formulas to keep fibers resilient.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Center Featured Tall Card -->
-                <div class="team-card team-center reveal-card" id="team-member-2">
-                    <div class="team-visual-wrapper tall-wrapper">
-                        <div class="team-img-placeholder center-img-placeholder team-slideshow">
-                            <div class="team-slide active"><img loading="lazy" src="assets/images/process_1.jpg?v=2.0" alt="1997 Laundry Packaging process 1"></div>
-                            <div class="team-slide"><img loading="lazy" src="assets/images/team_shelf.jpg?v=2.0" alt="1997 Laundry Shelves process 2"></div>
-                            <div class="team-slide"><img loading="lazy" src="assets/images/team_laundry_bag.jpg?v=2.0" alt="1997 Laundry Folded Packs process 3"></div>
-                            <div class="team-slide"><img loading="lazy" src="assets/images/dry_clean_bg.jpg?v=2.0" alt="1997 Laundry Washing Machines process 4"></div>
-                            
-                            <!-- Prev/Next Navigation Arrows -->
-                            <button class="slide-nav-btn prev-btn" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
-                            <button class="slide-nav-btn next-btn" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
-                            
-                            <!-- Slide Dots Indicator -->
-                            <div class="slide-dots">
-                                <span class="slide-dot active"></span>
-                                <span class="slide-dot"></span>
-                                <span class="slide-dot"></span>
-                                <span class="slide-dot"></span>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge" id="hero-badge">PREMIUM SERVICE</span>
+                    <h1 class="hero-title" id="hero-headline"><span class="text-orange">1997 Premium
+                            Laundry</span><br>& Dry Cleaner in<br>HCMC</h1>
+                    <p class="hero-subtitle" id="hero-subtext">
+                        Hotel pickup and delivery — Dry cleaning and gentle care for suits, shirts,
+                        and evening wear, alongside daily and express laundry services.
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item" id="stat-professional">
+                            <div class="stat-icon"><i class="fa-solid fa-shirt"></i></div>
+                            <div class="stat-info">
+                                <h4>Professional Care</h4>
+                                <p>Suits & Shirts Specialist</p>
                             </div>
-                            
-                            <div class="glass-overlay">
-                                <span class="stat-number">10+ Years</span>
-                                <span class="stat-label">Ms. Mai Lan - Quality Supervisor</span>
+                        </div>
+                        <div class="stat-item" id="stat-delivery">
+                            <div class="stat-icon"><i class="fa-solid fa-truck"></i></div>
+                            <div class="stat-info">
+                                <h4>24h Turnaround</h4>
+                                <p>Express Service Available</p>
                             </div>
                         </div>
                     </div>
-                    <div class="team-info">
-                        <h3>Ms. Mai Lan</h3>
-                        <p>Garment Restoration Supervisor & Lead Fabric Care Specialist.</p>
+                    <div class="hero-actions">
+                        <a href="https://wa.me/84866137043" target="_blank" class="btn btn-primary"
+                            id="btn-hero-pickup"><i class="fa-solid fa-calendar-days"></i> Schedule
+                            Pickup</a>
+                        <a href="#pricing" class="btn btn-secondary" id="btn-hero-pricing"><i
+                                class="fa-solid fa-tags"></i> Check Pricing</a>
+                    </div>
+                    <div class="hero-rating" id="hero-trust-rating">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span>Rated <strong>4.9/5</strong> by 1,500+ expats in Saigon.</span>
                     </div>
                 </div>
 
-                <!-- Card 3: Right -->
-                <div class="team-card team-right reveal-card" id="team-member-3">
-                    <div class="team-visual-wrapper">
-                        <span class="badge-light-overlay" style="z-index: 12;"><i class="fa-solid fa-bolt text-orange"></i> STAIN REMOVAL EXPERTS</span>
-                        <img loading="lazy" src="assets/images/team_stain.jpg?v=2.0" alt="Stain Specialists 1997 Laundry" style="width: 100%; height: 100%; object-fit: cover; z-index: 1;">
-                    </div>
-                    <div class="team-info">
-                        <h3>Stain Specialists</h3>
-                        <p>Using advanced manual scrubbing techniques, our team hand-treats collar stains, wine, and food oil marks before laundry cycles start.</p>
+                <!-- Featured Service Menu Card (Replaces Price Estimator Slider) -->
+                <div class="hero-visual">
+                    <div class="overlapping-hero-wrapper">
+                        <!-- Shop background card -->
+                        <div class="shop-bg-card">
+                            <img loading="lazy" src="assets/images/dry_clean_bg.jpg"
+                                alt="1997 Premium Laundry Shop Interior" class="shop-bg-img">
+                            <!-- D1 Branch Badge -->
+                            <div class="branch-badge">
+                                <span class="branch-title">D1</span>
+                                <span class="branch-sub">DISTRICT 1 BRANCH</span>
+                            </div>
+                        </div>
+                        <!-- White menu card -->
+                        <div class="featured-menu-card">
+                            <div class="menu-card-header">
+                                <span class="menu-badge">HOT SERVICES</span>
+                                <h3>Featured Service Menu</h3>
+                            </div>
+                            <ul class="menu-list">
+                                <li>
+                                    <span class="menu-item-text"><span
+                                            class="orange-bullet">•</span> 4 Hrs Express Wash &
+                                        Fold</span>
+                                    <span class="menu-item-badge badge-popular">MOST POPULAR</span>
+                                </li>
+                                <li>
+                                    <span class="menu-item-text"><span
+                                            class="orange-bullet">•</span> Shoes Cleaning</span>
+                                    <span
+                                        class="menu-item-badge badge-recommended">RECOMMENDED</span>
+                                </li>
+                                <li>
+                                    <span class="menu-item-text"><span
+                                            class="orange-bullet">•</span> Dry Cleaning</span>
+                                    <span class="menu-item-badge badge-premium">PREMIUM</span>
+                                </li>
+                                <li>
+                                    <span class="menu-item-text"><span
+                                            class="orange-bullet">•</span> Steam Press</span>
+                                    <span class="menu-item-badge badge-new">NEW</span>
+                                </li>
+                            </ul>
+                            <a href="order.html" target="_blank"
+                                class="btn btn-dark-blue w-100 text-center">BOOK SERVICE NOW</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div>
-    </section>
+        <!-- Services Section -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="text-center header-spacing">
+                    <span class="section-badge">SERVICES</span>
+                    <h2 class="section-title">Our Featured Services</h2>
+                    <p class="section-subtitle">Professional fabric & shoe care for every need —
+                        from express wash to specialty dry cleaning</p>
+                </div>
 
-    <!-- Citywide Delivery Section -->
-    <section class="benefits-section" id="benefits">
-        <div class="container delivery-container">
-            <!-- Left Column: Image -->
-            <div class="delivery-visual">
-                <div class="delivery-image-wrapper">
-                    <img loading="lazy" src="assets/images/fabric_bg.jpg" alt="Fabric folds 1997 Laundry" class="delivery-img">
+                <div class="featured-services-grid">
+                    <!-- 1. Express Laundry -->
+                    <div class="service-capsule-card" id="express-laundry">
+                        <div class="capsule-img-wrapper">
+                            <img loading="lazy" src="assets/images/laundry_packaging_new.jpg"
+                                alt="Express Laundry Service">
+                            <span class="capsule-tag">4h Turnaround</span>
+                            <button class="capsule-wishlist-btn"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="capsule-card-body">
+                            <h3>Express Laundry</h3>
+                            <p>Individual wash, machine dry, and fold. Options: Standard, Same-Day,
+                                or 4h Super Express.</p>
+                        </div>
+                        <div class="capsule-card-footer">
+                            <a href="express-laundry.html" class="capsule-detail-btn">Pricing
+                                Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 2. Dry Cleaning -->
+                    <div class="service-capsule-card" id="dry-cleaning">
+                        <div class="capsule-img-wrapper">
+                            <img loading="lazy" src="assets/images/featured_suit.jpg"
+                                alt="Dry Cleaning Service">
+                            <span class="capsule-tag">Delicate Solvent Care</span>
+                            <button class="capsule-wishlist-btn"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="capsule-card-body">
+                            <h3>Dry Cleaning</h3>
+                            <p>Meticulous organic solvent care for suits, shirts, silks, cashmere,
+                                and delicate attire.</p>
+                        </div>
+                        <div class="capsule-card-footer">
+                            <a href="dry-cleaning.html" class="capsule-detail-btn">Pricing
+                                Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 3. Steam Press -->
+                    <div class="service-capsule-card" id="steam-press">
+                        <div class="capsule-img-wrapper">
+                            <img loading="lazy" src="assets/images/pressed_suit.jpg"
+                                alt="Steam Pressing Service">
+                            <span class="capsule-tag">Perfect Pressing</span>
+                            <button class="capsule-wishlist-btn"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="capsule-card-body">
+                            <h3>Steam Press</h3>
+                            <p>Professional vertical steam pressing to remove wrinkles and preserve
+                                garment shape.</p>
+                        </div>
+                        <div class="capsule-card-footer">
+                            <a href="steam-press.html" class="capsule-detail-btn">Pricing
+                                Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 4. Shoes Cleaning -->
+                    <div class="service-capsule-card" id="shoes-cleaning">
+                        <div class="capsule-img-wrapper">
+                            <img loading="lazy" src="assets/images/shoes_cleaning_featured.jpg"
+                                alt="Shoes Cleaning Service">
+                            <span class="capsule-tag">Deep Clean & Sanitized</span>
+                            <button class="capsule-wishlist-btn"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="capsule-card-body">
+                            <h3>Shoes Cleaning</h3>
+                            <p>Sneakers, leather, and suede shoes deep cleaned, deodorized, and UVC
+                                sanitized.</p>
+                        </div>
+                        <div class="capsule-card-footer">
+                            <a href="shoes-cleaning.html" class="capsule-detail-btn">Pricing
+                                Details</a>
+                        </div>
+                    </div>
+
+                    <!-- 5. Bedding & Linens -->
+                    <div class="service-capsule-card" id="curtain-cleaning">
+                        <div class="capsule-img-wrapper">
+                            <img loading="lazy" src="assets/images/curtain_cleaning_featured.jpg"
+                                alt="Bedding & Linens Service">
+                            <span class="capsule-tag">Premium Sheet & Curtain Care</span>
+                            <button class="capsule-wishlist-btn"><i
+                                    class="fa-regular fa-heart"></i></button>
+                        </div>
+                        <div class="capsule-card-body">
+                            <h3>Bedding & Linens</h3>
+                            <p>Specialized sanitizing wash for duvet covers, bedsheets, blankets,
+                                pillowcases, and heavy window curtains.</p>
+                        </div>
+                        <div class="capsule-card-footer">
+                            <a href="curtain-cleaning.html" class="capsule-detail-btn">Pricing
+                                Details</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Right Column: Content and 3 bullets -->
-            <div class="delivery-content">
-                <span class="section-badge badge-dark">RELIABLE LOGISTICS PARTNERS</span>
-                <h2 class="delivery-title text-orange" style="margin-top: 15px; margin-bottom: 20px; font-weight: 700;">
-                    Citywide Delivery, Peaceful & Convenient
-                </h2>
-                <p class="delivery-subtitle" style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; color: #4a5568;">
-                    Whereever you are in HCMC, your clothes and luxury shoes deserve the finest care. 1997 Premium Laundry partners with Ahamove to deliver a safe, professional, and prompt roundtrip doorstep shipping solution.
-                </p>
+        <!-- How 1997 Laundry Works Section -->
+        <section class="steps-section" id="how-it-works">
+            <div class="container text-center">
+                <span class="section-badge">PROCESS</span>
+                <h2 class="section-title">How 1997 Laundry Works</h2>
+                <p class="section-subtitle">Professional clothing care in 3 simple steps.</p>
 
-                <div class="delivery-points">
-                    <!-- Point 1 -->
-                    <div class="delivery-point">
-                        <div class="point-icon-circle">
-                            <i class="fa-solid fa-house"></i>
+                <div class="process-capsule-bar">
+                    <!-- Step 1 -->
+                    <div class="capsule-step">
+                        <div class="capsule-icon-wrapper">
+                            <i class="fa-solid fa-calendar-days"></i>
                         </div>
-                        <div class="point-info">
-                            <h4>Doorstep pickup & delivery</h4>
-                            <p>Save travel time. Get FREE roundtrip shipping automatically activated for all orders over 1,000,000 VND.</p>
+                        <div class="capsule-text-block">
+                            <h3>Book Online</h3>
+                            <p>Schedule pickup in 2 mins</p>
                         </div>
                     </div>
-                    <!-- Point 2 -->
-                    <div class="delivery-point">
-                        <div class="point-icon-circle">
-                            <i class="fa-solid fa-box"></i>
+
+                    <div class="capsule-separator">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="capsule-step active">
+                        <div class="capsule-icon-wrapper">
+                            <i class="fa-solid fa-hand-holding-heart"></i>
                         </div>
-                        <div class="point-info">
-                            <h4>Secure protective packaging</h4>
-                            <p>All garments are packed in premium dust-proof wraps during transport to ensure they arrive in pristine condition.</p>
+                        <div class="capsule-text-block">
+                            <h3>Expert Care</h3>
+                            <p>Individual organic wash</p>
                         </div>
                     </div>
-                    <!-- Point 3 -->
-                    <div class="delivery-point">
-                        <div class="point-icon-circle">
-                            <i class="fa-solid fa-map-location-dot"></i>
+
+                    <div class="capsule-separator">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="capsule-step">
+                        <div class="capsule-icon-wrapper">
+                            <i class="fa-solid fa-circle-check"></i>
                         </div>
-                        <div class="point-info">
-                            <h4>Wide coverage across HCMC</h4>
-                            <p>Prompt delivery inside all inner districts. Support dropping off and picking up items at hotel reception desks.</p>
+                        <div class="capsule-text-block">
+                            <h3>Fresh Delivery</h3>
+                            <p>Returned clean in 24 hrs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inside Our Shop Section -->
+        <section class="shop-gallery-section" id="gallery">
+            <div class="container">
+                <div class="text-center header-spacing">
+                    <span class="section-badge">GALLERY</span>
+                    <h2 class="section-title">Inside Our Shop</h2>
+                    <p class="section-subtitle">Clean, modern facility in District 1 — visit us or
+                        let us come to you</p>
+                </div>
+
+                <div class="shop-gallery-grid">
+                    <!-- Our Shop Image Card -->
+                    <div class="shop-gallery-card">
+                        <img loading="lazy" src="assets/images/dry_clean_bg.jpg"
+                            alt="1997 Premium Laundry Shop Interior" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <span class="gallery-tag shop-tag">OUR SHOP</span>
+                            <span class="gallery-desc">Modern industrial machines, daylight folding
+                                counter, garment rack with pressed clothes</span>
+                        </div>
+                    </div>
+
+                    <!-- Packaging Image Card -->
+                    <div class="shop-gallery-card">
+                        <img loading="lazy" src="assets/images/laundry_packaging_new.jpg"
+                            alt="1997 Premium Laundry Packaging" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <span class="gallery-tag packaging-tag">PACKAGING</span>
+                            <span class="gallery-desc">Every order is neatly folded and packed in
+                                our premium bag</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section" id="team">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-badge">OUR EXPERTS</span>
+                    <h2 class="section-title">Meet Our Fabric Care Team</h2>
+                    <p class="section-subtitle">Professional cleaners dedicated to restoring and
+                        protecting your garments.</p>
+                </div>
+
+                <div class="team-grid">
+                    <!-- Card 1: Left -->
+                    <div class="team-card team-left reveal-card" id="team-member-1">
+                        <div class="team-visual-wrapper">
+                            <img loading="lazy" src="assets/images/team_laundry_bag.jpg?v=2.0"
+                                alt="Fabric Specialists 1997 Laundry"
+                                style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div class="team-info">
+                            <h3>Fabric Specialists</h3>
+                            <p>Our sorting experts identify fabric compositions and apply
+                                specialized eco-friendly washing formulas to keep fibers
+                                resilient.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Center Featured Tall Card -->
+                    <div class="team-card team-center reveal-card" id="team-member-2">
+                        <div class="team-visual-wrapper tall-wrapper">
+                            <div class="team-img-placeholder center-img-placeholder team-slideshow">
+                                <div class="team-slide active"><img loading="lazy"
+                                        src="assets/images/process_1.jpg?v=2.0"
+                                        alt="1997 Laundry Packaging process 1"></div>
+                                <div class="team-slide"><img loading="lazy"
+                                        src="assets/images/team_shelf.jpg?v=2.0"
+                                        alt="1997 Laundry Shelves process 2"></div>
+                                <div class="team-slide"><img loading="lazy"
+                                        src="assets/images/team_laundry_bag.jpg?v=2.0"
+                                        alt="1997 Laundry Folded Packs process 3"></div>
+                                <div class="team-slide"><img loading="lazy"
+                                        src="assets/images/dry_clean_bg.jpg?v=2.0"
+                                        alt="1997 Laundry Washing Machines process 4"></div>
+
+                                <!-- Prev/Next Navigation Arrows -->
+                                <button class="slide-nav-btn prev-btn"
+                                    aria-label="Previous slide"><i
+                                        class="fa-solid fa-chevron-left"></i></button>
+                                <button class="slide-nav-btn next-btn" aria-label="Next slide"><i
+                                        class="fa-solid fa-chevron-right"></i></button>
+
+                                <!-- Slide Dots Indicator -->
+                                <div class="slide-dots">
+                                    <span class="slide-dot active"></span>
+                                    <span class="slide-dot"></span>
+                                    <span class="slide-dot"></span>
+                                    <span class="slide-dot"></span>
+                                </div>
+
+                                <div class="glass-overlay">
+                                    <span class="stat-number">10+ Years</span>
+                                    <span class="stat-label">Ms. Mai Lan - Quality Supervisor</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-info">
+                            <h3>Ms. Mai Lan</h3>
+                            <p>Garment Restoration Supervisor & Lead Fabric Care Specialist.</p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Right -->
+                    <div class="team-card team-right reveal-card" id="team-member-3">
+                        <div class="team-visual-wrapper">
+                            <span class="badge-light-overlay" style="z-index: 12;"><i
+                                    class="fa-solid fa-bolt text-orange"></i> STAIN REMOVAL
+                                EXPERTS</span>
+                            <img loading="lazy" src="assets/images/team_stain.jpg?v=2.0"
+                                alt="Stain Specialists 1997 Laundry"
+                                style="width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+                        </div>
+                        <div class="team-info">
+                            <h3>Stain Specialists</h3>
+                            <p>Using advanced manual scrubbing techniques, our team hand-treats
+                                collar stains, wine, and food oil marks before laundry cycles
+                                start.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="delivery-actions" style="margin-top: 40px;">
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn btn-dark-blue btn-large">
-                        SCHEDULE PICKUP NOW <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </div>
+        </section>
+
+        <!-- Citywide Delivery Section -->
+        <section class="benefits-section" id="benefits">
+            <div class="container delivery-container">
+                <!-- Left Column: Image -->
+                <div class="delivery-visual">
+                    <div class="delivery-image-wrapper">
+                        <img loading="lazy" src="assets/images/fabric_bg.jpg"
+                            alt="Fabric folds 1997 Laundry" class="delivery-img">
+                    </div>
+                </div>
+
+                <!-- Right Column: Content and 3 bullets -->
+                <div class="delivery-content">
+                    <span class="section-badge badge-dark">RELIABLE LOGISTICS PARTNERS</span>
+                    <h2 class="delivery-title text-orange"
+                        style="margin-top: 15px; margin-bottom: 20px; font-weight: 700;">
+                        Citywide Delivery, Peaceful & Convenient
+                    </h2>
+                    <p class="delivery-subtitle"
+                        style="margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; color: #4a5568;">
+                        Whereever you are in HCMC, your clothes and luxury shoes deserve the finest
+                        care. 1997 Premium Laundry partners with Ahamove to deliver a safe,
+                        professional, and prompt roundtrip doorstep shipping solution.
+                    </p>
+
+                    <div class="delivery-points">
+                        <!-- Point 1 -->
+                        <div class="delivery-point">
+                            <div class="point-icon-circle">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                            <div class="point-info">
+                                <h4>Doorstep pickup & delivery</h4>
+                                <p>Save travel time. Get FREE roundtrip shipping automatically
+                                    activated for all orders over 1,000,000 VND.</p>
+                            </div>
+                        </div>
+                        <!-- Point 2 -->
+                        <div class="delivery-point">
+                            <div class="point-icon-circle">
+                                <i class="fa-solid fa-box"></i>
+                            </div>
+                            <div class="point-info">
+                                <h4>Secure protective packaging</h4>
+                                <p>All garments are packed in premium dust-proof wraps during
+                                    transport to ensure they arrive in pristine condition.</p>
+                            </div>
+                        </div>
+                        <!-- Point 3 -->
+                        <div class="delivery-point">
+                            <div class="point-icon-circle">
+                                <i class="fa-solid fa-map-location-dot"></i>
+                            </div>
+                            <div class="point-info">
+                                <h4>Wide coverage across HCMC</h4>
+                                <p>Prompt delivery inside all inner districts. Support dropping off
+                                    and picking up items at hotel reception desks.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="delivery-actions" style="margin-top: 40px;">
+                        <a href="order.html" target="_blank"
+                            class="btn btn-dark-blue btn-large">
+                            SCHEDULE PICKUP NOW <i class="fa-solid fa-arrow-right"
+                                style="margin-left: 8px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Google Reviews Section -->
+        <section class="google-reviews-section" id="google-reviews">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-badge">GOOGLE REVIEWS</span>
+                    <h2 class="section-title">Reviews with Real Results</h2>
+                    <p class="section-subtitle">Real feedback and photos shared by our customers on
+                        Google Maps.</p>
+                </div>
+
+                <div class="reviews-photo-grid">
+                    <!-- Card 1 -->
+                    <div class="review-photo-card" id="rev-card-1">
+                        <div class="rev-card-header">
+                            <div class="rev-user-avatar purple-avatar">Jy</div>
+                            <div class="rev-user-meta">
+                                <h4>Jy</h4>
+                                <p>Local Guide · 11 reviews · 10 photos</p>
+                            </div>
+                            <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+                        </div>
+                        <div class="rev-card-body">
+                            <div class="stars text-orange">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="rev-time">6 months ago</span>
+                            </div>
+                            <p class="rev-text">
+                                "Chance upon this laundry service & found it really good! They are able to converse well in English via WhatsApp. Used the standard service & dropped off my laundry at the store as I stayed in the hotel nearby..."
+                            </p>
+                        </div>
+                        <div class="rev-card-image-box">
+                            <img loading="lazy" src="assets/images/review_1.jpg?v=2.0"
+                                alt="Clean folded clothes inside protective plastic bags - 1997 Laundry">
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="review-photo-card" id="rev-card-2">
+                        <div class="rev-card-header">
+                            <div class="rev-user-avatar dark-avatar">Ju</div>
+                            <div class="rev-user-meta">
+                                <h4>Justin</h4>
+                                <p>Local Guide · 196 reviews · 14 photos</p>
+                            </div>
+                            <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+                        </div>
+                        <div class="rev-card-body">
+                            <div class="stars text-orange">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="rev-time">8 months ago</span>
+                            </div>
+                            <p class="rev-text">
+                                "Hands-down, the best and reliable laundry mat in the city. Usually I stay here with family but because I'm on vacation with friends, I have tried their express wash. Absolutely fresh and crisp!"
+                            </p>
+                        </div>
+                        <div class="rev-card-image-box">
+                            <img loading="lazy" src="assets/images/review_2.jpg?v=2.0"
+                                alt="Perfectly sealed laundry packs - 1997 Laundry">
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="review-photo-card" id="rev-card-3">
+                        <div class="rev-card-header">
+                            <div class="rev-user-avatar brown-avatar">RG</div>
+                            <div class="rev-user-meta">
+                                <h4>Rafael Garnica</h4>
+                                <p>6 reviews · 1 photo</p>
+                            </div>
+                            <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+                        </div>
+                        <div class="rev-card-body">
+                            <div class="stars text-orange">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="rev-time">7 months ago</span>
+                            </div>
+                            <p class="rev-text">
+                                "1997 cleaned my clothes smelling freshed. I paid for picked and delivery. I would recommend them for your laundry service."
+                            </p>
+                        </div>
+                        <div class="rev-card-image-box">
+                            <img loading="lazy" src="assets/images/review_3.jpg?v=2.0"
+                                alt="Folded clothes packs on white bedsheet - 1997 Laundry">
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="review-photo-card" id="rev-card-4">
+                        <div class="rev-card-header">
+                            <div class="rev-user-avatar orange-avatar">NK</div>
+                            <div class="rev-user-meta">
+                                <h4>N K</h4>
+                                <p>Local Guide · 20 reviews · 10 photos</p>
+                            </div>
+                            <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+                        </div>
+                        <div class="rev-card-body">
+                            <div class="stars text-orange">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <span class="rev-time">8 months ago</span>
+                            </div>
+                            <p class="rev-text">
+                                "Prompt reply, accurate pickup/delivery, excellent quality. I definitely come back when I visit HCMC next time."
+                            </p>
+                        </div>
+                        <div class="rev-card-image-box">
+                            <img loading="lazy" src="assets/images/review_4.jpg?v=2.0"
+                                alt="Neatly folded clothes in a transparent bag - 1997 Laundry">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Read More on Google Maps link -->
+                <div class="text-center" style="margin-top: 35px;">
+                    <a href="https://maps.app.goo.gl/oMupfgykWjCDoFRy7" target="_blank"
+                        class="google-maps-link">
+                        <i class="fa-brands fa-google" style="font-size: 14px;"></i>
+                        <span>Read more reviews on our Google Maps page</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"
+                            style="font-size: 11px;"></i>
                     </a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Google Reviews Section -->
-    <section class="google-reviews-section" id="google-reviews">
-        <div class="container">
-            <div class="text-center">
-                <span class="section-badge">GOOGLE REVIEWS</span>
-                <h2 class="section-title">Reviews with Real Results</h2>
-                <p class="section-subtitle">Real feedback and photos shared by our customers on Google Maps.</p>
-            </div>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section" id="testimonials">
+            <div class="container">
+                <div class="text-center">
+                    <span class="section-badge">TESTIMONIALS</span>
+                    <h2 class="section-title">Trusted by the Expat Community</h2>
+                    <p class="section-subtitle">Read real reviews from our regular international
+                        clients.</p>
+                </div>
 
-            <div class="reviews-photo-grid">
-                <!-- Card 1 -->
-                <div class="review-photo-card" id="rev-card-1">
-                    <div class="rev-card-header">
-                        <div class="rev-user-avatar purple-avatar">Jy</div>
-                        <div class="rev-user-meta">
-                            <h4>Jy</h4>
-                            <p>Local Guide · 11 reviews · 10 photos</p>
-                        </div>
-                        <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
-                    </div>
-                    <div class="rev-card-body">
+                <div class="testimonial-layout">
+                    <!-- Left: Review Card content -->
+                    <div class="test-review-panel" id="testimonial-display">
                         <div class="stars text-orange">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
-                            <span class="rev-time">6 months ago</span>
                         </div>
-                        <p class="rev-text">
-                            "Chance upon this laundry service & found it really good! They are able to converse well in English via WhatsApp. Used the standard service & dropped off my laundry at the store as I stayed in the hotel nearby..."
-                        </p>
+                        <blockquote class="review-quote" id="test-quote">
+                            "1997 Laundry is a lifesaver in Saigon! Their English communication is excellent, and clothes are delivered smelling fresh and folded so neatly. Best of all, they wash everything separately, unlike other local laundry shops."
+                        </blockquote>
+                        <div class="reviewer-meta">
+                            <div class="reviewer-avatar">
+                                <span class="reviewer-initials" id="test-avatar-text">SJ</span>
+                            </div>
+                            <div class="reviewer-info">
+                                <h4 id="test-author">Sarah Jenkins</h4>
+                                <p id="test-role">Digital Nomad from UK</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="rev-card-image-box">
-                        <img loading="lazy" src="assets/images/review_1.jpg?v=2.0" alt="Clean folded clothes inside protective plastic bags - 1997 Laundry">
+
+                    <!-- Right: Tabs Selector -->
+                    <div class="test-tabs-panel">
+                        <button class="test-tab active" data-test="0" id="test-btn-0">
+                            <span class="logo-circle"><i class="fa-solid fa-laptop-code"></i></span>
+                            <div class="tab-label-text">
+                                <h4>UK Digital Nomad</h4>
+                                <p>Sarah Jenkins</p>
+                            </div>
+                        </button>
+                        <button class="test-tab" data-test="1" id="test-btn-1">
+                            <span class="logo-circle"><i class="fa-solid fa-briefcase"></i></span>
+                            <div class="tab-label-text">
+                                <h4>US Expat Resident</h4>
+                                <p>James Sterling</p>
+                            </div>
+                        </button>
+                        <button class="test-tab" data-test="2" id="test-btn-2">
+                            <span class="logo-circle"><i
+                                    class="fa-solid fa-chalkboard-user"></i></span>
+                            <div class="tab-label-text">
+                                <h4>ESL English Teacher</h4>
+                                <p>Yuki Takahashi</p>
+                            </div>
+                        </button>
+                        <button class="test-tab" data-test="3" id="test-btn-3">
+                            <span class="logo-circle"><i class="fa-solid fa-plane"></i></span>
+                            <div class="tab-label-text">
+                                <h4>Backpacker / Tourist</h4>
+                                <p>Marco Rossi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Read More on Google Maps link -->
+                    <div class="text-center" style="margin-top: 35px;">
+                        <a href="https://maps.app.goo.gl/oMupfgykWjCDoFRy7" target="_blank"
+                            class="google-maps-link">
+                            <i class="fa-brands fa-google" style="font-size: 14px;"></i>
+                            <span>Read more reviews on our Google Maps page</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"
+                                style="font-size: 11px;"></i>
+                        </a>
                     </div>
                 </div>
+            </section>
 
-                <!-- Card 2 -->
-                <div class="review-photo-card" id="rev-card-2">
-                    <div class="rev-card-header">
-                        <div class="rev-user-avatar dark-avatar">Ju</div>
-                        <div class="rev-user-meta">
-                            <h4>Justin</h4>
-                            <p>Local Guide · 196 reviews · 14 photos</p>
-                        </div>
-                        <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+            <!-- FAQ Section -->
+            <section class="faq-section" id="faq">
+                <div class="container">
+                    <div class="text-center header-spacing">
+                        <span class="section-badge"
+                            style="background-color: var(--color-accent-light); color: var(--color-accent-dark);">COMMON
+                            Q&A</span>
+                        <h2 class="section-title">Frequently Asked Questions</h2>
+                        <p class="section-subtitle">Quick answers to common queries about our
+                            laundry services, rates, and shipping policies.</p>
                     </div>
-                    <div class="rev-card-body">
-                        <div class="stars text-orange">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="rev-time">8 months ago</span>
+
+                    <div class="accordion">
+                        <!-- FAQ Item 1 (Active) -->
+                        <div class="accordion-item active">
+                            <button class="accordion-header">
+                                How much does laundry service at 1997 Laundry cost?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Standard Wash & Fold starts from <strong>105,000 VND for up to
+                                        3kg</strong> (24h turnaround). Our Same-Day Express combo is
+                                    180,000 VND for up to 5kg, and the 4-Hour Super Express combo is
+                                    220,000 VND for up to 5kg. Other specialty services like dry
+                                    cleaning, shoe cleaning, and steam press are priced per
+                                    item.</p>
+                            </div>
                         </div>
-                        <p class="rev-text">
-                            "Hands-down, the best and reliable laundry mat in the city. Usually I stay here with family but because I'm on vacation with friends, I have tried their express wash. Absolutely fresh and crisp!"
-                        </p>
-                    </div>
-                    <div class="rev-card-image-box">
-                        <img loading="lazy" src="assets/images/review_2.jpg?v=2.0" alt="Perfectly sealed laundry packs - 1997 Laundry">
+
+                        <!-- FAQ Item 2 -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                How fast can I get my clothes back?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Standard weight-based laundry turnaround is 24 hours. Express
+                                    laundry combos can be delivered back in 4 or 6 hours. Specialty
+                                    services like dry cleaning, shoe care, or curtains require 1 to
+                                    3 days depending on fabric delicate care.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                Is ironing included in your weight-based Wash & Fold service?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>Our weight-based Wash & Fold service (by kg) is tumble dried and
+                                    folded; it does <strong>not</strong> include ironing. If you
+                                    need ironing, please check our <a href="steam-press.html"
+                                        style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">Steam
+                                        Press</a> service. Also, please note that we dry clothes at
+                                    60°C; natural cotton, linen, or wool may shrink, so we highly
+                                    recommend choosing Dry Cleaning or Steam Press per piece for
+                                    these fabrics to avoid any heat damage.</p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                What is your pickup & delivery fee?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>We offer pickup & delivery across inner HCMC districts. The
+                                    standard delivery fee is <strong>20,000 VND/way</strong> for
+                                    distances under 3km, and <strong>+8,000 VND/km</strong> for
+                                    distances exceeding 3km. <strong>We offer free pickup & delivery
+                                        for orders over 1,000,000 VND.</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 5 -->
+                        <div class="accordion-item">
+                            <button class="accordion-header">
+                                How do I schedule a pickup?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+                            <div class="accordion-body">
+                                <p>The easiest and fastest way is to text our friendly customer
+                                    service team on <a href="https://wa.me/84866137043"
+                                        target="_blank"
+                                        style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">WhatsApp</a>
+                                    or Zalo at <strong>0866.137.043</strong>. We will confirm your
+                                    address, service type, and coordinate a pickup time
+                                    immediately.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Card 3 -->
-                <div class="review-photo-card" id="rev-card-3">
-                    <div class="rev-card-header">
-                        <div class="rev-user-avatar brown-avatar">RG</div>
-                        <div class="rev-user-meta">
-                            <h4>Rafael Garnica</h4>
-                            <p>6 reviews · 1 photo</p>
-                        </div>
-                        <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
-                    </div>
-                    <div class="rev-card-body">
-                        <div class="stars text-orange">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="rev-time">7 months ago</span>
-                        </div>
-                        <p class="rev-text">
-                            "1997 cleaned my clothes smelling freshed. I paid for picked and delivery. I would recommend them for your laundry service."
-                        </p>
-                    </div>
-                    <div class="rev-card-image-box">
-                        <img loading="lazy" src="assets/images/review_3.jpg?v=2.0" alt="Folded clothes packs on white bedsheet - 1997 Laundry">
+            <!-- Call to Action Pre-footer Section -->
+            <section class="cta-prefooter-section" id="cta-prefooter">
+                <div class="container">
+                    <span class="section-badge">READY FOR RESTORATION?</span>
+                    <h2>Book Your Service Today</h2>
+                    <p>Bring your clothes and designer shoes directly to our store or book a
+                        doorstep courier pickup. Our highly experienced technicians are ready to
+                        serve you.</p>
+                    <div class="cta-btns">
+                        <a href="order.html" target="_blank"
+                            class="btn btn-cta-orange">
+                            BOOK ADVISORY <i class="fa-solid fa-arrow-right"
+                                style="margin-left: 8px;"></i>
+                        </a>
+                        <a href="#pricing" class="btn btn-cta-outline">VIEW PRICE LIST</a>
                     </div>
                 </div>
+            </section>
 
-                <!-- Card 4 -->
-                <div class="review-photo-card" id="rev-card-4">
-                    <div class="rev-card-header">
-                        <div class="rev-user-avatar orange-avatar">NK</div>
-                        <div class="rev-user-meta">
-                            <h4>N K</h4>
-                            <p>Local Guide · 20 reviews · 10 photos</p>
-                        </div>
-                        <div class="google-logo-badge"><i class="fa-brands fa-google"></i></div>
+            <!-- Delivery Coverage Section -->
+            <section class="delivery-coverage-section" id="coverage">
+                <div class="container">
+                    <div class="text-center header-spacing">
+                        <span class="section-badge">DELIVERY AREAS</span>
+                        <h2 class="section-title">Citywide Delivery Coverage</h2>
+                        <p class="section-subtitle">We pick up and deliver your laundry & shoes
+                            anywhere in Ho Chi Minh City</p>
                     </div>
-                    <div class="rev-card-body">
-                        <div class="stars text-orange">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="rev-time">8 months ago</span>
+
+                    <div class="coverage-grid">
+                        <!-- Card 1: Central Districts -->
+                        <div class="coverage-card">
+                            <h3>Central Districts</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> District 1</li>
+                                <li><i class="fa-solid fa-check"></i> District 3</li>
+                                <li><i class="fa-solid fa-check"></i> District 4</li>
+                                <li><i class="fa-solid fa-check"></i> District 5</li>
+                                <li><i class="fa-solid fa-check"></i> District 10</li>
+                            </ul>
                         </div>
-                        <p class="rev-text">
-                            "Prompt reply, accurate pickup/delivery, excellent quality. I definitely come back when I visit HCMC next time."
-                        </p>
-                    </div>
-                    <div class="rev-card-image-box">
-                        <img loading="lazy" src="assets/images/review_4.jpg?v=2.0" alt="Neatly folded clothes in a transparent bag - 1997 Laundry">
+
+                        <!-- Card 2: Expanded Coverage -->
+                        <div class="coverage-card">
+                            <h3>Expanded Coverage</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Binh Thanh</li>
+                                <li><i class="fa-solid fa-check"></i> Phu Nhuan</li>
+                                <li><i class="fa-solid fa-check"></i> Tan Binh (airport area)</li>
+                                <li><i class="fa-solid fa-check"></i> Go Vap</li>
+                                <li><i class="fa-solid fa-check"></i> Thu Duc</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 3: Expat & Affluent Areas -->
+                        <div class="coverage-card">
+                            <h3>Expat & Affluent Areas</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Thao Dien (District 2)</li>
+                                <li><i class="fa-solid fa-check"></i> An Phu</li>
+                                <li><i class="fa-solid fa-check"></i> Phu My Hung (District 7)</li>
+                                <li><i class="fa-solid fa-check"></i> Saigon South</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 4: Any Location Type -->
+                        <div class="coverage-card">
+                            <h3>Any Location Type</h3>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Hotels & hostels</li>
+                                <li><i class="fa-solid fa-check"></i> Apartments & condos</li>
+                                <li><i class="fa-solid fa-check"></i> Airbnb rentals</li>
+                                <li><i class="fa-solid fa-check"></i> Offices & co-working</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Read More on Google Maps link -->
-            <div class="text-center" style="margin-top: 35px;">
-                <a href="https://maps.app.goo.gl/oMupfgykWjCDoFRy7" target="_blank" class="google-maps-link">
-                    <i class="fa-brands fa-google" style="font-size: 14px;"></i>
-                    <span>Read more reviews on our Google Maps page</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
+            <!-- Revamped Footer Section -->
+            <footer class="revamped-footer" id="contact">
+                <div class="container">
+                    <div class="footer-grid-revamped">
+                        <!-- Col 1 -->
+                        <div class="footer-col-revamped">
+                            <a href="#" class="logo"
+                                style="margin-bottom: 20px; display: inline-block;">
+                                <img src="assets/images/logo.png" alt="1997 Laundry Logo"
+                                    class="logo-img-footer" style="max-height: 50px;">
+                            </a>
+                            <p>Operating since 2025, 1997 Premium Laundry cleans and restores
+                                thousands of garments & designer shoes. Every item carries a story
+                                worthy of respect.</p>
+                            <div class="footer-social-circles">
+                                <a href="#" aria-label="Facebook"><i
+                                        class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" aria-label="Instagram"><i
+                                        class="fa-brands fa-instagram"></i></a>
+                                <a href="https://wa.me/84866137043" target="_blank"
+                                    aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                            </div>
+                            <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                        </div>
+
+                        <!-- Col 2 -->
+                        <div class="footer-col-revamped">
+                            <h3>SERVICES</h3>
+                            <div class="footer-links-revamped">
+                                <a href="express-laundry.html">Express Laundry</a>
+                                <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                                <a href="steam-press.html">Steam Press</a>
+                                <a href="dry-cleaning.html">Dry Cleaning</a>
+                                <a href="curtain-cleaning.html">Curtain Cleaning</a>
+                            </div>
+                        </div>
+
+                        <!-- Col 3 -->
+                        <div class="footer-col-revamped">
+                            <h3>SYSTEM</h3>
+                            <div class="footer-links-revamped">
+                                <a href="#">Track Order</a>
+                                <a href="#gallery">Gallery</a>
+                                <a href="#">Care Pass Membership</a>
+                                <a href="#">News & Blog</a>
+                                <a href="#">About 1997 Laundry</a>
+                                <a href="#">Careers</a>
+                                <a href="#">Promotions</a>
+                                <a href="#">Warranty Policy</a>
+                                <a href="#">Terms of Use</a>
+                            </div>
+                        </div>
+
+                        <!-- Col 4 -->
+                        <div class="footer-col-revamped">
+                            <h3>CONTACT</h3>
+                            <div class="footer-contacts-revamped">
+                                <div class="contact-item-revamped">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh
+                                        City</span>
+                                </div>
+                                <div class="contact-item-revamped">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>0866.137.043</span>
+                                </div>
+                                <div class="contact-item-revamped">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                                </div>
+                                <div class="contact-item-revamped">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>contact@1997laundry.vn</span>
+                                </div>
+                            </div>
+                            <a href="https://share.google/DHQ56cDWB0hNB5K4X" target="_blank"
+                                class="btn-gmaps">
+                                <i class="fa-solid fa-map-location-dot"></i> View Google Maps
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Bar -->
+                    <div class="footer-bottom-revamped">
+                        <p>© 2026 1997 Premium Laundry. All rights reserved.</p>
+                        <div class="footer-bottom-links-revamped">
+                            <a href="#">Cookie Settings</a>
+                            <a href="#">Designed by Antigravity</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Sticky Mobile CTA Bar -->
+            <div class="sticky-mobile-cta">
+                <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="order.html" target="_blank" class="cta-btn cta-book">
+                    <i class="fa-solid fa-calendar-days"></i> Book Online
+                </a>
+                <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
+                    <i class="fa-solid fa-comments"></i> Zalo
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials-section" id="testimonials">
-        <div class="container">
-            <div class="text-center">
-                <span class="section-badge">TESTIMONIALS</span>
-                <h2 class="section-title">Trusted by the Expat Community</h2>
-                <p class="section-subtitle">Read real reviews from our regular international clients.</p>
-            </div>
+            <!-- Floating Chatbot Widget -->
+            <a href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
+                <span class="floating-chatbot-label">Chatbot</span>
+                <div class="floating-chatbot-circle">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+            </a>
 
-            <div class="testimonial-layout">
-                <!-- Left: Review Card content -->
-                <div class="test-review-panel" id="testimonial-display">
-                    <div class="stars text-orange">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-                    <blockquote class="review-quote" id="test-quote">
-                        "1997 Laundry is a lifesaver in Saigon! Their English communication is excellent, and clothes are delivered smelling fresh and folded so neatly. Best of all, they wash everything separately, unlike other local laundry shops."
-                    </blockquote>
-                    <div class="reviewer-meta">
-                        <div class="reviewer-avatar">
-                            <span class="reviewer-initials" id="test-avatar-text">SJ</span>
-                        </div>
-                        <div class="reviewer-info">
-                            <h4 id="test-author">Sarah Jenkins</h4>
-                            <p id="test-role">Digital Nomad from UK</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: Tabs Selector -->
-                <div class="test-tabs-panel">
-                    <button class="test-tab active" data-test="0" id="test-btn-0">
-                        <span class="logo-circle"><i class="fa-solid fa-laptop-code"></i></span>
-                        <div class="tab-label-text">
-                            <h4>UK Digital Nomad</h4>
-                            <p>Sarah Jenkins</p>
-                        </div>
-                    </button>
-                    <button class="test-tab" data-test="1" id="test-btn-1">
-                        <span class="logo-circle"><i class="fa-solid fa-briefcase"></i></span>
-                        <div class="tab-label-text">
-                            <h4>US Expat Resident</h4>
-                            <p>James Sterling</p>
-                        </div>
-                    </button>
-                    <button class="test-tab" data-test="2" id="test-btn-2">
-                        <span class="logo-circle"><i class="fa-solid fa-chalkboard-user"></i></span>
-                        <div class="tab-label-text">
-                            <h4>ESL English Teacher</h4>
-                            <p>Yuki Takahashi</p>
-                        </div>
-                    </button>
-                    <button class="test-tab" data-test="3" id="test-btn-3">
-                        <span class="logo-circle"><i class="fa-solid fa-plane"></i></span>
-                        <div class="tab-label-text">
-                            <h4>Backpacker / Tourist</h4>
-                            <p>Marco Rossi</p>
-                        </div>
-            </div>
-        </div>
-
-        <!-- Read More on Google Maps link -->
-            <div class="text-center" style="margin-top: 35px;">
-                <a href="https://maps.app.goo.gl/oMupfgykWjCDoFRy7" target="_blank" class="google-maps-link">
-                    <i class="fa-brands fa-google" style="font-size: 14px;"></i>
-                    <span>Read more reviews on our Google Maps page</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px;"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section" id="faq">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge" style="background-color: var(--color-accent-light); color: var(--color-accent-dark);">COMMON Q&A</span>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-subtitle">Quick answers to common queries about our laundry services, rates, and shipping policies.</p>
-            </div>
-            
-            <div class="accordion">
-                <!-- FAQ Item 1 (Active) -->
-                <div class="accordion-item active">
-                    <button class="accordion-header">
-                        How much does laundry service at 1997 Laundry cost?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-body">
-                        <p>Standard Wash & Fold starts from <strong>105,000 VND for up to 3kg</strong> (24h turnaround). Our Same-Day Express combo is 180,000 VND for up to 5kg, and the 4-Hour Super Express combo is 220,000 VND for up to 5kg. Other specialty services like dry cleaning, shoe cleaning, and steam press are priced per item.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 2 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        How fast can I get my clothes back?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-body">
-                        <p>Standard weight-based laundry turnaround is 24 hours. Express laundry combos can be delivered back in 4 or 6 hours. Specialty services like dry cleaning, shoe care, or curtains require 1 to 3 days depending on fabric delicate care.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 3 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Is ironing included in your weight-based Wash & Fold service?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-body">
-                        <p>Our weight-based Wash & Fold service (by kg) is tumble dried and folded; it does <strong>not</strong> include ironing. If you need ironing, please check our <a href="steam-press.html" style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">Steam Press</a> service. Also, please note that we dry clothes at 60°C; natural cotton, linen, or wool may shrink, so we highly recommend choosing Dry Cleaning or Steam Press per piece for these fabrics to avoid any heat damage.</p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 4 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        What is your pickup & delivery fee?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-body">
-                        <p>We offer pickup & delivery across inner HCMC districts. The standard delivery fee is <strong>20,000 VND/way</strong> for distances under 3km, and <strong>+8,000 VND/km</strong> for distances exceeding 3km. <strong>We offer free pickup & delivery for orders over 1,000,000 VND.</strong></p>
-                    </div>
-                </div>
-                
-                <!-- FAQ Item 5 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        How do I schedule a pickup?
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="accordion-body">
-                        <p>The easiest and fastest way is to text our friendly customer service team on <a href="https://wa.me/84866137043" target="_blank" style="color: var(--color-accent); font-weight: 700; text-decoration: underline;">WhatsApp</a> or Zalo at <strong>0866.137.043</strong>. We will confirm your address, service type, and coordinate a pickup time immediately.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action Pre-footer Section -->
-    <section class="cta-prefooter-section" id="cta-prefooter">
-        <div class="container">
-            <span class="section-badge">READY FOR RESTORATION?</span>
-            <h2>Book Your Service Today</h2>
-            <p>Bring your clothes and designer shoes directly to our store or book a doorstep courier pickup. Our highly experienced technicians are ready to serve you.</p>
-            <div class="cta-btns">
-                <a href="https://wa.me/84866137043" target="_blank" class="btn btn-cta-orange">
-                    BOOK ADVISORY <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
-                </a>
-                <a href="#pricing" class="btn btn-cta-outline">VIEW PRICE LIST</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Delivery Coverage Section -->
-    <section class="delivery-coverage-section" id="coverage">
-        <div class="container">
-            <div class="text-center header-spacing">
-                <span class="section-badge">DELIVERY AREAS</span>
-                <h2 class="section-title">Citywide Delivery Coverage</h2>
-                <p class="section-subtitle">We pick up and deliver your laundry & shoes anywhere in Ho Chi Minh City</p>
-            </div>
-            
-            <div class="coverage-grid">
-                <!-- Card 1: Central Districts -->
-                <div class="coverage-card">
-                    <h3>Central Districts</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> District 1</li>
-                        <li><i class="fa-solid fa-check"></i> District 3</li>
-                        <li><i class="fa-solid fa-check"></i> District 4</li>
-                        <li><i class="fa-solid fa-check"></i> District 5</li>
-                        <li><i class="fa-solid fa-check"></i> District 10</li>
-                    </ul>
-                </div>
-                
-                <!-- Card 2: Expanded Coverage -->
-                <div class="coverage-card">
-                    <h3>Expanded Coverage</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Binh Thanh</li>
-                        <li><i class="fa-solid fa-check"></i> Phu Nhuan</li>
-                        <li><i class="fa-solid fa-check"></i> Tan Binh (airport area)</li>
-                        <li><i class="fa-solid fa-check"></i> Go Vap</li>
-                        <li><i class="fa-solid fa-check"></i> Thu Duc</li>
-                    </ul>
-                </div>
-                
-                <!-- Card 3: Expat & Affluent Areas -->
-                <div class="coverage-card">
-                    <h3>Expat & Affluent Areas</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Thao Dien (District 2)</li>
-                        <li><i class="fa-solid fa-check"></i> An Phu</li>
-                        <li><i class="fa-solid fa-check"></i> Phu My Hung (District 7)</li>
-                        <li><i class="fa-solid fa-check"></i> Saigon South</li>
-                    </ul>
-                </div>
-                
-                <!-- Card 4: Any Location Type -->
-                <div class="coverage-card">
-                    <h3>Any Location Type</h3>
-                    <ul>
-                        <li><i class="fa-solid fa-check"></i> Hotels & hostels</li>
-                        <li><i class="fa-solid fa-check"></i> Apartments & condos</li>
-                        <li><i class="fa-solid fa-check"></i> Airbnb rentals</li>
-                        <li><i class="fa-solid fa-check"></i> Offices & co-working</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Revamped Footer Section -->
-    <footer class="revamped-footer" id="contact">
-        <div class="container">
-            <div class="footer-grid-revamped">
-                <!-- Col 1 -->
-                <div class="footer-col-revamped">
-                    <a href="#" class="logo" style="margin-bottom: 20px; display: inline-block;">
-                        <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img-footer" style="max-height: 50px;">
-                    </a>
-                    <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands of garments & designer shoes. Every item carries a story worthy of respect.</p>
-                    <div class="footer-social-circles">
-                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/84866137043" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                    <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
-                </div>
-                
-                <!-- Col 2 -->
-                <div class="footer-col-revamped">
-                    <h3>SERVICES</h3>
-                    <div class="footer-links-revamped">
-                        <a href="express-laundry.html">Express Laundry</a>
-                        <a href="shoes-cleaning.html">Shoes Cleaning</a>
-                        <a href="steam-press.html">Steam Press</a>
-                        <a href="dry-cleaning.html">Dry Cleaning</a>
-                        <a href="curtain-cleaning.html">Curtain Cleaning</a>
-                    </div>
-                </div>
-                
-                <!-- Col 3 -->
-                <div class="footer-col-revamped">
-                    <h3>SYSTEM</h3>
-                    <div class="footer-links-revamped">
-                        <a href="#">Track Order</a>
-                        <a href="#gallery">Gallery</a>
-                        <a href="#">Care Pass Membership</a>
-                        <a href="#">News & Blog</a>
-                        <a href="#">About 1997 Laundry</a>
-                        <a href="#">Careers</a>
-                        <a href="#">Promotions</a>
-                        <a href="#">Warranty Policy</a>
-                        <a href="#">Terms of Use</a>
-                    </div>
-                </div>
-                
-                <!-- Col 4 -->
-                <div class="footer-col-revamped">
-                    <h3>CONTACT</h3>
-                    <div class="footer-contacts-revamped">
-                        <div class="contact-item-revamped">
-                            <i class="fa-solid fa-location-dot"></i>
-                            <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh City</span>
-                        </div>
-                        <div class="contact-item-revamped">
-                            <i class="fa-solid fa-phone"></i>
-                            <span>0866.137.043</span>
-                        </div>
-                        <div class="contact-item-revamped">
-                            <i class="fa-solid fa-clock"></i>
-                            <span>Open Daily: 7:00 AM - 10:00 PM</span>
-                        </div>
-                        <div class="contact-item-revamped">
-                            <i class="fa-solid fa-envelope"></i>
-                            <span>contact@1997laundry.vn</span>
-                        </div>
-                    </div>
-                    <a href="https://share.google/DHQ56cDWB0hNB5K4X" target="_blank" class="btn-gmaps">
-                        <i class="fa-solid fa-map-location-dot"></i> View Google Maps
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Bottom Bar -->
-            <div class="footer-bottom-revamped">
-                <p>© 2026 1997 Premium Laundry. All rights reserved.</p>
-                <div class="footer-bottom-links-revamped">
-                    <a href="#">Cookie Settings</a>
-                    <a href="#">Designed by Antigravity</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Sticky Mobile CTA Bar -->
-    <div class="sticky-mobile-cta">
-        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-book">
-            <i class="fa-solid fa-calendar-days"></i> Book Online
-        </a>
-        <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
-            <i class="fa-solid fa-comments"></i> Zalo
-        </a>
-    </div>
-
-    <!-- Floating Chatbot Widget -->
-    <a href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
-        <span class="floating-chatbot-label">Chatbot</span>
-        <div class="floating-chatbot-circle">
-            <i class="fa-solid fa-comment-dots"></i>
-        </div>
-    </a>
-
-    <!-- Script File -->
-    <script src="index.js?v=2.0"></script>
-</body>
-</html>
+            <!-- Script File -->
+            <script src="index.js?v=2.0"></script>
+        </body>
+    </html>

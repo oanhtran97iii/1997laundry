@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book a Pickup | 1997 Laundry</title>
+        <meta name="description"
+            content="Schedule a laundry pickup with 1997 Laundry — choose your service, estimate your weight, pick a time, and we'll come to you anywhere in Saigon.">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <!-- FontAwesome for icons -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="index.css?v=2.0">
+        <link rel="stylesheet" href="order.css?v=1.0">
+    </head>
+    <body>
+
+        <!-- Header Section (shared with main site) -->
+        <header class="main-header" id="navbar">
+            <div class="container header-container">
+                <a href="index.html" class="logo" id="header-logo">
+                    <img src="assets/images/logo.png" alt="1997 Laundry Logo" class="logo-img">
+                </a>
+                <nav class="nav-menu" id="nav-links">
+                    <a href="index.html" class="nav-item">HOME</a>
+                    <a href="express-laundry.html" class="nav-item">EXPRESS LAUNDRY</a>
+                    <a href="dry-cleaning.html" class="nav-item">DRY CLEANING</a>
+                    <a href="steam-press.html" class="nav-item">STEAM PRESS</a>
+                    <a href="shoes-cleaning.html" class="nav-item">SHOES CLEANING</a>
+                    <a href="curtain-cleaning.html" class="nav-item">BEDDING & LINENS</a>
+                    <a href="index.html#faq" class="nav-item">FAQs</a>
+                </nav>
+                <div class="header-ctas">
+                    <a href="order.html" class="btn btn-primary btn-cta active-cta"
+                        id="btn-header-cta">
+                        <i class="fa-solid fa-bolt"></i> <span>Book Now</span>
+                    </a>
+                    <a href="tel:0866137043" class="phone-link" id="btn-header-phone">
+                        <i class="fa-solid fa-phone"></i> <span>0866.137.043</span>
+                    </a>
+                    <div class="lang-switcher">
+                        <span class="active">EN</span>
+                        <span class="divider">|</span>
+                        <a href="vi/order.html">VI</a>
+                    </div>
+                </div>
+                <button class="mobile-menu-toggle" id="menu-toggle"
+                    aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Order Page Hero -->
+        <section class="order-hero">
+            <div class="container">
+                <span class="section-badge">SCHEDULE PICKUP</span>
+                <h1 class="order-hero-title">Book Your Laundry Pickup</h1>
+                <p class="order-hero-subtitle">Tell us what you need, pick a time, and we'll take
+                    care of the rest.</p>
+            </div>
+        </section>
+
+        <!-- Order Wizard -->
+        <section class="order-wizard-section">
+            <div class="container order-wizard-container">
+
+                <!-- Step Progress Indicator -->
+                <div class="wizard-progress" id="wizard-progress">
+                    <div class="wizard-progress-step active" data-step="1">
+                        <div class="wizard-progress-circle"><span>1</span><i
+                                class="fa-solid fa-check"></i></div>
+                        <span class="wizard-progress-label">Service</span>
+                    </div>
+                    <div class="wizard-progress-line"></div>
+                    <div class="wizard-progress-step" data-step="2">
+                        <div class="wizard-progress-circle"><span>2</span><i
+                                class="fa-solid fa-check"></i></div>
+                        <span class="wizard-progress-label">Pickup</span>
+                    </div>
+                    <div class="wizard-progress-line"></div>
+                    <div class="wizard-progress-step" data-step="3">
+                        <div class="wizard-progress-circle"><span>3</span><i
+                                class="fa-solid fa-check"></i></div>
+                        <span class="wizard-progress-label">Your Info</span>
+                    </div>
+                    <div class="wizard-progress-line"></div>
+                    <div class="wizard-progress-step" data-step="4">
+                        <div class="wizard-progress-circle"><span>4</span><i
+                                class="fa-solid fa-check"></i></div>
+                        <span class="wizard-progress-label">Location</span>
+                    </div>
+                    <div class="wizard-progress-line"></div>
+                    <div class="wizard-progress-step" data-step="5">
+                        <div class="wizard-progress-circle"><span>5</span><i
+                                class="fa-solid fa-check"></i></div>
+                        <span class="wizard-progress-label">Payment</span>
+                    </div>
+                </div>
+
+                <div class="order-wizard-grid">
+                    <form id="order-form" class="order-form-panel">
+
+                        <!-- STEP 1: Preferred Service -->
+                        <div class="wizard-step active" data-step-panel="1">
+                            <div class="wizard-step-header">
+                                <span class="wizard-step-number">1.</span>
+                                <h2>Preferred Service</h2>
+                                <p class="wizard-step-desc">Choose the turnaround that works best
+                                    for you. Tap an option to see what's included.</p>
+                            </div>
+
+                            <div class="service-option-list">
+
+                                <!-- Same-Day Laundry -->
+                                <div class="service-option-item">
+                                    <label class="service-option-card" data-service="sameday"
+                                        data-price="220000" data-priceper="5" data-extra="35000">
+                                        <input type="radio" name="service" value="sameday" checked>
+                                        <div class="service-option-main">
+                                            <div class="service-option-badge-row">
+                                                <span
+                                                    class="service-option-tag tag-recommended">RECOMMENDED</span>
+                                            </div>
+                                            <h3>Same-Day Laundry</h3>
+                                            <p class="service-option-sub">Wash and dry service</p>
+                                            <div class="service-option-price">220.000đ <span>/
+                                                    5Kg</span></div>
+                                            <div class="service-option-extra">Extra Kg: 35.000đ /
+                                                Kg</div>
+                                        </div>
+                                        <div class="service-option-eta">
+                                            <span class="eta-label">Deliver back</span>
+                                            <span class="eta-value">6pm – 9pm</span>
+                                        </div>
+                                        <div class="service-option-check"><i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    </label>
+                                    <div class="service-subitems" id="subitems-sameday">
+                                        <h4><i class="fa-solid fa-shirt"></i> Clothes</h4>
+                                        <div class="subitem-row"><span>Base
+                                                price</span><span>220.000đ / 5Kg</span></div>
+                                        <div class="subitem-row"><span>Extra
+                                                weight</span><span>35.000đ / Kg</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- 4-Hour Express Laundry -->
+                                <div class="service-option-item">
+                                    <label class="service-option-card" data-service="express4h"
+                                        data-price="260000" data-priceper="5" data-extra="45000">
+                                        <input type="radio" name="service" value="express4h">
+                                        <div class="service-option-main">
+                                            <div class="service-option-badge-row">
+                                                <span
+                                                    class="service-option-tag tag-fastest">FASTEST</span>
+                                            </div>
+                                            <h3>4-Hour Express Laundry</h3>
+                                            <p class="service-option-sub">Wash and dry service</p>
+                                            <div class="service-option-price">260.000đ <span>/
+                                                    5Kg</span></div>
+                                            <div class="service-option-extra">Extra Kg: 45.000đ /
+                                                Kg</div>
+                                        </div>
+                                        <div class="service-option-eta">
+                                            <span class="eta-label">Deliver back</span>
+                                            <span class="eta-value">4 Hours</span>
+                                        </div>
+                                        <div class="service-option-check"><i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    </label>
+                                    <div class="service-subitems" id="subitems-express4h">
+                                        <h4><i class="fa-solid fa-shirt"></i> Clothes</h4>
+                                        <div class="subitem-row"><span>Base
+                                                price</span><span>260.000đ / 5Kg</span></div>
+                                        <div class="subitem-row"><span>Extra
+                                                weight</span><span>45.000đ / Kg</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- Next-day Laundry -->
+                                <div class="service-option-item">
+                                    <label class="service-option-card" data-service="nextday"
+                                        data-price="145000" data-priceper="5" data-extra="30000">
+                                        <input type="radio" name="service" value="nextday">
+                                        <div class="service-option-main">
+                                            <div class="service-option-badge-row">
+                                                <span class="service-option-tag tag-value">BEST
+                                                    VALUE</span>
+                                            </div>
+                                            <h3>Next-day Laundry</h3>
+                                            <p class="service-option-sub">Wash and dry service</p>
+                                            <div class="service-option-price">145.000đ <span>/
+                                                    5Kg</span></div>
+                                            <div class="service-option-extra">Extra Kg: 30.000đ /
+                                                Kg</div>
+                                        </div>
+                                        <div class="service-option-eta">
+                                            <span class="eta-label">Deliver back</span>
+                                            <span class="eta-value">24 Hours</span>
+                                        </div>
+                                        <div class="service-option-check"><i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    </label>
+                                    <div class="service-subitems" id="subitems-nextday">
+                                        <h4><i class="fa-solid fa-shirt"></i> Clothes</h4>
+                                        <div class="subitem-row"><span>Base
+                                                price</span><span>145.000đ / 5Kg</span></div>
+                                        <div class="subitem-row"><span>Extra
+                                                weight</span><span>30.000đ / Kg</span></div>
+                                    </div>
+                                </div>
+
+                                <!-- Bed Linens & Mattress Cleaning -->
+                                <div class="service-option-item">
+                                    <label class="service-option-card" data-service="bedding"
+                                        data-price="145000" data-priceper="3" data-extra="35000">
+                                        <input type="radio" name="service" value="bedding">
+                                        <div class="service-option-main">
+                                            <div class="service-option-badge-row">
+                                                <span
+                                                    class="service-option-tag tag-other">OTHER</span>
+                                            </div>
+                                            <h3>Bed Linens & Mattress Cleaning</h3>
+                                            <p class="service-option-sub">Wash and dry service</p>
+                                            <div class="service-option-price">from 145.000đ <span>/
+                                                    3Kg</span></div>
+                                            <div class="service-option-extra">Extra Kg: 35.000đ /
+                                                Kg</div>
+                                        </div>
+                                        <div class="service-option-eta">
+                                            <span class="eta-label">Deliver back</span>
+                                            <span class="eta-value">24 Hours</span>
+                                        </div>
+                                        <div class="service-option-check"><i
+                                                class="fa-solid fa-circle-check"></i></div>
+                                    </label>
+                                    <div class="service-subitems" id="subitems-bedding">
+                                        <label class="subitem-option" data-price="145000"
+                                            data-priceper="3" data-extra="35000">
+                                            <input type="radio" name="bedding-type" value="blankets"
+                                                checked>
+                                            <div class="subitem-option-main">
+                                                <h4><i class="fa-solid fa-bed"></i> Summer Blankets
+                                                    & Bed Sheets</h4>
+                                                <div class="subitem-row"><span>Base
+                                                        price</span><span>145.000đ /
+                                                        3Kg</span></div>
+                                                <div class="subitem-row"><span>Extra
+                                                        weight</span><span>35.000đ / Kg</span></div>
+                                            </div>
+                                            <div class="subitem-option-check"><i
+                                                    class="fa-solid fa-circle-check"></i></div>
+                                        </label>
+                                        <label class="subitem-option" data-price="240000"
+                                            data-priceper="3" data-extra="80000">
+                                            <input type="radio" name="bedding-type" value="duvet">
+                                            <div class="subitem-option-main">
+                                                <h4><i class="fa-solid fa-layer-group"></i> Duvet /
+                                                    Mattress Topper</h4>
+                                                <div class="subitem-row"><span>Base
+                                                        price</span><span>240.000đ /
+                                                        3Kg</span></div>
+                                                <div class="subitem-row"><span>Extra
+                                                        weight</span><span>80.000đ / Kg</span></div>
+                                            </div>
+                                            <div class="subitem-option-check"><i
+                                                    class="fa-solid fa-circle-check"></i></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Add-on -->
+                            <label class="addon-card">
+                                <input type="checkbox" id="addon-white" name="addon-white">
+                                <div class="addon-card-main">
+                                    <h4>Wash white separately</h4>
+                                    <p>Separate light color from dark color</p>
+                                </div>
+                                <div class="addon-card-price">45.000đ <span>/ Load</span></div>
+                            </label>
+                        </div>
+
+                        <!-- STEP 2: Schedule a Pickup -->
+                        <div class="wizard-step" data-step-panel="2">
+                            <div class="wizard-step-header">
+                                <span class="wizard-step-number">2.</span>
+                                <h2>Schedule a Pickup</h2>
+                                <p class="wizard-step-desc">Pick a date and time that's convenient
+                                    for you.</p>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-field">
+                                    <label for="pickup-date">Pickup Date</label>
+                                    <input type="date" id="pickup-date" name="pickup-date" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="pickup-time">Pickup Time</label>
+                                    <input type="time" id="pickup-time" name="pickup-time" required>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label>How should our driver collect your laundry?</label>
+                                <div class="collection-method-list">
+                                    <label class="radio-option-card">
+                                        <input type="radio" name="collection-method"
+                                            value="reception" checked>
+                                        <span class="radio-dot"></span>
+                                        <span>Driver collects from reception / security</span>
+                                    </label>
+                                    <label class="radio-option-card">
+                                        <input type="radio" name="collection-method"
+                                            value="safeplace">
+                                        <span class="radio-dot"></span>
+                                        <span>Driver collects from a safe place (lobby / mailroom /
+                                            outside room)</span>
+                                    </label>
+                                    <label class="radio-option-card">
+                                        <input type="radio" name="collection-method"
+                                            value="fromyou">
+                                        <span class="radio-dot"></span>
+                                        <span>Driver collects from you</span>
+                                    </label>
+                                    <label class="radio-option-card">
+                                        <input type="radio" name="collection-method" value="custom">
+                                        <span class="radio-dot"></span>
+                                        <span>I have instructions for collection</span>
+                                    </label>
+                                </div>
+                                <textarea id="collection-instructions"
+                                    name="collection-instructions"
+                                    placeholder="Write your collection instructions here..."
+                                    style="display:none;"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: Your Pickup Information -->
+                        <div class="wizard-step" data-step-panel="3">
+                            <div class="wizard-step-header">
+                                <span class="wizard-step-number">3.</span>
+                                <h2>Your Pickup Information</h2>
+                                <p class="wizard-step-desc">So we can reach you about your
+                                    order.</p>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="customer-name">Your name</label>
+                                <input type="text" id="customer-name" name="customer-name"
+                                    placeholder="e.g. John Smith" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="customer-phone">Your phone number</label>
+                                <div class="phone-input-row">
+                                    <select id="phone-country-code" name="phone-country-code"
+                                        class="country-code-select">
+                                        <option value="+84" selected>🇻🇳 Vietnam (+84)</option>
+                                        <option value="+93">🇦🇫 Afghanistan (+93)</option>
+                                        <option value="+355">🇦🇱 Albania (+355)</option>
+                                        <option value="+213">🇩🇿 Algeria (+213)</option>
+                                        <option value="+376">🇦🇩 Andorra (+376)</option>
+                                        <option value="+244">🇦🇴 Angola (+244)</option>
+                                        <option value="+54">🇦🇷 Argentina (+54)</option>
+                                        <option value="+374">🇦🇲 Armenia (+374)</option>
+                                        <option value="+61">🇦🇺 Australia (+61)</option>
+                                        <option value="+43">🇦🇹 Austria (+43)</option>
+                                        <option value="+994">🇦🇿 Azerbaijan (+994)</option>
+                                        <option value="+1242">🇧🇸 Bahamas (+1242)</option>
+                                        <option value="+973">🇧🇭 Bahrain (+973)</option>
+                                        <option value="+880">🇧🇩 Bangladesh (+880)</option>
+                                        <option value="+1246">🇧🇧 Barbados (+1246)</option>
+                                        <option value="+375">🇧🇾 Belarus (+375)</option>
+                                        <option value="+32">🇧🇪 Belgium (+32)</option>
+                                        <option value="+501">🇧🇿 Belize (+501)</option>
+                                        <option value="+229">🇧🇯 Benin (+229)</option>
+                                        <option value="+975">🇧🇹 Bhutan (+975)</option>
+                                        <option value="+591">🇧🇴 Bolivia (+591)</option>
+                                        <option value="+387">🇧🇦 Bosnia and Herzegovina
+                                            (+387)</option>
+                                        <option value="+267">🇧🇼 Botswana (+267)</option>
+                                        <option value="+55">🇧🇷 Brazil (+55)</option>
+                                        <option value="+673">🇧🇳 Brunei (+673)</option>
+                                        <option value="+359">🇧🇬 Bulgaria (+359)</option>
+                                        <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+                                        <option value="+257">🇧🇮 Burundi (+257)</option>
+                                        <option value="+855">🇰🇭 Cambodia (+855)</option>
+                                        <option value="+237">🇨🇲 Cameroon (+237)</option>
+                                        <option value="+1">🇨🇦 Canada (+1)</option>
+                                        <option value="+238">🇨🇻 Cape Verde (+238)</option>
+                                        <option value="+236">🇨🇫 Central African Republic
+                                            (+236)</option>
+                                        <option value="+235">🇹🇩 Chad (+235)</option>
+                                        <option value="+56">🇨🇱 Chile (+56)</option>
+                                        <option value="+86">🇨🇳 China (+86)</option>
+                                        <option value="+57">🇨🇴 Colombia (+57)</option>
+                                        <option value="+269">🇰🇲 Comoros (+269)</option>
+                                        <option value="+243">🇨🇩 Congo (DRC) (+243)</option>
+                                        <option value="+242">🇨🇬 Congo (Republic) (+242)</option>
+                                        <option value="+506">🇨🇷 Costa Rica (+506)</option>
+                                        <option value="+385">🇭🇷 Croatia (+385)</option>
+                                        <option value="+53">🇨🇺 Cuba (+53)</option>
+                                        <option value="+357">🇨🇾 Cyprus (+357)</option>
+                                        <option value="+420">🇨🇿 Czech Republic (+420)</option>
+                                        <option value="+45">🇩🇰 Denmark (+45)</option>
+                                        <option value="+253">🇩🇯 Djibouti (+253)</option>
+                                        <option value="+1767">🇩🇲 Dominica (+1767)</option>
+                                        <option value="+1809">🇩🇴 Dominican Republic
+                                            (+1809)</option>
+                                        <option value="+593">🇪🇨 Ecuador (+593)</option>
+                                        <option value="+20">🇪🇬 Egypt (+20)</option>
+                                        <option value="+503">🇸🇻 El Salvador (+503)</option>
+                                        <option value="+240">🇬🇶 Equatorial Guinea (+240)</option>
+                                        <option value="+291">🇪🇷 Eritrea (+291)</option>
+                                        <option value="+372">🇪🇪 Estonia (+372)</option>
+                                        <option value="+268">🇸🇿 Eswatini (+268)</option>
+                                        <option value="+251">🇪🇹 Ethiopia (+251)</option>
+                                        <option value="+679">🇫🇯 Fiji (+679)</option>
+                                        <option value="+358">🇫🇮 Finland (+358)</option>
+                                        <option value="+33">🇫🇷 France (+33)</option>
+                                        <option value="+241">🇬🇦 Gabon (+241)</option>
+                                        <option value="+220">🇬🇲 Gambia (+220)</option>
+                                        <option value="+995">🇬🇪 Georgia (+995)</option>
+                                        <option value="+49">🇩🇪 Germany (+49)</option>
+                                        <option value="+233">🇬🇭 Ghana (+233)</option>
+                                        <option value="+30">🇬🇷 Greece (+30)</option>
+                                        <option value="+1473">🇬🇩 Grenada (+1473)</option>
+                                        <option value="+502">🇬🇹 Guatemala (+502)</option>
+                                        <option value="+224">🇬🇳 Guinea (+224)</option>
+                                        <option value="+245">🇬🇼 Guinea-Bissau (+245)</option>
+                                        <option value="+592">🇬🇾 Guyana (+592)</option>
+                                        <option value="+509">🇭🇹 Haiti (+509)</option>
+                                        <option value="+504">🇭🇳 Honduras (+504)</option>
+                                        <option value="+852">🇭🇰 Hong Kong (+852)</option>
+                                        <option value="+36">🇭🇺 Hungary (+36)</option>
+                                        <option value="+354">🇮🇸 Iceland (+354)</option>
+                                        <option value="+91">🇮🇳 India (+91)</option>
+                                        <option value="+62">🇮🇩 Indonesia (+62)</option>
+                                        <option value="+98">🇮🇷 Iran (+98)</option>
+                                        <option value="+964">🇮🇶 Iraq (+964)</option>
+                                        <option value="+353">🇮🇪 Ireland (+353)</option>
+                                        <option value="+972">🇮🇱 Israel (+972)</option>
+                                        <option value="+39">🇮🇹 Italy (+39)</option>
+                                        <option value="+225">🇨🇮 Ivory Coast (+225)</option>
+                                        <option value="+1876">🇯🇲 Jamaica (+1876)</option>
+                                        <option value="+81">🇯🇵 Japan (+81)</option>
+                                        <option value="+962">🇯🇴 Jordan (+962)</option>
+                                        <option value="+7">🇰🇿 Kazakhstan (+7)</option>
+                                        <option value="+254">🇰🇪 Kenya (+254)</option>
+                                        <option value="+686">🇰🇮 Kiribati (+686)</option>
+                                        <option value="+383">🇽🇰 Kosovo (+383)</option>
+                                        <option value="+965">🇰🇼 Kuwait (+965)</option>
+                                        <option value="+996">🇰🇬 Kyrgyzstan (+996)</option>
+                                        <option value="+856">🇱🇦 Laos (+856)</option>
+                                        <option value="+371">🇱🇻 Latvia (+371)</option>
+                                        <option value="+961">🇱🇧 Lebanon (+961)</option>
+                                        <option value="+266">🇱🇸 Lesotho (+266)</option>
+                                        <option value="+231">🇱🇷 Liberia (+231)</option>
+                                        <option value="+218">🇱🇾 Libya (+218)</option>
+                                        <option value="+423">🇱🇮 Liechtenstein (+423)</option>
+                                        <option value="+370">🇱🇹 Lithuania (+370)</option>
+                                        <option value="+352">🇱🇺 Luxembourg (+352)</option>
+                                        <option value="+853">🇲🇴 Macau (+853)</option>
+                                        <option value="+261">🇲🇬 Madagascar (+261)</option>
+                                        <option value="+265">🇲🇼 Malawi (+265)</option>
+                                        <option value="+60">🇲🇾 Malaysia (+60)</option>
+                                        <option value="+960">🇲🇻 Maldives (+960)</option>
+                                        <option value="+223">🇲🇱 Mali (+223)</option>
+                                        <option value="+356">🇲🇹 Malta (+356)</option>
+                                        <option value="+692">🇲🇭 Marshall Islands (+692)</option>
+                                        <option value="+222">🇲🇷 Mauritania (+222)</option>
+                                        <option value="+230">🇲🇺 Mauritius (+230)</option>
+                                        <option value="+52">🇲🇽 Mexico (+52)</option>
+                                        <option value="+691">🇫🇲 Micronesia (+691)</option>
+                                        <option value="+373">🇲🇩 Moldova (+373)</option>
+                                        <option value="+377">🇲🇨 Monaco (+377)</option>
+                                        <option value="+976">🇲🇳 Mongolia (+976)</option>
+                                        <option value="+382">🇲🇪 Montenegro (+382)</option>
+                                        <option value="+212">🇲🇦 Morocco (+212)</option>
+                                        <option value="+258">🇲🇿 Mozambique (+258)</option>
+                                        <option value="+95">🇲🇲 Myanmar (+95)</option>
+                                        <option value="+264">🇳🇦 Namibia (+264)</option>
+                                        <option value="+674">🇳🇷 Nauru (+674)</option>
+                                        <option value="+977">🇳🇵 Nepal (+977)</option>
+                                        <option value="+31">🇳🇱 Netherlands (+31)</option>
+                                        <option value="+64">🇳🇿 New Zealand (+64)</option>
+                                        <option value="+505">🇳🇮 Nicaragua (+505)</option>
+                                        <option value="+227">🇳🇪 Niger (+227)</option>
+                                        <option value="+234">🇳🇬 Nigeria (+234)</option>
+                                        <option value="+850">🇰🇵 North Korea (+850)</option>
+                                        <option value="+389">🇲🇰 North Macedonia (+389)</option>
+                                        <option value="+47">🇳🇴 Norway (+47)</option>
+                                        <option value="+968">🇴🇲 Oman (+968)</option>
+                                        <option value="+92">🇵🇰 Pakistan (+92)</option>
+                                        <option value="+680">🇵🇼 Palau (+680)</option>
+                                        <option value="+970">🇵🇸 Palestine (+970)</option>
+                                        <option value="+507">🇵🇦 Panama (+507)</option>
+                                        <option value="+675">🇵🇬 Papua New Guinea (+675)</option>
+                                        <option value="+595">🇵🇾 Paraguay (+595)</option>
+                                        <option value="+51">🇵🇪 Peru (+51)</option>
+                                        <option value="+63">🇵🇭 Philippines (+63)</option>
+                                        <option value="+48">🇵🇱 Poland (+48)</option>
+                                        <option value="+351">🇵🇹 Portugal (+351)</option>
+                                        <option value="+974">🇶🇦 Qatar (+974)</option>
+                                        <option value="+40">🇷🇴 Romania (+40)</option>
+                                        <option value="+7">🇷🇺 Russia (+7)</option>
+                                        <option value="+250">🇷🇼 Rwanda (+250)</option>
+                                        <option value="+1758">🇱🇨 Saint Lucia (+1758)</option>
+                                        <option value="+685">🇼🇸 Samoa (+685)</option>
+                                        <option value="+378">🇸🇲 San Marino (+378)</option>
+                                        <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+                                        <option value="+221">🇸🇳 Senegal (+221)</option>
+                                        <option value="+381">🇷🇸 Serbia (+381)</option>
+                                        <option value="+248">🇸🇨 Seychelles (+248)</option>
+                                        <option value="+232">🇸🇱 Sierra Leone (+232)</option>
+                                        <option value="+65">🇸🇬 Singapore (+65)</option>
+                                        <option value="+421">🇸🇰 Slovakia (+421)</option>
+                                        <option value="+386">🇸🇮 Slovenia (+386)</option>
+                                        <option value="+677">🇸🇧 Solomon Islands (+677)</option>
+                                        <option value="+252">🇸🇴 Somalia (+252)</option>
+                                        <option value="+27">🇿🇦 South Africa (+27)</option>
+                                        <option value="+82">🇰🇷 South Korea (+82)</option>
+                                        <option value="+211">🇸🇸 South Sudan (+211)</option>
+                                        <option value="+34">🇪🇸 Spain (+34)</option>
+                                        <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+                                        <option value="+249">🇸🇩 Sudan (+249)</option>
+                                        <option value="+597">🇸🇷 Suriname (+597)</option>
+                                        <option value="+46">🇸🇪 Sweden (+46)</option>
+                                        <option value="+41">🇨🇭 Switzerland (+41)</option>
+                                        <option value="+963">🇸🇾 Syria (+963)</option>
+                                        <option value="+886">🇹🇼 Taiwan (+886)</option>
+                                        <option value="+992">🇹🇯 Tajikistan (+992)</option>
+                                        <option value="+255">🇹🇿 Tanzania (+255)</option>
+                                        <option value="+66">🇹🇭 Thailand (+66)</option>
+                                        <option value="+670">🇹🇱 Timor-Leste (+670)</option>
+                                        <option value="+228">🇹🇬 Togo (+228)</option>
+                                        <option value="+676">🇹🇴 Tonga (+676)</option>
+                                        <option value="+1868">🇹🇹 Trinidad and Tobago
+                                            (+1868)</option>
+                                        <option value="+216">🇹🇳 Tunisia (+216)</option>
+                                        <option value="+90">🇹🇷 Turkey (+90)</option>
+                                        <option value="+993">🇹🇲 Turkmenistan (+993)</option>
+                                        <option value="+688">🇹🇻 Tuvalu (+688)</option>
+                                        <option value="+256">🇺🇬 Uganda (+256)</option>
+                                        <option value="+380">🇺🇦 Ukraine (+380)</option>
+                                        <option value="+971">🇦🇪 United Arab Emirates
+                                            (+971)</option>
+                                        <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                                        <option value="+1">🇺🇸 United States (+1)</option>
+                                        <option value="+598">🇺🇾 Uruguay (+598)</option>
+                                        <option value="+998">🇺🇿 Uzbekistan (+998)</option>
+                                        <option value="+678">🇻🇺 Vanuatu (+678)</option>
+                                        <option value="+379">🇻🇦 Vatican City (+379)</option>
+                                        <option value="+58">🇻🇪 Venezuela (+58)</option>
+                                        <option value="+967">🇾🇪 Yemen (+967)</option>
+                                        <option value="+260">🇿🇲 Zambia (+260)</option>
+                                        <option value="+263">🇿🇼 Zimbabwe (+263)</option>
+                                        <option value="+other">🌐 Other</option>
+                                    </select>
+                                    <input type="tel" id="customer-phone" name="customer-phone"
+                                        placeholder="9xx xxx xxx" required>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="customer-whatsapp">WhatsApp number <span
+                                        class="optional-tag">(only if different from
+                                        phone)</span></label>
+                                <div class="phone-input-row">
+                                    <select id="whatsapp-country-code" name="whatsapp-country-code"
+                                        class="country-code-select">
+                                        <option value="+84" selected>🇻🇳 Vietnam (+84)</option>
+                                        <option value="+93">🇦🇫 Afghanistan (+93)</option>
+                                        <option value="+355">🇦🇱 Albania (+355)</option>
+                                        <option value="+213">🇩🇿 Algeria (+213)</option>
+                                        <option value="+376">🇦🇩 Andorra (+376)</option>
+                                        <option value="+244">🇦🇴 Angola (+244)</option>
+                                        <option value="+54">🇦🇷 Argentina (+54)</option>
+                                        <option value="+374">🇦🇲 Armenia (+374)</option>
+                                        <option value="+61">🇦🇺 Australia (+61)</option>
+                                        <option value="+43">🇦🇹 Austria (+43)</option>
+                                        <option value="+994">🇦🇿 Azerbaijan (+994)</option>
+                                        <option value="+1242">🇧🇸 Bahamas (+1242)</option>
+                                        <option value="+973">🇧🇭 Bahrain (+973)</option>
+                                        <option value="+880">🇧🇩 Bangladesh (+880)</option>
+                                        <option value="+1246">🇧🇧 Barbados (+1246)</option>
+                                        <option value="+375">🇧🇾 Belarus (+375)</option>
+                                        <option value="+32">🇧🇪 Belgium (+32)</option>
+                                        <option value="+501">🇧🇿 Belize (+501)</option>
+                                        <option value="+229">🇧🇯 Benin (+229)</option>
+                                        <option value="+975">🇧🇹 Bhutan (+975)</option>
+                                        <option value="+591">🇧🇴 Bolivia (+591)</option>
+                                        <option value="+387">🇧🇦 Bosnia and Herzegovina
+                                            (+387)</option>
+                                        <option value="+267">🇧🇼 Botswana (+267)</option>
+                                        <option value="+55">🇧🇷 Brazil (+55)</option>
+                                        <option value="+673">🇧🇳 Brunei (+673)</option>
+                                        <option value="+359">🇧🇬 Bulgaria (+359)</option>
+                                        <option value="+226">🇧🇫 Burkina Faso (+226)</option>
+                                        <option value="+257">🇧🇮 Burundi (+257)</option>
+                                        <option value="+855">🇰🇭 Cambodia (+855)</option>
+                                        <option value="+237">🇨🇲 Cameroon (+237)</option>
+                                        <option value="+1">🇨🇦 Canada (+1)</option>
+                                        <option value="+238">🇨🇻 Cape Verde (+238)</option>
+                                        <option value="+236">🇨🇫 Central African Republic
+                                            (+236)</option>
+                                        <option value="+235">🇹🇩 Chad (+235)</option>
+                                        <option value="+56">🇨🇱 Chile (+56)</option>
+                                        <option value="+86">🇨🇳 China (+86)</option>
+                                        <option value="+57">🇨🇴 Colombia (+57)</option>
+                                        <option value="+269">🇰🇲 Comoros (+269)</option>
+                                        <option value="+243">🇨🇩 Congo (DRC) (+243)</option>
+                                        <option value="+242">🇨🇬 Congo (Republic) (+242)</option>
+                                        <option value="+506">🇨🇷 Costa Rica (+506)</option>
+                                        <option value="+385">🇭🇷 Croatia (+385)</option>
+                                        <option value="+53">🇨🇺 Cuba (+53)</option>
+                                        <option value="+357">🇨🇾 Cyprus (+357)</option>
+                                        <option value="+420">🇨🇿 Czech Republic (+420)</option>
+                                        <option value="+45">🇩🇰 Denmark (+45)</option>
+                                        <option value="+253">🇩🇯 Djibouti (+253)</option>
+                                        <option value="+1767">🇩🇲 Dominica (+1767)</option>
+                                        <option value="+1809">🇩🇴 Dominican Republic
+                                            (+1809)</option>
+                                        <option value="+593">🇪🇨 Ecuador (+593)</option>
+                                        <option value="+20">🇪🇬 Egypt (+20)</option>
+                                        <option value="+503">🇸🇻 El Salvador (+503)</option>
+                                        <option value="+240">🇬🇶 Equatorial Guinea (+240)</option>
+                                        <option value="+291">🇪🇷 Eritrea (+291)</option>
+                                        <option value="+372">🇪🇪 Estonia (+372)</option>
+                                        <option value="+268">🇸🇿 Eswatini (+268)</option>
+                                        <option value="+251">🇪🇹 Ethiopia (+251)</option>
+                                        <option value="+679">🇫🇯 Fiji (+679)</option>
+                                        <option value="+358">🇫🇮 Finland (+358)</option>
+                                        <option value="+33">🇫🇷 France (+33)</option>
+                                        <option value="+241">🇬🇦 Gabon (+241)</option>
+                                        <option value="+220">🇬🇲 Gambia (+220)</option>
+                                        <option value="+995">🇬🇪 Georgia (+995)</option>
+                                        <option value="+49">🇩🇪 Germany (+49)</option>
+                                        <option value="+233">🇬🇭 Ghana (+233)</option>
+                                        <option value="+30">🇬🇷 Greece (+30)</option>
+                                        <option value="+1473">🇬🇩 Grenada (+1473)</option>
+                                        <option value="+502">🇬🇹 Guatemala (+502)</option>
+                                        <option value="+224">🇬🇳 Guinea (+224)</option>
+                                        <option value="+245">🇬🇼 Guinea-Bissau (+245)</option>
+                                        <option value="+592">🇬🇾 Guyana (+592)</option>
+                                        <option value="+509">🇭🇹 Haiti (+509)</option>
+                                        <option value="+504">🇭🇳 Honduras (+504)</option>
+                                        <option value="+852">🇭🇰 Hong Kong (+852)</option>
+                                        <option value="+36">🇭🇺 Hungary (+36)</option>
+                                        <option value="+354">🇮🇸 Iceland (+354)</option>
+                                        <option value="+91">🇮🇳 India (+91)</option>
+                                        <option value="+62">🇮🇩 Indonesia (+62)</option>
+                                        <option value="+98">🇮🇷 Iran (+98)</option>
+                                        <option value="+964">🇮🇶 Iraq (+964)</option>
+                                        <option value="+353">🇮🇪 Ireland (+353)</option>
+                                        <option value="+972">🇮🇱 Israel (+972)</option>
+                                        <option value="+39">🇮🇹 Italy (+39)</option>
+                                        <option value="+225">🇨🇮 Ivory Coast (+225)</option>
+                                        <option value="+1876">🇯🇲 Jamaica (+1876)</option>
+                                        <option value="+81">🇯🇵 Japan (+81)</option>
+                                        <option value="+962">🇯🇴 Jordan (+962)</option>
+                                        <option value="+7">🇰🇿 Kazakhstan (+7)</option>
+                                        <option value="+254">🇰🇪 Kenya (+254)</option>
+                                        <option value="+686">🇰🇮 Kiribati (+686)</option>
+                                        <option value="+383">🇽🇰 Kosovo (+383)</option>
+                                        <option value="+965">🇰🇼 Kuwait (+965)</option>
+                                        <option value="+996">🇰🇬 Kyrgyzstan (+996)</option>
+                                        <option value="+856">🇱🇦 Laos (+856)</option>
+                                        <option value="+371">🇱🇻 Latvia (+371)</option>
+                                        <option value="+961">🇱🇧 Lebanon (+961)</option>
+                                        <option value="+266">🇱🇸 Lesotho (+266)</option>
+                                        <option value="+231">🇱🇷 Liberia (+231)</option>
+                                        <option value="+218">🇱🇾 Libya (+218)</option>
+                                        <option value="+423">🇱🇮 Liechtenstein (+423)</option>
+                                        <option value="+370">🇱🇹 Lithuania (+370)</option>
+                                        <option value="+352">🇱🇺 Luxembourg (+352)</option>
+                                        <option value="+853">🇲🇴 Macau (+853)</option>
+                                        <option value="+261">🇲🇬 Madagascar (+261)</option>
+                                        <option value="+265">🇲🇼 Malawi (+265)</option>
+                                        <option value="+60">🇲🇾 Malaysia (+60)</option>
+                                        <option value="+960">🇲🇻 Maldives (+960)</option>
+                                        <option value="+223">🇲🇱 Mali (+223)</option>
+                                        <option value="+356">🇲🇹 Malta (+356)</option>
+                                        <option value="+692">🇲🇭 Marshall Islands (+692)</option>
+                                        <option value="+222">🇲🇷 Mauritania (+222)</option>
+                                        <option value="+230">🇲🇺 Mauritius (+230)</option>
+                                        <option value="+52">🇲🇽 Mexico (+52)</option>
+                                        <option value="+691">🇫🇲 Micronesia (+691)</option>
+                                        <option value="+373">🇲🇩 Moldova (+373)</option>
+                                        <option value="+377">🇲🇨 Monaco (+377)</option>
+                                        <option value="+976">🇲🇳 Mongolia (+976)</option>
+                                        <option value="+382">🇲🇪 Montenegro (+382)</option>
+                                        <option value="+212">🇲🇦 Morocco (+212)</option>
+                                        <option value="+258">🇲🇿 Mozambique (+258)</option>
+                                        <option value="+95">🇲🇲 Myanmar (+95)</option>
+                                        <option value="+264">🇳🇦 Namibia (+264)</option>
+                                        <option value="+674">🇳🇷 Nauru (+674)</option>
+                                        <option value="+977">🇳🇵 Nepal (+977)</option>
+                                        <option value="+31">🇳🇱 Netherlands (+31)</option>
+                                        <option value="+64">🇳🇿 New Zealand (+64)</option>
+                                        <option value="+505">🇳🇮 Nicaragua (+505)</option>
+                                        <option value="+227">🇳🇪 Niger (+227)</option>
+                                        <option value="+234">🇳🇬 Nigeria (+234)</option>
+                                        <option value="+850">🇰🇵 North Korea (+850)</option>
+                                        <option value="+389">🇲🇰 North Macedonia (+389)</option>
+                                        <option value="+47">🇳🇴 Norway (+47)</option>
+                                        <option value="+968">🇴🇲 Oman (+968)</option>
+                                        <option value="+92">🇵🇰 Pakistan (+92)</option>
+                                        <option value="+680">🇵🇼 Palau (+680)</option>
+                                        <option value="+970">🇵🇸 Palestine (+970)</option>
+                                        <option value="+507">🇵🇦 Panama (+507)</option>
+                                        <option value="+675">🇵🇬 Papua New Guinea (+675)</option>
+                                        <option value="+595">🇵🇾 Paraguay (+595)</option>
+                                        <option value="+51">🇵🇪 Peru (+51)</option>
+                                        <option value="+63">🇵🇭 Philippines (+63)</option>
+                                        <option value="+48">🇵🇱 Poland (+48)</option>
+                                        <option value="+351">🇵🇹 Portugal (+351)</option>
+                                        <option value="+974">🇶🇦 Qatar (+974)</option>
+                                        <option value="+40">🇷🇴 Romania (+40)</option>
+                                        <option value="+7">🇷🇺 Russia (+7)</option>
+                                        <option value="+250">🇷🇼 Rwanda (+250)</option>
+                                        <option value="+1758">🇱🇨 Saint Lucia (+1758)</option>
+                                        <option value="+685">🇼🇸 Samoa (+685)</option>
+                                        <option value="+378">🇸🇲 San Marino (+378)</option>
+                                        <option value="+966">🇸🇦 Saudi Arabia (+966)</option>
+                                        <option value="+221">🇸🇳 Senegal (+221)</option>
+                                        <option value="+381">🇷🇸 Serbia (+381)</option>
+                                        <option value="+248">🇸🇨 Seychelles (+248)</option>
+                                        <option value="+232">🇸🇱 Sierra Leone (+232)</option>
+                                        <option value="+65">🇸🇬 Singapore (+65)</option>
+                                        <option value="+421">🇸🇰 Slovakia (+421)</option>
+                                        <option value="+386">🇸🇮 Slovenia (+386)</option>
+                                        <option value="+677">🇸🇧 Solomon Islands (+677)</option>
+                                        <option value="+252">🇸🇴 Somalia (+252)</option>
+                                        <option value="+27">🇿🇦 South Africa (+27)</option>
+                                        <option value="+82">🇰🇷 South Korea (+82)</option>
+                                        <option value="+211">🇸🇸 South Sudan (+211)</option>
+                                        <option value="+34">🇪🇸 Spain (+34)</option>
+                                        <option value="+94">🇱🇰 Sri Lanka (+94)</option>
+                                        <option value="+249">🇸🇩 Sudan (+249)</option>
+                                        <option value="+597">🇸🇷 Suriname (+597)</option>
+                                        <option value="+46">🇸🇪 Sweden (+46)</option>
+                                        <option value="+41">🇨🇭 Switzerland (+41)</option>
+                                        <option value="+963">🇸🇾 Syria (+963)</option>
+                                        <option value="+886">🇹🇼 Taiwan (+886)</option>
+                                        <option value="+992">🇹🇯 Tajikistan (+992)</option>
+                                        <option value="+255">🇹🇿 Tanzania (+255)</option>
+                                        <option value="+66">🇹🇭 Thailand (+66)</option>
+                                        <option value="+670">🇹🇱 Timor-Leste (+670)</option>
+                                        <option value="+228">🇹🇬 Togo (+228)</option>
+                                        <option value="+676">🇹🇴 Tonga (+676)</option>
+                                        <option value="+1868">🇹🇹 Trinidad and Tobago
+                                            (+1868)</option>
+                                        <option value="+216">🇹🇳 Tunisia (+216)</option>
+                                        <option value="+90">🇹🇷 Turkey (+90)</option>
+                                        <option value="+993">🇹🇲 Turkmenistan (+993)</option>
+                                        <option value="+688">🇹🇻 Tuvalu (+688)</option>
+                                        <option value="+256">🇺🇬 Uganda (+256)</option>
+                                        <option value="+380">🇺🇦 Ukraine (+380)</option>
+                                        <option value="+971">🇦🇪 United Arab Emirates
+                                            (+971)</option>
+                                        <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                                        <option value="+1">🇺🇸 United States (+1)</option>
+                                        <option value="+598">🇺🇾 Uruguay (+598)</option>
+                                        <option value="+998">🇺🇿 Uzbekistan (+998)</option>
+                                        <option value="+678">🇻🇺 Vanuatu (+678)</option>
+                                        <option value="+379">🇻🇦 Vatican City (+379)</option>
+                                        <option value="+58">🇻🇪 Venezuela (+58)</option>
+                                        <option value="+967">🇾🇪 Yemen (+967)</option>
+                                        <option value="+260">🇿🇲 Zambia (+260)</option>
+                                        <option value="+263">🇿🇼 Zimbabwe (+263)</option>
+                                        <option value="+other">🌐 Other</option>
+                                    </select>
+                                    <input type="tel" id="customer-whatsapp"
+                                        name="customer-whatsapp"
+                                        placeholder="Leave blank if same as phone">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="customer-notes">Notes</label>
+                                <textarea id="customer-notes" name="customer-notes"
+                                    placeholder="Anything else we should know?"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: Pickup Location -->
+                        <div class="wizard-step" data-step-panel="4">
+                            <div class="wizard-step-header">
+                                <span class="wizard-step-number">4.</span>
+                                <h2>Pickup Location</h2>
+                                <p class="wizard-step-desc">Where should we come to collect your
+                                    laundry?</p>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="hotel-room">Your hotel + room number</label>
+                                <input type="text" id="hotel-room" name="hotel-room"
+                                    placeholder="e.g. Hotel Nikko Saigon, Room 1204" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="address-map">Address or Google Maps link <span
+                                        class="optional-tag">(optional)</span></label>
+                                <input type="text" id="address-map" name="address-map"
+                                    placeholder="Paste an address or Google Maps link">
+                            </div>
+                        </div>
+
+                        <!-- STEP 5: Payment Method -->
+                        <div class="wizard-step" data-step-panel="5">
+                            <div class="wizard-step-header">
+                                <span class="wizard-step-number">5.</span>
+                                <h2>Payment Method</h2>
+                            </div>
+
+                            <div class="payment-info-card">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <p>There is nothing to pay until your laundry has been weighed and
+                                    processed in our shop. You will then receive an invoice via
+                                    <strong>WhatsApp</strong> or <strong>Zalo</strong> with a final
+                                    quote.</p>
+                            </div>
+                            <p class="review-note"><i class="fa-solid fa-arrow-right"></i> Please
+                                review your full order in the summary panel before requesting
+                                collection.</p>
+                        </div>
+                    </form>
+
+                    <!-- Live Order Summary Sidebar -->
+                    <aside class="order-summary-sidebar" id="order-summary-sidebar">
+                        <div class="summary-sidebar-inner">
+                            <h3><i class="fa-solid fa-receipt"></i> Your Order</h3>
+
+                            <div class="summary-block">
+                                <span class="summary-label">Service</span>
+                                <span class="summary-value" id="side-service">Same-Day
+                                    Laundry</span>
+                            </div>
+                            <div class="summary-block">
+                                <span class="summary-label">Weight</span>
+                                <div class="sidebar-weight-control">
+                                    <button type="button" class="sidebar-weight-btn"
+                                        id="weight-minus" aria-label="Decrease weight"><i
+                                            class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="weight-input" min="1" step="1"
+                                        value="5">
+                                    <button type="button" class="sidebar-weight-btn"
+                                        id="weight-plus" aria-label="Increase weight"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                    <span class="sidebar-weight-unit">Kg</span>
+                                </div>
+                                <input type="range" id="weight-slider" min="1" max="30" step="1"
+                                    value="5" class="sidebar-weight-slider">
+                            </div>
+                            <div class="summary-block" id="side-addon-block" style="display:none;">
+                                <span class="summary-label">Add-on</span>
+                                <span class="summary-value">Wash white separately</span>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-block" id="side-pickup-block" style="display:none;">
+                                <span class="summary-label">Pickup</span>
+                                <span class="summary-value" id="side-pickup">—</span>
+                            </div>
+                            <div class="summary-block" id="side-method-block" style="display:none;">
+                                <span class="summary-label">Collection</span>
+                                <span class="summary-value" id="side-method">—</span>
+                            </div>
+                            <div class="summary-block" id="side-name-block" style="display:none;">
+                                <span class="summary-label">Name</span>
+                                <span class="summary-value" id="side-name">—</span>
+                            </div>
+                            <div class="summary-block" id="side-phone-block" style="display:none;">
+                                <span class="summary-label">Phone</span>
+                                <span class="summary-value" id="side-phone">—</span>
+                            </div>
+                            <div class="summary-block" id="side-whatsapp-block"
+                                style="display:none;">
+                                <span class="summary-label">WhatsApp</span>
+                                <span class="summary-value" id="side-whatsapp">—</span>
+                            </div>
+                            <div class="summary-block" id="side-location-block"
+                                style="display:none;">
+                                <span class="summary-label">Location</span>
+                                <span class="summary-value" id="side-location">—</span>
+                            </div>
+
+                            <div class="summary-divider"></div>
+
+                            <div class="summary-total-row">
+                                <span>Estimated Total</span>
+                                <span id="side-total">220.000đ</span>
+                            </div>
+                            <p class="summary-disclaimer"><i class="fa-solid fa-circle-info"></i>
+                                Final price confirmed after weighing at our shop.</p>
+
+                            <!-- Wizard Navigation Buttons — grouped with the summary card itself,
+                         so on mobile they sit right after the order details instead of
+                         floating in a separate block the user has to scroll back up for. -->
+                            <div class="wizard-nav-buttons">
+                                <button type="button" class="btn btn-secondary wizard-btn-back"
+                                    id="wizard-back" style="display:none;">
+                                    <i class="fa-solid fa-arrow-left"></i> Back
+                                </button>
+                                <button type="button" class="btn btn-primary wizard-btn-next"
+                                    id="wizard-next">
+                                    Next <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <button type="submit" form="order-form"
+                                    class="btn btn-primary wizard-btn-submit" id="wizard-submit"
+                                    style="display:none;">
+                                    <i class="fa-solid fa-paper-plane"></i> Request Collection
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- Confirmation Popup -->
+        <div class="order-popup-overlay" id="order-popup-overlay">
+            <div class="order-popup-card">
+                <button type="button" class="order-popup-close" id="order-popup-close"
+                    aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                <div class="order-popup-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h3>Your pickup request is ready!</h3>
+                <p>Send your order via your preferred channel and our team will confirm your booking
+                    shortly.</p>
+                <div class="order-popup-actions">
+                    <a href="#" target="_blank" class="btn order-popup-btn order-popup-wa"
+                        id="popup-send-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+                    </a>
+                    <a href="#" target="_blank" class="btn order-popup-btn order-popup-zalo"
+                        id="popup-send-zalo">
+                        <i class="fa-solid fa-comments"></i> Send via Zalo
+                    </a>
+                    <p class="order-popup-zalo-hint">Zalo doesn't support pre-filled messages. We'll
+                        copy your order details — after Zalo opens, tap the message box at the
+                        bottom of the chat and paste (Ctrl+V, or press and hold → Paste on
+                        mobile).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast shown after copying the order details for Zalo -->
+        <div class="zalo-copy-toast" id="zalo-copy-toast">
+            <i class="fa-solid fa-circle-check"></i> Copied! In Zalo, tap the message box at the
+            bottom and paste (Ctrl+V or press-and-hold → Paste).
+        </div>
+
+        <!-- Revamped Footer Section -->
+        <footer class="revamped-footer" id="contact">
+            <div class="container">
+                <div class="footer-grid-revamped">
+                    <!-- Col 1 -->
+                    <div class="footer-col-revamped">
+                        <a href="index.html" class="logo"
+                            style="margin-bottom: 20px; display: inline-block;">
+                            <img src="assets/images/logo.png" alt="1997 Laundry Logo"
+                                class="logo-img-footer" style="max-height: 50px;">
+                        </a>
+                        <p>Operating since 2025, 1997 Premium Laundry cleans and restores thousands
+                            of garments & designer shoes. Every item carries a story worthy of
+                            respect.</p>
+                        <div class="footer-social-circles">
+                            <a href="#" aria-label="Facebook"><i
+                                    class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Instagram"><i
+                                    class="fa-brands fa-instagram"></i></a>
+                            <a href="https://wa.me/84866137043" target="_blank"
+                                aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                        </div>
+                        <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
+                    </div>
+
+                    <!-- Col 2 -->
+                    <div class="footer-col-revamped">
+                        <h3>SERVICES</h3>
+                        <div class="footer-links-revamped">
+                            <a href="express-laundry.html">Express Laundry</a>
+                            <a href="shoes-cleaning.html">Shoes Cleaning</a>
+                            <a href="steam-press.html">Steam Press</a>
+                            <a href="dry-cleaning.html">Dry Cleaning</a>
+                            <a href="curtain-cleaning.html">Curtain Cleaning</a>
+                        </div>
+                    </div>
+
+                    <!-- Col 3 -->
+                    <div class="footer-col-revamped">
+                        <h3>SYSTEM</h3>
+                        <div class="footer-links-revamped">
+                            <a href="order.html">Book a Pickup</a>
+                            <a href="index.html#gallery">Gallery</a>
+                            <a href="#">Care Pass Membership</a>
+                            <a href="#">News & Blog</a>
+                            <a href="#">About 1997 Laundry</a>
+                            <a href="#">Careers</a>
+                            <a href="#">Promotions</a>
+                            <a href="#">Warranty Policy</a>
+                            <a href="#">Terms of Use</a>
+                        </div>
+                    </div>
+
+                    <!-- Col 4 -->
+                    <div class="footer-col-revamped">
+                        <h3>CONTACT</h3>
+                        <div class="footer-contacts-revamped">
+                            <div class="contact-item-revamped">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>15b/63 Le Thanh Ton, Saigon Ward, District 1, Ho Chi Minh
+                                    City</span>
+                            </div>
+                            <div class="contact-item-revamped">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>0866.137.043</span>
+                            </div>
+                            <div class="contact-item-revamped">
+                                <i class="fa-solid fa-clock"></i>
+                                <span>Open Daily: 7:00 AM - 10:00 PM</span>
+                            </div>
+                            <div class="contact-item-revamped">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>contact@1997laundry.vn</span>
+                            </div>
+                        </div>
+                        <a href="https://share.google/DHQ56cDWB0hNB5K4X" target="_blank"
+                            class="btn-gmaps">
+                            <i class="fa-solid fa-map-location-dot"></i> View Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Bottom Bar -->
+                <div class="footer-bottom-revamped">
+                    <p>© 2026 1997 Premium Laundry. All rights reserved.</p>
+                    <div class="footer-bottom-links-revamped">
+                        <a href="#">Cookie Settings</a>
+                        <a href="#">Designed by Antigravity</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Sticky Mobile CTA Bar -->
+        <div class="sticky-mobile-cta">
+            <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="order.html" class="cta-btn cta-book">
+                <i class="fa-solid fa-calendar-days"></i> Book Online
+            </a>
+            <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
+                <i class="fa-solid fa-comments"></i> Zalo
+            </a>
+        </div>
+
+        <!-- Script Files -->
+        <script src="index.js?v=2.0"></script>
+        <script src="order.js?v=1.0"></script>
+    </body>
+</html>

@@ -1,0 +1,1245 @@
+/* ==========================================
+   ORDER / BOOKING WIZARD STYLES
+   Uses design tokens defined in index.css :root
+   ========================================== */
+
+/* Fix: index.css sets `overflow-x: hidden` on <body> (and reinforces it again
+   further down with `!important` on `html, body`), which — per the CSS spec —
+   forces the browser to also treat body's overflow-y as an implicit scroll
+   container. That breaks `position: sticky` for descendants (the sidebar
+   loses its stickiness once you scroll past it). We neutralize it on body
+   only (html keeps clipping horizontally, so the visual effect is unchanged
+   site-wide) with matching !important so this wins the cascade, scoped to
+   this page only so other pages aren't affected. */
+body {
+  overflow-x: visible !important;
+}
+
+/* ---------- Hero ---------- */
+.order-hero {
+  background: linear-gradient(
+    160deg,
+    var(--color-bg-dark) 0%,
+    var(--color-bg-dark-card) 100%
+  );
+  padding: 160px 0 60px;
+  text-align: center;
+  color: var(--color-text-light);
+}
+
+.order-hero .section-badge {
+  background-color: rgba(243, 106, 25, 0.15);
+  color: var(--color-accent);
+}
+
+.order-hero-title {
+  font-family: var(--font-headline);
+  font-size: 2.6rem;
+  color: var(--color-text-light);
+  margin: 16px 0 12px;
+}
+
+.order-hero-subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---------- Wizard Section Layout ---------- */
+.order-wizard-section {
+  background-color: var(--color-bg-soft);
+  padding: 60px 0 100px;
+}
+
+.order-wizard-container {
+  max-width: 1080px;
+}
+
+.order-wizard-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* ---------- Progress Indicator ---------- */
+.wizard-progress {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.wizard-progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 88px;
+}
+
+.wizard-progress-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--color-bg-light);
+  border: 2px solid var(--color-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  transition: all 0.25s ease;
+}
+
+.wizard-progress-circle i {
+  display: none;
+  font-size: 0.85rem;
+}
+
+.wizard-progress-step.active .wizard-progress-circle {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-light);
+}
+
+.wizard-progress-step.completed .wizard-progress-circle {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.wizard-progress-step.completed .wizard-progress-circle span {
+  display: none;
+}
+.wizard-progress-step.completed .wizard-progress-circle i {
+  display: block;
+  color: var(--color-text-light);
+}
+
+.wizard-progress-label {
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.wizard-progress-step.active .wizard-progress-label,
+.wizard-progress-step.completed .wizard-progress-label {
+  color: var(--color-text-dark);
+  font-weight: 600;
+}
+
+.wizard-progress-line {
+  flex: 1;
+  height: 2px;
+  background-color: var(--color-border-light);
+  margin-top: 17px;
+  min-width: 16px;
+}
+
+/* ---------- Form Panel ---------- */
+.order-form-panel {
+  background-color: var(--color-bg-light);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(9, 0, 45, 0.06);
+}
+
+.wizard-step {
+  display: none;
+}
+.wizard-step.active {
+  display: block;
+  animation: fadeInStep 0.35s ease;
+}
+
+@keyframes fadeInStep {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wizard-step-header {
+  margin-bottom: 28px;
+}
+
+.wizard-step-number {
+  font-family: var(--font-headline);
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.wizard-step-header h2 {
+  font-family: var(--font-headline);
+  color: var(--color-text-dark);
+  font-size: 1.5rem;
+  margin: 6px 0 8px;
+}
+
+.wizard-step-desc {
+  color: var(--color-text-gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.weight-estimator {
+  background-color: var(--color-bg-soft);
+  border-radius: 16px;
+  padding: 20px 22px;
+  margin: 16px 0;
+}
+
+.weight-estimator-header h4 {
+  font-family: var(--font-headline);
+  font-size: 1rem;
+  color: var(--color-text-dark);
+  margin: 0 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.weight-estimator-header h4 i {
+  color: var(--color-accent);
+}
+
+.weight-estimator-header p {
+  font-size: 0.85rem;
+  color: var(--color-text-gray);
+  margin: 0 0 14px;
+}
+
+/* ---------- Step 1: Service Options ---------- */
+.service-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.service-option-item {
+  border: 2px solid var(--color-border-light);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.service-option-item:has(> .service-option-card input:checked) {
+  border-color: var(--color-accent);
+}
+
+.service-option-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: none;
+  border-radius: 0;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.service-option-card:hover {
+  background-color: #fffaf6;
+}
+
+.service-option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.service-option-card:has(input:checked) {
+  background-color: var(--color-accent-light);
+}
+
+.service-option-badge-row {
+  margin-bottom: 6px;
+}
+
+.service-option-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.tag-recommended {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+.tag-fastest {
+  background-color: var(--color-bg-dark);
+  color: #fff;
+}
+.tag-value {
+  background-color: var(--color-success);
+  color: #fff;
+}
+.tag-other {
+  background-color: var(--color-border-light);
+  color: var(--color-text-dark);
+}
+
+.service-option-main h3 {
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  color: var(--color-text-dark);
+  margin: 0 0 4px;
+}
+
+.service-option-sub {
+  font-size: 0.85rem;
+  color: var(--color-text-gray);
+  margin: 0 0 8px;
+}
+
+.service-option-price {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-accent-dark);
+}
+
+.service-option-price span {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--color-text-gray);
+}
+
+.service-option-extra {
+  font-size: 0.8rem;
+  color: var(--color-text-gray);
+  margin-top: 2px;
+}
+
+.service-option-eta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-shrink: 0;
+  min-width: 96px;
+  padding: 10px 12px;
+  background-color: var(--color-bg-soft);
+  border-radius: 10px;
+}
+
+.service-option-card:has(input:checked) .service-option-eta {
+  background-color: #fff;
+}
+
+.eta-label {
+  font-size: 0.7rem;
+  color: var(--color-text-gray);
+}
+.eta-value {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  font-size: 0.9rem;
+}
+
+.service-option-check {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 1.2rem;
+  color: var(--color-border-light);
+}
+
+.service-option-card:has(input:checked) .service-option-check {
+  color: var(--color-accent);
+}
+
+/* Sub-items panel — accordion, opens inline right under its own service card */
+.service-subitems {
+  background-color: var(--color-bg-soft);
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease,
+    padding 0.3s ease,
+    opacity 0.25s ease;
+}
+
+.service-option-item:has(> .service-option-card input:checked)
+  .service-subitems {
+  max-height: 300px;
+  padding: 16px 20px 20px;
+  opacity: 1;
+  border-top: 1px dashed var(--color-border-light);
+}
+
+.service-subitems h4 {
+  font-family: var(--font-headline);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-subitems h4.subitem-divider {
+  margin-top: 16px;
+}
+
+.service-subitems h4 i {
+  color: var(--color-accent);
+}
+
+/* Selectable sub-item (used by Bed Linens & Mattress Cleaning, which has two priced options) */
+.subitem-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background-color: var(--color-bg-light);
+  border: 2px solid var(--color-border-light);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.subitem-option:last-child {
+  margin-bottom: 0;
+}
+
+.subitem-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.subitem-option:has(input:checked) {
+  border-color: var(--color-accent);
+  background-color: #fffaf6;
+}
+
+.subitem-option-main {
+  flex: 1;
+}
+
+.subitem-option h4 {
+  margin: 0 0 8px;
+}
+
+.subitem-option .subitem-row {
+  font-size: 0.85rem;
+}
+
+.subitem-option-check {
+  font-size: 1.1rem;
+  color: var(--color-border-light);
+  flex-shrink: 0;
+}
+
+.subitem-option:has(input:checked) .subitem-option-check {
+  color: var(--color-accent);
+}
+
+.subitem-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  color: var(--color-text-gray);
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--color-border-light);
+}
+
+.subitem-row:last-of-type {
+  border-bottom: none;
+}
+
+/* Add-on card */
+.addon-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1.5px dashed var(--color-border-light);
+  border-radius: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addon-card:has(input:checked) {
+  border-style: solid;
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-light);
+}
+
+.addon-card input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.addon-card-main h4 {
+  font-family: var(--font-headline);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  margin: 0 0 2px;
+}
+
+.addon-card-main p {
+  font-size: 0.82rem;
+  color: var(--color-text-gray);
+  margin: 0;
+}
+
+.addon-card-price {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  color: var(--color-accent-dark);
+  white-space: nowrap;
+}
+
+.addon-card-price span {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.78rem;
+  color: var(--color-text-gray);
+}
+
+/* ---------- Step 2: Weight Estimator ---------- */
+.weight-input-label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 10px;
+}
+
+.weight-input-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+  background-color: var(--color-bg-light);
+  border-radius: 16px;
+  padding: 12px 16px;
+  width: fit-content;
+  box-shadow: 0 2px 10px rgba(9, 0, 45, 0.05);
+}
+
+.weight-step-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-accent-light);
+  color: var(--color-accent-dark);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(243, 106, 25, 0.15);
+}
+
+.weight-step-btn:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.weight-step-btn:active {
+  transform: scale(0.95);
+}
+
+#weight-input {
+  width: 100px;
+  text-align: center;
+  font-family: var(--font-headline);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  border: 2px solid var(--color-border-light);
+  border-radius: 10px;
+  padding: 8px 4px;
+}
+
+.weight-unit {
+  font-weight: 600;
+  color: var(--color-text-gray);
+}
+
+#weight-slider {
+  width: 100%;
+  accent-color: var(--color-accent);
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.estimate-result-card {
+  background-color: var(--color-bg-soft);
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+
+.estimate-result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.92rem;
+  color: var(--color-text-gray);
+  padding: 7px 0;
+}
+
+.estimate-result-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--color-border-light);
+  margin-top: 8px;
+  padding-top: 14px;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-accent-dark);
+}
+
+.estimate-disclaimer {
+  font-size: 0.78rem;
+  color: var(--color-text-gray);
+  margin-top: 14px;
+  line-height: 1.5;
+  display: flex;
+  gap: 6px;
+}
+
+.estimate-disclaimer i {
+  color: var(--color-accent);
+  margin-top: 2px;
+}
+
+/* ---------- Forms (steps 3-5) ---------- */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+/* Direct-child combinator (>) is important here: without it, this rule was
+   also matching the nested .radio-option-card labels further down in the
+   DOM (e.g. inside .collection-method-list), silently overriding their
+   `display: flex` with `display: block` due to higher specificity — which
+   was the real cause of the radio-dot misalignment, not a centering issue. */
+.form-field > label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+}
+
+.optional-tag {
+  font-weight: 400;
+  color: var(--color-text-gray);
+  font-size: 0.8rem;
+}
+
+.form-field input[type="text"],
+.form-field input[type="tel"],
+.form-field input[type="date"],
+.form-field input[type="time"],
+.form-field textarea {
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid var(--color-border-light);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
+  transition: border-color 0.2s ease;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+#collection-instructions:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Phone number row: country-code dropdown + number input side by side */
+.phone-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.country-code-select {
+  flex: 0 0 150px;
+  padding: 13px 32px 13px 12px;
+  border: 2px solid var(--color-border-light);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: var(--color-text-dark);
+  background-color: var(--color-bg-light);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23555555' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 11px 7px;
+}
+
+.country-code-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.phone-input-row input[type="tel"] {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .phone-input-row {
+    flex-direction: column;
+  }
+  .country-code-select {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.form-field textarea,
+#collection-instructions {
+  width: 100%;
+  min-height: 90px;
+  padding: 13px 16px;
+  border: 2px solid var(--color-border-light);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  resize: vertical;
+  margin-top: 12px;
+}
+
+.collection-method-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-option-card {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 2px solid var(--color-border-light);
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: var(--color-text-dark);
+  line-height: 1.5;
+  transition: all 0.2s ease;
+}
+
+/* Native radio inputs render inconsistently across browsers/OSes (some pad
+   or offset the visual circle within its own box, which no amount of
+   margin/flex tweaking on the input itself can fix). We hide the native
+   control and draw our own circle instead, so it's guaranteed to sit
+   perfectly centered against the label text every time. */
+.radio-option-card input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-dot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-light);
+  flex-shrink: 0;
+  position: relative;
+  margin-top: 2px;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.radio-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.15s ease;
+}
+
+.radio-option-card:has(input:checked) .radio-dot {
+  border-color: var(--color-accent);
+}
+
+.radio-option-card:has(input:checked) .radio-dot::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-option-card:has(input:checked) {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-light);
+}
+
+/* ---------- Step 6: Payment ---------- */
+.payment-info-card {
+  display: flex;
+  gap: 14px;
+  background-color: var(--color-accent-light);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
+
+.payment-info-card i {
+  color: var(--color-accent-dark);
+  font-size: 1.3rem;
+  margin-top: 2px;
+}
+
+.payment-info-card p {
+  color: var(--color-text-dark);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.order-summary-card {
+  background-color: var(--color-bg-soft);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+
+.order-summary-card h3 {
+  font-family: var(--font-headline);
+  font-size: 1.05rem;
+  color: var(--color-text-dark);
+  margin: 0 0 14px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--color-text-gray);
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--color-border-light);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+}
+.summary-row span:last-child {
+  color: var(--color-text-dark);
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- Review note (step 6) ---------- */
+.review-note {
+  font-size: 0.88rem;
+  color: var(--color-text-gray);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-note i {
+  color: var(--color-accent);
+}
+
+/* ---------- Live Order Summary Sidebar ---------- */
+.order-summary-sidebar {
+  position: sticky;
+  top: 110px;
+}
+
+.summary-sidebar-inner {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 10px 40px rgba(9, 0, 45, 0.18);
+}
+
+.summary-sidebar-inner h3 {
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  color: var(--color-text-light);
+}
+
+.summary-sidebar-inner h3 i {
+  color: var(--color-accent);
+}
+
+.summary-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation: fadeInStep 0.3s ease;
+}
+
+.summary-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.summary-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  word-break: break-word;
+}
+
+.summary-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.12);
+  margin: 12px 0;
+}
+
+.sidebar-weight-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.sidebar-weight-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(243, 106, 25, 0.2);
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.sidebar-weight-btn:hover {
+  background-color: var(--color-accent);
+  color: #fff;
+}
+.sidebar-weight-btn:active {
+  transform: scale(0.92);
+}
+
+.sidebar-weight-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-muted);
+}
+
+.sidebar-weight-btn:disabled:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-text-muted);
+  transform: none;
+}
+
+.sidebar-weight-control #weight-input {
+  width: 60px;
+  text-align: center;
+  font-family: var(--font-headline);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 6px 2px;
+}
+
+.sidebar-weight-unit {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.sidebar-weight-slider {
+  width: 100%;
+  accent-color: var(--color-accent);
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.summary-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--color-accent);
+}
+
+.summary-disclaimer {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 12px;
+  line-height: 1.5;
+  display: flex;
+  gap: 6px;
+}
+
+.summary-disclaimer i {
+  margin-top: 2px;
+}
+
+/* ---------- Nav Buttons ---------- */
+/* Grouped inside the sidebar's dark card now, right under the order summary,
+   so on mobile it's immediately reachable without scrolling back up.
+   Stacked vertically (not side-by-side) because the sidebar is narrow —
+   fitting both buttons on one row was squeezing "Request Collection" onto
+   two lines. column-reverse keeps the primary action (Next/Submit) on top
+   and Back below it, regardless of their order in the HTML. */
+.wizard-nav-buttons {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* The secondary "Back" button needs light-on-dark styling here, since the
+   sidebar background is navy (its default style assumes a white card). */
+.wizard-nav-buttons .btn-secondary {
+  color: var(--color-text-light);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.wizard-nav-buttons .btn-secondary:hover {
+  border-color: var(--color-text-light);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.wizard-btn-back,
+.wizard-btn-next,
+.wizard-btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* ---------- Confirmation Popup ---------- */
+.order-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(9, 0, 45, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 20px;
+}
+
+.order-popup-overlay.visible {
+  display: flex;
+  animation: fadeInStep 0.25s ease;
+}
+
+.order-popup-card {
+  position: relative;
+  background-color: var(--color-bg-light);
+  border-radius: 20px;
+  padding: 40px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(9, 0, 45, 0.3);
+}
+
+.order-popup-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-bg-soft);
+  color: var(--color-text-gray);
+  cursor: pointer;
+}
+
+.order-popup-icon {
+  font-size: 3rem;
+  color: var(--color-success);
+  margin-bottom: 12px;
+}
+
+.order-popup-card h3 {
+  font-family: var(--font-headline);
+  font-size: 1.3rem;
+  color: var(--color-text-dark);
+  margin: 0 0 10px;
+}
+
+.order-popup-card p {
+  color: var(--color-text-gray);
+  font-size: 0.92rem;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.order-popup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-popup-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.order-popup-wa {
+  background-color: #25d366;
+}
+.order-popup-zalo {
+  background-color: #0068ff;
+}
+
+.order-popup-zalo-hint {
+  font-size: 0.78rem;
+  color: var(--color-text-gray);
+  margin: 4px 0 0;
+  line-height: 1.5;
+}
+
+.zalo-copy-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-light);
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(9, 0, 45, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  z-index: 1100;
+}
+
+.zalo-copy-toast i {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.zalo-copy-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .order-wizard-grid {
+    grid-template-columns: 1fr;
+  }
+  .order-summary-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .order-hero {
+    padding: 130px 0 40px;
+  }
+  .order-hero-title {
+    font-size: 2rem;
+  }
+  .order-form-panel {
+    padding: 26px 20px;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .wizard-progress-step {
+    width: 60px;
+  }
+  .wizard-progress-label {
+    font-size: 0.65rem;
+  }
+  .service-option-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .service-option-eta {
+    align-self: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
