@@ -1,3 +1,25 @@
+# 0. URL Rewriting for Clean URLs and Ad Tracking redirects
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Redirect specific old ad campaign route
+    RewriteRule ^laundy-service/?$ express-laundry.html [L,QSA]
+
+    # Don't rewrite actual files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Rewrite /vi/service-name to /vi/service-name.html
+    RewriteCond %{DOCUMENT_ROOT}/vi/$1.html -f
+    RewriteRule ^vi/([^/]+)/?$ vi/$1.html [L,QSA]
+
+    # Rewrite /service-name to /service-name.html
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^([^/]+)/?$ $1.html [L,QSA]
+</IfModule>
+
 # 1. Enable Gzip Compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/plain
