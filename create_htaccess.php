@@ -7,6 +7,9 @@ $content = '# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Bro
     # Redirect specific old ad campaign routes
     RewriteRule ^laundy-service/?$ /express-laundry.html [R=302,L,QSA]
     RewriteRule ^laundry-service/?$ /express-laundry.html [R=302,L,QSA]
+    RewriteRule ^book-service/?$ /order.html [R=302,L,QSA]
+    RewriteRule ^dry-cleaning-service/?$ /dry-cleaning.html [R=302,L,QSA]
+    RewriteRule ^laundry-and-steam-press/?$ /steam-press.html [R=302,L,QSA]
 
     # Redirect clean URLs to actual .html files (prevents broken assets)
     RewriteRule ^dry-cleaning/?$ /dry-cleaning.html [R=302,L,QSA]
@@ -23,6 +26,9 @@ $content = '# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Bro
     RewriteRule ^vi/steam-press/?$ /vi/steam-press.html [R=302,L,QSA]
     RewriteRule ^vi/curtain-cleaning/?$ /vi/curtain-cleaning.html [R=302,L,QSA]
     RewriteRule ^vi/order/?$ /vi/order.html [R=302,L,QSA]
+    RewriteRule ^vi/book-service/?$ /vi/order.html [R=302,L,QSA]
+    RewriteRule ^vi/dry-cleaning-service/?$ /vi/dry-cleaning.html [R=302,L,QSA]
+    RewriteRule ^vi/laundry-and-steam-press/?$ /vi/steam-press.html [R=302,L,QSA]
 </IfModule>
 
 # 1. Enable Gzip Compression
