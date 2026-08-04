@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17184746029"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  // Cấu hình tài khoản Map Ads
+  gtag('config', 'AW-17184746029');
+  
+  // Cấu hình tài khoản Search Ads
+  gtag('config', 'AW-17231713331');
+</script>
         <link rel="icon" type="image/png" href="favicon.png">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1351,12 +1364,12 @@
 
                         <!-- High-Converting Dual Booking CTAs -->
                         <div class="hero-actions-new">
-                            <a href="https://zalo.me/0866137043" target="_blank"
+                            <a onclick="trackChatClick('zalo');" href="https://zalo.me/0866137043" target="_blank"
                                 class="btn-hero-cta-zalo">
                                 <i class="fa-solid fa-comments" style="font-size: 16px;"></i> Book
                                 on Zalo
                             </a>
-                            <a href="https://wa.me/84866137043" target="_blank"
+                            <a onclick="trackChatClick('whatsapp');" href="https://wa.me/84866137043" target="_blank"
                                 class="btn-hero-cta-wa">
                                 <i class="fa-brands fa-whatsapp" style="font-size: 16px;"></i> Book
                                 on WhatsApp
@@ -2474,11 +2487,11 @@
                 </p>
 
                 <div class="hero-actions-new" style="max-width: 500px; margin: 0 auto;">
-                    <a href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo"
+                    <a onclick="trackChatClick('zalo');" href="https://zalo.me/0866137043" target="_blank" class="btn-hero-cta-zalo"
                         style="box-shadow: 0 8px 25px rgba(0, 104, 255, 0.15);">
                         <i class="fa-solid fa-comments"></i> Book on Zalo
                     </a>
-                    <a href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa"
+                    <a onclick="trackChatClick('whatsapp');" href="https://wa.me/84866137043" target="_blank" class="btn-hero-cta-wa"
                         style="box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);">
                         <i class="fa-brands fa-whatsapp"></i> Book on WhatsApp
                     </a>
@@ -2512,7 +2525,7 @@
                                     class="fa-brands fa-facebook-f"></i></a>
                             <a href="#" aria-label="Instagram"><i
                                     class="fa-brands fa-instagram"></i></a>
-                            <a href="https://wa.me/84866137043" target="_blank"
+                            <a onclick="trackChatClick('whatsapp');" href="https://wa.me/84866137043" target="_blank"
                                 aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                         </div>
                         <div class="dmca-badge">DMCA <span>PROTECTED</span></div>
@@ -2616,19 +2629,19 @@
 
         <!-- Sticky Mobile CTA Bar -->
         <div class="sticky-mobile-cta">
-            <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
+            <a onclick="trackChatClick('whatsapp');" href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-wa">
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-book">
+            <a onclick="trackChatClick('whatsapp');" href="https://wa.me/84866137043" target="_blank" class="cta-btn cta-book">
                 <i class="fa-solid fa-calendar-days"></i> Book Online
             </a>
-            <a href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
+            <a onclick="trackChatClick('zalo');" href="https://zalo.me/0866137043" target="_blank" class="cta-btn cta-zalo">
                 <i class="fa-solid fa-comments"></i> Zalo
             </a>
         </div>
 
         <!-- Floating Chatbot Widget -->
-        <a href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
+        <a onclick="trackChatClick('zalo');" href="https://zalo.me/0866137043" target="_blank" class="floating-chatbot-widget">
             <span class="floating-chatbot-label">Chatbot</span>
             <div class="floating-chatbot-circle">
                 <i class="fa-solid fa-comment-dots"></i>

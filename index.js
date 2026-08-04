@@ -1199,7 +1199,11 @@ document.addEventListener('DOMContentLoaded', () => {
             url = "https://wa.me/84866137043";
         }
         if (url) {
-            addMessage(`Opening Zalo/WhatsApp to complete your booking... <a href="${url}" target="_blank" style="color: var(--color-accent); font-weight:700; text-decoration:underline;">Click here</a> if it didn't open.`, 'bot');
+            const channel = url.includes('zalo.me') ? 'zalo' : 'whatsapp';
+            addMessage(`Opening Zalo/WhatsApp to complete your booking... <a onclick="trackChatClick('${channel}');" href="${url}" target="_blank" style="color: var(--color-accent); font-weight:700; text-decoration:underline;">Click here</a> if it didn't open.`, 'bot');
+            if (typeof trackChatClick === 'function') {
+                trackChatClick(channel);
+            }
             window.open(url, '_blank');
         }
         setTimeout(() => { showBotResponse('start'); }, 1500);
@@ -1229,4 +1233,95 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+});
+
+// ==========================================================
+// 1. TỰ ĐỘNG THAY ĐỔI EMOJI THEO NGUỒN TRAFFIC CHO WHATSAPP
+// ==========================================================
+function initSmartWhatsAppTracking() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const campaign = urlParams.get('utm_campaign');
+    const source = urlParams.get('utm_source');
+    const brandName = '1997 Laundry';
+    
+    let emoji = '👋'; // Mặc định cho SEO
+    let greet = `Hi ${brandName}! I want to schedule a laundry pickup service.`;
+    
+    if (campaign) {
+        // --- Chiến dịch Tìm kiếm Sales-Search-8 ---
+        if (campaign === 'Sales-Search-8') {
+            emoji = '⚡';
+            greet = `Hi ${brandName}! I'd like to schedule a laundry pickup please.`;
+        } else if (campaign === 'Sales-Search-8-sitelink-dry-cleaning') {
+            emoji = '👔';
+            greet = `Hi ${brandName}! I'd like to book dry cleaning for my clothes.`;
+        } else if (campaign === 'Sales-Search-8-sitelink-steam-press') {
+            emoji = '👕';
+            greet = `Hi ${brandName}! I want to book steam pressing/washing.`;
+        } else if (campaign === 'Sales-Search-8-sitelink-shoes-cleaning') {
+            emoji = '👟';
+            greet = `Hi ${brandName}! I'd like to book a professional shoe cleaning.`;
+        } else if (campaign === 'Sales-Search-8-sitelink-express-laundry') {
+            emoji = '⚡';
+            greet = `Hi ${brandName}! I want to order 4-hour express wash.`;
+        } else if (campaign === 'Sales-Search-8-sitelink-booking') {
+            emoji = '📲';
+            greet = `Hi ${brandName}! I want to schedule a quick booking.`;
+        }
+        // --- Chiến dịch Bản đồ Map - 1997 Laundry ---
+        else if (campaign === 'Map-1997-Laundry') {
+            emoji = '🎯';
+            greet = `Hi ${brandName}! I saw your shop on Maps. Can I book a pickup?`;
+        } else if (campaign === 'Map-1997-Laundry-sitelink-dry-cleaning') {
+            emoji = '👔';
+            greet = `Hi ${brandName}! I want dry cleaning service.`;
+        } else if (campaign === 'Map-1997-Laundry-sitelink-steam-press') {
+            emoji = '👕';
+            greet = `Hi ${brandName}! I want laundry and steam press.`;
+        } else if (campaign === 'Map-1997-Laundry-sitelink-booking') {
+            emoji = '📲';
+            greet = `Hi ${brandName}! I want to book a service now.`;
+        } else if (campaign === 'Map-1997-Laundry-sitelink-4h-express') {
+            emoji = '⚡';
+            greet = `Hi ${brandName}! I want 4-hour express wash.`;
+        }
+        // --- Bản đồ tự nhiên GMB ---
+        else if (campaign === '1997-gmb-profile' || source === 'google-maps') {
+            emoji = '📍';
+            greet = `Hi ${brandName}! I found your shop on Google Maps. I'd like to book a pickup!`;
+        }
+    }
+    
+    const encodedMessage = encodeURIComponent(`${greet} ${emoji}`);
+    const phone = '84866137043'; 
+    const newWhatsAppUrl = `https://wa.me/${phone}?text=${encodedMessage}`;
+    
+    const waButtons = document.querySelectorAll('a[href*="wa.me"]');
+    waButtons.forEach(button => {
+        button.href = newWhatsAppUrl;
+    });
+}
+
+// ==========================================================
+// 2. ĐO LƯỜNG LƯỢT NHẤP CHAT CHO CẢ 2 TÀI KHOẢN GOOGLE ADS
+// ==========================================================
+function trackChatClick(channel) {
+    if (typeof gtag !== 'undefined') {
+        if (channel === 'whatsapp') {
+            // Gửi chuyển đổi về tài khoản Map Ads
+            gtag('event', 'conversion', {'send_to': 'AW-17184746029/mOg-Cl6tgtwcEK3UqYJA'});
+            // Gửi chuyển đổi về tài khoản Search Ads
+            gtag('event', 'conversion', {'send_to': 'AW-17231713331/sjyNCMeYgtwcELOo3JhA'});
+        } else if (channel === 'zalo') {
+            // Gửi chuyển đổi về tài khoản Map Ads
+            gtag('event', 'conversion', {'send_to': 'AW-17184746029/xKi-CJGtgtwcEK3UqYJA'});
+            // Gửi chuyển đổi về tài khoản Search Ads
+            gtag('event', 'conversion', {'send_to': 'AW-17231713331/9vLNCMqYgtwcELOo3JhA'});
+        }
+    }
+}
+
+// Khởi chạy khi DOM sẵn sàng
+window.addEventListener('DOMContentLoaded', function() {
+    initSmartWhatsAppTracking();
 });
