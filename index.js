@@ -804,7 +804,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         dryclean: {
-            text: "<strong>Premium Dry Cleaning (Giặt Khô Cao Cấp):</strong><br>We use safe, eco-friendly Hydrocarbon solvents to protect luxury suits, wool, cashmere, silk, down jackets, and leather.<br><br>• 2-Piece Suit: 230,000 VND<br>• Silk/Evening Gown: 190,000 VND<br>• Leather Jacket: 490,000 VND<br><br>Includes stain pre-treatment, hydrocarbon wash, vertical steam pressing, and hanger packaging with no extra fees!",
+            text: "<strong>Premium Dry Cleaning (Giặt Khô Cao Cấp):</strong><br>We use safe, eco-friendly Hydrocarbon solvents to protect luxury suits, wool, cashmere, silk, down jackets, and leather.<br><br>• 2-Piece Suit: 230,000 VND<br>• Silk/Evening Gown: 190,000 VND<br>• Leather Jacket: 230,000 VND<br><br>Includes stain pre-treatment, hydrocarbon wash, vertical steam pressing, and hanger packaging with no extra fees!",
             options: [
                 { text: "📅 Book Dry Cleaning", action: "book_wa" },
                 { text: "🔙 Main Menu", next: "start" }
