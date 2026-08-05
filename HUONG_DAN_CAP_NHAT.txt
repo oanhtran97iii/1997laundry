@@ -1,0 +1,26 @@
+HƯỚNG DẪN CẬP NHẬT GIAO DIỆN LÊN HOSTINGER (1997 LAUNDRY)
+=========================================================
+
+Để cập nhật toàn bộ các chỉnh sửa mới nhất lên Hosting của Hostinger, bạn làm theo các bước sau:
+
+Bước 1: Tải tệp nén update.zip
+------------------------------
+Link tải trực tiếp: https://1997laundry.com/update.zip
+(Hoặc sử dụng tệp update.zip mà bạn vừa tải xuống từ GitHub/website).
+
+Bước 2: Upload lên Hostinger
+----------------------------
+1. Đăng nhập vào hPanel của Hostinger.
+2. Vào phần Quản lý tệp (File Manager) của website 1997laundry.com.
+3. Truy cập vào thư mục "public_html".
+4. Nhấp vào biểu tượng "Tải lên" (Upload) ở góc trên bên phải và chọn tệp "update.zip" vừa tải về.
+
+Bước 3: Giải nén & Ghi đè (Extract)
+-----------------------------------
+1. Nhấp chuột phải vào tệp "update.zip" đã upload trên Hostinger.
+2. Chọn "Giải nén" (Extract).
+3. Khi Hostinger hỏi thư mục giải nén, hãy nhập đường dẫn là "." (hoặc chọn giải nén trực tiếp vào thư mục hiện tại "public_html").
+4. Chọn "Ghi đè tất cả" (Overwrite all) nếu hệ thống hỏi.
+5. Sau khi giải nén xong, bạn có thể xóa tệp "update.zip" trên Hostinger để tránh làm nặng bộ nhớ.
+
+Chúc bạn thành công!
