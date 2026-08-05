@@ -1041,6 +1041,13 @@ document.addEventListener('DOMContentLoaded', () => {
             background-color: var(--color-accent-dark);
         }
 
+        .floating-contact-btn.floating-btn-calc .floating-contact-circle {
+            background-color: var(--color-accent) !important;
+            color: #ffffff !important;
+        }
+        .floating-contact-btn.floating-btn-calc:hover .floating-contact-circle {
+            background-color: var(--color-accent-hover) !important;
+        }
         @media (max-width: 576px) {
             .chatbot-window {
                 bottom: 0 !important;
@@ -1130,10 +1137,24 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="floating-contact-circle"><i class="fa-solid fa-robot"></i></div>
         `;
         
-        // Append all three in the vertical stack
+        // Create Estimate Price button (nằm dưới Chatbot)
+        const isVi = window.location.pathname.includes('/vi/');
+        const targetUrl = isVi ? '../order.html' : 'order.html';
+        const calcLabel = isVi ? 'Tính Giá Trước' : 'Estimate Price';
+        
+        const calcBtn = document.createElement('a');
+        calcBtn.href = targetUrl;
+        calcBtn.className = 'floating-contact-btn floating-btn-calc';
+        calcBtn.innerHTML = `
+            <div class="floating-contact-label">${calcLabel}</div>
+            <div class="floating-contact-circle"><i class="fa-solid fa-calculator"></i></div>
+        `;
+        
+        // Append all in the vertical stack (calcBtn at the bottom, below chatbot)
         contactGroup.appendChild(zaloBtn);
         contactGroup.appendChild(waBtn);
         contactGroup.appendChild(floatBtn);
+        contactGroup.appendChild(calcBtn);
 
         // Intercept chatbot button click
         floatBtn.addEventListener('click', (e) => {
