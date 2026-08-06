@@ -56,6 +56,9 @@
     ExpiresByType application/javascript "access plus 1 week"
     ExpiresByType application/x-javascript "access plus 1 week"
     
+    # HTML files (no-cache to ensure immediate updates)
+    ExpiresByType text/html "access plus 0 seconds"
+    
     # Images (1 year cache)
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
@@ -69,3 +72,12 @@
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
+# 3. Explicitly Disable Caching for HTML pages
+<FilesMatch "\.(html|htm)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>

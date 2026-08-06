@@ -57,6 +57,9 @@ $content = '# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Bro
     ExpiresByType application/javascript "access plus 1 week"
     ExpiresByType application/x-javascript "access plus 1 week"
     
+    # HTML files (no-cache to ensure immediate updates)
+    ExpiresByType text/html "access plus 0 seconds"
+    
     # Images (1 year cache)
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
@@ -69,7 +72,16 @@ $content = '# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Bro
     ExpiresByType font/ttf "access plus 1 year"
     ExpiresByType font/woff "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
-</IfModule>';
+</IfModule>
+
+# 3. Explicitly Disable Caching for HTML pages
+<FilesMatch "\.(html|htm)$">
+    <IfModule mod_headers.c>
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </IfModule>
+</FilesMatch>';
 
 if (file_put_contents('.htaccess', $content)) {
     echo "<h1>Success! .htaccess file created successfully on Hostinger!</h1>";
