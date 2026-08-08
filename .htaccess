@@ -1,35 +1,41 @@
-# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (302 Browser Redirects)
+# 0. URL Rewriting for Clean URLs and Ad Tracking redirects (301 Permanent Redirects)
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
+    # Redirect /index.html and /vi/index.html to root for SEO deduplication
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.html\ HTTP/
+    RewriteRule ^index\.html$ / [R=301,L]
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /vi/index\.html\ HTTP/
+    RewriteRule ^vi/index\.html$ /vi/ [R=301,L]
+
     # Redirect specific old ad campaign routes
-    RewriteRule ^laundy-service/?$ /express-laundry.html [R=302,L,QSA]
-    RewriteRule ^laundry-service/?$ /express-laundry.html [R=302,L,QSA]
-    RewriteRule ^book-service/?$ /order.html [R=302,L,QSA]
-    RewriteRule ^dry-cleaning-service/?$ /dry-cleaning.html [R=302,L,QSA]
-    RewriteRule ^laundry-and-steam-press/?$ /steam-press.html [R=302,L,QSA]
-    RewriteRule ^faqs/?$ /#faq [NE,R=302,L,QSA]
+    RewriteRule ^laundy-service/?$ /express-laundry.html [R=301,L,QSA]
+    RewriteRule ^laundry-service/?$ /express-laundry.html [R=301,L,QSA]
+    RewriteRule ^book-service/?$ /order.html [R=301,L,QSA]
+    RewriteRule ^dry-cleaning-service/?$ /dry-cleaning.html [R=301,L,QSA]
+    RewriteRule ^laundry-and-steam-press/?$ /steam-press.html [R=301,L,QSA]
+    RewriteRule ^faqs/?$ /#faq [NE,R=301,L,QSA]
 
     # Redirect clean URLs to actual .html files (prevents broken assets)
-    RewriteRule ^dry-cleaning/?$ /dry-cleaning.html [R=302,L,QSA]
-    RewriteRule ^express-laundry/?$ /express-laundry.html [R=302,L,QSA]
-    RewriteRule ^shoes-cleaning/?$ /shoes-cleaning.html [R=302,L,QSA]
-    RewriteRule ^steam-press/?$ /steam-press.html [R=302,L,QSA]
-    RewriteRule ^curtain-cleaning/?$ /curtain-cleaning.html [R=302,L,QSA]
-    RewriteRule ^order/?$ /order.html [R=302,L,QSA]
+    RewriteRule ^dry-cleaning/?$ /dry-cleaning.html [R=301,L,QSA]
+    RewriteRule ^express-laundry/?$ /express-laundry.html [R=301,L,QSA]
+    RewriteRule ^shoes-cleaning/?$ /shoes-cleaning.html [R=301,L,QSA]
+    RewriteRule ^steam-press/?$ /steam-press.html [R=301,L,QSA]
+    RewriteRule ^curtain-cleaning/?$ /curtain-cleaning.html [R=301,L,QSA]
+    RewriteRule ^order/?$ /order.html [R=301,L,QSA]
 
     # Redirect for /vi/ subfolder clean URLs
-    RewriteRule ^vi/dry-cleaning/?$ /vi/dry-cleaning.html [R=302,L,QSA]
-    RewriteRule ^vi/express-laundry/?$ /vi/express-laundry.html [R=302,L,QSA]
-    RewriteRule ^vi/shoes-cleaning/?$ /vi/shoes-cleaning.html [R=302,L,QSA]
-    RewriteRule ^vi/steam-press/?$ /vi/steam-press.html [R=302,L,QSA]
-    RewriteRule ^vi/curtain-cleaning/?$ /vi/curtain-cleaning.html [R=302,L,QSA]
-    RewriteRule ^vi/order/?$ /vi/order.html [R=302,L,QSA]
-    RewriteRule ^vi/book-service/?$ /vi/order.html [R=302,L,QSA]
-    RewriteRule ^vi/dry-cleaning-service/?$ /vi/dry-cleaning.html [R=302,L,QSA]
-    RewriteRule ^vi/laundry-and-steam-press/?$ /vi/steam-press.html [R=302,L,QSA]
-    RewriteRule ^vi/faqs/?$ /vi/#faq [NE,R=302,L,QSA]
+    RewriteRule ^vi/dry-cleaning/?$ /vi/dry-cleaning.html [R=301,L,QSA]
+    RewriteRule ^vi/express-laundry/?$ /vi/express-laundry.html [R=301,L,QSA]
+    RewriteRule ^vi/shoes-cleaning/?$ /vi/shoes-cleaning.html [R=301,L,QSA]
+    RewriteRule ^vi/steam-press/?$ /vi/steam-press.html [R=301,L,QSA]
+    RewriteRule ^vi/curtain-cleaning/?$ /vi/curtain-cleaning.html [R=301,L,QSA]
+    RewriteRule ^vi/order/?$ /vi/order.html [R=301,L,QSA]
+    RewriteRule ^vi/book-service/?$ /vi/order.html [R=301,L,QSA]
+    RewriteRule ^vi/dry-cleaning-service/?$ /vi/dry-cleaning.html [R=301,L,QSA]
+    RewriteRule ^vi/laundry-and-steam-press/?$ /vi/steam-press.html [R=301,L,QSA]
+    RewriteRule ^vi/faqs/?$ /vi/#faq [NE,R=301,L,QSA]
 </IfModule>
 
 # 1. Enable Gzip Compression
