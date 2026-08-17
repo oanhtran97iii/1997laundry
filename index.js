@@ -1311,6 +1311,10 @@ function initSmartWhatsAppTracking() {
             emoji = '📍';
             greet = `Hi ${brandName}! I found your shop on Google Maps. I'd like to book a pickup!`;
         }
+    } else if (urlParams.has('gclid') || urlParams.has('wbraid') || urlParams.has('gbraid')) {
+        // Tự động nhận diện lưu lượng truy cập Google Ads nếu thiếu thẻ UTM
+        emoji = '⚡';
+        greet = `Hi ${brandName}! I'd like to schedule a laundry pickup please.`;
     }
     
     const encodedMessage = encodeURIComponent(`${greet} ${emoji}`);
@@ -1345,4 +1349,33 @@ function trackChatClick(channel) {
 // Khởi chạy khi DOM sẵn sàng
 window.addEventListener('DOMContentLoaded', function() {
     initSmartWhatsAppTracking();
+    
+    // Before & After Slider Controls
+    const baWrapper = document.getElementById('ba-slider-wrapper');
+    const baPrevBtn = document.getElementById('ba-prev-btn');
+    const baNextBtn = document.getElementById('ba-next-btn');
+
+    if (baWrapper && baPrevBtn && baNextBtn) {
+        baPrevBtn.addEventListener('click', () => {
+            const firstCard = baWrapper.querySelector('.before-after-card');
+            if (firstCard) {
+                const cardWidth = firstCard.offsetWidth + 30; // card width + gap
+                baWrapper.scrollBy({
+                    left: -cardWidth,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        baNextBtn.addEventListener('click', () => {
+            const firstCard = baWrapper.querySelector('.before-after-card');
+            if (firstCard) {
+                const cardWidth = firstCard.offsetWidth + 30; // card width + gap
+                baWrapper.scrollBy({
+                    left: cardWidth,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    }
 });
